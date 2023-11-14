@@ -1,0 +1,20 @@
+<div class="flex flex-col p-4 gap-4" (click)="$event.stopPropagation()">
+  <div class="flex justify-between items-center">
+    <button aiq-button size="small-icon" (click)="onPreviousYearBatchClick()">
+      <span class="material-icons-outlined">chevron_left</span>
+    </button>
+
+    <span class="text-primary">{{$displayedYear() + 1 - MAX_NUMBER_YEARS_VIEWABLE }} - {{$displayedYear()}}</span>
+
+    <button aiq-button size="small-icon" (click)="onNextYearBatchClick()">
+      <span class="material-icons-outlined">chevron_right</span>
+    </button>
+  </div>
+  <div class="grid grid-cols-4 gap-2">
+    <button aiq-button
+            [selected]="$selectedYear() === year"
+            *ngFor="let year of $years()" (click)="onSelectYearClick(year)">
+      <span class="text-primary">{{year}}</span>
+    </button>
+  </div>
+</div>

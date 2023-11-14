@@ -1,0 +1,10 @@
+<div class="confirm-dialog__container ">
+  <div class="confirm-dialog__header"><h5 [innerHTML]="data.title"></h5></div>
+
+  <div class="confirm-dialog__body" [innerHTML]="data.message"></div>
+
+  <div class="confirm-dialog__footer">
+    <button aiq-button (click)="onCancelClick()">Cancel</button>
+    <button aiq-button type="primary" (click)="onConfirmClick()">Confirm</button>
+  </div>
+</div>

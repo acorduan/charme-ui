@@ -1,0 +1,26 @@
+<div class="flex flex-col gap-4">
+  <aiq-day-picker [selectedDate]="$selectedDate()"
+                  (selectedDateChange)="$selectedDate.set($event)"
+                  [min]="$min()"
+                  [max]="$max()"/>
+
+
+  <aiq-divider size="100%" direction="horizontal" />
+
+  <div class="flex justify-between px-4 pb-4 items-center">
+    <aiq-time-picker [selectedHour]="$selectedHour()"
+                     [selectedMinute]="$selectedMinute()"
+                     (selectHourChange)="$selectedHour.set($event)"
+                     (selectMinuteChange)="$selectedMinute.set($event)"/>
+
+    <div class="flex gap-2 items-center">
+      <button aiq-button (click)="cancelClick.emit()">Cancel</button>
+      <button aiq-button (click)="onSaveClick()"
+              type="primary"
+              [disabled]="$selectedDate() === undefined || $selectedHour() === undefined || $selectedMinute() === undefined">Save</button>
+
+    </div>
+  </div>
+
+</div>
+

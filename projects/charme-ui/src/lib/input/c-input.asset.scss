@@ -1,0 +1,29 @@
+.c-input {
+  @apply box-border h-10 indent-1.5 p-1.5 text-sm;
+  @apply text-c-slate-90 dark:text-c-prussian-10;
+  @apply bg-transparent;
+  @apply rounded border border-solid border-c-slate-60 dark:border-c-prussian-50;
+
+  &:hover:not(:disabled, :focus) {
+    @apply border-c-slate-90 dark:border-c-prussian-10;
+  }
+
+  &:focus {
+    @apply outline outline-2 border-transparent;
+    @apply outline-c-ultramarine-60 dark:outline-c-ultramarine-50;
+  }
+
+  &::placeholder {
+    @apply text-c-slate-70 dark:text-c-prussian-30;
+  }
+
+  &:disabled {
+    @apply text-c-slate-60 dark:text-c-prussian-50;
+    @apply border-c-steel-30 dark:border-c-prussian-60;
+    @apply bg-c-steel-10 dark:bg-c-prussian-90;
+
+    &::placeholder {
+      @apply text-c-slate-60 dark:text-c-prussian-50;
+    }
+  }
+}

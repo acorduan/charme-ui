@@ -1,0 +1,8 @@
+<div class="aiq-overlay overflow-hidden rounded max-w-xs text-xs p-2 animate-tooltip text-aiq-slate-80 dark:text-aiq-slate-20" [ngClass]="data.containerClass">
+  <ng-template #simpleText>
+    <span class="text-xs" [innerText]="data.text"></span>
+
+  </ng-template>
+  <ng-container *ngTemplateOutlet="data.tpl || simpleText">
+  </ng-container>
+</div>

@@ -1,0 +1,13 @@
+<button 
+    aiq-button
+    size="large"
+    class="gap-2 !rounded-none w-full"
+    [ngClass]="{'!justify-between': !multiple, '!justify-start': multiple}"
+    [selected]="selected"
+    [disabled]="disabled"
+    (click)="onClick()"
+>
+    <input *ngIf="value && multiple" aiq-checkbox class="pointer-events-none" type="checkbox" [checked]="selected" [ngClass]="{ 'opacity-50': disabled}"/>
+    <span [ngClass]="{ 'ml-4': !multiple && hasGroup}">{{ label }}</span>
+    <span *ngIf="value && !multiple && selected" class="material-icons-outlined text-md">done</span>
+</button>

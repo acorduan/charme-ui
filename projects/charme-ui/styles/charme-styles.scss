@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body, dialog {
+  @apply bg-primary text-primary;
+}
+
+@import "../src/lib/ripple/c-ripple.asset";
+@import "../src/lib/input/c-input.asset";
+
+/*@import "./components/aiq-message";
+@import "./components/aiq-ellipsis";
+@import "./components/aiq-checkbox";
+@import "./components/aiq-radio-button";
+@import "./components/aiq-input";
+@import "./components/aiq-label";
+@import "./components/aiq-badge";*/

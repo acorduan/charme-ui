@@ -1,0 +1,141 @@
+<div class="p-4 grid gap-4">
+
+
+
+  <div class="flex gap-2 items-center">
+    <button c-button (click)="theme.toggle()">Toggle theme</button>
+  </div>
+
+  <!--Plain-->
+
+  <h1>Buttons</h1>
+
+  <div class="flex gap-2 items-center flex-wrap">
+    <button c-button>Primary</button>
+
+    <button c-button color="success">Success</button>
+
+    <button c-button color="warning">Warning</button>
+
+    <button c-button color="error">Error</button>
+
+    <button c-button disabled>Disabled</button>
+
+    <button c-button size="lg">Large</button>
+
+    <button c-button size="sm">Small</button>
+
+
+    <button c-button size="lg-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
+
+    <button c-button size="md-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
+
+    <button c-button size="sm-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
+
+
+    <button c-button loading class="w-20">
+      Loading
+    </button>
+
+    <button c-button selected class="w-20">
+      Selected
+    </button>
+
+  </div>
+
+
+  <!--Outline-->
+  <div class="flex gap-2 items-center">
+    <button c-button b-type="outline">Primary</button>
+
+    <button c-button b-type="outline" color="success">Success</button>
+
+    <button c-button b-type="outline" color="warning">Warning</button>
+
+    <button c-button b-type="outline" color="error">Error</button>
+
+    <button c-button b-type="outline" disabled>Disabled</button>
+
+    <button c-button b-type="outline" size="lg">Large</button>
+
+    <button c-button b-type="outline" size="sm">Small</button>
+
+
+    <button c-button b-type="outline" size="lg-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
+
+    <button c-button b-type="outline" size="md-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
+
+    <button c-button b-type="outline" size="sm-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
+
+    <button c-button loading b-type="outline" class="w-20">
+      Loading
+    </button>
+
+    <button c-button selected b-type="outline" class="w-20">
+      Selected
+    </button>
+  </div>
+
+
+  <!--Flat-->
+  <div class="flex gap-2 items-center">
+    <button c-button b-type="flat">Primary</button>
+
+    <button c-button b-type="flat" color="success">Success</button>
+
+    <button c-button b-type="flat" color="warning">Warning</button>
+
+    <button c-button b-type="flat" color="error">Error</button>
+
+    <button c-button b-type="flat" disabled>Disabled</button>
+
+    <button c-button b-type="flat" size="lg">Large</button>
+
+    <button c-button b-type="flat" size="sm">Small</button>
+
+    <button c-button b-type="flat" size="lg-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
+
+    <button c-button b-type="flat" size="md-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
+
+    <button c-button b-type="flat" size="sm-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
+
+    <button c-button loading b-type="flat" class="w-20">
+      Loading
+    </button>
+
+    <button c-button selected b-type="flat" class="w-20">
+      Selected
+    </button>
+  </div>
+
+
+  <h1>Inputs</h1>
+  <div class="flex gap-2 items-center">
+    <input c-input placeholder="placeholder...">
+
+    <input c-input disabled placeholder="disabled...">
+
+
+  </div>
+
+  <button c-button (click)="onOpenDialogClick()">Open dialog</button>
+</div>
+

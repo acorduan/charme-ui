@@ -1,0 +1,11 @@
+<div class="flex gap-2 items-center time-container">
+  <aiq-dropdown class="w-20" [options]="HOURS"
+                (valueChange)="onSelectHour($event)"
+                [optionLabel]="'label'"
+                [value]="HOURS | find : 'value' :  $selectedHour()"/>
+  <span>:</span>
+  <aiq-dropdown class="w-20" [options]="MINUTES"
+                (valueChange)="onSelectMinute($event)"
+                optionLabel="label"
+                [value]="MINUTES | find : 'value' :  $selectedMinute()"/>
+</div>

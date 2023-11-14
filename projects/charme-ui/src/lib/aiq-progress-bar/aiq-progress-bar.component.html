@@ -1,0 +1,27 @@
+<ng-container *ngTemplateOutlet="display === 'flat' ? flatTpl : roundedTpl"></ng-container>
+
+<ng-template #flatTpl>
+  <div class="aiq-progress-bar__container" [style.height.px]="height">
+    <div [ngClass]="type" class="progress-bar-flat"
+         [style.width.%]="progress"
+         [style.background-color]="type === 'intermediate' ? color : ''">
+      <ng-container *ngIf="type === 'infinite'">
+        <div class="line" [style.background]="color"></div>
+        <div class="subline inc" [style.background]="color"></div>
+        <div class="subline dec" [style.background]="color"></div>
+      </ng-container>
+    </div>
+  </div>
+
+</ng-template>
+
+
+<ng-template #roundedTpl>
+
+  <div class="loader"
+       [style.border-width.px]="borderWidth"
+       [style.border-top-color]="color"
+       [style.padding.px]="diameter"
+       [style.height.px]="diameter"
+       [style.width.px]="diameter"></div>
+</ng-template>

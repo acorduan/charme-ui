@@ -1,0 +1,67 @@
+<div class="flex flex-col gap-4 p-4">
+  <div class="flex justify-between">
+    <button aiq-button size="small-icon" (click)="onPreviousMonthClick()">
+      <span class="material-icons-outlined">arrow_back_ios</span>
+    </button>
+
+    <div class="flex gap-2">
+      <button aiq-button aiq-menu [aiqMenuTrigger]="monthPickerTpl">{{MONTHS_LABEL[$displayedMonth()]}}</button>
+      <button aiq-button aiq-menu [aiqMenuTrigger]="yearPikerTpl">{{$displayedYear()}}</button>
+    </div>
+
+
+    <button aiq-button size="small-icon" (click)="onNextMonthClick()">
+      <span class="material-icons-outlined">arrow_forward_ios</span>
+    </button>
+
+  </div>
+
+  <div class="grid grid-cols-7 items-start justify-start gap-1">
+    <div *ngFor="let weekDay of DAYS_OF_WEEK_LABEL" class="px-2 py-4">
+      <span>{{weekDay}}</span>
+    </div>
+    <ng-container *ngIf="$datesInCurrentMonth()[0].getDay() > 0">
+      <button aiq-button size="icon"
+              *ngFor="let date of $datesInPreviousMonth() | slice:-$datesInCurrentMonth()[0].getDay()"
+              class="text-secondary"
+              [disabled]="disabled(date)"
+              [ngClass]="{'!bg-aiq-steel-20/80 dark:!bg-aiq-prussian-80/80': disabled(date)}"
+              [selected]="date | isSelectedDay : $selectedDate()"
+              (click)="onSelectDate(date)">
+        <span class="text-secondary opacity-80">{{date.getDate()}}</span>
+      </button>
+    </ng-container>
+    <button aiq-button size="icon" *ngFor="let date of $datesInCurrentMonth()"
+            [ngClass]="{'!bg-aiq-steel-20/80 dark:!bg-aiq-prussian-80/80': disabled(date)}"
+            [selected]="date | isSelectedDay : $selectedDate()"
+            [disabled]="disabled(date)"
+            [type]="(date | isToday) ? 'secondary': 'tertiary'"
+            (click)="onSelectDate(date)">
+      <span class="text-primary">{{date.getDate()}}</span>
+    </button>
+    <ng-container *ngIf="this.$datesInCurrentMonth()[this.$datesInCurrentMonth().length - 1]?.getDay() as lastDate">
+      <button size="icon" aiq-button
+              [selected]="date | isSelectedDay : $selectedDate()"
+              [ngClass]="{'!bg-aiq-steel-20/80 dark:!bg-aiq-prussian-80/80': disabled(date)}"
+              [disabled]="disabled(date)"
+              (click)="onSelectDate(date)"
+              *ngFor="let date of $datesInNextMonth() | slice:0:(7-(lastDate + 1))">
+        <span class="text-secondary opacity-80">{{date.getDate()}}</span>
+      </button>
+    </ng-container>
+
+  </div>
+
+</div>
+
+
+<ng-template #monthPickerTpl let-ref="ref">
+  <aiq-month-picker [selectedMonth]="$displayedMonth()"
+                    (selectedMonthChange)="$displayedMonth.set($event); ref.close()"/>
+</ng-template>
+
+<ng-template #yearPikerTpl let-ref="ref">
+  <aiq-year-picker [selectedYear]="$displayedYear()"
+                   (selectedYearChange)="$displayedYear.set($event); ref.close()"/>
+</ng-template>
+

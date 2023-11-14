@@ -1,0 +1,7 @@
+<div class="grid grid-cols-3 gap-2 p-4" (click)="$event.stopPropagation()">
+  <button aiq-button *ngFor="let month of MONTHS_LABEL; let index=index"
+          [selected]="$selectedMonth() === index"
+          (click)="onSelectMonthClick(index)">
+    <span class="text-primary"> {{month}}</span>
+  </button>
+</div>

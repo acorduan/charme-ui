@@ -1,0 +1,6 @@
+<div class="relative flex flex-row items-center w-full">
+    <span *ngIf="label" class="absolute -top-[0.6rem] left-[1rem] z-10 px-2 overflow-visible text-aiq-slate-70 dark:text-aiq-prussian-30 text-xs whitespace-nowrap bg-aiq-white-100 dark:bg-aiq-prussian-100"
+          [ngClass]="{'!text-aiq-slate-60 !dark:text-aiq-prussian-50': disabled, '!text-aiq-red-50': error}">{{ label }}</span>
+    <ng-content></ng-content>
+    <span *ngIf="infoStr() || infoTpl()" [aiqTooltip]="infoStr()" [contentTemplate]="infoTpl()" [tooltipContainerClass]="tooltipContainerClass" class="material-icons-sharp text-aiq-slate-50 dark:text-aiq-prussian-40 cursor-default">info</span>
+</div>
