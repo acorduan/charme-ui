@@ -5,7 +5,7 @@ module.exports = {
   ],
   content: [
     './src/**/*.{html,ts}',
-    './projects/charme-ui/src/**/*.{html,ts,css,scss}',
+    './projects/charme-ui/src/**/*.{html,ts}',
   ],
   plugins: []
 }

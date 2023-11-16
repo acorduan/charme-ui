@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AiqMenuItemDirective } from "./aiq-menu-item.directive";
-import { OVERLAY_DATA, OverlayRef } from "projects/charme-ui/src/lib/overlay/";
+import { OVERLAY_DATA, OverlayRef } from "projects/charme-ui/src/lib/dialog/";
 
 @Component({
   selector: 'aiq-menu',

@@ -1,6 +1,6 @@
 import { Directive, ElementRef, HostListener, inject, Input, OnDestroy, TemplateRef } from '@angular/core';
 import { DialogAnimationType } from "../dialog";
-import { DialogService, OverlayRef } from "../overlay";
+import { DialogService, OverlayRef } from "../dialog";
 import { TooltipComponent } from "./tooltip.component";
 
 

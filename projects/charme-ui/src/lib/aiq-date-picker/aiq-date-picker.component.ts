@@ -17,7 +17,7 @@ import { AiqFormContainerComponent } from "../aiq-form-container/index";
 import { AiqYearPickerComponent } from "./aiq-year-picker/aiq-year-picker.component";
 import { AiqMonthPickerComponent } from "./aiq-month-picker/aiq-month-picker.component";
 import { AiqDayPickerComponent } from "./aiq-day-picker/aiq-day-picker.component";
-import { OverlayRef } from "../overlay";
+import { OverlayRef } from "../dialog";
 import {
   AiqDateTimePickerComponent
 } from "./aiq-date-time-picker/aiq-date-time-picker.component";

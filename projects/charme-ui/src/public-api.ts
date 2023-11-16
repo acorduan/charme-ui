@@ -6,7 +6,8 @@ export * from './lib/button'
 export * from './lib/ripple'
 export * from './lib/charme-config'
 export * from './lib/input'
-export * from './lib/overlay'
+export * from './lib/dialog'
+export * from './lib/tooltip'
 
 /*
 export * from './lib/aiq-dialog/index';

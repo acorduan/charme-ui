@@ -6,15 +6,24 @@ module.exports = {
     },
     extend: {
       animation: {
-        fade: 'fade 0.25s ease-in-out',
-        'fade-500': 'fade 0.5s ease-in-out',
+        fade: 'fade 0.15s ease-in-out forwards',
+        fadeout: 'fadeout 0.15s ease-in-out forwards',
         scale: 'scale 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
-        tooltip: 'fade 150ms cubic-bezier(0, 0, 0.2, 1) forwards, scale 150ms cubic-bezier(0, 0, 0.2, 1) forwards'
+        tooltip: 'fade 150ms cubic-bezier(0, 0, 0.2, 1) forwards, scale 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
+        ['dialog-open']: 'fade 150ms cubic-bezier(0, 0, 0.2, 1) forwards, scale 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
+        ['dialog-close']: 'fadeout 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
+        ['dialog-overlay-open']: 'fade 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
+        ['dialog-overlay-close']: 'fadeout 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
+
       },
       keyframes: {
         fade: {
           '0%': {opacity: '0'},
           '100%': {opacity: '1'},
+        },
+        fadeout: {
+          '0%': {opacity: '1'},
+          '100%': {opacity: '0'},
         },
         scale: {
           '0%': {transform: 'scale(0.8)'},
@@ -204,23 +213,15 @@ module.exports = {
           '@apply border-c-slate-20 dark:border-c-slate-90': {}
         },
 
-        '.aiq-overlay-shadow': {
+        '.c-overlay-shadow': {
           '@apply shadow-[2px_4px_8px_2px_rgba(72,84,94,0.15)] dark:shadow-[0px_4px_8px_0px_rgba(0,0,0,0.88)]': {}
         },
 
-        '.aiq-card-shadow': {
+        '.c-card-shadow': {
           '@apply shadow-[0px_4px_8px_0px_rgba(72,84,94,0.04)] dark:shadow-[0px_4px_8px_0px_rgba(0,32,52,0.80)]': {}
         },
 
-        '.aiq-overlay-container': {
-          '@apply z-[10000000] fixed': {}
-        },
-
-        '.aiq-overlay': {
-          '@apply aiq-overlay-shadow rounded bg-secondary': {}
-        },
-
-        '.aiq-card': {
+        '.c-card': {
           '@apply aiq-card-shadow rounded bg-secondary': {}
         }
       })
