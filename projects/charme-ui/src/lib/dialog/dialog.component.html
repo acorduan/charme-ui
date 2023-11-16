@@ -1,0 +1,24 @@
+<span dialog-focus-guard
+      class="fixed opacity-0 pointer-events-none"
+      position="first"
+      aria-hidden="true"
+      tabindex="0"
+      [dialogElementRef]="elementRef"></span>
+
+<div class="animate-dialog-open bg-secondary text-primary c-overlay-shadow" [ngClass]="config.panelClass">
+  <ng-container *ngIf="component">
+    <ng-container *ngComponentOutlet="component; inputs: config.inputs"></ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="template">
+    <ng-container *ngTemplateOutlet="template; context: config.inputs"></ng-container>
+  </ng-container>
+</div>
+
+
+<span dialog-focus-guard
+      class="fixed opacity-0 pointer-events-none"
+      position="last"
+      aria-hidden="true"
+      tabindex="0"
+      [dialogElementRef]="elementRef"></span>

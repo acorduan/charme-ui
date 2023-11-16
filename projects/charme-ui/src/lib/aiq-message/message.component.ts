@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MessageModel, MessageSeverity } from './aiq-message.service';
-import { OVERLAY_DATA } from "../overlay";
+import { OVERLAY_DATA } from "../dialog";
 
 @Component({
   selector: 'aiq-message',

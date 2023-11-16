@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { MessageComponent } from './message.component';
-import { DialogService } from "../overlay";
+import { DialogService } from "../dialog";
 
 export enum MessageSeverity {
   ERROR = 'error',

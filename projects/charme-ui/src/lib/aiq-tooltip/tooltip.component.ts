@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, TemplateRef, ViewEncapsulation } from '@angular/core';
-import { OVERLAY_DATA } from "../overlay";
+import { OVERLAY_DATA } from "../dialog";
 
 @Component({
   selector: 'aiq-tooltip',

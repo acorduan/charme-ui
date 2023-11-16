@@ -13,7 +13,7 @@ import {
 import { takeUntilDestroyed, toObservable } from "@angular/core/rxjs-interop";
 import { filter, switchMap, tap } from "rxjs/operators";
 import { AiqMenuComponent } from "./aiq-menu.component";
-import { DialogService, attachedToPosition, OverlayRef } from "../overlay";
+import { DialogService, attachedToPosition, OverlayRef } from "../dialog";
 
 @Directive({
   selector: '[aiq-menu]',
