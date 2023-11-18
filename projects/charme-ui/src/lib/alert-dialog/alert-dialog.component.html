@@ -1,0 +1,9 @@
+<div class="animate-dialog-open c-overlay-shadow bg-secondary">
+  <c-alert [title]="data.title"
+           [message]="data.message"
+           [severity]="data.severity"
+           [titleId]="titleId"
+           [messageId]="messageId"
+           [action]="data.action"
+           (actionClick)="this.actionClick.emit()"></c-alert>
+</div>

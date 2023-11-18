@@ -1,14 +1,14 @@
 import { Directive, HostBinding } from "@angular/core";
 import { OverlayPositionDirective } from "./overlay-position.directive";
 import { OverlaySizeDirective } from "./overlay-size.directive";
+import { OverlayCloseTimeoutDirective } from "./overlay-close-timeout.directive";
 
 @Directive({
-  selector: '[overlay-behavior]',
+  selector: '[c-overlay]',
   standalone: true,
-  hostDirectives: [OverlayPositionDirective, OverlaySizeDirective]
+  hostDirectives: [OverlayPositionDirective, OverlaySizeDirective, OverlayCloseTimeoutDirective]
 })
 export class OverlayDirective {
 
-  @HostBinding('class') class = 'z-[1000] bg-transparent fixed'
-
+  @HostBinding('class') class = 'z-[1000] bg-transparent fixed outline-0'
 }

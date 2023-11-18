@@ -1,21 +1,26 @@
-import { Component, ElementRef, HostBinding, inject, Input, TemplateRef, ViewChild } from '@angular/core';
+import { Component, DestroyRef, ElementRef, HostBinding, inject, Input, TemplateRef, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NgSwitch, NgSwitchDefault, NgSwitchCase, NgComponentOutlet } from '@angular/common';
+import { NgSwitch, NgSwitchDefault, NgSwitchCase, NgComponentOutlet, NgForOf } from '@angular/common';
 import {
   ButtonComponent,
   CharmeThemeService,
   InputDirective,
   DialogRef,
   TooltipDirective,
-  DialogTitleDirective, DialogService
+  DialogTitleDirective, DialogService,
+  AlertComponent,
+  AlertDialogService,
+  AlertSeverity, alertSeverities
 } from "@charme-ui";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective]
+  imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf]
 })
 export class AppComponent {
 
@@ -24,20 +29,23 @@ export class AppComponent {
   title = 'tutor';
   theme = inject(CharmeThemeService)
   dialog = inject(DialogService)
+  alert = inject(AlertDialogService)
   top = 10
+  alertSeverities = alertSeverities
+  #destroyRef = inject(DestroyRef)
 
   onOpenDialogClick(): void {
     this.dialog.open(TestComponent, {
       inputs: {
         message: 'Test alan'
       },
-      attachedTo: {
-        host: this.buttonEl,
-        hostPos: 'bottomright',
-        dialogPos: 'topright'
+      position: {
+        top: '0',
+        right: '0'
       },
       panelClass: 'rounded'
-    })
+    }).afterClosed()
+      .subscribe(result => console.log(result))
     this.top += 10
   }
 
@@ -50,11 +58,26 @@ export class AppComponent {
       attachedTo: {
         host: this.buttonEl,
         hostPos: 'bottomright',
-        dialogPos: 'topright'
+        dialogPos: 'topright',
       },
+      hasBackDrop: false,
       panelClass: 'rounded'
     })
     this.top += 10
+  }
+
+
+  onOpenAlertClick(severity: string, duration?: any, action?: string): void {
+
+    const alertRef = this.alert.add(
+      'Alert title',
+      'Lorem Ipsum is simply dummy text of the printing and...',
+      {severity: severity as  AlertSeverity, action, duration}
+    )
+
+    alertRef.onAction$()
+      .pipe(takeUntilDestroyed(this.#destroyRef))
+      .subscribe(() => alertRef.close())
   }
 }
 
@@ -68,11 +91,12 @@ export class AppComponent {
     DialogTitleDirective,
   ],
   template: `
-    <div class="grid gap-2">
+    <div class="grid gap-2 p-4">
       <h1 c-dialog-title>Title</h1>
-      <input c-input placeholder="test alan">
+      <label for="name">Name</label>
+      <input id="name" c-input placeholder="test alan" #inputText>
       <p>{{message}}</p>
-      <button c-button (click)="ref.close()">Close me</button>
+      <button c-button (click)="ref.close(inputText.value)" type="submit">Submit</button>
     </div>
     `
 })

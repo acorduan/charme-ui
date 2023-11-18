@@ -35,27 +35,27 @@ export class OverlayService {
     })
     overlayRef.componentRef = compRef
 
-    this.appendComponentToBody(compRef)
-    this.manageComponentDestruction(compRef, overlayRef)
+    this.#appendComponentToBody(compRef)
+    this.#manageComponentDestruction(compRef, overlayRef)
 
     return compRef
   }
 
-  private appendComponentToBody(compRef: ComponentRef<any>): void {
+  #appendComponentToBody(compRef: ComponentRef<any>): void {
     this.#appRef.attachView(compRef.hostView);
     document.body.appendChild(compRef.location.nativeElement);
   }
 
-  private manageComponentDestruction(compRef: ComponentRef<any>, overlayRef: OverlayRef): void {
+  #manageComponentDestruction(compRef: ComponentRef<any>, overlayRef: OverlayRef): void {
     const sub: Subscription = overlayRef.afterClosed()
       .pipe(
         delay(overlayRef.closeDelay),
-        tap(() => this.destroyComponent(compRef))
+        tap(() => this.#destroyComponent(compRef))
       )
       .subscribe(() => sub.unsubscribe())
   }
 
-  private destroyComponent(componentRef: ComponentRef<any>) {
+  #destroyComponent(componentRef: ComponentRef<any>): void {
     this.#appRef.detachView(componentRef.hostView);
     componentRef.destroy();
   }

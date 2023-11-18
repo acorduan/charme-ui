@@ -25,7 +25,6 @@ export class DialogClosingRulesDirective implements OnDestroy, AfterViewInit {
   router = inject(Router)
   dialogRef = inject(DialogRef)
   elementRef = inject(ElementRef)
-  #timeout: number | undefined = undefined
   #destroyRef = inject(DestroyRef)
 
   @HostListener('keydown.escape') onEscapeClick() {
@@ -35,7 +34,6 @@ export class DialogClosingRulesDirective implements OnDestroy, AfterViewInit {
   ngAfterViewInit() {
     this.initCloseOnNavigationRule()
     this.initCloseOnOverlayClick()
-    this.initTimeoutClose()
     this.initFadeout()
   }
 
@@ -44,9 +42,9 @@ export class DialogClosingRulesDirective implements OnDestroy, AfterViewInit {
   }
 
   private initCloseOnOverlayClick(): void {
-    const {overlay, closeOnBackdropClick} = this.dialogRef.config
+    const {hasBackDrop, closeOnBackdropClick} = this.dialogRef.config
     const backdropEl = this.dialogRef.backdropEl?.nativeElement
-    if (overlay && closeOnBackdropClick && backdropEl) {
+    if (hasBackDrop && closeOnBackdropClick && backdropEl) {
       backdropEl.addEventListener('click', this.close.bind(this))
     }
   }
@@ -76,12 +74,6 @@ export class DialogClosingRulesDirective implements OnDestroy, AfterViewInit {
     componentRef.destroy();
   }
 
-  private initTimeoutClose(): void {
-    if (this.dialogRef.config.time) {
-      this.#timeout = setTimeout(() => this.close(), this.dialogRef.config.time)
-    }
-  }
-
   private fadeOut(): void {
 
     const dialogElement = this.elementRef.nativeElement
@@ -96,7 +88,6 @@ export class DialogClosingRulesDirective implements OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy() {
-    clearTimeout(this.#timeout)
     if (this.dialogRef.backdropEl) {
       this.dialogRef.backdropEl.nativeElement.removeEventListener('click', this.close)
     }

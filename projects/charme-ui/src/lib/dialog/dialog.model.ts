@@ -1,53 +1,39 @@
 import { ElementRef } from '@angular/core';
-import { OverlayAttachedTo, OverlayConfig, OverlayPosition, OverlayRef } from "../overlay/overlay.model";
+import {
+  OverlayAttachedTo,
+  OverlayConfig,
+  OverlayConfigInstance,
+  OverlayPosition,
+  OverlayRef
+} from "../overlay/overlay.model";
 
 export type DialogPosition = OverlayPosition
 export type  DialogAttachedTo = OverlayAttachedTo
 
 export interface DialogConfig extends  Omit< OverlayConfig, 'attachedTo' | 'position' | 'data'> {
-  time?: number; //ms
   position?: DialogPosition;
   attachedTo?: DialogAttachedTo;
   panelClass?: string;
   closeOnBackdropClick: boolean;
   closeOnNavigation: boolean;
-  overlay: boolean;
+  hasBackDrop: boolean;
   inputs?: any;
 }
 
-class DialogConfigInstance implements DialogConfig {
+class DialogConfigInstance extends OverlayConfigInstance<DialogConfig> implements DialogConfig {
+  panelClass?: string;
   closeOnBackdropClick: boolean;
   closeOnNavigation: boolean;
-  overlay: boolean;
-
-  time?: number; //ms
-  position?: DialogPosition;
-  attachedTo?: DialogAttachedTo;
-  width?: string;
-  height?: string;
-  panelClass?: string;
+  hasBackDrop: boolean;
   inputs?: any;
-  maxHeight?: string;
-  maxWidth?: string;
-  minHeight?: string;
-  minWidth?: string;
-  animationCloseDuration: number;
 
   constructor(config?: Partial< DialogConfig>) {
+    super(config)
+    this.panelClass = config?.panelClass;
     this.closeOnBackdropClick = config?.closeOnBackdropClick ?? true;
     this.closeOnNavigation = config?.closeOnNavigation ?? true;
-    this.overlay = config?.overlay ?? true;
-    this.time = config?.time;
-    this.position = config?.position;
-    this.attachedTo = config?.attachedTo
-    this.width = config?.width;
-    this.height = config?.height;
-    this.panelClass = config?.panelClass;
+    this.hasBackDrop = config?.hasBackDrop ?? true;
     this.inputs = config?.inputs;
-    this.maxHeight = config?.maxHeight;
-    this.maxWidth = config?.maxWidth;
-    this.minHeight = config?.minHeight;
-    this.minWidth = config?.minWidth;
     this.animationCloseDuration = config?.animationCloseDuration ?? 150 //ms
   }
 }

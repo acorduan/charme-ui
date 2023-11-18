@@ -1,13 +1,13 @@
 <div class="p-4 grid gap-4 w-100">
 
-  <div class="flex gap-2 items-center">
+  <section class="flex gap-2 items-center">
     <button  c-button (click)="theme.toggle()">Toggle theme</button>
-  </div>
+  </section>
 
   <!--Plain-->
-  <h1>Buttons</h1>
+  <h1>Plain Buttons</h1>
 
-  <div class="flex gap-2 items-center flex-wrap">
+  <section class="flex gap-2 items-center flex-wrap">
     <button c-button>Primary</button>
 
     <button c-button color="success">Success</button>
@@ -44,11 +44,13 @@
       Selected
     </button>
 
-  </div>
+  </section>
 
+
+  <h1>Outline Buttons</h1>
 
   <!--Outline-->
-  <div class="flex gap-2 items-center">
+  <section class="flex gap-2 items-center flex-wrap">
     <button c-button b-type="outline">Primary</button>
 
     <button c-button b-type="outline" color="success">Success</button>
@@ -83,11 +85,12 @@
     <button c-button selected b-type="outline" class="w-20">
       Selected
     </button>
-  </div>
+  </section>
 
 
+  <h1>Flat Buttons </h1>
   <!--Flat-->
-  <div class="flex gap-2 items-center">
+  <section class="flex gap-2 items-center flex-wrap">
     <button c-button b-type="flat">Primary</button>
 
     <button c-button b-type="flat" color="success">Success</button>
@@ -121,18 +124,18 @@
     <button c-button selected b-type="flat" class="w-20">
       Selected
     </button>
-  </div>
+  </section>
 
 
   <h1>Inputs</h1>
-  <div class="flex gap-2 items-center">
+  <section class="flex gap-2 items-center flex-wrap">
     <input c-input placeholder="placeholder...">
 
     <input c-input disabled placeholder="disabled...">
-  </div>
+  </section>
 
   <h1>Dialogs</h1>
-  <div class="flex gap-2 items-center">
+  <section class="flex gap-2 items-center flex-wrap">
     <button  c-button (click)="onOpenDialogClick()">Open dialog from component</button>
 
     <button  c-button (click)="onOpenDialogClickFromTpl(myWonderfulDialogTpl)">Open dialog from template</button>
@@ -149,11 +152,11 @@
     </ng-template>
 
 
-  </div>
+  </section>
 
 
   <h1>Tooltips</h1>
-  <div class="flex gap-2 items-center">
+  <section class="flex gap-2 items-center flex-wrap">
     <button  c-button c-tooltip="Top tooltip" >Tooltip top</button>
     <button  c-button c-tooltip="Bottom tooltip" c-tooltip-position="bottom" >Tooltip bottom</button>
     <button  c-button [c-tooltip]="customTooltipTpl" >Tooltip custom tpl</button>
@@ -163,7 +166,34 @@
     </ng-template>
 
 
-  </div>
+  </section>
 
+
+
+  <h1>Alerts</h1>
+
+  <section class="flex gap-2 items-center flex-wrap">
+
+    <c-alert title="Info alert" message="Lorem Ipsum is simply dummy text of the printing and..."/>
+    <c-alert title="Success alert" message="Lorem Ipsum is simply dummy text of the printing and..." severity="success"/>
+    <c-alert title="Warning alert" message="Lorem Ipsum is simply dummy text of the printing and..." severity="warning"/>
+    <c-alert title="Error alert" message="Lorem Ipsum is simply dummy text of the printing and..." severity="error"/>
+
+  </section>
+
+  <h1>Alert dialog</h1>
+
+  <section class="flex gap-2 items-center flex-wrap">
+    <button c-button (click)="onOpenAlertClick(selectElement.value, durationInput.value, actionInput.value)">Open alert</button>
+
+    <select name="Severity" id="severities" #selectElement class="bg-transparent">
+      <option *ngFor="let severity of alertSeverities" [value]="severity">{{severity}}</option>
+    </select>
+
+    <input c-input #durationInput type="number" value="5000">
+
+    <input c-input #actionInput type="text" value="My action">
+
+  </section>
 </div>
 

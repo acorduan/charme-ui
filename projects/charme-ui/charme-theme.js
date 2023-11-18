@@ -11,10 +11,9 @@ module.exports = {
         scale: 'scale 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
         tooltip: 'fade 150ms cubic-bezier(0, 0, 0.2, 1) forwards, scale 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
         ['dialog-open']: 'fade 150ms cubic-bezier(0, 0, 0.2, 1) forwards, scale 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
-        ['dialog-close']: 'fadeout 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
+        ['dialog-close']: 'fadeout 150ms cubic-bezier(0, 0, 0.2, 1) forwards, scaledown 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
         ['dialog-overlay-open']: 'fade 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
         ['dialog-overlay-close']: 'fadeout 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
-
       },
       keyframes: {
         fade: {
@@ -28,6 +27,10 @@ module.exports = {
         scale: {
           '0%': {transform: 'scale(0.8)'},
           '100%': {transform: 'scale(1)'},
+        },
+        scaledown: {
+          '0%': {transform: 'scale(1)'},
+          '100%': {transform: 'scale(0.8)'},
         },
         'from-bottom': {
           '0%': {
@@ -133,7 +136,7 @@ module.exports = {
           20: '#C3C7FE',
           10: '#E8E9FF',
         },
-        dark:{
+        dark: {
           100: '#21252D'
         },
         blue: {

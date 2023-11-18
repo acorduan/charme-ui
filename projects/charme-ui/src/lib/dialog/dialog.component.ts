@@ -1,6 +1,6 @@
 import {
   Component,
-  ElementRef, HostBinding,
+  ElementRef,
   inject, TemplateRef,
   Type,
 } from '@angular/core';
@@ -12,7 +12,7 @@ import { DialogBackdropDirective } from "./dialog-backdrop.component";
 import { OverlayDirective } from "../overlay/overlay.directive";
 
 @Component({
-  selector: 'dialog [open] [tabindex="-1"] [aria-model="true"] [role="dialog"]',
+  selector: 'c-dialog [open] [tabindex="-1"] [aria-modal="true"] [role="dialog"]',
   imports: [
     NgClass,
     NgIf,
@@ -31,8 +31,6 @@ export class DialogComponent {
 
   dialogRef = inject(DialogRef)
   elementRef = inject(ElementRef<HTMLDialogElement>)
-
-  @HostBinding('class') class = `m-0 outline-0`
 
   get config(): DialogConfig {
     return this.dialogRef.config

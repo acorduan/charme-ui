@@ -8,6 +8,9 @@ export * from './lib/charme-config'
 export * from './lib/input'
 export * from './lib/dialog'
 export * from './lib/tooltip'
+export * from './lib/alert'
+export * from './lib/alert-dialog'
+
 
 /*
 export * from './lib/aiq-dialog/index';

@@ -2,7 +2,7 @@ import { Directive, ElementRef, inject, OnInit } from "@angular/core";
 import { OverlayConfig, OverlayRef } from "./overlay.model";
 
 @Directive({
-  selector: 'overlay-size',
+  selector: '[overlay-size]',
   standalone: true
 })
 export class OverlaySizeDirective implements OnInit {

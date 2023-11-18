@@ -1,4 +1,4 @@
-import { ComponentRef, ElementRef, InjectionToken } from "@angular/core";
+import { ComponentRef, ElementRef, InjectionToken, Type } from "@angular/core";
 import { Observable, Subject } from "rxjs";
 
 export type OverlayPosition = {
@@ -25,10 +25,11 @@ export interface OverlayConfig {
   maxHeight?: string;
   animationCloseDuration?: number
   data?: any
+  duration?: number
 }
 
 
-class OverlayConfigInstance<TConf extends OverlayConfig> implements OverlayConfig {
+export class OverlayConfigInstance<TConf extends OverlayConfig> implements OverlayConfig {
 
   position?: OverlayPosition;
   attachedTo?: OverlayAttachedTo;
@@ -40,6 +41,7 @@ class OverlayConfigInstance<TConf extends OverlayConfig> implements OverlayConfi
   maxHeight?: string;
   animationCloseDuration?: number
   data: any
+  duration?: number
 
   constructor(config?: Partial<TConf>) {
     this.position = config?.position;
@@ -52,16 +54,22 @@ class OverlayConfigInstance<TConf extends OverlayConfig> implements OverlayConfi
     this.maxHeight = config?.maxHeight;
     this.animationCloseDuration = config?.animationCloseDuration;
     this.data = config?.data
+    this.duration = config?.duration
   }
 
 }
 
 export const OVERLAY_DATA = new InjectionToken<any>('Overlay data');
 
+export class OverlayRef<TConf extends OverlayConfig = OverlayConfig, TComp = any> {
 
-export class OverlayRef<TConf extends OverlayConfig = OverlayConfig> {
-
-  componentRef!: ComponentRef<any>
+  private _componentRef!: ComponentRef<TComp>;
+  public get componentRef(): ComponentRef<TComp> {
+        return this._componentRef;
+    }
+    public set componentRef(value: ComponentRef<TComp>) {
+        this._componentRef = value;
+    }
   config: TConf
 
   constructor(config?: Partial<TConf>) {
@@ -73,7 +81,7 @@ export class OverlayRef<TConf extends OverlayConfig = OverlayConfig> {
   }
 
   get elementRef(): ElementRef {
-    return this.componentRef.instance.elementRef
+    return (this.componentRef.instance as any).elementRef
   }
 
   #close$ = new Subject<any>()

@@ -4,10 +4,8 @@ import {
   createComponent,
   Directive, ElementRef,
   HostBinding,
-  HostListener,
   inject,
   Injector, OnDestroy,
-  OnInit
 } from "@angular/core";
 import { DialogConfig, DialogRef } from "./dialog.model";
 
@@ -29,7 +27,7 @@ export class DialogBackdropDirective implements OnDestroy {
   }
 
   initOverlay(): void {
-    if (this.config.overlay) {
+    if (this.config.hasBackDrop) {
       const elementInjector = Injector.create({providers: [{provide: DialogRef, useValue: this.dialogRef}]});
       this.overlayRef = createComponent(DialogBackdropComponent, {
         environmentInjector: this.appRef.injector,
@@ -56,7 +54,7 @@ export class DialogBackdropDirective implements OnDestroy {
 export class DialogBackdropComponent {
 
   dialogRef = inject(DialogRef)
-  @HostBinding('class') class =  'w-full h-full fixed top-0 left-0 bg-c-dark-100/50 animate-dialog-overlay-open z-50'
+  @HostBinding('class') class =  'w-full h-full fixed top-0 left-0 bg-c-dark-100/50 animate-dialog-overlay-open z-[1000]'
   elementRef = inject(ElementRef)
 
   constructor() {
