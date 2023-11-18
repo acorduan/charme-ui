@@ -10,7 +10,7 @@ import {
   DialogTitleDirective, DialogService,
   AlertComponent,
   AlertDialogService,
-  AlertSeverity, alertSeverities
+  AlertSeverity, alertSeverities, CheckboxDirective
 } from "@charme-ui";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
@@ -20,13 +20,13 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf]
+  imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective]
 })
 export class AppComponent {
 
   @ViewChild('buttonEl', {read: ElementRef}) buttonEl!: ElementRef
 
-  title = 'tutor';
+  title = 'charme-ui';
   theme = inject(CharmeThemeService)
   dialog = inject(DialogService)
   alert = inject(AlertDialogService)

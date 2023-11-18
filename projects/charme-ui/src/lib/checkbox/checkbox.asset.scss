@@ -1,0 +1,54 @@
+.c-checkbox {
+  @apply w-5 h-5 rounded outline-none bg-transparent appearance-none align-middle cursor-pointer dark:bg-transparent;
+  @apply border-[0.125rem] border-solid border-c-slate-60 dark:border-c-prussian-30;
+
+  + label {
+    @apply cursor-pointer select-none py-0 px-2 text-sm;
+  }
+
+  &:checked {
+    @apply border-transparent bg-c-ultramarine-50 dark:bg-c-ultramarine-50;
+  }
+
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
+    @apply border-c-slate-90 dark:border-c-prussian-10;
+  }
+
+  &:disabled {
+    @apply cursor-default border-c-slate-50 dark:border-c-prussian-90;
+    @apply bg-c-slate-40 dark:bg-c-prussian-70;
+
+    :active {
+      @apply pointer-events-none;
+    }
+  }
+
+  &:disabled:is(:checked) {
+    @apply border-transparent bg-c-slate-50 dark:bg-c-prussian-60;
+  }
+
+  &:disabled + label {
+    @apply cursor-default text-c-slate-60;
+
+    :active {
+      @apply pointer-events-none;
+    }
+  }
+}
+
+.c-checkbox:after {
+  @apply font-material font-black text-lg flex items-center w-full h-full justify-center text-c-white-100 dark:text-c-white-100;
+}
+
+.c-checkbox:checked:after {
+  content: "done";
+}
+
+.c-checkbox:indeterminate {
+  @apply bg-c-ultramarine-50 border-transparent;
+}
+
+.c-checkbox:indeterminate::after {
+  content: "remove";
+}

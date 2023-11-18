@@ -1,15 +1,16 @@
 import { Directive, ElementRef, HostBinding, Input } from '@angular/core';
-import { AiqElementDirective } from "projects/charme-ui/src/lib/charme-component/aiq-element.directive";
+import { CharmeComponent } from "../charme-component/charme-component.directive";
 
 @Directive({
-  selector: '[aiq-checkbox]'
+  selector: '[c-checkbox]',
+  standalone: true
 })
-export class AiqCheckboxDirective extends AiqElementDirective {
+export class CheckboxDirective extends CharmeComponent {
 
   @HostBinding('type') inputType = 'checkbox';
 
   constructor(private el: ElementRef<HTMLInputElement>) {
-    super(['aiq-checkbox']);
+    super(['c-checkbox']);
   }
 
   @Input() set indeterminate(value: boolean | undefined | null) {

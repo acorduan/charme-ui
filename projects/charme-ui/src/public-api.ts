@@ -10,6 +10,7 @@ export * from './lib/dialog'
 export * from './lib/tooltip'
 export * from './lib/alert'
 export * from './lib/alert-dialog'
+export * from './lib/checkbox'
 
 
 /*

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Inject, Input, Optional, Output } from '@angul
 import { CommonModule } from '@angular/common';
 import { AiqButtonModule } from '../../button';
 import { AIQ_SELECT_ACCESSOR, AiqSelectAccessor } from '../aiq-select-accessor';
-import { AiqCheckboxModule } from '../../aiq-checkbox';
+import { AiqCheckboxModule } from '../../checkbox';
 import { AIQ_SELECT_GROUP_ACCESSOR, AiqSelectGroupAccessor } from '../aiq-select-group/aiq-select-group-accessor';
 
 @Component({
