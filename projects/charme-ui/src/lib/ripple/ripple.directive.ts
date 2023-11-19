@@ -14,15 +14,15 @@ import {
   standalone: true
 })
 export class RippleDirective implements AfterViewInit, OnDestroy {
-  #el = inject(ElementRef)
+  readonly #el = inject(ElementRef)
   #rippleContainerEl!: ElementRef
-  #timeout: number | undefined
+  readonly #timeout: number | undefined
 
   @Input({ transform: booleanAttribute }) rippleContained = true
   @Input() rippleDuration = 400
   @Input({ transform: booleanAttribute }) rippleDisabled = false
 
-  ngAfterViewInit (): void {
+  ngAfterViewInit(): void {
     this.#rippleContainerEl = new ElementRef<any>(document.createElement('span'))
     this.#rippleContainerEl.nativeElement.classList.add('c-ripple_container')
     if (this.rippleContained) {
@@ -32,7 +32,7 @@ export class RippleDirective implements AfterViewInit, OnDestroy {
   }
 
   @HostListener('pointerdown', ['$event'])
-  onHostElClick (event: MouseEvent) {
+  onHostElClick(event: MouseEvent) {
     if (!this.rippleDisabled) {
       event.stopPropagation()
       clearTimeout(this.#timeout)
@@ -43,14 +43,14 @@ export class RippleDirective implements AfterViewInit, OnDestroy {
     }
   }
 
-  private removeRippleIfExist (): void {
+  private removeRippleIfExist(): void {
     const ripple = this.#el.nativeElement.getElementsByClassName('c-ripple')[0]
     if (ripple) {
       ripple.remove()
     }
   }
 
-  private createRippleEl (event: MouseEvent): ElementRef {
+  private createRippleEl(event: MouseEvent): ElementRef {
     const rect = this.#el.nativeElement.getBoundingClientRect()
 
     const circle = document.createElement('span')
@@ -66,7 +66,7 @@ export class RippleDirective implements AfterViewInit, OnDestroy {
     return new ElementRef(circle)
   }
 
-  ngOnDestroy () {
+  ngOnDestroy() {
     clearTimeout(this.#timeout)
   }
 }

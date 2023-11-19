@@ -32,12 +32,12 @@ export class AppComponent {
   alert = inject(AlertDialogService)
   top = 10
   alertSeverities = alertSeverities
-  #destroyRef = inject(DestroyRef)
+  readonly #destroyRef = inject(DestroyRef)
 
   checked = true
   disabled = true
 
-  onOpenDialogClick (): void {
+  onOpenDialogClick(): void {
     this.dialog.open(TestComponent, {
       inputs: {
         message: 'Test alan'
@@ -52,7 +52,7 @@ export class AppComponent {
     this.top += 10
   }
 
-  onOpenDialogClickFromTpl (tpl: TemplateRef<any>): void {
+  onOpenDialogClickFromTpl(tpl: TemplateRef<any>): void {
     this.dialog.open(tpl, {
       inputs: {
         message: 'Test alan',
@@ -69,7 +69,7 @@ export class AppComponent {
     this.top += 10
   }
 
-  onOpenAlertClick (severity: string, duration?: any, action?: string): void {
+  onOpenAlertClick(severity: string, duration?: any, action?: string): void {
     const alertRef = this.alert.add(
       'Alert title',
       'Lorem Ipsum is simply dummy text of the printing and...',
@@ -105,7 +105,7 @@ export class TestComponent {
 
   @Input() message: string = ''
 
-  constructor () {
+  constructor() {
     console.log(this.ref)
   }
 }

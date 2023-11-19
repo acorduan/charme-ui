@@ -10,7 +10,8 @@ module.exports = {
       rules: {
         'accessor-pairs': 'off',
         '@typescript-eslint/consistent-type-imports': 'off',
-        '@typescript-eslint/space-before-function-paren': ['error', 'never']
+        '@typescript-eslint/space-before-function-paren': ['error', 'never'],
+        '@typescript-eslint/no-confusing-void-expression': 'off'
       }
     }
   ]

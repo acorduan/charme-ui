@@ -20,16 +20,16 @@ import { SwitchDirective } from './switch.directive'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SwitchContainerComponent {
-  #elementRef = inject(ElementRef<HTMLElement>)
+  readonly #elementRef = inject(ElementRef<HTMLElement>)
   @ContentChild(SwitchDirective, { static: true }) switch!: SwitchDirective
   @HostBinding('class') class = 'w-auto flex items-center gap-2'
 
-  toggle (): void {
+  toggle(): void {
     this.switch.writeValue(!this.switch.checked)
     this.switch.propagateChange(this.switch.checked)
   }
 
-  constructor () {
+  constructor() {
     effect(() => {
       this.switch.$disabled()
         ? this.#elementRef.nativeElement.classList.add('c-switch-disabled')

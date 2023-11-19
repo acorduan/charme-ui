@@ -31,7 +31,7 @@ export class DialogComponent {
   dialogRef = inject(DialogRef)
   elementRef = inject(ElementRef<HTMLDialogElement>)
 
-  get config (): DialogConfig {
+  get config(): DialogConfig {
     return this.dialogRef.config
   }
 }

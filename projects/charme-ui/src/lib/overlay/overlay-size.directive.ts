@@ -9,15 +9,15 @@ export class OverlaySizeDirective implements OnInit {
   elementRef = inject(ElementRef)
   overlayRef = inject(OverlayRef)
 
-  get config (): OverlayConfig {
+  get config(): OverlayConfig {
     return this.overlayRef.config
   }
 
-  ngOnInit () {
+  ngOnInit() {
     this.initSize()
   }
 
-  initSize (): void {
+  initSize(): void {
     this.elementRef.nativeElement.style.width = this.config.width
     this.elementRef.nativeElement.style.height = this.config.height
     this.elementRef.nativeElement.style.minWidth = this.config.minWidth

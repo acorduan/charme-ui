@@ -22,40 +22,40 @@ const baseClass = 'c-button'
   encapsulation: ViewEncapsulation.None
 })
 export class ButtonComponent extends CharmeComponent {
-  constructor () {
+  constructor() {
     super()
     this.type = 'plain'
     this.color = 'primary'
     this.size = 'md'
   }
 
-  @Input({ transform: booleanAttribute }) set disabled (disabled: any) {
+  @Input({ transform: booleanAttribute }) set disabled(disabled: any) {
     const className = `${baseClass}-disabled`
     disabled ? this.addClass(className) : this.removeClass(className)
   }
 
   $loading = signal(false)
-  @Input({ transform: booleanAttribute }) set loading (value: any) {
+  @Input({ transform: booleanAttribute }) set loading(value: any) {
     this.$loading.set(value)
     this.$loading() ? this.addClass(`${baseClass}-loading`) : this.removeClass(`${baseClass}-loading`)
   }
 
-  @Input() set size (value: ButtonSize) {
+  @Input() set size(value: ButtonSize) {
     buttonSizes.forEach((size) => this.removeClass(`${baseClass}-${size}`))
     this.addClass(`${baseClass}-${value}`)
   }
 
-  @Input() set color (value: ButtonColor) {
+  @Input() set color(value: ButtonColor) {
     buttonColors.forEach((color) => this.removeClass(`${baseClass}-${color}`))
     this.addClass(`${baseClass}-${value}`)
   }
 
-  @Input('b-type') set type (value: ButtonType) {
+  @Input('b-type') set type(value: ButtonType) {
     buttonTypes.forEach((type) => this.removeClass(`${baseClass}-${type}`))
     this.addClass(`${baseClass}-${value}`)
   }
 
-  @Input({ transform: booleanAttribute }) set selected (value: any) {
+  @Input({ transform: booleanAttribute }) set selected(value: any) {
     const selectedClass = `${baseClass}-selected`
     value ? this.addClass(selectedClass) : this.removeClass(selectedClass)
   }

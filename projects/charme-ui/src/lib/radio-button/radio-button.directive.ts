@@ -26,41 +26,41 @@ export class RadioButtonDirective implements ControlValueAccessor {
   @HostBinding('class') class = 'c-radio-button'
   @HostBinding('type') inputType = 'radio'
 
-  constructor (private readonly el: ElementRef<HTMLInputElement>) {
+  constructor(private readonly el: ElementRef<HTMLInputElement>) {
     effect(() => this.elementRef.nativeElement.checked = this.#$checked())
   }
 
   readonly elementRef = inject(ElementRef<HTMLInputElement>)
 
-  @HostListener('input', ['$event']) onChange (event: any): void {
+  @HostListener('input', ['$event']) onChange(event: any): void {
     this.checked = event.target.checked
     this.propagateChange(this.checked)
   }
 
-  #$checked = signal<boolean>(this.elementRef.nativeElement.checked)
+  readonly #$checked = signal<boolean>(this.elementRef.nativeElement.checked)
 
-  @Input({ transform: booleanAttribute }) set checked (value: any) {
+  @Input({ transform: booleanAttribute }) set checked(value: any) {
     this.#$checked.set(value)
   }
 
-  get checked (): boolean {
+  get checked(): boolean {
     return this.#$checked()
   }
 
   propagateChange = (_: any) => { }
   onTouchedCallback!: (() => {})
 
-  writeValue (value: any) {
+  writeValue(value: any) {
     if (value !== undefined && value !== null) {
       this.checked = value
     }
   }
 
-  registerOnChange (fn: any) {
+  registerOnChange(fn: any) {
     this.propagateChange = fn
   }
 
-  registerOnTouched (fn: any) {
+  registerOnTouched(fn: any) {
     this.onTouchedCallback = fn
   };
 }

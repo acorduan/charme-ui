@@ -8,8 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "lib": "ng build charme-ui --watch",
     "test": "ng test",
-    "standard:list": "ts-standard | snazzy",
-    "standard:fix": "ts-standard --fix"
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix"
   },
   "ts-standard": {
     "ignore": [

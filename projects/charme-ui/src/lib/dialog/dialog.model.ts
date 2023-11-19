@@ -27,7 +27,7 @@ class DialogConfigInstance extends OverlayConfigInstance<DialogConfig> implement
   hasBackDrop: boolean
   inputs?: any
 
-  constructor (config?: Partial< DialogConfig>) {
+  constructor(config?: Partial< DialogConfig>) {
     super(config)
     this.panelClass = config?.panelClass
     this.closeOnBackdropClick = config?.closeOnBackdropClick ?? true
@@ -43,7 +43,7 @@ export class DialogRef extends OverlayRef<DialogConfig> {
   readonly id: number
   readonly originElement: Element | null
 
-  constructor (id: number, config?: Partial<DialogConfig>) {
+  constructor(id: number, config?: Partial<DialogConfig>) {
     super()
     this.id = id
     this.config = new DialogConfigInstance(config)

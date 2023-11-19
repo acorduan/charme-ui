@@ -10,15 +10,15 @@ export class OverlayPositionDirective implements AfterViewInit {
   overlayRef = inject(OverlayRef)
   elementRef = inject(ElementRef)
 
-  get config (): OverlayConfig {
+  get config(): OverlayConfig {
     return this.overlayRef.config
   }
 
-  ngAfterViewInit () {
+  ngAfterViewInit() {
     this.initPosition()
   }
 
-  initPosition (): void {
+  initPosition(): void {
     if (this.config.position === undefined && this.config.attachedTo === undefined) {
       this.elementRef.nativeElement.style.margin = 'auto'
       return
@@ -32,7 +32,7 @@ export class OverlayPositionDirective implements AfterViewInit {
     this.elementRef.nativeElement.style.right = position?.right
   }
 
-  getPositionFromAttachedTo (): OverlayPosition | undefined {
+  getPositionFromAttachedTo(): OverlayPosition | undefined {
     if (this.config.attachedTo === undefined) {
       return undefined
     }

@@ -8,6 +8,6 @@ import {
   host: { class: 'c-input' }
 })
 export class InputDirective {
-  constructor () {
+  constructor() {
   }
 }

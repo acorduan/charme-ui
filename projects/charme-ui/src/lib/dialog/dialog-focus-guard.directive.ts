@@ -10,13 +10,13 @@ export class DialogFocusGardDirective implements AfterViewInit {
 
   focusableElements: NodeListOf<any> | undefined = undefined
 
-  @HostListener('focus') onFocus (): void {
+  @HostListener('focus') onFocus(): void {
     if (this.focusableElements !== undefined && this.focusableElements.length > 0) {
       this.position === 'first' ? this.focusLast() : this.focusFirst()
     }
   }
 
-  ngAfterViewInit () {
+  ngAfterViewInit() {
     const component = this.dialogElementRef.nativeElement.children[1]
     this.focusableElements = component?.querySelectorAll(
       'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
@@ -28,13 +28,13 @@ export class DialogFocusGardDirective implements AfterViewInit {
     }
   }
 
-  focusFirst (): void {
+  focusFirst(): void {
     if (this.focusableElements !== undefined && this.focusableElements.length > 0) {
       this.focusableElements[0].focus()
     }
   }
 
-  focusLast (): void {
+  focusLast(): void {
     if (this.focusableElements !== undefined && this.focusableElements.length > 0) {
       this.focusableElements[this.focusableElements.length - 1].focus()
     }

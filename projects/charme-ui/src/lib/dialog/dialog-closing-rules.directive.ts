@@ -20,27 +20,27 @@ const fadeoutDuration = 150 // ms
   standalone: true
 })
 export class DialogClosingRulesDirective implements OnDestroy, AfterViewInit {
-  #appRef = inject(ApplicationRef)
+  readonly #appRef = inject(ApplicationRef)
   router = inject(Router)
   dialogRef = inject(DialogRef)
   elementRef = inject(ElementRef)
-  #destroyRef = inject(DestroyRef)
+  readonly #destroyRef = inject(DestroyRef)
 
-  @HostListener('keydown.escape') onEscapeClick () {
+  @HostListener('keydown.escape') onEscapeClick() {
     this.dialogRef.close()
   }
 
-  ngAfterViewInit () {
+  ngAfterViewInit() {
     this.initCloseOnNavigationRule()
     this.initCloseOnOverlayClick()
     this.initFadeout()
   }
 
-  private close (): void {
+  private close(): void {
     this.dialogRef.close()
   }
 
-  private initCloseOnOverlayClick (): void {
+  private initCloseOnOverlayClick(): void {
     const { hasBackDrop, closeOnBackdropClick } = this.dialogRef.config
     const backdropEl = this.dialogRef.backdropEl?.nativeElement
     if (hasBackDrop && closeOnBackdropClick && (backdropEl != null)) {
@@ -48,7 +48,7 @@ export class DialogClosingRulesDirective implements OnDestroy, AfterViewInit {
     }
   }
 
-  private initFadeout (): void {
+  private initFadeout(): void {
     const sub: Subscription = this.dialogRef.afterClosed()
       .pipe(
         takeUntilDestroyed(this.#destroyRef),
@@ -59,7 +59,7 @@ export class DialogClosingRulesDirective implements OnDestroy, AfterViewInit {
       .subscribe(() => sub.unsubscribe())
   }
 
-  private initCloseOnNavigationRule (): void {
+  private initCloseOnNavigationRule(): void {
     if (this.dialogRef.config.closeOnNavigation) {
       this.router.events
         .pipe(filter(event => event instanceof NavigationStart))
@@ -67,12 +67,12 @@ export class DialogClosingRulesDirective implements OnDestroy, AfterViewInit {
     }
   }
 
-  private destroyComponent (componentRef: ComponentRef<any>) {
+  private destroyComponent(componentRef: ComponentRef<any>) {
     this.#appRef.detachView(componentRef.hostView)
     componentRef.destroy()
   }
 
-  private fadeOut (): void {
+  private fadeOut(): void {
     const dialogElement = this.elementRef.nativeElement
     const overlayElement = this.dialogRef.backdropEl?.nativeElement
 
@@ -83,7 +83,7 @@ export class DialogClosingRulesDirective implements OnDestroy, AfterViewInit {
     overlayElement?.classList.add('animate-dialog-overlay-close')
   }
 
-  ngOnDestroy () {
+  ngOnDestroy() {
     if (this.dialogRef.backdropEl != null) {
       this.dialogRef.backdropEl.nativeElement.removeEventListener('click', this.close)
     }

@@ -41,7 +41,7 @@ export class OverlayConfigInstance<TConf extends OverlayConfig> implements Overl
   data: any
   duration?: number
 
-  constructor (config?: Partial<TConf>) {
+  constructor(config?: Partial<TConf>) {
     this.position = config?.position
     this.attachedTo = config?.attachedTo
     this.width = config?.width
@@ -60,30 +60,30 @@ export const OVERLAY_DATA = new InjectionToken<any>('Overlay data')
 
 export class OverlayRef<TConf extends OverlayConfig = OverlayConfig, TComp = any> {
   private _componentRef!: ComponentRef<TComp>
-  public get componentRef (): ComponentRef<TComp> {
+  public get componentRef(): ComponentRef<TComp> {
     return this._componentRef
   }
 
-  public set componentRef (value: ComponentRef<TComp>) {
+  public set componentRef(value: ComponentRef<TComp>) {
     this._componentRef = value
   }
 
   config: TConf
 
-  constructor (config?: Partial<TConf>) {
+  constructor(config?: Partial<TConf>) {
     this.config = new OverlayConfigInstance(config) as TConf
   }
 
-  get closeDelay (): number {
+  get closeDelay(): number {
     return this.config.animationCloseDuration ?? 0
   }
 
-  get elementRef (): ElementRef {
+  get elementRef(): ElementRef {
     return (this.componentRef.instance as any).elementRef
   }
 
-  #close$ = new Subject<any>()
-  #afterClosed$: Observable<any> = this.#close$.asObservable()
+  readonly #close$ = new Subject<any>()
+  readonly #afterClosed$: Observable<any> = this.#close$.asObservable()
 
   public close<T = any>(result?: T) {
     this.#close$.next(result)

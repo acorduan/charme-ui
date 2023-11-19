@@ -9,7 +9,7 @@ const LOCAL_STORAGE_KEY = 'charme-theme'
 export class CharmeThemeService {
   private readonly theme = signal<CharmeTheme | undefined>(undefined)
 
-  constructor () {
+  constructor() {
     effect(() => {
       charmeThemes.forEach(theme => document.documentElement.classList.remove(theme))
       const theme = this.theme()
@@ -20,20 +20,20 @@ export class CharmeThemeService {
     })
   }
 
-  init (config?: CharmeConfig): void {
+  init(config?: CharmeConfig): void {
     const theme: CharmeTheme | undefined = localStorage.getItem(LOCAL_STORAGE_KEY) as CharmeTheme | null ?? config?.defaultTheme ?? 'light'
     this.theme.set(theme)
   }
 
-  toggle (): void {
+  toggle(): void {
     this.theme.set(this.theme() === 'dark' ? 'light' : 'dark')
   }
 
-  set (value: CharmeTheme | undefined): void {
+  set(value: CharmeTheme | undefined): void {
     this.theme.set(value)
   }
 
-  get (): CharmeTheme | undefined {
+  get(): CharmeTheme | undefined {
     return this.theme()
   }
 }

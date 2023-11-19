@@ -9,10 +9,10 @@ import { AlertDialogRef } from './alert-dialog.model'
   providedIn: 'root'
 })
 export class AlertDialogService {
-  #overlayService = inject(OverlayService)
+  readonly #overlayService = inject(OverlayService)
   #alertDialogRef: AlertDialogRef | undefined
 
-  add (title: string, message: string, opts?: { position?: OverlayPosition, duration?: number, severity?: AlertSeverity, action?: string }): AlertDialogRef {
+  add(title: string, message: string, opts?: { position?: OverlayPosition, duration?: number, severity?: AlertSeverity, action?: string }): AlertDialogRef {
     this.#alertDialogRef?.close()
     const config: OverlayConfig = {
       position: {
