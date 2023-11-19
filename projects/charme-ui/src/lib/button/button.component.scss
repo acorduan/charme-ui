@@ -14,14 +14,14 @@
   }
 
   &-sm-icon {
-    @apply h-6 w-6 text-[0.70rem] p-3;
+    @apply h-6 w-6 text-[0.70rem] p-2;
     i {
       @apply text-[0.70rem];
     }
   }
 
   &-md-icon {
-    @apply h-8 w-8 text-sm;
+    @apply h-8 w-8 text-sm p-2;
 
     i {
       @apply text-sm;
