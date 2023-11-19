@@ -13,7 +13,7 @@ export class OverlaySizeDirective implements OnInit {
     return this.overlayRef.config
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.initSize()
   }
 

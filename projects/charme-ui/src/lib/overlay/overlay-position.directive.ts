@@ -14,7 +14,7 @@ export class OverlayPositionDirective implements AfterViewInit {
     return this.overlayRef.config
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.initPosition()
   }
 

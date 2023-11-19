@@ -9,17 +9,17 @@ export class OverlayCloseTimeoutDirective implements OnInit, OnDestroy {
   overlayRef = inject(OverlayRef)
   #timeout: number | undefined
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.initTimeoutClose()
   }
 
   private initTimeoutClose(): void {
-    if (this.overlayRef.config.duration) {
+    if (this.overlayRef.config.duration !== undefined) {
       this.#timeout = setTimeout(() => this.overlayRef.close(), this.overlayRef.config.duration)
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     clearTimeout(this.#timeout)
   }
 }

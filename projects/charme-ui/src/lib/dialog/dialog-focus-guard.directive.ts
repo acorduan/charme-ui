@@ -16,7 +16,7 @@ export class DialogFocusGardDirective implements AfterViewInit {
     }
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     const component = this.dialogElementRef.nativeElement.children[1]
     this.focusableElements = component?.querySelectorAll(
       'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'

@@ -37,19 +37,7 @@ export class SwitchDirective implements ControlValueAccessor {
     this.propagateChange(this.checked)
   }
 
-  @Input({ transform: booleanAttribute }) set disabled(value: any) {
-    this.setDisabledState(value)
-  }
-
   readonly #$checked = signal<boolean>(this.elementRef.nativeElement.checked)
-  readonly $disabled = signal(this.elementRef.nativeElement.disabled)
-
-  constructor() {
-    effect(() => this.elementRef.nativeElement.checked = this.#$checked())
-    effect(() => this.elementRef.nativeElement.disabled = this.$disabled())
-
-    this.elementRef.nativeElement.id ??= crypto.randomUUID()
-  }
 
   @Input({ transform: booleanAttribute }) set checked(value: any) {
     this.#$checked.set(value)
@@ -59,28 +47,41 @@ export class SwitchDirective implements ControlValueAccessor {
     return this.#$checked()
   }
 
-  get id(): string {
-    return this.elementRef.nativeElement.id
+  readonly $disabled = signal<boolean>(this.elementRef.nativeElement.disabled)
+
+  @Input({ transform: booleanAttribute }) set disabled(value: any) {
+    this.setDisabledState(value)
   }
 
   get disabled(): boolean {
     return this.$disabled()
   }
 
-  propagateChange = (_: any) => { }
-  onTouchedCallback!: (() => {})
+  constructor() {
+    effect(() => this.elementRef.nativeElement.checked = this.#$checked())
+    effect(() => this.elementRef.nativeElement.disabled = this.$disabled())
 
-  writeValue(value: any) {
+    this.elementRef.nativeElement.id ??= crypto.randomUUID()
+  }
+
+  get id(): string {
+    return this.elementRef.nativeElement.id
+  }
+
+  propagateChange = (_: any): void => { }
+  onTouchedCallback!: (() => any)
+
+  writeValue(value: any): void {
     if (value !== undefined && value !== null) {
       this.checked = value
     }
   }
 
-  registerOnChange(fn: any) {
+  registerOnChange(fn: any): void {
     this.propagateChange = fn
   }
 
-  registerOnTouched(fn: any) {
+  registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn
   };
 

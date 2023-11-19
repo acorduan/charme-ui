@@ -38,7 +38,7 @@ export class DialogBackdropDirective implements OnDestroy {
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.overlayRef != null) {
       this.overlayRef.destroy()
       this.appRef.detachView(this.overlayRef.hostView)

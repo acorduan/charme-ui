@@ -52,20 +52,20 @@ export class CheckboxDirective implements ControlValueAccessor {
     return this.#$checked()
   }
 
-  propagateChange = (_: any) => { }
-  onTouchedCallback!: (() => {})
+  propagateChange = (_: any): void => { }
+  onTouchedCallback!: (() => any)
 
-  writeValue(value: any) {
+  writeValue(value: any): void {
     if (value !== undefined && value !== null) {
       this.checked = value
     }
   }
 
-  registerOnChange(fn: any) {
+  registerOnChange(fn: any): void {
     this.propagateChange = fn
   }
 
-  registerOnTouched(fn: any) {
+  registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn
   };
 }

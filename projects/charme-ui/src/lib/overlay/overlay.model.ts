@@ -1,8 +1,11 @@
-import { ComponentRef, ElementRef, InjectionToken, Type } from '@angular/core'
+import { ComponentRef, ElementRef, InjectionToken } from '@angular/core'
 import { Observable, Subject } from 'rxjs'
 
 export interface OverlayPosition {
-  top?: string; left?: string; bottom?: string; right?: string
+  top?: string
+  left?: string
+  bottom?: string
+  right?: string
 }
 
 export type AttachedToPosition = 'topleft' | 'topright' | 'topcenter' | 'bottomleft' | 'bottomright' | 'bottomcenter'
@@ -85,7 +88,7 @@ export class OverlayRef<TConf extends OverlayConfig = OverlayConfig, TComp = any
   readonly #close$ = new Subject<any>()
   readonly #afterClosed$: Observable<any> = this.#close$.asObservable()
 
-  public close<T = any>(result?: T) {
+  public close<T = any>(result?: T): void {
     this.#close$.next(result)
   }
 

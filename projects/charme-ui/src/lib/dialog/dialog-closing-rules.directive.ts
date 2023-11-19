@@ -26,11 +26,11 @@ export class DialogClosingRulesDirective implements OnDestroy, AfterViewInit {
   elementRef = inject(ElementRef)
   readonly #destroyRef = inject(DestroyRef)
 
-  @HostListener('keydown.escape') onEscapeClick() {
+  @HostListener('keydown.escape') onEscapeClick(): void {
     this.dialogRef.close()
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.initCloseOnNavigationRule()
     this.initCloseOnOverlayClick()
     this.initFadeout()
@@ -67,7 +67,7 @@ export class DialogClosingRulesDirective implements OnDestroy, AfterViewInit {
     }
   }
 
-  private destroyComponent(componentRef: ComponentRef<any>) {
+  private destroyComponent(componentRef: ComponentRef<any>): void {
     this.#appRef.detachView(componentRef.hostView)
     componentRef.destroy()
   }
@@ -83,7 +83,7 @@ export class DialogClosingRulesDirective implements OnDestroy, AfterViewInit {
     overlayElement?.classList.add('animate-dialog-overlay-close')
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.dialogRef.backdropEl != null) {
       this.dialogRef.backdropEl.nativeElement.removeEventListener('click', this.close)
     }

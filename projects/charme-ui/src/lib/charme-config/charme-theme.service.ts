@@ -13,7 +13,7 @@ export class CharmeThemeService {
     effect(() => {
       charmeThemes.forEach(theme => document.documentElement.classList.remove(theme))
       const theme = this.theme()
-      if (theme) {
+      if (theme !== undefined) {
         document.documentElement.classList.add(theme)
         localStorage.setItem(LOCAL_STORAGE_KEY, theme)
       }

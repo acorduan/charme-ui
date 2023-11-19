@@ -31,7 +31,9 @@ export class ButtonComponent extends CharmeComponent {
 
   @Input({ transform: booleanAttribute }) set disabled(disabled: any) {
     const className = `${baseClass}-disabled`
-    disabled ? this.addClass(className) : this.removeClass(className)
+    disabled as boolean
+      ? this.addClass(className)
+      : this.removeClass(className)
   }
 
   $loading = signal(false)
@@ -57,6 +59,6 @@ export class ButtonComponent extends CharmeComponent {
 
   @Input({ transform: booleanAttribute }) set selected(value: any) {
     const selectedClass = `${baseClass}-selected`
-    value ? this.addClass(selectedClass) : this.removeClass(selectedClass)
+    value as boolean ? this.addClass(selectedClass) : this.removeClass(selectedClass)
   }
 }

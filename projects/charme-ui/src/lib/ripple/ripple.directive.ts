@@ -32,7 +32,7 @@ export class RippleDirective implements AfterViewInit, OnDestroy {
   }
 
   @HostListener('pointerdown', ['$event'])
-  onHostElClick(event: MouseEvent) {
+  onHostElClick(event: MouseEvent): void {
     if (!this.rippleDisabled) {
       event.stopPropagation()
       clearTimeout(this.#timeout)
@@ -45,7 +45,7 @@ export class RippleDirective implements AfterViewInit, OnDestroy {
 
   private removeRippleIfExist(): void {
     const ripple = this.#el.nativeElement.getElementsByClassName('c-ripple')[0]
-    if (ripple) {
+    if (ripple !== undefined) {
       ripple.remove()
     }
   }
@@ -66,7 +66,7 @@ export class RippleDirective implements AfterViewInit, OnDestroy {
     return new ElementRef(circle)
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     clearTimeout(this.#timeout)
   }
 }

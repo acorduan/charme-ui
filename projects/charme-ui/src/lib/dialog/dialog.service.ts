@@ -1,8 +1,7 @@
 import {
-
   inject,
   Injectable,
-  Injector, TemplateRef,
+  TemplateRef,
   Type
 } from '@angular/core'
 import { DialogComponent } from './dialog.component'

@@ -11,11 +11,6 @@
     "lint": "npx eslint .",
     "lint:fix": "npx eslint . --fix"
   },
-  "ts-standard": {
-    "ignore": [
-      "/projects/charme-ui/src/lib/_ignore"
-    ]
-  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^17.0.1",
