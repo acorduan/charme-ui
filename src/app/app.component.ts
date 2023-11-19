@@ -21,7 +21,7 @@ import {FormsModule} from "@angular/forms";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchContainerComponent, SwitchDirective, FormsModule]
+  imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchContainerComponent, SwitchDirective, FormsModule, SwitchContainerComponent]
 })
 export class AppComponent {
 
@@ -36,6 +36,7 @@ export class AppComponent {
   #destroyRef = inject(DestroyRef)
 
   checked = true
+  disabled = true
 
   onOpenDialogClick(): void {
     this.dialog.open(TestComponent, {
@@ -81,10 +82,6 @@ export class AppComponent {
     alertRef.onAction$()
       .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe(() => alertRef.close())
-  }
-
-  onInputChange(): void {
-    console.log('toto')
   }
 }
 

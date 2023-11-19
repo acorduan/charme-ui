@@ -201,8 +201,13 @@
 
   <section class="flex gap-2 items-center flex-wrap">
     <div class="flex items-center">
-      <input c-checkbox id="notifications">
+      <input c-checkbox id="notifications" [(ngModel)]="checked">
       <label for="notifications">Notifications</label>
+    </div>
+
+    <div class="flex items-center">
+      <input c-checkbox id="notifications-disabled" checked disabled>
+      <label for="notifications-disabled">Disabled</label>
     </div>
   </section>
 
@@ -211,12 +216,19 @@
   <section class="flex gap-2 items-center flex-wrap">
 
     <c-switch-container>
-      <input c-switch id="switch" [(ngModel)]="checked" (ngModelChange)="onInputChange()" >
+      <input c-switch id="switch" [(ngModel)]="checked">
       <label for="switch">Switch me</label>
     </c-switch-container>
 
-
     <button c-button (click)="checked = !checked">switch me</button>
+
+    <c-switch-container>
+      <input c-switch id="switch-disabled" [disabled]="disabled" checked>
+      <label for="switch-disabled">Switch me</label>
+    </c-switch-container>
+
+    <button c-button (click)="disabled = !disabled">Disabled</button>
+
   </section>
 </div>
 

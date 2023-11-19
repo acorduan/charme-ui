@@ -1,0 +1,22 @@
+.c-switch-disabled {
+  label {
+    @apply pointer-events-none text-c-slate-60;
+  }
+}
+
+
+label {
+  @apply text-sm cursor-pointer select-none	;
+}
+
+.c-switch-animation {
+  @apply bg-gradient-to-r from-c-ultramarine-50 to-c-steel-40 from-50% to-50% dark:to-c-prussian-80 transition-[background] duration-200;
+  background-size: 200% 100%;
+  background-position:right bottom;
+}
+
+.c-switch-checked {
+  background-position:left bottom;
+}
+
+

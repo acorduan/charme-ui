@@ -1,0 +1,11 @@
+<div tabindex="0" class="rounded-2xl w-8 h-5 c-switch-animation outline outline-c-slate-90 dark:outline-c-prussian-10 outline-0 focus:outline-2 cursor-pointer relative"
+     (keyup.enter)="toggle()"
+     (keyup.space)="toggle()"
+     (click)="toggle()"
+     [ngClass]="{'c-switch-checked': switch.checked, 'pointer-events-none opacity-60': switch.disabled}">
+  <div class="p-1 absolute transition-[left,right] duration-200" [ngClass]="switch.checked ? 'left-3' : 'left-0'">
+    <div class="w-3 h-3 rounded-full bg-c-white-100"></div>
+  </div>
+</div>
+
+<ng-content></ng-content>
