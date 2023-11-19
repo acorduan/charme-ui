@@ -42,7 +42,7 @@ export class SwitchDirective implements ControlValueAccessor {
   }
 
   #$checked = signal<boolean>( this.elementRef.nativeElement.checked)
-  $disabled = signal(this.elementRef.nativeElement.disabled)
+  readonly $disabled = signal(this.elementRef.nativeElement.disabled)
 
   constructor() {
     effect(() => this.elementRef.nativeElement.checked = this.#$checked())
