@@ -1,0 +1,66 @@
+.c-radio-button {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 0.125rem solid;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+  @apply bg-transparent dark:bg-transparent;
+  @apply border-c-slate-60 dark:border-c-prussian-30;
+
+  + label {
+    cursor: pointer;
+    padding: 0 0.5rem;
+    user-select: none;
+  }
+
+  &:checked {
+    @apply bg-c-ultramarine-50 dark:bg-c-ultramarine-50;
+    border-color: transparent;
+  }
+
+  &:hover:not(:disabled) {
+    @apply border-c-slate-90 dark:border-c-prussian-10;
+  }
+
+  &:disabled {
+    cursor: default;
+    @apply border-c-slate-50 dark:border-c-prussian-90;
+    @apply bg-c-slate-40 dark:bg-c-prussian-70;
+
+    :active {
+      pointer-events: none;
+    }
+  }
+
+  &:disabled:-webkit-any(:checked) {
+    border-color: transparent;
+    @apply bg-c-slate-50 dark:bg-c-prussian-60;
+  }
+
+  &:disabled + label {
+    @apply text-c-slate-80 dark:text-c-slate-60;
+    cursor: default;
+
+    :active {
+      pointer-events: none;
+    }
+  }
+}
+
+
+.c-radio-button:checked:after {
+  font-family: "Material Icons";
+  content: "circle";
+  @apply text-c-white-100 dark:text-c-white-100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  font-weight: 900;
+  font-size: 0.65rem;
+}

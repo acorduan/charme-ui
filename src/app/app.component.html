@@ -230,6 +230,46 @@
     <button c-button (click)="disabled = !disabled">Disabled</button>
 
   </section>
+
+
+
+  <h1>Radio Group</h1>
+
+
+  <section>
+
+
+    <fieldset class="grid gap-2" role="radiogroup">
+      <div class="flex items-center gap-2">
+        <input id="angular" c-radio-button name="ui-framework" checked>
+        <label for="angular">Angular</label>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <input id="vuejs" c-radio-button name="ui-framework">
+        <label for="vuejs">Vue.js</label>
+      </div>
+
+      <div class="flex items-center gap-2" >
+        <input id="react" c-radio-button name="ui-framework">
+        <label for="react">React</label>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <input id="svelte" c-radio-button name="ui-framework">
+        <label for="svelte">Svelte</label>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <input id="radio-disabled" c-radio-button name="ui-framework" disabled>
+        <label for="radio-disabled">Disabled</label>
+      </div>
+
+
+    </fieldset>
+
+
+  </section>
 </div>
 
 

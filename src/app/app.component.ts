@@ -14,6 +14,7 @@ import {
 } from "@charme-ui";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {FormsModule} from "@angular/forms";
+import { RadioButtonDirective } from "projects/charme-ui/src/lib/radio-button";
 
 
 @Component({
@@ -21,7 +22,7 @@ import {FormsModule} from "@angular/forms";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchContainerComponent, SwitchDirective, FormsModule, SwitchContainerComponent]
+    imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchContainerComponent, SwitchDirective, FormsModule, SwitchContainerComponent, RadioButtonDirective]
 })
 export class AppComponent {
 
