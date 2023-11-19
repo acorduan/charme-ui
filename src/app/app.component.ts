@@ -10,7 +10,7 @@ import {
   DialogTitleDirective, DialogService,
   AlertComponent,
   AlertDialogService,
-  AlertSeverity, alertSeverities, CheckboxDirective, SwitchContainerComponent, SwitchDirective
+  AlertSeverity, alertSeverities, CheckboxDirective, SwitchContainerComponent, SwitchDirective, EllipsisDirective
 } from '@charme-ui'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { FormsModule } from '@angular/forms'
@@ -21,7 +21,7 @@ import { RadioButtonDirective } from 'projects/charme-ui/src/lib/radio-button'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchContainerComponent, SwitchDirective, FormsModule, SwitchContainerComponent, RadioButtonDirective]
+  imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchContainerComponent, SwitchDirective, FormsModule, SwitchContainerComponent, RadioButtonDirective, EllipsisDirective]
 })
 export class AppComponent {
   @ViewChild('buttonEl', { read: ElementRef }) buttonEl!: ElementRef

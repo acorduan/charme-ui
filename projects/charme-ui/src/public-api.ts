@@ -12,6 +12,7 @@ export * from './lib/alert'
 export * from './lib/alert-dialog'
 export * from './lib/checkbox'
 export * from './lib/switch'
+export * from './lib/ellipsis'
 
 /*
 export * from './lib/aiq-dialog/index';

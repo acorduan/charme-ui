@@ -56,7 +56,7 @@ export class OverlayPositionDirective implements AfterViewInit {
 
     return {
       top: Y + (gap ?? 0) + 'px',
-      left: X + 'px'
+      left: X > 0 ? (0 + 'px') : '10px'
     }
   }
 }

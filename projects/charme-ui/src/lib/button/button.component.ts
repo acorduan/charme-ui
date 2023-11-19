@@ -10,7 +10,7 @@ const baseClass = 'c-button'
   selector: 'button[c-button], a[c-button]',
   hostDirectives: [{
     directive: RippleDirective,
-    inputs: ['rippleContained', 'rippleDuration', 'rippleDisabled: loading', 'rippleDisabled: disabled']
+    inputs: ['rippleContained', 'rippleDuration', 'rippleDisabled: disabled']
   }],
   host: { class: baseClass },
   templateUrl: './button.component.html',

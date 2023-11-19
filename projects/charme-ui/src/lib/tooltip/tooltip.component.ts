@@ -12,7 +12,7 @@ import { OVERLAY_DATA } from '../overlay/overlay.model'
     NgTemplateOutlet
   ],
   template: `
-    <div *ngIf="message" class="animate-tooltip bg-secondary text-primary c-overlay-shadow p-2 rounded text-xs">
+    <div *ngIf="message" class="animate-tooltip bg-secondary max-w-lg text-primary c-overlay-shadow p-2 rounded text-xs">
         {{message}}
     </div>
 
