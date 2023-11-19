@@ -9,8 +9,8 @@ import {
   inject,
   Input,
   signal
-} from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+} from '@angular/core'
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
 
 @Directive({
   selector: '[c-checkbox]',
@@ -24,49 +24,48 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
   ]
 })
 export class CheckboxDirective implements ControlValueAccessor {
-
-  @HostBinding('type') inputType = 'checkbox';
+  @HostBinding('type') inputType = 'checkbox'
   @HostBinding('class') class = 'c-checkbox'
 
-  constructor(private el: ElementRef<HTMLInputElement>) {
+  constructor (private readonly el: ElementRef<HTMLInputElement>) {
     effect(() => this.elementRef.nativeElement.checked = this.#$checked())
   }
 
-  @Input() set indeterminate(value: boolean | undefined | null) {
+  @Input() set indeterminate (value: boolean | undefined | null) {
     this.el.nativeElement.indeterminate = value as boolean
   }
 
   readonly elementRef = inject(ElementRef<HTMLInputElement>)
 
-  @HostListener('input', ['$event']) onChange(event: any): void {
-    this.checked = !this.checked;
-    this.propagateChange(this.checked);
+  @HostListener('input', ['$event']) onChange (event: any): void {
+    this.checked = !this.checked
+    this.propagateChange(this.checked)
   }
 
-  #$checked = signal<boolean>( this.elementRef.nativeElement.checked)
+  #$checked = signal<boolean>(this.elementRef.nativeElement.checked)
 
-  @Input({transform: booleanAttribute}) set checked(value: any) {
+  @Input({ transform: booleanAttribute }) set checked (value: any) {
     this.#$checked.set(value)
   }
 
-  get checked(): boolean {
+  get checked (): boolean {
     return this.#$checked()
   }
 
-  propagateChange = (_: any) => { };
+  propagateChange = (_: any) => { }
   onTouchedCallback!: (() => {})
 
-  writeValue(value: any) {
+  writeValue (value: any) {
     if (value !== undefined && value !== null) {
-      this.checked = value;
+      this.checked = value
     }
   }
 
-  registerOnChange(fn: any) {
-    this.propagateChange = fn;
+  registerOnChange (fn: any) {
+    this.propagateChange = fn
   }
 
-  registerOnTouched(fn: any) {
-    this.onTouchedCallback = fn;
+  registerOnTouched (fn: any) {
+    this.onTouchedCallback = fn
   };
 }

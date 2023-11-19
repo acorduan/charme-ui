@@ -1,6 +1,6 @@
-import { Component, DestroyRef, ElementRef, inject, Input, TemplateRef, ViewChild } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { NgSwitch, NgSwitchDefault, NgSwitchCase, NgComponentOutlet, NgForOf } from '@angular/common';
+import { Component, DestroyRef, ElementRef, inject, Input, TemplateRef, ViewChild } from '@angular/core'
+import { RouterOutlet } from '@angular/router'
+import { NgSwitch, NgSwitchDefault, NgSwitchCase, NgComponentOutlet, NgForOf } from '@angular/common'
 import {
   ButtonComponent,
   CharmeThemeService,
@@ -10,25 +10,23 @@ import {
   DialogTitleDirective, DialogService,
   AlertComponent,
   AlertDialogService,
-  AlertSeverity, alertSeverities, CheckboxDirective, SwitchContainerComponent, SwitchDirective,
-} from "@charme-ui";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import {FormsModule} from "@angular/forms";
-import { RadioButtonDirective } from "projects/charme-ui/src/lib/radio-button";
-
+  AlertSeverity, alertSeverities, CheckboxDirective, SwitchContainerComponent, SwitchDirective
+} from '@charme-ui'
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
+import { FormsModule } from '@angular/forms'
+import { RadioButtonDirective } from 'projects/charme-ui/src/lib/radio-button'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-    imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchContainerComponent, SwitchDirective, FormsModule, SwitchContainerComponent, RadioButtonDirective]
+  imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchContainerComponent, SwitchDirective, FormsModule, SwitchContainerComponent, RadioButtonDirective]
 })
 export class AppComponent {
+  @ViewChild('buttonEl', { read: ElementRef }) buttonEl!: ElementRef
 
-  @ViewChild('buttonEl', {read: ElementRef}) buttonEl!: ElementRef
-
-  title = 'charme-ui';
+  title = 'charme-ui'
   theme = inject(CharmeThemeService)
   dialog = inject(DialogService)
   alert = inject(AlertDialogService)
@@ -39,7 +37,7 @@ export class AppComponent {
   checked = true
   disabled = true
 
-  onOpenDialogClick(): void {
+  onOpenDialogClick (): void {
     this.dialog.open(TestComponent, {
       inputs: {
         message: 'Test alan'
@@ -54,7 +52,7 @@ export class AppComponent {
     this.top += 10
   }
 
-  onOpenDialogClickFromTpl(tpl: TemplateRef<any>): void {
+  onOpenDialogClickFromTpl (tpl: TemplateRef<any>): void {
     this.dialog.open(tpl, {
       inputs: {
         message: 'Test alan',
@@ -63,7 +61,7 @@ export class AppComponent {
       attachedTo: {
         host: this.buttonEl,
         hostPos: 'bottomright',
-        dialogPos: 'topright',
+        dialogPos: 'topright'
       },
       hasBackDrop: false,
       panelClass: 'rounded'
@@ -71,13 +69,11 @@ export class AppComponent {
     this.top += 10
   }
 
-
-  onOpenAlertClick(severity: string, duration?: any, action?: string): void {
-
+  onOpenAlertClick (severity: string, duration?: any, action?: string): void {
     const alertRef = this.alert.add(
       'Alert title',
       'Lorem Ipsum is simply dummy text of the printing and...',
-      {severity: severity as  AlertSeverity, action, duration}
+      { severity: severity as AlertSeverity, action, duration }
     )
 
     alertRef.onAction$()
@@ -86,14 +82,13 @@ export class AppComponent {
   }
 }
 
-
 @Component({
   selector: 'test',
   standalone: true,
   imports: [
     ButtonComponent,
     InputDirective,
-    DialogTitleDirective,
+    DialogTitleDirective
   ],
   template: `
     <div class="grid gap-2 p-4">
@@ -110,9 +105,7 @@ export class TestComponent {
 
   @Input() message: string = ''
 
-
-  constructor() {
+  constructor () {
     console.log(this.ref)
   }
-
 }

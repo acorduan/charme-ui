@@ -1,7 +1,7 @@
-import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
-import { NgClass, NgIf } from "@angular/common";
-import { AlertSeverity } from "./alert.model";
-import { ButtonComponent } from "projects/charme-ui/src/lib/button";
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core'
+import { NgClass, NgIf } from '@angular/common'
+import { AlertSeverity } from './alert.model'
+import { ButtonComponent } from 'projects/charme-ui/src/lib/button'
 
 @Component({
   selector: 'c-alert',
@@ -14,11 +14,10 @@ import { ButtonComponent } from "projects/charme-ui/src/lib/button";
   ]
 })
 export class AlertComponent {
-
   @HostBinding('attr.role') role = 'alert'
 
-  @Input({required: true}) title!: string
-  @Input({required: true}) message!: string
+  @Input({ required: true }) title!: string
+  @Input({ required: true }) message!: string
   @Input() severity: AlertSeverity = 'info'
   @Input() titleId: string | undefined = undefined
   @Input() messageId: string | undefined = undefined
@@ -35,5 +34,4 @@ export class AlertComponent {
   onActionClick(): void {
     this.actionClick.next()
   }
-
 }

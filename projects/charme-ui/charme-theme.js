@@ -2,7 +2,7 @@ module.exports = {
   darkMode: 'class',
   theme: {
     fontFamily: {
-      'material': ['"Material Icons"']
+      material: ['"Material Icons"']
     },
     extend: {
       animation: {
@@ -10,39 +10,39 @@ module.exports = {
         fadeout: 'fadeout 0.15s ease-in-out forwards',
         scale: 'scale 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
         tooltip: 'fade 150ms cubic-bezier(0, 0, 0.2, 1) forwards, scale 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
-        ['dialog-open']: 'fade 150ms cubic-bezier(0, 0, 0.2, 1) forwards, scale 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
-        ['dialog-close']: 'fadeout 150ms cubic-bezier(0, 0, 0.2, 1) forwards, scaledown 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
-        ['dialog-overlay-open']: 'fade 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
-        ['dialog-overlay-close']: 'fadeout 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
+        'dialog-open': 'fade 150ms cubic-bezier(0, 0, 0.2, 1) forwards, scale 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
+        'dialog-close': 'fadeout 150ms cubic-bezier(0, 0, 0.2, 1) forwards, scaledown 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
+        'dialog-overlay-open': 'fade 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
+        'dialog-overlay-close': 'fadeout 150ms cubic-bezier(0, 0, 0.2, 1) forwards'
       },
       keyframes: {
         fade: {
-          '0%': {opacity: '0'},
-          '100%': {opacity: '1'},
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' }
         },
         fadeout: {
-          '0%': {opacity: '1'},
-          '100%': {opacity: '0'},
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' }
         },
         scale: {
-          '0%': {transform: 'scale(0.8)'},
-          '100%': {transform: 'scale(1)'},
+          '0%': { transform: 'scale(0.8)' },
+          '100%': { transform: 'scale(1)' }
         },
         scaledown: {
-          '0%': {transform: 'scale(1)'},
-          '100%': {transform: 'scale(0.8)'},
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(0.8)' }
         },
         'from-bottom': {
           '0%': {
             left: '0',
-            top: '100%',
+            top: '100%'
           },
           '100%': {
             left: '0',
-            top: '0',
+            top: '0'
           }
         }
-      },
+      }
     },
     colors: {
       transparent: 'transparent',
@@ -55,7 +55,7 @@ module.exports = {
           60: '#9FA3AE',
           50: '#BEC2CD',
           40: '#E0E4F0',
-          20: '#F2F6FF',
+          20: '#F2F6FF'
         },
         red: {
           100: '#2D0709',
@@ -67,7 +67,7 @@ module.exports = {
           40: '#FF8389',
           30: '#FFB3B8',
           20: '#FFD7D9',
-          10: '#FFF1F1',
+          10: '#FFF1F1'
         },
         orange: {
           100: '#231000',
@@ -79,7 +79,7 @@ module.exports = {
           40: '#FF832B',
           30: '#FFB784',
           20: '#FFD9BE',
-          10: '#FFF2E8',
+          10: '#FFF2E8'
         },
         green: {
           100: '#071908',
@@ -96,13 +96,13 @@ module.exports = {
         sky: {
           50: '#00BBFF',
           70: '#0099FF',
-          10: '#DFF6FF',
+          10: '#DFF6FF'
         },
         white: {
-          100: '#FFFFFF',
+          100: '#FFFFFF'
         },
         black: {
-          100: '#111111',
+          100: '#111111'
         },
         prussian: {
           100: '#00263D',
@@ -114,7 +114,7 @@ module.exports = {
           40: '#7697B9',
           30: '#98B5D3',
           20: '#B8D4EE',
-          10: '#DDEEFF',
+          10: '#DDEEFF'
         },
         steel: {
           100: '#48545E',
@@ -125,7 +125,7 @@ module.exports = {
           40: '#B1C5D3',
           30: '#C8D6E1',
           20: '#DDE7ED',
-          10: '#F1F5F9',
+          10: '#F1F5F9'
         },
         ultramarine: {
           90: '#001CD9',
@@ -134,7 +134,7 @@ module.exports = {
           40: '#667EFF',
           30: '#98A3FE',
           20: '#C3C7FE',
-          10: '#E8E9FF',
+          10: '#E8E9FF'
         },
         dark: {
           100: '#21252D'
@@ -155,14 +155,14 @@ module.exports = {
           40: '#D2A106',
           30: '#F1C21B',
           20: '#FDDC69',
-          10: '#FCF4D6',
+          10: '#FCF4D6'
         },
         purple: {
           70: '#6929C4',
           50: '#A56EFF',
           40: '#BE95FF',
           20: '#E8DAFF',
-          10: '#F8F5FF',
+          10: '#F8F5FF'
         },
         teal: {
           50: '#009D9A'
@@ -186,14 +186,14 @@ module.exports = {
           80: '#479E5F',
           40: '#B2DCBD'
         }
-      },
+      }
     }
   },
   plugins: [
-    function ({addUtilities}) {
+    function ({ addUtilities }) {
       addUtilities({
         '.bg-primary': {
-          '@apply bg-c-steel-10 dark:bg-c-charcoal-100': {},
+          '@apply bg-c-steel-10 dark:bg-c-charcoal-100': {}
         },
 
         '.bg-secondary': {

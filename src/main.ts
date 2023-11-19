@@ -1,19 +1,17 @@
-import { importProvidersFrom } from '@angular/core';
-import { AppComponent } from './app/app.component';
-import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
+import { importProvidersFrom } from '@angular/core'
+import { AppComponent } from './app/app.component'
+import { BrowserModule, bootstrapApplication } from '@angular/platform-browser'
 import { CharmeUIProvider } from '@charme-ui'
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(BrowserModule),
-    CharmeUIProvider({defaultTheme: 'light'}),
+    CharmeUIProvider({ defaultTheme: 'light' }),
     ReactiveFormsModule,
     FormsModule
 
-
-],
+  ]
 
 })
-  .catch(err => console.error(err));
+  .catch(err => console.error(err))
