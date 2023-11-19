@@ -1,1 +1,1 @@
-export * from './ellipsis.directive';
+export * from './ellipsis.directive'

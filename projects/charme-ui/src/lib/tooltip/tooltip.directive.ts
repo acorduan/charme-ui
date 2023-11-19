@@ -69,7 +69,7 @@ export class TooltipDirective implements OnDestroy {
     this.#tooltipRef = undefined
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.#tooltipRef?.close()
   }
 }
