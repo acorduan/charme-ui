@@ -205,6 +205,19 @@
       <label for="notifications">Notifications</label>
     </div>
   </section>
+
+  <h1>Switch</h1>
+
+  <section class="flex gap-2 items-center flex-wrap">
+
+    <c-switch-container>
+      <input c-switch id="switch" [(ngModel)]="checked" (ngModelChange)="onInputChange()" >
+      <label for="switch">Switch me</label>
+    </c-switch-container>
+
+
+    <button c-button (click)="checked = !checked">switch me</button>
+  </section>
 </div>
 
 

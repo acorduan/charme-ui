@@ -1,4 +1,4 @@
-import { Component, DestroyRef, ElementRef, HostBinding, inject, Input, TemplateRef, ViewChild } from '@angular/core';
+import { Component, DestroyRef, ElementRef, inject, Input, TemplateRef, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgSwitch, NgSwitchDefault, NgSwitchCase, NgComponentOutlet, NgForOf } from '@angular/common';
 import {
@@ -10,9 +10,10 @@ import {
   DialogTitleDirective, DialogService,
   AlertComponent,
   AlertDialogService,
-  AlertSeverity, alertSeverities, CheckboxDirective
+  AlertSeverity, alertSeverities, CheckboxDirective, SwitchContainerComponent, SwitchDirective,
 } from "@charme-ui";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import {FormsModule} from "@angular/forms";
 
 
 @Component({
@@ -20,7 +21,7 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective]
+  imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchContainerComponent, SwitchDirective, FormsModule]
 })
 export class AppComponent {
 
@@ -33,6 +34,8 @@ export class AppComponent {
   top = 10
   alertSeverities = alertSeverities
   #destroyRef = inject(DestroyRef)
+
+  checked = true
 
   onOpenDialogClick(): void {
     this.dialog.open(TestComponent, {
@@ -78,6 +81,10 @@ export class AppComponent {
     alertRef.onAction$()
       .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe(() => alertRef.close())
+  }
+
+  onInputChange(): void {
+    console.log('toto')
   }
 }
 

@@ -11,7 +11,7 @@ export * from './lib/tooltip'
 export * from './lib/alert'
 export * from './lib/alert-dialog'
 export * from './lib/checkbox'
-
+export * from './lib/switch'
 
 /*
 export * from './lib/aiq-dialog/index';
@@ -35,7 +35,7 @@ export * from './lib/aiq-focus/index';
 export * from './lib/aiq-badge/index';
 export * from './lib/aiq-theme/index';
 export * from './lib/aiq-ui-config/index';
-export * from './lib/aiq-toggle/index';
+export * from './lib/switch/index';
 export * from './lib/aiq-menu/index';
 export * from './lib/aiq-date-picker/index';
 export * from './lib/aiq-overlay/index'
