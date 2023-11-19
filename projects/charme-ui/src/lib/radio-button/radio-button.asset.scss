@@ -52,8 +52,7 @@
 
 
   &:focus:not(:disabled) {
-    @apply focus:outline outline-1 outline-offset-1	 outline-c-slate-90 dark:outline-c-prussian-10;
-
+    @apply border-c-slate-90 dark:border-c-prussian-10;
   }
 }
 
