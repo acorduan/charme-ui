@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, Input, signal, ViewEncapsulation } from '@angular/core'
+import { booleanAttribute, ChangeDetectionStrategy, Component, Input, signal, ViewEncapsulation } from '@angular/core'
 import { ButtonColor, buttonColors, ButtonSize, buttonSizes, ButtonType, buttonTypes } from './button.model'
 import { RippleDirective } from '../ripple/ripple.directive'
 import { CharmeComponent } from '../charme-component/charme-component.directive'
@@ -19,7 +19,8 @@ const baseClass = 'c-button'
   imports: [
     NgIf
   ],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent extends CharmeComponent {
   constructor() {

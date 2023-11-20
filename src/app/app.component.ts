@@ -7,21 +7,32 @@ import {
   InputDirective,
   DialogRef,
   TooltipDirective,
-  DialogTitleDirective, DialogService,
+  DialogTitleDirective,
+  DialogService,
   AlertComponent,
   AlertDialogService,
-  AlertSeverity, alertSeverities, CheckboxDirective, SwitchContainerComponent, SwitchDirective, EllipsisDirective
+  AlertSeverity,
+  alertSeverities,
+  CheckboxDirective,
+  SwitchContainerComponent,
+  SwitchDirective,
+  EllipsisDirective,
+  RadioGroupComponent,
+  RadioButtonComponent,
+  AccordionTriggerDirective,
+  AccordionComponent,
+  AccordionItemComponent,
+  AccordionContentDirective
 } from '@charme-ui'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { FormsModule } from '@angular/forms'
-import { RadioButtonDirective } from 'projects/charme-ui/src/lib/radio-button'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchContainerComponent, SwitchDirective, FormsModule, SwitchContainerComponent, RadioButtonDirective, EllipsisDirective]
+  imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchContainerComponent, SwitchDirective, FormsModule, SwitchContainerComponent, EllipsisDirective, RadioGroupComponent, RadioButtonComponent, AccordionComponent, AccordionItemComponent, AccordionTriggerDirective, AccordionComponent, AccordionItemComponent, AccordionContentDirective]
 })
 export class AppComponent {
   @ViewChild('buttonEl', { read: ElementRef }) buttonEl!: ElementRef
@@ -30,9 +41,13 @@ export class AppComponent {
   theme = inject(CharmeThemeService)
   dialog = inject(DialogService)
   alert = inject(AlertDialogService)
-  top = 10
   alertSeverities = alertSeverities
   readonly #destroyRef = inject(DestroyRef)
+
+  open = true
+  secondOpen = false
+
+  bestFramework = 'angular'
 
   checked = true
   disabled = true
@@ -49,7 +64,6 @@ export class AppComponent {
       panelClass: 'rounded'
     }).afterClosed()
       .subscribe(result => console.log(result))
-    this.top += 10
   }
 
   onOpenDialogClickFromTpl(tpl: TemplateRef<any>): void {
@@ -66,10 +80,9 @@ export class AppComponent {
       hasBackDrop: false,
       panelClass: 'rounded'
     })
-    this.top += 10
   }
 
-  onOpenAlertClick(severity: string, duration?: any, action?: string): void {
+  onOpenAlertClick(severity: string, duration?: number, action?: string): void {
     const alertRef = this.alert.add(
       'Alert title',
       'Lorem Ipsum is simply dummy text of the printing and...',
@@ -79,6 +92,10 @@ export class AppComponent {
     alertRef.onAction$()
       .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe(() => alertRef.close())
+  }
+
+  bestFrameWorkChange(value: string): void {
+    console.log(value)
   }
 }
 

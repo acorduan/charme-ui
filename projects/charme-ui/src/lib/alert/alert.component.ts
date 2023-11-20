@@ -1,7 +1,7 @@
-import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core'
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core'
 import { NgClass, NgIf } from '@angular/common'
 import { AlertSeverity } from './alert.model'
-import { ButtonComponent } from 'projects/charme-ui/src/lib/button'
+import { ButtonComponent } from '../button'
 
 @Component({
   selector: 'c-alert',
@@ -11,7 +11,8 @@ import { ButtonComponent } from 'projects/charme-ui/src/lib/button'
     NgClass,
     NgIf,
     ButtonComponent
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlertComponent {
   @HostBinding('attr.role') role = 'alert'

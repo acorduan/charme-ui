@@ -1,11 +1,15 @@
 import {
   ApplicationRef,
-  Component, ComponentRef,
+  ChangeDetectionStrategy,
+  Component,
+  ComponentRef,
   createComponent,
-  Directive, ElementRef,
+  Directive,
+  ElementRef,
   HostBinding,
   inject,
-  Injector, OnDestroy
+  Injector,
+  OnDestroy
 } from '@angular/core'
 import { DialogConfig, DialogRef } from './dialog.model'
 
@@ -49,7 +53,8 @@ export class DialogBackdropDirective implements OnDestroy {
 @Component({
   selector: 'div [aria-hidden="true"]',
   standalone: true,
-  template: ''
+  template: '',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DialogBackdropComponent {
   dialogRef = inject(DialogRef)

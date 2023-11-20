@@ -1,4 +1,4 @@
-import { Component, HostBinding, inject, TemplateRef } from '@angular/core'
+import { ChangeDetectionStrategy, Component, HostBinding, inject, TemplateRef } from '@angular/core'
 import { OverlayDirective } from '../overlay/overlay.directive'
 import { NgIf, NgTemplateOutlet } from '@angular/common'
 import { OVERLAY_DATA } from '../overlay/overlay.model'
@@ -19,7 +19,8 @@ import { OVERLAY_DATA } from '../overlay/overlay.model'
     <ng-container *ngIf="template !== undefined">
       <ng-container *ngTemplateOutlet="template"></ng-container>
     </ng-container>
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TooltipComponent {
   data: { element: TemplateRef<any> | string, id: string } = inject(OVERLAY_DATA)

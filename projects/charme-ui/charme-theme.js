@@ -225,7 +225,7 @@ module.exports = {
         },
 
         '.c-card': {
-          '@apply aiq-card-shadow rounded bg-secondary': {}
+          '@apply c-card-shadow rounded bg-secondary': {}
         }
       })
     }

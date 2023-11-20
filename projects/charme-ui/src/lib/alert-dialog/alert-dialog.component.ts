@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostBinding, inject, Output } from '@angular/core'
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, inject, Output } from '@angular/core'
 import { OverlayDirective } from '../overlay/overlay.directive'
 import { AlertSeverity } from '../alert/alert.model'
 import { OVERLAY_DATA } from '../overlay/overlay.model'
@@ -13,7 +13,8 @@ interface AlertData { title: string, message: string, severity: AlertSeverity, a
   imports: [
     AlertComponent
   ],
-  hostDirectives: [OverlayDirective]
+  hostDirectives: [OverlayDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlertDialogComponent {
   @HostBinding('attr.aria-labelledby') titleId = `c-dialog-alert-title_${crypto.randomUUID()}`

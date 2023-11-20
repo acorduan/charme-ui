@@ -1,7 +1,7 @@
 import {
   AfterViewInit,
   ApplicationRef,
-  ComponentRef, DestroyRef,
+  DestroyRef,
   Directive, ElementRef,
   HostListener,
   inject,
@@ -9,11 +9,9 @@ import {
 } from '@angular/core'
 import { DialogRef } from './dialog.model'
 import { NavigationStart, Router } from '@angular/router'
-import { delay, filter, tap } from 'rxjs/operators'
+import { filter, tap } from 'rxjs/operators'
 import { Subscription } from 'rxjs'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
-
-const fadeoutDuration = 150 // ms
 
 @Directive({
   selector: '[dialog-closing-rules]',
@@ -52,9 +50,7 @@ export class DialogClosingRulesDirective implements OnDestroy, AfterViewInit {
     const sub: Subscription = this.dialogRef.afterClosed()
       .pipe(
         takeUntilDestroyed(this.#destroyRef),
-        tap(() => this.fadeOut()),
-        delay(fadeoutDuration),
-        tap(() => this.destroyComponent(this.dialogRef.componentRef))
+        tap(() => this.fadeOut())
       )
       .subscribe(() => sub.unsubscribe())
   }
@@ -65,11 +61,6 @@ export class DialogClosingRulesDirective implements OnDestroy, AfterViewInit {
         .pipe(filter(event => event instanceof NavigationStart))
         .subscribe(() => this.close())
     }
-  }
-
-  private destroyComponent(componentRef: ComponentRef<any>): void {
-    this.#appRef.detachView(componentRef.hostView)
-    componentRef.destroy()
   }
 
   private fadeOut(): void {

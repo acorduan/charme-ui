@@ -1,8 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ContentChild, effect, ElementRef,
-  HostBinding, inject,
+  ContentChild,
+  effect,
+  ElementRef,
+  HostBinding,
+  inject,
   ViewEncapsulation
 } from '@angular/core'
 import { NgClass } from '@angular/common'
@@ -16,13 +19,13 @@ import { SwitchDirective } from './switch.directive'
     NgClass
   ],
   standalone: true,
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class SwitchContainerComponent {
   readonly #elementRef = inject(ElementRef<HTMLElement>)
   @ContentChild(SwitchDirective, { static: true }) switch!: SwitchDirective
-  @HostBinding('class') class = 'w-auto flex items-center gap-2'
+  @HostBinding('class') class = 'c-switch w-auto flex items-center gap-2 text-sm'
 
   toggle(): void {
     this.switch.writeValue(!this.switch.checked)

@@ -1,0 +1,7 @@
+<input c-radio-button-behavior
+       [ngModel]="$checked()"
+       (ngModelChange)="onCheckChange($event)"
+       [disabled]="disabled"
+       [name]="accessor.name"
+       [id]="id">
+<label class="text-sm"  [for]="id"><ng-content></ng-content></label>

@@ -4,9 +4,10 @@
   }
 }
 
-
-label {
-  @apply text-sm cursor-pointer select-none	;
+.c-switch {
+  label {
+    @apply text-sm cursor-pointer select-none	;
+  }
 }
 
 .c-switch-animation {

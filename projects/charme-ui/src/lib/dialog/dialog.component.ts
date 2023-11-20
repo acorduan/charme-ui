@@ -1,9 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  inject, TemplateRef,
-  Type
-} from '@angular/core'
+import { ChangeDetectionStrategy, Component, ElementRef, inject, TemplateRef, Type } from '@angular/core'
 import { NgClass, NgComponentOutlet, NgIf, NgTemplateOutlet } from '@angular/common'
 import { DialogConfig, DialogRef } from './dialog.model'
 import { DialogClosingRulesDirective } from './dialog-closing-rules.directive'
@@ -22,7 +17,8 @@ import { OverlayDirective } from '../overlay/overlay.directive'
   ],
   hostDirectives: [OverlayDirective, DialogClosingRulesDirective, DialogBackdropDirective],
   templateUrl: 'dialog.component.html',
-  standalone: true
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DialogComponent {
   component: Type<any> | undefined

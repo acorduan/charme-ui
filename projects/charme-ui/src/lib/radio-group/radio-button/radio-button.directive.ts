@@ -12,7 +12,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
 
 @Directive({
-  selector: '[c-radio-button]',
+  selector: '[c-radio-button-behavior]',
   standalone: true,
   providers: [
     {
@@ -26,8 +26,10 @@ export class RadioButtonDirective implements ControlValueAccessor {
   @HostBinding('class') class = 'c-radio-button'
   @HostBinding('type') inputType = 'radio'
 
-  constructor(private readonly el: ElementRef<HTMLInputElement>) {
+  constructor() {
     effect(() => this.elementRef.nativeElement.checked = this.#$checked())
+    effect(() => this.elementRef.nativeElement.name = this.$name())
+    effect(() => this.elementRef.nativeElement.disabled = this.$disabled())
   }
 
   readonly elementRef = inject(ElementRef<HTMLInputElement>)
@@ -45,6 +47,24 @@ export class RadioButtonDirective implements ControlValueAccessor {
 
   get checked(): boolean {
     return this.#$checked()
+  }
+
+  $name = signal('')
+  @Input() set name(value: string) {
+    this.$name.set(value)
+  }
+
+  get name(): string {
+    return this.$name()
+  }
+
+  $disabled = signal(false)
+  @Input({ transform: booleanAttribute }) set disabled(value: any) {
+    this.$disabled.set(value)
+  }
+
+  get disabled(): boolean {
+    return this.$disabled()
   }
 
   propagateChange = (_: any): void => { }

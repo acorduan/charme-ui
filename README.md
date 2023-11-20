@@ -25,3 +25,38 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Components
+
+Charme UI - Components - https://www.w3.org/WAI/ARIA/apg/patterns/ :
+
+- [ ] Accordion: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
+- [x] Alert: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
+- [x] Alert Dialog: https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/
+- [ ] Breadcrumb: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/
+- [x] Button: https://www.w3.org/WAI/ARIA/apg/patterns/button/
+- [ ] Carousel: https://www.w3.org/WAI/ARIA/apg/patterns/carousel/
+- [x] Checkbox: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
+- [ ] Combobox: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
+- [x] Dialog: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
+- [ ] Disclosure: https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/
+- [ ] Feed: https://www.w3.org/WAI/ARIA/apg/patterns/feed/
+- [ ] Grid: https://www.w3.org/WAI/ARIA/apg/patterns/grid/
+- [ ] Landmarks: https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/
+- [x] Link: https://www.w3.org/WAI/ARIA/apg/patterns/link/
+- [ ] Listbox: https://www.w3.org/WAI/ARIA/apg/patterns/listbox/
+- [ ] Menubar: https://www.w3.org/WAI/ARIA/apg/patterns/menubar/
+- [ ] Menu button: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
+- [ ] Meter: https://www.w3.org/WAI/ARIA/apg/patterns/meter/
+- [x] Radio Group: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
+- [ ] Slider: https://www.w3.org/WAI/ARIA/apg/patterns/slider/
+- [ ] Slider Multithumb:  https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/
+- [ ] Spin Button https://www.w3.org/WAI/ARIA/apg/patterns/spinbutton/
+- [x] Switch https://www.w3.org/WAI/ARIA/apg/patterns/switch/
+- [ ] Table: https://www.w3.org/WAI/ARIA/apg/patterns/table/
+- [ ] Tabs: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
+- [ ] Toolbar https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/
+- [x] Tooltip https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
+- [ ] Tree https://www.w3.org/WAI/ARIA/apg/patterns/treeview/
+- [ ] Tree Grid https://www.w3.org/WAI/ARIA/apg/patterns/treegrid/
+- [ ] Window Splitter https://www.w3.org/WAI/ARIA/apg/patterns/

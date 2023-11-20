@@ -1,0 +1,23 @@
+<div role="heading"
+     [attr.aria-controls]="'c-accordion-item-region-' + id"
+     [attr.aria-expanded]="$open()"
+     [id]="'c-accordion-item-heading-' + id">
+    <button c-ripple
+            [disabled]="disabled"
+            class="bg-secondary flex items-center rounded justify-between relative p-2 w-full text-sm focus-visible:outline outline-c-slate-90 dark:outline-c-prussian-10 disabled:pointer-events-none disabled:opacity-40"
+            (click)="onTriggerClick()">
+        <span class="font-medium"><ng-content *ngTemplateOutlet="accordionTrigger.tpl"></ng-content></span>
+        <i class="material-icons-outlined transition-all" [ngClass]="$open() ? 'rotate-180' : ''" >expand_more</i>
+    </button>
+</div>
+
+<div #contentContainer
+     [attr.aria-labelledby]="'c-accordion-item-heading-' + id"
+     role="region"
+     [id]="'c-accordion-item-region-' + id"
+     class="transition-all overflow-hidden text-sm"
+     [style.height]="$height()">
+    <div class="p-2">
+        <ng-content *ngTemplateOutlet="accordionContent.tpl"></ng-content>
+    </div>
+</div>
