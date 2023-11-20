@@ -46,7 +46,7 @@ export class AppComponent {
 
   open = true
   secondOpen = false
-
+  multipleSelect = false
   bestFramework = 'angular'
 
   checked = true

@@ -8,16 +8,24 @@
 
   <h1>Accordion</h1>
 
-  <section class="grid gap-2">
+  <section class="grid gap-4">
 
-    <div>
+    <div class="flex gap-2">
       <button c-button (click)="open = !open">Toggle first</button>
       <button c-button (click)="secondOpen = !secondOpen">Toggle Second</button>
+
+      <button c-button (click)="accordion.openAll()" [disabled]="!multipleSelect">Open all</button>
+      <button c-button (click)="accordion.closeAll()">Close all</button>
+
+      <div>
+        <input id="multiple-select" c-checkbox [(ngModel)]="multipleSelect">
+        <label for="multiple-select">Multiple select</label>
+      </div>
 
 
     </div>
 
-    <c-accordion class="w-80">
+    <c-accordion class="w-80" [multipleSelect]="multipleSelect" #accordion>
 
       <c-accordion-item [(open)]="open">
         <ng-template c-accordion-trigger>
