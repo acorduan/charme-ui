@@ -30,7 +30,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 Charme UI - Components - https://www.w3.org/WAI/ARIA/apg/patterns/ :
 
-- [ ] Accordion: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
+- [x] Accordion: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 - [x] Alert: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 - [x] Alert Dialog: https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/
 - [ ] Breadcrumb: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/
