@@ -11,7 +11,7 @@ const VERTICAL_CLASS = 'border-primary border-r flex'
 })
 export class SeparatorComponent {
   @HostBinding('role') role = 'separator'
-  @HostBinding('class') class = 'border-primary flex'
+  @HostBinding('class') class = ''
   @HostBinding('style.min-width') minWidth = '100%'
   @HostBinding('style.min-height') minHeight = '100%'
 
