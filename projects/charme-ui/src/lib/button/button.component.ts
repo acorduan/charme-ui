@@ -12,7 +12,10 @@ const baseClass = 'c-button'
     directive: RippleDirective,
     inputs: ['rippleContained', 'rippleDuration', 'rippleDisabled: disabled']
   }],
-  host: { class: baseClass },
+  host: {
+    class: baseClass,
+    '[disabled]': `disabled`,
+  },
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   standalone: true,
@@ -20,7 +23,7 @@ const baseClass = 'c-button'
     NgIf
   ],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent extends CharmeComponent {
   constructor() {
@@ -30,11 +33,17 @@ export class ButtonComponent extends CharmeComponent {
     this.size = 'md'
   }
 
+  #disabled = false
   @Input({ transform: booleanAttribute }) set disabled(disabled: any) {
+    this.#disabled = disabled
     const className = `${baseClass}-disabled`
     disabled as boolean
       ? this.addClass(className)
       : this.removeClass(className)
+  }
+
+  get disabled(): boolean {
+    return this.#disabled
   }
 
   $loading = signal(false)
