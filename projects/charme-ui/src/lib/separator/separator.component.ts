@@ -1,33 +1,23 @@
-import { ChangeDetectionStrategy, Component, effect, HostBinding, Input, signal } from '@angular/core'
-
-const HORIZONTAL_CLASS = 'border-primary border-b flex'
-const VERTICAL_CLASS = 'border-primary border-r flex'
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core'
 
 @Component({
   standalone: true,
   selector: 'c-separator',
   template: '',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.aria-orientation]': 'orientation',
+    '[style.width]': `orientation === 'horizontal' ? size : '1px'`,
+    '[style.height]': `orientation === 'horizontal' ? '1px' : size`,
+    '[class]': `orientation === 'horizontal' ? HORIZONTAL_CLASS : VERTICAL_CLASS`
+  }
 })
 export class SeparatorComponent {
+  HORIZONTAL_CLASS = 'border-primary border-b flex'
+  VERTICAL_CLASS = 'border-primary border-r flex '
+
   @HostBinding('role') role = 'separator'
-  @HostBinding('class') class = ''
-  @HostBinding('style.min-width') minWidth = '100%'
-  @HostBinding('style.min-height') minHeight = '100%'
 
-  $direction = signal<'horizontal' | 'vertical'>('horizontal')
-  @Input() set direction(value: 'horizontal' | 'vertical') {
-    this.$direction.set(value)
-  }
-
-  $size = signal('100%')
-  @Input() set size(value: string) {
-    this.$size.set(value)
-  }
-
-  constructor() {
-    effect(() => this.class = this.$direction() === 'horizontal' ? HORIZONTAL_CLASS : VERTICAL_CLASS)
-    effect(() => this.minWidth = this.$direction() === 'horizontal' ? this.$size() : '1px')
-    effect(() => this.minHeight = this.$direction() === 'vertical' ? this.$size() : '1px')
-  }
+  @Input() orientation: 'horizontal' | 'vertical' = 'horizontal'
+  @Input() size: string = '100%'
 }
