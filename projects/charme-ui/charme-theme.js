@@ -74,18 +74,6 @@ module.exports = {
       black: colors.black,
       white: colors.white,
 
-      prussian: {
-        1000: '#00263D',
-        900: '#153955',
-        800: '#224C6A',
-        700: '#335F81',
-        600: '#416C92',
-        500: '#5C81A5',
-        400: '#7697B9',
-        300: '#98B5D3',
-        200: '#B8D4EE',
-        100: '#DDEEFF'
-      },
       steel: {
         1000: '#48545E',
         900: '#5C6B77',
@@ -123,19 +111,19 @@ module.exports = {
         },
 
         '.bg-secondary': {
-          '@apply bg-white dark:bg-slate-950': {}
+          '@apply bg-white dark:bg-zinc-800': {}
         },
 
         '.text-primary': {
-          '@apply text-prussian-1000 dark:text-white': {}
+          '@apply text-indigo-950 dark:text-white': {}
         },
 
         '.text-secondary': {
-          '@apply text-slate-800 dark:text-prussian-100': {}
+          '@apply text-slate-800 dark:text-indigo-100': {}
         },
 
         '.border-primary': {
-          '@apply border-slate-500 dark:border-prussian-500': {}
+          '@apply border-slate-500 dark:border-indigo-500': {}
         },
 
         '.border-secondary': {

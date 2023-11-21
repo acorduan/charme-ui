@@ -83,7 +83,7 @@
 
     &:focus {
       @apply outline outline-2;
-      @apply outline-ultramarine-200 dark:outline-prussian-800;
+      @apply outline-ultramarine-200 dark:outline-indigo-800;
     }
 
     &.c-button-selected {
@@ -136,7 +136,7 @@
 
     &:focus {
       @apply outline outline-2;
-      @apply outline-ultramarine-200 dark:outline-prussian-800;
+      @apply outline-ultramarine-200 dark:outline-indigo-800;
     }
   }
 
@@ -182,7 +182,7 @@
 
     &:focus {
       @apply outline outline-2;
-      @apply outline-ultramarine-200 dark:outline-prussian-800;
+      @apply outline-ultramarine-200 dark:outline-indigo-800;
     }
   }
 }

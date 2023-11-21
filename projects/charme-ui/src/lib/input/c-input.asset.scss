@@ -1,11 +1,11 @@
 .c-input {
   @apply box-border h-10 indent-1.5 p-1.5 text-sm;
-  @apply text-slate-900 dark:text-prussian-100;
+  @apply text-slate-900 dark:text-indigo-100;
   @apply bg-transparent;
-  @apply rounded border border-solid border-slate-600 dark:border-prussian-500;
+  @apply rounded border border-solid border-slate-600 dark:border-indigo-500;
 
   &:hover:not(:disabled, :focus) {
-    @apply border-slate-900 dark:border-prussian-100;
+    @apply border-slate-900 dark:border-indigo-100;
   }
 
   &:focus {
@@ -14,7 +14,7 @@
   }
 
   &::placeholder {
-    @apply text-slate-700 dark:text-prussian-300;
+    @apply text-slate-700 dark:text-indigo-300;
   }
 
   &:disabled {

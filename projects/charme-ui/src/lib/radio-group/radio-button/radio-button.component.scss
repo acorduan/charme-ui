@@ -9,7 +9,7 @@
   outline: none;
   cursor: pointer;
   @apply bg-transparent dark:bg-transparent;
-  @apply border-slate-600 dark:border-prussian-300;
+  @apply border-slate-600 dark:border-indigo-300;
 
   + label {
     cursor: pointer;
@@ -23,7 +23,7 @@
   }
 
   &:hover:not(:disabled) {
-    @apply border-slate-900 dark:border-prussian-100;
+    @apply border-slate-900 dark:border-indigo-100;
   }
 
   &:disabled {
@@ -36,7 +36,7 @@
 
   &:disabled:-webkit-any(:checked) {
     border-color: transparent;
-    @apply bg-slate-500 dark:bg-prussian-600;
+    @apply bg-slate-500 dark:bg-indigo-600;
   }
 
   &:disabled + label {
@@ -49,7 +49,7 @@
 
 
   &:focus:not(:disabled) {
-    @apply border-slate-900 dark:border-prussian-100;
+    @apply border-slate-900 dark:border-indigo-100;
   }
 }
 
