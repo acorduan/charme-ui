@@ -1,29 +1,27 @@
 .c-input {
   @apply box-border h-10 indent-1.5 p-1.5 text-sm;
-  @apply text-c-slate-90 dark:text-c-prussian-10;
+  @apply text-slate-900 dark:text-prussian-100;
   @apply bg-transparent;
-  @apply rounded border border-solid border-c-slate-60 dark:border-c-prussian-50;
+  @apply rounded border border-solid border-slate-600 dark:border-prussian-500;
 
   &:hover:not(:disabled, :focus) {
-    @apply border-c-slate-90 dark:border-c-prussian-10;
+    @apply border-slate-900 dark:border-prussian-100;
   }
 
   &:focus {
     @apply outline outline-2 border-transparent;
-    @apply outline-c-ultramarine-60 dark:outline-c-ultramarine-50;
+    @apply outline-ultramarine-600 dark:outline-ultramarine-500;
   }
 
   &::placeholder {
-    @apply text-c-slate-70 dark:text-c-prussian-30;
+    @apply text-slate-700 dark:text-prussian-300;
   }
 
   &:disabled {
-    @apply text-c-slate-60 dark:text-c-prussian-50;
-    @apply border-c-steel-30 dark:border-c-prussian-60;
-    @apply bg-c-steel-10 dark:bg-c-prussian-90;
+    @apply opacity-40 cursor-default;
 
-    &::placeholder {
-      @apply text-c-slate-60 dark:text-c-prussian-50;
+    :active {
+      @apply pointer-events-none;
     }
   }
 }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, forwardRef, HostBinding, Input, signal } from '@angular/core'
+import { ChangeDetectionStrategy, Component, forwardRef, Input, signal } from '@angular/core'
 import { C_RADIO_GROUP_ACCESSOR } from './radio-group.model'
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
 
@@ -17,13 +17,14 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
       multi: true
     }
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    role: 'radiogroup',
+    class: 'grid gap-2'
+  }
 })
 
 export class RadioGroupComponent implements ControlValueAccessor {
-  @HostBinding('role') role = 'radiogroup'
-  @HostBinding('class') class = 'grid gap-2'
-
   @Input({ required: true }) name!: string
 
   $value = signal<any>(undefined)

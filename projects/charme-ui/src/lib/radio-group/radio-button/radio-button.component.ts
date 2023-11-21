@@ -4,7 +4,6 @@ import {
   Component,
   computed,
   EventEmitter,
-  HostBinding,
   inject,
   Input,
   Output,
@@ -24,10 +23,12 @@ import { C_RADIO_GROUP_ACCESSOR } from '../radio-group.model'
   templateUrl: 'radio-button.component.html',
   styleUrl: 'radio-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'flex items-center gap-2'
+  }
 })
 export class RadioButtonComponent {
-  @HostBinding('class') class = 'flex items-center gap-2'
   @Input({ required: true }) value: any
 
   accessor = inject(C_RADIO_GROUP_ACCESSOR)

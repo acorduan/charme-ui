@@ -7,7 +7,7 @@
   border-radius: 50%;
   transform: scale(0);
   animation: c-ripple-animation linear;
-  @apply bg-c-slate-50/50 dark:bg-c-slate-40/50;
+  @apply bg-slate-500/50 dark:bg-slate-400/50;
 }
 
 @keyframes c-ripple-animation {

@@ -2,7 +2,6 @@ import {
   booleanAttribute,
   ChangeDetectionStrategy,
   Component, ContentChildren, forwardRef,
-  HostBinding,
   Input, QueryList
 } from '@angular/core'
 import { AccordionItemComponent } from './accordion-item/accordion-item.component'
@@ -18,12 +17,13 @@ import { C_ACCORDION_ACCESSOR, CAccordionAccessor } from './accordion.model'
       provide: C_ACCORDION_ACCESSOR,
       useExisting: forwardRef(() => AccordionComponent)
     }
-  ]
+  ],
+  host: {
+    class: 'grid gap-2'
+  }
 })
 export class AccordionComponent implements CAccordionAccessor {
   @ContentChildren(AccordionItemComponent) items: QueryList<AccordionItemComponent> | undefined
-
-  @HostBinding('class') class = 'grid gap-2'
 
   #lastSelectedId: string | undefined
 

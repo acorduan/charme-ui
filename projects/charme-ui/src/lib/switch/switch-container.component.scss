@@ -1,23 +1,9 @@
-.c-switch-disabled {
-  label {
-    @apply pointer-events-none text-c-slate-80 dark:text-c-slate-50;
-  }
-}
-
-.c-switch {
-  label {
-    @apply text-sm cursor-pointer select-none	;
-  }
-}
-
 .c-switch-animation {
-  @apply bg-gradient-to-r from-c-ultramarine-50 to-c-steel-40 from-50% to-50% dark:to-c-prussian-80 transition-[background] duration-200;
-  background-size: 200% 100%;
-  background-position:right bottom;
+  @apply bg-gradient-to-r from-ultramarine-500 to-steel-400 from-50% to-50% dark:to-prussian-800 transition-[background] duration-200;
 }
 
-.c-switch-checked {
-  background-position:left bottom;
+c-switch-container[data-disabled="false"] {
+  label {
+    @apply cursor-pointer;
+  }
 }
-
-

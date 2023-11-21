@@ -1,6 +1,6 @@
 import {
   Directive,
-  ElementRef, HostBinding,
+  ElementRef,
   HostListener,
   inject,
   Input, OnDestroy,
@@ -13,10 +13,13 @@ import { TooltipComponent } from './tooltip.component'
 
 @Directive({
   selector: '[c-tooltip]',
-  standalone: true
+  standalone: true,
+  host: {
+    '[attr.aria-describedby]': 'tooltipId'
+  }
 })
 export class TooltipDirective implements OnDestroy {
-  @HostBinding('attr.aria-describedby') describedby: string | undefined = undefined
+  tooltipId: string | undefined = undefined
 
   #tooltipRef: OverlayRef | undefined
   readonly #elementRef = inject(ElementRef)
@@ -44,7 +47,7 @@ export class TooltipDirective implements OnDestroy {
       const dialogPos = this.position === 'top' ? 'bottomcenter' : 'topcenter'
       const gap = this.position === 'top' ? -5 : 5 // px
 
-      this.describedby = `c-tooltip-${crypto.randomUUID()}`
+      this.tooltipId = `c-tooltip-${crypto.randomUUID()}`
       this.#tooltipRef?.close()
       const config: OverlayConfig = {
         attachedTo: {
@@ -55,7 +58,7 @@ export class TooltipDirective implements OnDestroy {
         },
         data: {
           element: this.$element(),
-          id: this.describedby
+          id: this.tooltipId
         }
       }
       this.#tooltipRef = new OverlayRef(config)
@@ -64,7 +67,7 @@ export class TooltipDirective implements OnDestroy {
   }
 
   @HostListener('mouseleave') onMouseLeave(): void {
-    this.describedby = undefined
+    this.tooltipId = undefined
     this.#tooltipRef?.close()
     this.#tooltipRef = undefined
   }

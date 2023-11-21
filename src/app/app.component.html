@@ -256,7 +256,7 @@
     <button  c-button [c-tooltip]="customTooltipTpl" >Tooltip custom tpl</button>
 
     <ng-template #customTooltipTpl>
-      <div class="bg-c-red-50 text-c-white p-2 text-sm">hehe</div>
+      <div class="bg-red-50 text-white p-2 text-sm">hehe</div>
     </ng-template>
 
 
@@ -317,11 +317,18 @@
     <button c-button (click)="checked = !checked">switch me</button>
 
     <c-switch-container>
-      <input c-switch id="switch-disabled" [disabled]="disabled" checked>
+      <input c-switch id="switch-disabled" [disabled]="disabled">
       <label for="switch-disabled">Switch me</label>
     </c-switch-container>
 
     <button c-button (click)="disabled = !disabled">Disabled</button>
+
+
+    <c-switch-container>
+      <input c-switch id="switch-normal">
+      <label for="switch-normal">Switch me</label>
+    </c-switch-container>
+
 
   </section>
 

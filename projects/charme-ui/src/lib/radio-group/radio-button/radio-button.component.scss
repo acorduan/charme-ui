@@ -9,7 +9,7 @@
   outline: none;
   cursor: pointer;
   @apply bg-transparent dark:bg-transparent;
-  @apply border-c-slate-60 dark:border-c-prussian-30;
+  @apply border-slate-600 dark:border-prussian-300;
 
   + label {
     cursor: pointer;
@@ -18,18 +18,16 @@
   }
 
   &:checked {
-    @apply bg-c-ultramarine-50 dark:bg-c-ultramarine-50;
+    @apply bg-ultramarine-500 dark:bg-ultramarine-500;
     border-color: transparent;
   }
 
   &:hover:not(:disabled) {
-    @apply border-c-slate-90 dark:border-c-prussian-10;
+    @apply border-slate-900 dark:border-prussian-100;
   }
 
   &:disabled {
-    cursor: default;
-    @apply border-c-slate-50 dark:border-c-prussian-90;
-    @apply bg-c-slate-40 dark:bg-c-prussian-70;
+    @apply cursor-default opacity-40;
 
     :active {
       pointer-events: none;
@@ -38,12 +36,11 @@
 
   &:disabled:-webkit-any(:checked) {
     border-color: transparent;
-    @apply bg-c-slate-50 dark:bg-c-prussian-60;
+    @apply bg-slate-500 dark:bg-prussian-600;
   }
 
   &:disabled + label {
-    @apply text-c-slate-80 dark:text-c-slate-60;
-    cursor: default;
+    @apply cursor-default opacity-40;
 
     :active {
       pointer-events: none;
@@ -52,7 +49,7 @@
 
 
   &:focus:not(:disabled) {
-    @apply border-c-slate-90 dark:border-c-prussian-10;
+    @apply border-slate-900 dark:border-prussian-100;
   }
 }
 
@@ -60,7 +57,7 @@
 .c-radio-button:checked:after {
   font-family: "Material Icons";
   content: "circle";
-  @apply text-c-white-100 dark:text-c-white-100;
+  @apply text-white dark:text-white;
   display: flex;
   align-items: center;
   justify-content: center;

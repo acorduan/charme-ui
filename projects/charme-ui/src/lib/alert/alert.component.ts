@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core'
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core'
 import { NgClass, NgIf } from '@angular/common'
 import { AlertSeverity } from './alert.model'
 import { ButtonComponent } from '../button'
@@ -12,11 +12,12 @@ import { ButtonComponent } from '../button'
     NgIf,
     ButtonComponent
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    role: 'alert'
+  }
 })
 export class AlertComponent {
-  @HostBinding('attr.role') role = 'alert'
-
   @Input({ required: true }) title!: string
   @Input({ required: true }) message!: string
   @Input() severity: AlertSeverity = 'info'
@@ -26,10 +27,10 @@ export class AlertComponent {
   @Output() actionClick = new EventEmitter<void>()
 
   classBySeverity: Record<AlertSeverity, string> = {
-    success: 'border-c-green-50 bg-c-green-50/10',
-    warning: 'border-c-yellow-40 bg-c-yellow-40/10',
-    error: 'border-c-red-50 bg-c-red-50/10',
-    info: 'border-c-blue-50 bg-c-blue-50/10'
+    success: 'border-green-500 bg-green-500/10',
+    warning: 'border-yellow-400 bg-yellow-400/10',
+    error: 'border-red-500 bg-red-500/10',
+    info: 'border-blue-500 bg-blue-500/10'
   }
 
   onActionClick(): void {

@@ -1,13 +1,14 @@
-import { AfterViewInit, Directive, ElementRef, HostBinding, inject, OnDestroy } from '@angular/core'
+import { AfterViewInit, Directive, ElementRef, inject, OnDestroy } from '@angular/core'
 import { TooltipDirective } from '../tooltip'
 
 @Directive({
   selector: '[c-ellipsis]',
-  standalone: true
+  standalone: true,
+  host: {
+    class: 'whitespace-nowrap overflow-hidden text-ellipsis'
+  }
 })
 export class EllipsisDirective extends TooltipDirective implements AfterViewInit, OnDestroy {
-  @HostBinding('class') elementClass = 'whitespace-nowrap overflow-hidden text-ellipsis'
-
   readonly #el = inject(ElementRef)
   observer: ResizeObserver | undefined
 

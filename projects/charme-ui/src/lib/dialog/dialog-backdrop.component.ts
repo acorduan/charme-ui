@@ -6,7 +6,6 @@ import {
   createComponent,
   Directive,
   ElementRef,
-  HostBinding,
   inject,
   Injector,
   OnDestroy
@@ -54,11 +53,13 @@ export class DialogBackdropDirective implements OnDestroy {
   selector: 'div [aria-hidden="true"]',
   standalone: true,
   template: '',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'w-full h-full fixed top-0 left-0 bg-dark-100/50 animate-dialog-overlay-open z-[1000]'
+  }
 })
 export class DialogBackdropComponent {
   dialogRef = inject(DialogRef)
-  @HostBinding('class') class = 'w-full h-full fixed top-0 left-0 bg-c-dark-100/50 animate-dialog-overlay-open z-[1000]'
   elementRef = inject(ElementRef)
 
   constructor() {

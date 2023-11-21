@@ -1,10 +1,8 @@
 import {
   booleanAttribute,
   Directive,
-  effect,
   ElementRef,
   forwardRef,
-  HostBinding,
   HostListener,
   inject,
   Input,
@@ -21,51 +19,34 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
       useExisting: forwardRef(() => SwitchDirective),
       multi: true
     }
-  ]
+  ],
+  host: {
+    tabindex: '-1',
+    role: 'switch',
+    type: 'checkbox',
+    class: 'fixed opacity-0 pointer-events-none outline-0',
+    '[checked]': '$checked()',
+    '[disabled]': '$disabled()'
+  }
 
 })
 export class SwitchDirective implements ControlValueAccessor {
   readonly elementRef = inject(ElementRef<HTMLInputElement>)
 
-  @HostBinding('attr.tabindex') tabindex = -1
-  @HostBinding('attr.role') role = 'switch'
-  @HostBinding('class') class = 'fixed opacity-0 pointer-events-none outline-0'
-  @HostBinding('type') type = 'checkbox'
-
   @HostListener('input') onChange(): void {
-    this.checked = !this.checked
-    this.propagateChange(this.checked)
+    const checked = !this.$checked()
+    this.$checked.set(checked)
+    this.propagateChange(checked)
   }
 
-  readonly #$checked = signal<boolean>(this.elementRef.nativeElement.checked)
-
+  readonly $checked = signal<boolean>(false)
   @Input({ transform: booleanAttribute }) set checked(value: any) {
-    this.#$checked.set(value)
+    this.$checked.set(value)
   }
 
-  get checked(): boolean {
-    return this.#$checked()
-  }
-
-  readonly $disabled = signal<boolean>(this.elementRef.nativeElement.disabled)
-
+  readonly $disabled = signal<boolean>(false)
   @Input({ transform: booleanAttribute }) set disabled(value: any) {
     this.setDisabledState(value)
-  }
-
-  get disabled(): boolean {
-    return this.$disabled()
-  }
-
-  constructor() {
-    effect(() => this.elementRef.nativeElement.checked = this.#$checked())
-    effect(() => this.elementRef.nativeElement.disabled = this.$disabled())
-
-    this.elementRef.nativeElement.id ??= crypto.randomUUID()
-  }
-
-  get id(): string {
-    return this.elementRef.nativeElement.id
   }
 
   propagateChange = (_: any): void => { }

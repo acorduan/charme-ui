@@ -1,10 +1,8 @@
 import {
   booleanAttribute,
   Directive,
-  effect,
   ElementRef,
   forwardRef,
-  HostBinding,
   HostListener,
   inject,
   Input,
@@ -21,15 +19,15 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
       useExisting: forwardRef(() => CheckboxDirective),
       multi: true
     }
-  ]
+  ],
+  host: {
+    '[checked]': '$checked()',
+    type: 'checkbox',
+    class: 'c-checkbox'
+  }
 })
 export class CheckboxDirective implements ControlValueAccessor {
-  @HostBinding('type') inputType = 'checkbox'
-  @HostBinding('class') class = 'c-checkbox'
-
-  constructor(private readonly el: ElementRef<HTMLInputElement>) {
-    effect(() => this.elementRef.nativeElement.checked = this.#$checked())
-  }
+  readonly el = inject(ElementRef<HTMLInputElement>)
 
   @Input() set indeterminate(value: boolean | undefined | null) {
     this.el.nativeElement.indeterminate = value as boolean
@@ -37,19 +35,19 @@ export class CheckboxDirective implements ControlValueAccessor {
 
   readonly elementRef = inject(ElementRef<HTMLInputElement>)
 
-  @HostListener('input', ['$event']) onChange(event: any): void {
+  @HostListener('input') onChange(): void {
     this.checked = !this.checked
     this.propagateChange(this.checked)
   }
 
-  readonly #$checked = signal<boolean>(this.elementRef.nativeElement.checked)
+  readonly $checked = signal<boolean>(this.elementRef.nativeElement.checked)
 
   @Input({ transform: booleanAttribute }) set checked(value: any) {
-    this.#$checked.set(value)
+    this.$checked.set(value)
   }
 
   get checked(): boolean {
-    return this.#$checked()
+    return this.$checked()
   }
 
   propagateChange = (_: any): void => { }

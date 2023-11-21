@@ -6,11 +6,11 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'role': 'separator',
+    role: 'separator',
     '[attr.aria-orientation]': 'orientation',
-    '[style.width]': `orientation === 'horizontal' ? size : '1px'`,
-    '[style.height]': `orientation === 'horizontal' ? '1px' : size`,
-    '[class]': `orientation === 'horizontal' ? HORIZONTAL_CLASS : VERTICAL_CLASS`
+    '[style.width]': 'orientation === \'horizontal\' ? size : \'1px\'',
+    '[style.height]': 'orientation === \'horizontal\' ? \'1px\' : size',
+    '[class]': 'orientation === \'horizontal\' ? HORIZONTAL_CLASS : VERTICAL_CLASS'
   }
 })
 export class SeparatorComponent {

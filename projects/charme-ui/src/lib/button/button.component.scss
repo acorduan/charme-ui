@@ -35,159 +35,154 @@
     }
   }
 
-  &-disabled, &-loading {
-    @apply cursor-default select-none;
+  &-disabled {
+    @apply cursor-default opacity-40;
+
+    :active {
+      @apply pointer-events-none
+    }
   }
 
-  &-disabled:active, &-loading:active {
-    @apply pointer-events-none;
-  }
-
-  &.c-button-disabled {
-    @apply bg-c-steel-20 dark:bg-c-prussian-80;
-    @apply text-c-steel-40 dark:text-c-prussian-50;
-  }
-
-  &-plain:not(.c-button-disabled) {
+  &-plain {
 
     &:is(.c-button-primary) {
-      @apply text-c-white-100 dark:text-c-white-100;
-      @apply bg-c-ultramarine-50 dark:bg-c-ultramarine-50;
+      @apply text-white;
+      @apply bg-ultramarine-500 dark:bg-ultramarine-500;
 
-      &:not(.c-button-loading):hover {
-        @apply bg-c-ultramarine-60 dark:bg-c-ultramarine-40;
+      &:not(.c-button-disabled):hover {
+        @apply bg-ultramarine-600 dark:bg-ultramarine-400;
       }
     }
 
     &:is(.c-button-success) {
-      @apply text-c-green-70 dark:text-c-white-100;
-      @apply bg-c-green-20 dark:bg-c-green-60;
+      @apply text-green-700 dark:text-white;
+      @apply bg-green-200 dark:bg-green-600;
 
-      &:not(.c-button-loading):hover {
-        @apply bg-c-green-30 dark:bg-c-green-40;
+      &:not(.c-button-disabled):hover {
+        @apply bg-green-300 dark:bg-green-400;
       }
     }
 
     &:is(.c-button-warning) {
-      @apply text-c-orange-70 dark:text-c-white-100;
-      @apply bg-c-orange-20 dark:bg-c-orange-60;
+      @apply text-orange-700 dark:text-white;
+      @apply bg-orange-200 dark:bg-orange-600;
 
-      &:not(.c-button-loading):hover {
-        @apply bg-c-orange-30 dark:bg-c-orange-40;
+      &:not(.c-button-disabled):hover {
+        @apply bg-orange-300 dark:bg-orange-400;
       }
     }
 
     &:is(.c-button-error) {
-      @apply text-c-red-70 dark:text-c-white-100;
-      @apply bg-c-red-20 dark:bg-c-red-60;
+      @apply text-red-700 dark:text-white;
+      @apply bg-red-200 dark:bg-red-600;
 
-      &:not(.c-button-loading):hover {
-        @apply bg-c-red-30 dark:bg-c-red-40;
+      &:not(.c-button-disabled):hover {
+        @apply bg-red-300 dark:bg-red-400;
       }
     }
 
     &:focus {
       @apply outline outline-2;
-      @apply outline-c-ultramarine-20 dark:outline-c-prussian-80;
+      @apply outline-ultramarine-200 dark:outline-prussian-800;
     }
 
     &.c-button-selected {
-      @apply bg-c-ultramarine-60/95 dark:bg-c-ultramarine-40/95;
+      @apply bg-ultramarine-600/95 dark:bg-ultramarine-400/95;
     }
   }
 
-  &-outline:not(.c-button-disabled) {
+  &-outline {
    @apply bg-transparent;
 
     &:is(.c-button-primary) {
-      @apply shadow-[inset_0_0_0_0.063rem] shadow-c-ultramarine-50 dark:shadow-c-ultramarine-40;
-      @apply text-c-ultramarine-50 dark:text-c-ultramarine-10;
+      @apply shadow-[inset_0_0_0_0.063rem] shadow-ultramarine-500 dark:shadow-ultramarine-400;
+      @apply text-ultramarine-500 dark:text-ultramarine-100;
 
-      &:not(.c-button-loading):hover {
-        @apply bg-c-ultramarine-50/20 dark:bg-c-ultramarine-40/20;
+      &:not(.c-button-disabled):hover {
+        @apply bg-ultramarine-500/20 dark:bg-ultramarine-400/20;
       }
     }
 
     &:is(.c-button-success) {
-      @apply shadow-[inset_0_0_0_0.063rem] shadow-c-green-50 dark:shadow-c-green-60;
-      @apply text-c-green-60 dark:text-c-green-50;
+      @apply shadow-[inset_0_0_0_0.063rem] shadow-green-500 dark:shadow-green-600;
+      @apply text-green-600 dark:text-green-500;
 
-      &:not(.c-button-loading):hover {
-        @apply bg-c-green-50/20 dark:bg-c-green-60/20;
+      &:not(.c-button-disabled):hover {
+        @apply bg-green-500/20 dark:bg-green-600/20;
       }
     }
 
     &:is(.c-button-warning) {
-      @apply shadow-[inset_0_0_0_0.063rem] shadow-c-orange-40 dark:shadow-c-orange-50;
-      @apply text-c-orange-60 dark:text-c-orange-50;
+      @apply shadow-[inset_0_0_0_0.063rem] shadow-orange-400 dark:shadow-orange-500;
+      @apply text-orange-600 dark:text-orange-500;
 
-      &:not(.c-button-loading):hover {
-        @apply bg-c-orange-40/20 dark:bg-c-orange-50/20;
+      &:not(.c-button-disabled):hover {
+        @apply bg-orange-400/20 dark:bg-orange-500/20;
       }
     }
 
     &:is(.c-button-error) {
-      @apply shadow-[inset_0_0_0_0.063rem] shadow-c-red-50 dark:shadow-c-red-60;
-      @apply text-c-red-60 dark:text-c-red-50;
+      @apply shadow-[inset_0_0_0_0.063rem] shadow-red-500 dark:shadow-red-600;
+      @apply text-red-600 dark:text-red-500;
 
-      &:not(.c-button-loading):hover {
-        @apply bg-c-red-50/20 dark:bg-c-red-60/20;
+      &:not(.c-button-disabled):hover {
+        @apply bg-red-500/20 dark:bg-red-600/20;
       }
     }
 
     &.c-button-selected {
-      @apply bg-c-ultramarine-40/20 dark:bg-c-ultramarine-30/20;
+      @apply bg-ultramarine-400/20 dark:bg-ultramarine-300/20;
     }
 
     &:focus {
       @apply outline outline-2;
-      @apply outline-c-ultramarine-20 dark:outline-c-prussian-80;
+      @apply outline-ultramarine-200 dark:outline-prussian-800;
     }
   }
 
-  &-flat:not(.c-button-disabled) {
+  &-flat {
 
     @apply bg-transparent dark:bg-transparent;
 
     &:is(.c-button-primary) {
-      @apply text-c-ultramarine-50 dark:text-c-ultramarine-30;
+      @apply text-ultramarine-500 dark:text-ultramarine-300;
 
-      &:not(.c-button-loading):hover {
-        @apply bg-c-ultramarine-40/20;
+      &:not(.c-button-disabled):hover {
+        @apply bg-ultramarine-400/20;
       }
     }
 
     &:is(.c-button-success) {
-      @apply text-c-green-60 dark:text-c-green-50;
+      @apply text-green-600 dark:text-green-500;
 
-      &:not(.c-button-loading):hover {
-        @apply bg-c-green-50/20 dark:bg-c-green-60/20;
+      &:not(.c-button-disabled):hover {
+        @apply bg-green-500/20 dark:bg-green-600/20;
       }
     }
 
     &:is(.c-button-warning) {
-      @apply text-c-orange-60 dark:text-c-orange-50;
+      @apply text-orange-600 dark:text-orange-500;
 
-      &:not(.c-button-loading):hover {
-        @apply bg-c-orange-40/20 dark:bg-c-orange-50/20;
+      &:not(.c-button-disabled):hover {
+        @apply bg-orange-400/20 dark:bg-orange-500/20;
       }
     }
 
     &:is(.c-button-error) {
-      @apply text-c-red-60 dark:text-c-red-50;
+      @apply text-red-600 dark:text-red-500;
 
-      &:not(.c-button-loading):hover {
-        @apply bg-c-red-50/20 dark:bg-c-red-60/20;
+      &:not(.c-button-disabled):hover {
+        @apply bg-red-500/20 dark:bg-red-600/20;
       }
     }
 
     &.c-button-selected {
-      @apply bg-c-ultramarine-30/20;
+      @apply bg-ultramarine-300/20;
     }
 
     &:focus {
       @apply outline outline-2;
-      @apply outline-c-ultramarine-20 dark:outline-c-prussian-80;
+      @apply outline-ultramarine-200 dark:outline-prussian-800;
     }
   }
 }

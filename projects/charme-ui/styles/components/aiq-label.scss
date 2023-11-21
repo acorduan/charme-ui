@@ -8,23 +8,23 @@
   @apply text-aiq-steel-90 dark:text-aiq-white-100;
 
   &-success {
-    @apply bg-aiq-green-10 dark:bg-aiq-green-50;
-    @apply text-aiq-green-50 dark:text-aiq-green-10;
+    @apply bg-aiq-green-100dark:bg-aiq-green-50;
+    @apply text-aiq-green-50 dark:text-aiq-green-100;
   }
 
   &-information {
-    @apply bg-aiq-sky-10 dark:bg-aiq-sky-50;
-    @apply text-aiq-sky-50 dark:text-aiq-sky-10;
+    @apply bg-aiq-sky-100dark:bg-aiq-sky-50;
+    @apply text-aiq-sky-50 dark:text-aiq-sky-100;
   }
 
   &-critical {
-    @apply bg-aiq-red-10 dark:bg-aiq-red-50;
-    @apply text-aiq-red-50 dark:text-aiq-red-10;
+    @apply bg-aiq-red-100dark:bg-aiq-red-50;
+    @apply text-aiq-red-50 dark:text-aiq-red-100;
   }
 
   &-warning {
-    @apply bg-aiq-orange-10 dark:bg-aiq-orange-50;
-    @apply text-aiq-orange-50 dark:text-aiq-orange-10;
+    @apply bg-aiq-orange-100dark:bg-aiq-orange-50;
+    @apply text-aiq-orange-50 dark:text-aiq-orange-100;
   }
 
 

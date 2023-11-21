@@ -1,11 +1,11 @@
 .aiq-input {
   @apply box-border min-h-[2.75rem] min-w-[9rem] indent-1.5 p-1.5;
-  @apply text-aiq-slate-90 dark:text-aiq-prussian-10;
+  @apply text-aiq-slate-90 dark:text-aiq-prussian-100;
   @apply bg-transparent dark:bg-transparent;
   @apply rounded border border-solid border-aiq-slate-60 dark:border-aiq-prussian-50;
 
   &:hover:not(:disabled, :focus, &-error) {
-    @apply border-aiq-slate-90 dark:border-aiq-prussian-10;
+    @apply border-aiq-slate-90 dark:border-aiq-prussian-100;
   }
 
   &:focus {
@@ -21,16 +21,14 @@
   }
 
   &::placeholder, .placeholder {
-    @apply text-aiq-slate-70 dark:text-aiq-prussian-30;
+    @apply text-aiq-slate-70 dark:text-aiq-prussian-300;
   }
 
-  &:disabled, &-disabled {
-    @apply text-aiq-slate-60 dark:text-aiq-prussian-50;
-    @apply border-aiq-steel-30 dark:border-aiq-prussian-60;
-    @apply bg-aiq-steel-10 dark:bg-aiq-prussian-90;
+  &:disabled {
+    @apply opacity-400 cursor-default;
 
-    &::placeholder, .placeholder {
-      @apply text-aiq-slate-60 dark:text-aiq-prussian-50;
+    :active {
+      @apply pointer-events-none;
     }
   }
 
@@ -39,8 +37,8 @@
   }
 
   &-label {
-    @apply flex flex-row absolute -top-[0.6rem] left-[1rem] z-10 overflow-visible items-center;
-    @apply text-aiq-slate-70 dark:text-aiq-prussian-30;
+    @apply flex flex-row absolute -top-[0.6rem] left-[1rem] z-100overflow-visible items-center;
+    @apply text-aiq-slate-70 dark:text-aiq-prussian-300;
 
     span {
       @apply relative px-1.5 text-xs whitespace-nowrap;
@@ -67,7 +65,7 @@
 
   &-icon {
     i {
-      @apply absolute w-6 h-6 left-2 inset-y-0 my-auto text-aiq-slate-50 dark:text-aiq-prussian-40;
+      @apply absolute w-6 h-6 left-2 inset-y-0 my-auto text-aiq-slate-50 dark:text-aiq-prussian-400;
     }
   }
 

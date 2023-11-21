@@ -1,35 +1,33 @@
 .c-checkbox {
   @apply w-5 h-5 rounded outline-none bg-transparent appearance-none align-middle cursor-pointer dark:bg-transparent;
-  @apply border-[0.125rem] border-solid border-c-slate-60 dark:border-c-prussian-30;
+  @apply border-[0.125rem] border-solid border-slate-600 dark:border-prussian-300;
 
   + label {
     @apply cursor-pointer select-none py-0 px-2 text-sm;
   }
 
   &:checked {
-    @apply border-transparent bg-c-ultramarine-50 dark:bg-c-ultramarine-50;
+    @apply border-transparent bg-ultramarine-500 dark:bg-ultramarine-500;
   }
 
   &:hover:not(:disabled),
   &:focus:not(:disabled) {
-    @apply border-c-slate-90 dark:border-c-prussian-10;
+    @apply border-slate-900 dark:border-prussian-100;
   }
 
   &:disabled {
-    @apply cursor-default border-c-slate-50 dark:border-c-prussian-90;
-    @apply bg-c-slate-40 dark:bg-c-prussian-70;
-
+    @apply opacity-40 cursor-default;
     :active {
       @apply pointer-events-none;
     }
   }
 
   &:disabled:is(:checked) {
-    @apply border-transparent bg-c-slate-50 dark:bg-c-prussian-60;
+    @apply border-transparent bg-slate-500 dark:bg-prussian-600;
   }
 
   &:disabled + label {
-    @apply cursor-default text-c-slate-80 dark:text-c-slate-60;
+    @apply opacity-40 cursor-default;
 
     :active {
       @apply pointer-events-none;
@@ -38,7 +36,7 @@
 }
 
 .c-checkbox:after {
-  @apply font-material font-black text-lg flex items-center w-full h-full justify-center text-c-white-100 dark:text-c-white-100;
+  @apply font-material font-black text-lg flex items-center w-full h-full justify-center text-white dark:text-white;
 }
 
 .c-checkbox:checked:after {
@@ -46,7 +44,7 @@
 }
 
 .c-checkbox:indeterminate {
-  @apply bg-c-ultramarine-50 border-transparent;
+  @apply bg-ultramarine-500 border-transparent;
 }
 
 .c-checkbox:indeterminate::after {

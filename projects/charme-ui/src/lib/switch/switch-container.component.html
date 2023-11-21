@@ -1,10 +1,10 @@
-<div [tabindex]="switch.disabled ? -1 : 0" class="rounded-2xl w-8 h-5 c-switch-animation outline outline-c-slate-90 dark:outline-c-prussian-10 outline-0 focus:outline-2 cursor-pointer relative"
+<div [tabindex]="switch.$disabled() ? -1 : 0" class="bg-[length:200%_100%] rounded-2xl w-8 h-5 c-switch-animation outline outline-slate-900 dark:outline-prussian-100outline-0 focus-visible:outline-2 relative"
+     [ngClass]="{'bg-left-bottom': switch.$checked(), 'bg-right-bottom': !switch.$checked()}"
      (keyup.enter)="toggle()"
      (keyup.space)="toggle()"
-     (click)="toggle()"
-     [ngClass]="{'c-switch-checked': switch.checked, 'pointer-events-none opacity-60': switch.disabled}">
-  <div class="p-1 absolute transition-[left,right] duration-200" [ngClass]="switch.checked ? 'left-3' : 'left-0'">
-    <div class="w-3 h-3 rounded-full bg-c-white-100"></div>
+     (click)="toggle()">
+  <div class="p-1 absolute transition-[left,right] duration-200" [ngClass]="switch.$checked() ? 'left-3' : 'left-0'">
+    <div class="w-3 h-3 rounded-full bg-white"></div>
   </div>
 </div>
 

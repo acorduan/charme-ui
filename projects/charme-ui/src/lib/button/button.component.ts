@@ -14,7 +14,7 @@ const baseClass = 'c-button'
   }],
   host: {
     class: baseClass,
-    '[disabled]': `disabled`,
+    '[disabled]': 'disabled'
   },
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
@@ -23,7 +23,7 @@ const baseClass = 'c-button'
     NgIf
   ],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent extends CharmeComponent {
   constructor() {

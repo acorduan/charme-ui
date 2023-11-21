@@ -9,7 +9,7 @@
   outline: none;
   cursor: pointer;
   @apply bg-transparent dark:bg-transparent;
-  @apply border-aiq-slate-60 dark:border-aiq-prussian-30;
+  @apply border-aiq-slate-60 dark:border-aiq-prussian-300;
 
   + label {
     cursor: pointer;
@@ -23,13 +23,13 @@
   }
 
   &:hover:not(:disabled) {
-    @apply border-aiq-slate-90 dark:border-aiq-prussian-10;
+    @apply border-aiq-slate-90 dark:border-aiq-prussian-100;
   }
 
   &:disabled {
     cursor: default;
     @apply border-aiq-slate-50 dark:border-aiq-prussian-90;
-    @apply bg-aiq-slate-40 dark:bg-aiq-prussian-70;
+    @apply bg-aiq-slate-400 dark:bg-aiq-prussian-70;
 
     :active {
       pointer-events: none;

@@ -1,13 +1,10 @@
 import {
   booleanAttribute,
   Directive,
-  effect,
   ElementRef, forwardRef,
-  HostBinding,
   HostListener,
   inject,
-  Input,
-  signal
+  Input
 } from '@angular/core'
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
 
@@ -20,54 +17,30 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
       useExisting: forwardRef(() => RadioButtonDirective),
       multi: true
     }
-  ]
+  ],
+  host: {
+    class: 'c-radio-button',
+    type: 'radio',
+    '[checked]': 'checked',
+    '[name]': 'name',
+    '[disabled]': 'disabled'
+  }
 })
 export class RadioButtonDirective implements ControlValueAccessor {
-  @HostBinding('class') class = 'c-radio-button'
-  @HostBinding('type') inputType = 'radio'
-
-  constructor() {
-    effect(() => this.elementRef.nativeElement.checked = this.#$checked())
-    effect(() => this.elementRef.nativeElement.name = this.$name())
-    effect(() => this.elementRef.nativeElement.disabled = this.$disabled())
-  }
-
-  readonly elementRef = inject(ElementRef<HTMLInputElement>)
+  elementRef = inject(ElementRef<HTMLInputElement>)
 
   @HostListener('input', ['$event']) onChange(event: any): void {
     this.checked = event.target.checked
     this.propagateChange(this.checked)
   }
 
-  readonly #$checked = signal<boolean>(this.elementRef.nativeElement.checked)
+  @Input({ transform: booleanAttribute }) checked: any
 
-  @Input({ transform: booleanAttribute }) set checked(value: any) {
-    this.#$checked.set(value)
-  }
+  @Input({ required: true }) name!: string
 
-  get checked(): boolean {
-    return this.#$checked()
-  }
+  @Input({ transform: booleanAttribute }) disabled: any
 
-  $name = signal('')
-  @Input() set name(value: string) {
-    this.$name.set(value)
-  }
-
-  get name(): string {
-    return this.$name()
-  }
-
-  $disabled = signal(false)
-  @Input({ transform: booleanAttribute }) set disabled(value: any) {
-    this.$disabled.set(value)
-  }
-
-  get disabled(): boolean {
-    return this.$disabled()
-  }
-
-  propagateChange = (_: any): void => { }
+  propagateChange = (_: boolean): void => { }
   onTouchedCallback!: (() => any)
 
   writeValue(value: any): void {

@@ -1,6 +1,5 @@
 import {
   Directive,
-  HostBinding,
   inject,
   OnInit
 } from '@angular/core'
@@ -8,12 +7,14 @@ import { DialogRef } from '@charme-ui'
 
 @Directive({
   selector: '[c-dialog-title]',
-  standalone: true
+  standalone: true,
+  host: {
+    '[id]': 'id'
+  }
 })
 export class DialogTitleDirective implements OnInit {
   dialogRef = inject(DialogRef)
-
-  @HostBinding('attr.id') id = `c-dialog-${this.dialogRef.id}`
+  id = `c-dialog-${this.dialogRef.id}`
 
   ngOnInit(): void {
     const element = this.dialogRef.elementRef.nativeElement

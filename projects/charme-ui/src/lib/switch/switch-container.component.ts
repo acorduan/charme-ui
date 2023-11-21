@@ -2,10 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
-  effect,
-  ElementRef,
-  HostBinding,
-  inject,
   ViewEncapsulation
 } from '@angular/core'
 import { NgClass } from '@angular/common'
@@ -20,23 +16,18 @@ import { SwitchDirective } from './switch.directive'
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'cursor-pointer text-sm select-none w-auto flex items-center gap-2 text-sm data-[disabled=true]:cursor-default data-[disabled=true]:opacity-40 data-[disabled=true]:active:pointer-events-none ',
+    '[attr.data-disabled]': 'switch.$disabled()'
+  }
 })
 export class SwitchContainerComponent {
-  readonly #elementRef = inject(ElementRef<HTMLElement>)
   @ContentChild(SwitchDirective, { static: true }) switch!: SwitchDirective
-  @HostBinding('class') class = 'c-switch w-auto flex items-center gap-2 text-sm'
 
   toggle(): void {
-    this.switch.writeValue(!this.switch.checked)
-    this.switch.propagateChange(this.switch.checked)
-  }
-
-  constructor() {
-    effect(() => {
-      this.switch.$disabled()
-        ? this.#elementRef.nativeElement.classList.add('c-switch-disabled')
-        : this.#elementRef.nativeElement.classList.remove('c-switch-disabled')
-    })
+    const checked = !this.switch.$checked()
+    this.switch.writeValue(checked)
+    this.switch.propagateChange(checked)
   }
 }
