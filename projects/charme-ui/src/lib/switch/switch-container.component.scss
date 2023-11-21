@@ -1,5 +1,5 @@
 .c-switch-animation {
-  @apply bg-gradient-to-r from-ultramarine-500 to-steel-400 from-50% to-50% dark:to-indigo-800 transition-[background] duration-200;
+  @apply bg-gradient-to-r from-ultramarine-500 to-gray-400 from-50% to-50% dark:to-indigo-800 transition-[background] duration-200;
 }
 
 c-switch-container[data-disabled="false"] {

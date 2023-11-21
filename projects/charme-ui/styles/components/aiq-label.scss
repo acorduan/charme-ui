@@ -4,8 +4,8 @@
   justify-content: center;
   padding: 0.25rem 0.5rem;
   font-weight: 400;
-  @apply bg-aiq-steel-20 dark:bg-aiq-steel-80;
-  @apply text-aiq-steel-90 dark:text-aiq-white-100;
+  @apply bg-aiq-gray-20 dark:bg-aiq-gray-80;
+  @apply text-aiq-gray-90 dark:text-aiq-white-100;
 
   &-success {
     @apply bg-aiq-green-100dark:bg-aiq-green-50;

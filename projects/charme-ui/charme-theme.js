@@ -73,18 +73,8 @@ module.exports = {
       rose: colors.rose,
       black: colors.black,
       white: colors.white,
+      charcoal: '#111111',
 
-      steel: {
-        1000: '#48545E',
-        900: '#5C6B77',
-        800: '#6B7F8E',
-        700: '#7D95A6',
-        600: '#8BA6BA',
-        400: '#B1C5D3',
-        300: '#C8D6E1',
-        200: '#DDE7ED',
-        100: '#F1F5F9'
-      },
       ultramarine: {
         900: '#001CD9',
         600: '#0040FB',
@@ -94,14 +84,13 @@ module.exports = {
         200: '#C3C7FE',
         100: '#E8E9FF'
       },
-      charcoal: '#111111'
     }
   },
   plugins: [
     function ({addUtilities}) {
       addUtilities({
         '.bg-primary': {
-          '@apply bg-steel-100 dark:bg-charcoal': {}
+          '@apply bg-gray-100 dark:bg-charcoal': {}
         },
 
         '.bg-secondary': {
