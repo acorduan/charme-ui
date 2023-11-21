@@ -94,20 +94,14 @@ module.exports = {
         200: '#C3C7FE',
         100: '#E8E9FF'
       },
-      dark: {
-        1000: '#21252D'
-      },
-      charcoal: {
-        1000: '#111111'
-      },
-
+      charcoal: '#111111'
     }
   },
   plugins: [
     function ({addUtilities}) {
       addUtilities({
         '.bg-primary': {
-          '@apply bg-steel-100 dark:bg-charcoal-1000': {}
+          '@apply bg-steel-100 dark:bg-charcoal': {}
         },
 
         '.bg-secondary': {

@@ -55,7 +55,7 @@ export class DialogBackdropDirective implements OnDestroy {
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'w-full h-full fixed top-0 left-0 bg-dark-1000/50 animate-dialog-overlay-open z-[1000]'
+    class: 'w-full h-full fixed top-0 left-0 bg-charcoal/50 animate-dialog-overlay-open z-[1000]'
   }
 })
 export class DialogBackdropComponent {
