@@ -5,7 +5,7 @@
       tabindex="0"
       [dialogElementRef]="elementRef"></span>
 
-<div class="animate-dialog-open bg-secondary text-primary c-overlay-shadow" [ngClass]="config.panelClass">
+<div class="animate-dialog-open bg-primary text-primary overlay-shadow" [ngClass]="config.panelClass">
   <ng-container *ngIf="component">
     <ng-container *ngComponentOutlet="component; inputs: config.inputs"></ng-container>
   </ng-container>

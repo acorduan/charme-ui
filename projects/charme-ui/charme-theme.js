@@ -34,95 +34,80 @@ module.exports = {
         scaledown: {
           '0%': {transform: 'scale(1)'},
           '100%': {transform: 'scale(0.8)'}
-        },
-        'from-bottom': {
-          '0%': {
-            left: '0',
-            top: '100%'
-          },
-          '100%': {
-            left: '0',
-            top: '0'
-          }
         }
       }
     },
     colors: {
       transparent: 'transparent',
-      slate: colors.slate,
-      gray: colors.gray,
-      zinc: colors.zinc,
-      neutral: colors.neutral,
-      stone: colors.stone,
-      red: colors.red,
-      orange: colors.orange,
-      amber: colors.amber,
-      yellow: colors.yellow,
-      lime: colors.lime,
-      green: colors.green,
-      emerald: colors.emerald,
-      teal: colors.teal,
-      cyan: colors.cyan,
-      sky: colors.sky,
-      blue: colors.blue,
-      indigo: colors.indigo,
-      violet: colors.violet,
-      purple: colors.purple,
-      fuchsia: colors.fuchsia,
-      pink: colors.pink,
-      rose: colors.rose,
-      black: colors.black,
-      white: colors.white,
-      charcoal: '#111111',
+      ...colors,
 
-      ultramarine: {
-        900: '#001CD9',
-        600: '#0040FB',
-        500: '#335FFF',
-        400: '#667EFF',
-        300: '#98A3FE',
-        200: '#C3C7FE',
-        100: '#E8E9FF'
+      'green': {
+        '50': '#e8ffe4',
+        '100': '#cbffc5',
+        '200': '#9aff92',
+        '300': '#5bff53',
+        '400': '#24fb20',
+        '500': '#00eb00',
+        '600': '#00b505',
+        '700': '#028907',
+        '800': '#086c0c',
+        '900': '#0c5b11',
+        '950': '#003305',
       },
+
+      'ultramarine': {
+        '50': '#f0f0ff',
+        '100': '#e5e4ff',
+        '200': '#ceccff',
+        '300': '#aaa4ff',
+        '400': '#8170ff',
+        '500': '#5a37ff',
+        '600': '#470fff',
+        '700': '#3700ff',
+        '800': '#2d00da',
+        '900': '#200094',
+        '950': '#13007a',
+      },
+
     }
   },
   plugins: [
     function ({addUtilities}) {
       addUtilities({
         '.bg-primary': {
-          '@apply bg-gray-100 dark:bg-charcoal': {}
+          '@apply bg-white dark:bg-zinc-950': {}
         },
 
         '.bg-secondary': {
-          '@apply bg-white dark:bg-zinc-800': {}
+          '@apply bg-zinc-100 dark:bg-zinc-900': {}
         },
 
         '.text-primary': {
-          '@apply text-indigo-950 dark:text-white': {}
+          '@apply text-zinc-900 dark:text-zinc-100': {}
         },
 
         '.text-secondary': {
-          '@apply text-slate-800 dark:text-indigo-100': {}
+          '@apply bg-zinc-800 dark:bg-zinc-50': {}
         },
 
         '.border-primary': {
-          '@apply border-slate-500 dark:border-indigo-500': {}
+          '@apply border-zinc-400 dark:border-zinc-600': {}
         },
 
         '.border-secondary': {
-          '@apply border-slate-200 dark:border-slate-900': {}
+          '@apply border-zinc-200 dark:border-zinc-800': {}
         },
 
-        '.c-overlay-shadow': {
-          '@apply shadow-[2px_4px_8px_2px_rgba(72,84,94,0.15)] dark:shadow-[0px_4px_8px_0px_rgba(0,0,0,0.88)]': {}
+        '.overlay-shadow': {
+          '@apply shadow-sm	shadow-zinc-400 dark:shadow-zinc-700': {}
         },
 
-        '.c-card-shadow': {
-          '@apply shadow-[0px_4px_8px_0px_rgba(72,84,94,0.04)] dark:shadow-[0px_4px_8px_0px_rgba(0,32,52,0.80)]': {}
+        '.card-shadow': {
+          '@apply shadow-sm	shadow-zinc-300 dark:shadow-zinc-800': {}
         },
 
-        '.c-card': {
-          '@apply c-card-shadow rounded bg-secondary': {}
+        '.card': {
+          '@apply card-shadow rounded bg-secondary': {}
         }
       })
     }

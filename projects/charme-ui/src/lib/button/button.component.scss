@@ -44,9 +44,9 @@
   }
 
   &-plain {
-
+    @apply text-white;
     &:is(.c-button-primary) {
-      @apply text-white;
+
       @apply bg-ultramarine-500 dark:bg-ultramarine-500;
 
       &:not(.c-button-disabled):hover {
@@ -55,29 +55,27 @@
     }
 
     &:is(.c-button-success) {
-      @apply text-green-700 dark:text-white;
-      @apply bg-green-200 dark:bg-green-600;
+      @apply text-white;
+      @apply bg-green-700 dark:bg-green-600;
 
       &:not(.c-button-disabled):hover {
-        @apply bg-green-300 dark:bg-green-400;
+        @apply bg-green-700 dark:bg-green-400;
       }
     }
 
     &:is(.c-button-warning) {
-      @apply text-orange-700 dark:text-white;
-      @apply bg-orange-200 dark:bg-orange-600;
+      @apply bg-orange-700 dark:bg-orange-600;
 
       &:not(.c-button-disabled):hover {
-        @apply bg-orange-300 dark:bg-orange-400;
+        @apply bg-orange-700 dark:bg-orange-400;
       }
     }
 
     &:is(.c-button-error) {
-      @apply text-red-700 dark:text-white;
-      @apply bg-red-200 dark:bg-red-600;
+      @apply bg-red-700 dark:bg-red-600;
 
       &:not(.c-button-disabled):hover {
-        @apply bg-red-300 dark:bg-red-400;
+        @apply bg-red-700 dark:bg-red-400;
       }
     }
 

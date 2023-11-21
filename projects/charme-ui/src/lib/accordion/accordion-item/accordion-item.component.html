@@ -4,7 +4,7 @@
      [id]="'c-accordion-item-heading-' + id">
     <button c-ripple
             [disabled]="disabled"
-            class="bg-secondary flex items-center rounded justify-between relative p-2 w-full text-sm focus-visible:outline outline-slate-900 dark:outline-indigo-100disabled:pointer-events-none disabled:opacity-40"
+            class="card flex items-center rounded justify-between relative p-2 w-full text-sm focus-visible:outline outline-zinc-600 dark:outline-zinc-400 disabled:pointer-events-none disabled:opacity-40 disabled:select-none"
             (click)="onTriggerClick()">
         <span class="font-medium"><ng-content *ngTemplateOutlet="accordionTrigger.tpl"></ng-content></span>
         <i class="material-icons-outlined transition-all" [ngClass]="$open() ? 'rotate-180' : ''" >expand_more</i>

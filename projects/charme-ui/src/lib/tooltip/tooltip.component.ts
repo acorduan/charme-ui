@@ -12,7 +12,7 @@ import { OVERLAY_DATA } from '../overlay/overlay.model'
     NgTemplateOutlet
   ],
   template: `
-    <div *ngIf="message !== undefined" class="animate-tooltip bg-secondary max-w-lg text-primary c-overlay-shadow p-2 rounded text-xs">
+    <div *ngIf="message !== undefined" class="animate-tooltip bg-primary max-w-lg text-primary border border-secondary p-2 rounded text-xs">
         {{message}}
     </div>
 
