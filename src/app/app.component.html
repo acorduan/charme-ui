@@ -222,11 +222,11 @@
             <i class="material-icons-outlined">search</i>
         </button>
 
-        <button c-button loading b-type="outline" class="w-20">
+        <button c-button loading b-type="outline">
             Loading
         </button>
 
-        <button c-button selected b-type="outline" class="w-20">
+        <button c-button selected b-type="outline">
             Selected
         </button>
     </section>
@@ -243,7 +243,7 @@
 
         <button c-button b-type="flat" color="error">Error</button>
 
-        <button c-button b-type="flat" disabled>Disabled</button>
+        <button c-button b-type="flat" disabled c-tooltip="test">Disabled</button>
 
         <button c-button b-type="flat" size="lg">Large</button>
 
@@ -274,7 +274,6 @@
     <h1>Inputs</h1>
     <section class="flex gap-2 items-center flex-wrap">
         <input c-input placeholder="placeholder...">
-
         <input c-input disabled placeholder="disabled...">
     </section>
 

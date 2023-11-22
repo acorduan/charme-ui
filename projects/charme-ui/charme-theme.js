@@ -2,108 +2,122 @@ const colors = require('tailwindcss/colors')
 
 
 module.exports = {
-  darkMode: 'class',
-  theme: {
-    fontFamily: {
-      material: ['"Material Icons"']
-    },
-    extend: {
-      animation: {
-        fade: 'fade 0.15s ease-in-out forwards',
-        fadeout: 'fadeout 0.15s ease-in-out forwards',
-        scale: 'scale 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
-        tooltip: 'fade 150ms cubic-bezier(0, 0, 0.2, 1) forwards, scale 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
-        'dialog-open': 'fade 150ms cubic-bezier(0, 0, 0.2, 1) forwards, scale 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
-        'dialog-close': 'fadeout 150ms cubic-bezier(0, 0, 0.2, 1) forwards, scaledown 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
-        'dialog-overlay-open': 'fade 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
-        'dialog-overlay-close': 'fadeout 150ms cubic-bezier(0, 0, 0.2, 1) forwards'
-      },
-      keyframes: {
-        fade: {
-          '0%': {opacity: '0'},
-          '100%': {opacity: '1'}
+    darkMode: 'class',
+    theme: {
+        fontFamily: {
+            material: ['"Material Icons"']
         },
-        fadeout: {
-          '0%': {opacity: '1'},
-          '100%': {opacity: '0'}
+        extend: {
+            animation: {
+                fade: 'fade 0.15s ease-in-out forwards',
+                fadeout: 'fadeout 0.15s ease-in-out forwards',
+                scale: 'scale 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
+                tooltip: 'fade 150ms cubic-bezier(0, 0, 0.2, 1) forwards, scale 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
+                'dialog-open': 'fade 150ms cubic-bezier(0, 0, 0.2, 1) forwards, scale 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
+                'dialog-close': 'fadeout 150ms cubic-bezier(0, 0, 0.2, 1) forwards, scaledown 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
+                'dialog-overlay-open': 'fade 150ms cubic-bezier(0, 0, 0.2, 1) forwards',
+                'dialog-overlay-close': 'fadeout 150ms cubic-bezier(0, 0, 0.2, 1) forwards'
+            },
+            keyframes: {
+                fade: {
+                    '0%': {opacity: '0'},
+                    '100%': {opacity: '1'}
+                },
+                fadeout: {
+                    '0%': {opacity: '1'},
+                    '100%': {opacity: '0'}
+                },
+                scale: {
+                    '0%': {transform: 'scale(0.8)'},
+                    '100%': {transform: 'scale(1)'}
+                },
+                scaledown: {
+                    '0%': {transform: 'scale(1)'},
+                    '100%': {transform: 'scale(0.8)'}
+                }
+            }
         },
-        scale: {
-          '0%': {transform: 'scale(0.8)'},
-          '100%': {transform: 'scale(1)'}
-        },
-        scaledown: {
-          '0%': {transform: 'scale(1)'},
-          '100%': {transform: 'scale(0.8)'}
+        colors: {
+            transparent: 'transparent',
+            ...colors,
+
+            'ultramarine': {
+                '50': '#f0f0ff',
+                '100': '#e5e4ff',
+                '200': '#ceccff',
+                '300': '#aaa4ff',
+                '400': '#8170ff',
+                '500': '#5a37ff',
+                '600': '#470fff',
+                '700': '#3700ff',
+                '800': '#2d00da',
+                '900': '#200094',
+                '950': '#13007a',
+            },
+
         }
-      }
     },
-    colors: {
-      transparent: 'transparent',
-      ...colors,
-
-      'ultramarine': {
-        '50': '#f0f0ff',
-        '100': '#e5e4ff',
-        '200': '#ceccff',
-        '300': '#aaa4ff',
-        '400': '#8170ff',
-        '500': '#5a37ff',
-        '600': '#470fff',
-        '700': '#3700ff',
-        '800': '#2d00da',
-        '900': '#200094',
-        '950': '#13007a',
-      },
-
-    }
-  },
-  plugins: [
-    function ({addUtilities}) {
-      addUtilities({
-        '.focus-el': {
-            '@apply outline outline-offset-1 outline-2': {}
+    plugins: [
+        function ({addVariant})  {
+            addVariant('not-focus', '&:not(:focus)')
+            addVariant('not-hover', '&:not(:hover)')
+            addVariant('c-hover', '&:not(:disabled):hover')
         },
 
-        '.disabled-el' : {
-          '@apply cursor-default opacity-40 active:pointer-events-none select-none': {}
-        },
+        function ({addUtilities}) {
+            addUtilities({
+                '.focus-el': {
+                    '@apply outline outline-2 focus-visible:outline-ultramarine-500 focus-visible:dark:outline-ultramarine-400': {}
+                },
 
-        '.bg-primary': {
-          '@apply bg-white dark:bg-zinc-950': {}
-        },
+                '.disabled-el': {
+                    '@apply cursor-default opacity-40 active:pointer-events-none select-none': {}
+                },
 
-        '.bg-secondary': {
-          '@apply bg-zinc-100 dark:bg-zinc-900': {}
-        },
+                '.bg-primary': {
+                    '@apply bg-white dark:bg-zinc-950': {}
+                },
 
-        '.text-primary': {
-          '@apply text-zinc-900 dark:text-zinc-100': {}
-        },
+                '.bg-secondary': {
+                    '@apply bg-zinc-100 dark:bg-zinc-900': {}
+                },
 
-        '.text-secondary': {
-          '@apply bg-zinc-800 dark:bg-zinc-50': {}
-        },
+                '.text-primary': {
+                    '@apply text-zinc-900 dark:text-zinc-100': {}
+                },
 
-        '.border-primary': {
-          '@apply border-zinc-400 dark:border-zinc-600': {}
-        },
+                '.text-secondary': {
+                    '@apply bg-zinc-800 dark:bg-zinc-50': {}
+                },
 
-        '.border-secondary': {
-          '@apply border-zinc-200 dark:border-zinc-800': {}
-        },
+                '.ring-primary': {
+                    '@apply ring-1 ring-zinc-400 dark:ring-zinc-600': {}
+                },
 
-        '.overlay-shadow': {
-          '@apply shadow-sm	shadow-zinc-400 dark:shadow-zinc-700': {}
-        },
+                '.ring-secondary': {
+                    '@apply ring-1 ring-zinc-200 dark:ring-zinc-800': {}
+                },
 
-        '.card-shadow': {
-          '@apply shadow-sm	shadow-zinc-300 dark:shadow-zinc-800': {}
-        },
+                '.border-primary': {
+                    '@apply border border-zinc-400 dark:border-zinc-600': {}
+                },
 
-        '.card': {
-          '@apply card-shadow rounded bg-secondary': {}
-        }
-      })
-    }
-  ]
+                '.border-secondary': {
+                    '@apply border-zinc-200 dark:border-zinc-800': {}
+                },
+
+                '.overlay-shadow': {
+                    '@apply shadow-sm	shadow-zinc-400 dark:shadow-zinc-700': {}
+                },
+
+                '.card-shadow': {
+                    '@apply shadow-sm	shadow-zinc-300 dark:shadow-zinc-800': {}
+                },
+
+                '.card': {
+                    '@apply card-shadow rounded bg-secondary': {}
+                }
+            })
+        },
+    ]
 }

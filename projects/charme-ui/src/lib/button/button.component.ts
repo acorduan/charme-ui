@@ -25,7 +25,6 @@ import { ClassValue } from "clsx";
         '[attr.data-selected]': 'selected'
     },
     templateUrl: './button.component.html',
-    styleUrls: ['./button.component.scss'],
     standalone: true,
     imports: [
         NgIf
