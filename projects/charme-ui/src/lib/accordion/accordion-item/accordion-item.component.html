@@ -3,8 +3,9 @@
      [attr.aria-expanded]="$open()"
      [id]="'c-accordion-item-heading-' + id">
     <button c-ripple
+            [rippleDisabled]="disabled"
             [disabled]="disabled"
-            class="card flex items-center rounded justify-between relative p-2 w-full text-sm focus-visible:outline outline-zinc-600 dark:outline-zinc-400 disabled:pointer-events-none disabled:opacity-40 disabled:select-none"
+            class="card flex items-center rounded justify-between relative p-2 w-full text-sm disabled:disabled-el focus-visible:focus-el"
             (click)="onTriggerClick()">
         <span class="font-medium"><ng-content *ngTemplateOutlet="accordionTrigger.tpl"></ng-content></span>
         <i class="material-icons-outlined transition-all" [ngClass]="$open() ? 'rotate-180' : ''" >expand_more</i>

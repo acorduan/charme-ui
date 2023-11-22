@@ -67,7 +67,7 @@ module.exports = {
         function ({addUtilities}) {
             addUtilities({
                 '.focus-el': {
-                    '@apply outline outline-2 focus-visible:outline-ultramarine-500 focus-visible:dark:outline-ultramarine-400': {}
+                    '@apply outline outline-2 focus-visible:outline-ultramarine-400': {}
                 },
 
                 '.disabled-el': {
