@@ -99,7 +99,7 @@ module.exports = {
                 },
 
                 '.border-primary': {
-                    '@apply border border-zinc-400 dark:border-zinc-600': {}
+                    '@apply border-zinc-400 dark:border-zinc-600': {}
                 },
 
                 '.border-secondary': {
@@ -107,11 +107,11 @@ module.exports = {
                 },
 
                 '.overlay-shadow': {
-                    '@apply shadow-sm	shadow-zinc-400 dark:shadow-zinc-700': {}
+                    '@apply shadow-sm shadow-zinc-400 dark:shadow-zinc-700': {}
                 },
 
                 '.card-shadow': {
-                    '@apply shadow-sm	shadow-zinc-300 dark:shadow-zinc-800': {}
+                    '@apply shadow-sm shadow-zinc-300 dark:shadow-zinc-800': {}
                 },
 
                 '.card': {
