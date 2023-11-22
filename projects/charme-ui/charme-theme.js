@@ -41,20 +41,6 @@ module.exports = {
       transparent: 'transparent',
       ...colors,
 
-      'green': {
-        '50': '#e8ffe4',
-        '100': '#cbffc5',
-        '200': '#9aff92',
-        '300': '#5bff53',
-        '400': '#24fb20',
-        '500': '#00eb00',
-        '600': '#00b505',
-        '700': '#028907',
-        '800': '#086c0c',
-        '900': '#0c5b11',
-        '950': '#003305',
-      },
-
       'ultramarine': {
         '50': '#f0f0ff',
         '100': '#e5e4ff',
@@ -74,6 +60,14 @@ module.exports = {
   plugins: [
     function ({addUtilities}) {
       addUtilities({
+        '.focus-el': {
+            '@apply outline outline-offset-1 outline-2': {}
+        },
+
+        '.disabled-el' : {
+          '@apply cursor-default opacity-40 active:pointer-events-none select-none': {}
+        },
+
         '.bg-primary': {
           '@apply bg-white dark:bg-zinc-950': {}
         },

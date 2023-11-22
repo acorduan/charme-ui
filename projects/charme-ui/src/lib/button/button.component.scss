@@ -1,47 +1,36 @@
-.c-button {
-  @apply inline-flex justify-center items-center relative rounded px-4 gap-2 min-w-min;
+:host {
+  @apply inline-flex justify-center items-center relative rounded px-4 gap-2 min-w-min disabled:disabled-el;
 
-  &-sm {
-    @apply h-6 text-[0.70rem];
+  &[data-size="sm"] {
+    @apply h-6 text-[0.70rem] data-[icon=true]:w-6;
   }
 
-  &-md {
-    @apply h-8 text-sm;
+  &[data-size="md"] {
+    @apply h-8 text-sm data-[icon=true]:w-8;
   }
 
-  &-lg {
-    @apply h-11 text-base;
+  &[data-size="lg"] {
+    @apply h-11 text-base data-[icon=true]:w-11;
   }
 
-  &-sm-icon {
-    @apply h-6 w-6 text-[0.70rem] p-2;
-    i {
-      @apply text-[0.70rem];
-    }
+  &[data-icon="true"] {
+    @apply px-0;
   }
 
-  &-md-icon {
-    @apply h-8 w-8 text-sm p-2;
-
-    i {
-      @apply text-sm;
-    }
+  :focus-visible {
+    @apply outline outline-offset-1 outline-2 outline-ultramarine-200 dark:outline-ultramarine-800;
   }
 
-  &-lg-icon {
-    @apply h-11 w-11 text-base;
-    i {
-      @apply text-base;
-    }
+  &[data-theme="plain-primary"] {
+    @apply text-white bg-ultramarine-500 dark:bg-ultramarine-500 hover:bg-ultramarine-600 hover:dark:bg-ultramarine-400;
   }
 
-  &-disabled {
-    @apply cursor-default opacity-40;
+}
 
-    :active {
-      @apply pointer-events-none
-    }
-  }
+
+/*
+
+:host {
 
   &-plain {
     @apply text-white;
@@ -180,7 +169,8 @@
 
     &:focus {
       @apply outline outline-2;
-      @apply outline-ultramarine-200 dark:outline-indigo-800;
+      @apply outline-ultramarine-200 dark:outline-ultramarine-800;
     }
   }
 }
+*/
