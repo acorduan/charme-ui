@@ -10,8 +10,8 @@ import {
   signal
 } from '@angular/core'
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
-import { tlMerge } from '../core/tailwind-merge'
-import { checkboxThemes, CheckboxType } from './checkbox.theme'
+import { CheckboxColor, checkboxThemes } from './checkbox.theme'
+import { twMerge } from 'tailwind-merge'
 
 @Directive({
   selector: '[c-checkbox]',
@@ -64,12 +64,12 @@ export class CheckboxDirective implements ControlValueAccessor {
     this.$customClass.set(value)
   }
 
-  $type = signal<CheckboxType>('primary')
-  @Input('c-type') set type(value: CheckboxType) {
+  $type = signal<CheckboxColor>('primary')
+  @Input('c-type') set type(value: CheckboxColor) {
     this.$type.set(value)
   }
 
-  $class = computed(() => tlMerge(checkboxThemes({ type: this.$type() }), this.$customClass()))
+  $class = computed(() => twMerge(checkboxThemes({ color: this.$type() }), this.$customClass()))
 
   propagateChange = (_: any): void => {}
   onTouchedCallback!: () => any

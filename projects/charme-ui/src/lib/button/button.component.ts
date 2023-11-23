@@ -7,9 +7,8 @@ import {
 } from '@angular/core'
 import { RippleDirective } from '../ripple/ripple.directive'
 import { NgIf } from '@angular/common'
-
-import { tlMerge } from '../core/tailwind-merge'
 import { ButtonColor, ButtonSize, buttonThemes, ButtonType } from './buttom.theme'
+import { twMerge } from 'tailwind-merge'
 
 @Component({
   selector: 'button[c-button], a[c-button]',
@@ -55,5 +54,5 @@ export class ButtonComponent {
     this.$type.set(value)
   }
 
-  $class = computed(() => tlMerge(buttonThemes({ [this.$type()]: this.$color(), size: this.$size() }), this.$customClass()))
+  $class = computed(() => twMerge(buttonThemes({ [this.$type()]: this.$color(), size: this.$size() }), this.$customClass()))
 }

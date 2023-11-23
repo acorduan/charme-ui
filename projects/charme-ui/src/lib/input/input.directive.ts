@@ -2,7 +2,7 @@ import {
   computed,
   Directive, Input, signal
 } from '@angular/core'
-import { tlMerge } from '../core/tailwind-merge'
+import { twMerge } from 'tailwind-merge'
 
 @Directive({
   selector: 'input[c-input], textarea[c-input]',
@@ -19,5 +19,5 @@ export class InputDirective {
     this.$customClass.set(value)
   }
 
-  $class = computed(() => tlMerge(this.baseClass, this.$customClass()))
+  $class = computed(() => twMerge(this.baseClass, this.$customClass()))
 }

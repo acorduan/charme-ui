@@ -9,8 +9,8 @@ import {
   signal
 } from '@angular/core'
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
-import { tlMerge } from '../../core/tailwind-merge'
 import { radioButtomThemes, RadioButtonColor } from './radio-button.theme'
+import { twMerge } from 'tailwind-merge'
 
 @Directive({
   selector: '[c-radio-button-behavior]',
@@ -50,7 +50,7 @@ export class RadioButtonDirective implements ControlValueAccessor {
   propagateChange = (_: boolean): void => { }
   onTouchedCallback!: (() => any)
 
-  $class = computed(() => tlMerge(radioButtomThemes({ type: this.$color() })))
+  $class = computed(() => twMerge(radioButtomThemes({ type: this.$color() })))
 
   writeValue(value: any): void {
     if (value !== undefined && value !== null) {
