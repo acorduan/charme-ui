@@ -75,7 +75,7 @@ export class SwitchComponent implements ControlValueAccessor {
 
   @HostListener('click')
   @HostListener('keyup.space')
-  @HostBinding('keyup.enter')
+  @HostListener('keyup.enter')
   toggle(): void {
     const checked = !this.$checked()
     this.writeValue(checked)
