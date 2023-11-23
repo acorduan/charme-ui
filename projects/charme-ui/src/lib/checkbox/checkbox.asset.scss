@@ -1,3 +1,9 @@
+c-checkbox-container {
+  label {
+    @apply indent-2;
+  }
+}
+
 c-checkbox-container[data-disabled="false"] {
   label {
     @apply cursor-pointer;

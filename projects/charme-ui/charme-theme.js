@@ -71,7 +71,7 @@ module.exports = {
                 },
 
                 '.disabled-el': {
-                    '@apply cursor-default opacity-40 active:pointer-events-none select-none': {}
+                    '@apply cursor-default opacity-40 pointer-events-none select-none': {}
                 },
 
                 '.bg-primary': {
