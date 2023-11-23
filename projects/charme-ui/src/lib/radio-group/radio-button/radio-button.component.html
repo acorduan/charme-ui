@@ -3,5 +3,8 @@
        (ngModelChange)="onCheckChange($event)"
        [disabled]="disabled"
        [name]="accessor.name"
+       [color]="color"
        [id]="id">
-<label class="text-sm"  [for]="id"><ng-content></ng-content></label>
+<label class="cursor-pointer indent-2 text-sm" 
+       [ngClass]="{'pointer-events-none cursor-default': disabled}"
+[for]="id"><ng-content></ng-content></label>

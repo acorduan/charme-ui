@@ -1,12 +1,16 @@
 import {
   booleanAttribute,
+  computed,
   Directive,
   ElementRef, forwardRef,
   HostListener,
   inject,
-  Input
+  Input,
+  signal
 } from '@angular/core'
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
+import { tlMerge } from '../../core/tailwind-merge'
+import { radioButtomThemes, RadioButtonColor } from './radio-button.theme'
 
 @Directive({
   selector: '[c-radio-button-behavior]',
@@ -19,7 +23,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
     }
   ],
   host: {
-    class: 'c-radio-button',
+    '[class]': '$class()',
     type: 'radio',
     '[checked]': 'checked',
     '[name]': 'name',
@@ -34,14 +38,19 @@ export class RadioButtonDirective implements ControlValueAccessor {
     this.propagateChange(this.checked)
   }
 
-  @Input({ transform: booleanAttribute }) checked: any
-
+  @Input({ transform: booleanAttribute }) checked: boolean = false
   @Input({ required: true }) name!: string
+  @Input({ transform: booleanAttribute }) disabled: boolean = false
 
-  @Input({ transform: booleanAttribute }) disabled: any
+  $color = signal<RadioButtonColor>('primary')
+  @Input() set color(value: RadioButtonColor) {
+    this.$color.set(value)
+  }
 
   propagateChange = (_: boolean): void => { }
   onTouchedCallback!: (() => any)
+
+  $class = computed(() => tlMerge(radioButtomThemes({ type: this.$color() })))
 
   writeValue(value: any): void {
     if (value !== undefined && value !== null) {

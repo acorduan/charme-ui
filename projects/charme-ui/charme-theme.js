@@ -5,7 +5,10 @@ module.exports = {
     darkMode: 'class',
     theme: {
         fontFamily: {
-            material: ['"Material Icons"']
+            material: ['"Material Icons"'],
+            'material-outlined': ['"Material Icons Outlined"'],
+            'material-round': ['"Material Icons Round"']
+
         },
         extend: {
             animation: {
@@ -61,7 +64,6 @@ module.exports = {
         function ({addVariant})  {
             addVariant('not-focus', '&:not(:focus)')
             addVariant('not-hover', '&:not(:hover)')
-            addVariant('c-hover', '&:not(:disabled):hover')
         },
 
         function ({addUtilities}) {
@@ -116,6 +118,18 @@ module.exports = {
 
                 '.card': {
                     '@apply card-shadow rounded bg-secondary': {}
+                },
+
+                '.material-icon': {
+                    '@apply font-material font-normal not-italic leading-none normal-case inline-block whitespace-nowrap': {}
+                },
+
+                '.material-icon-outlined': {
+                    '@apply font-material-outlined font-normal not-italic leading-none normal-case inline-block whitespace-nowrap': {}
+                },
+
+                '.material-icon-round': {
+                    '@apply font-material-round font-normal not-italic leading-none normal-case inline-block whitespace-nowrap': {}
                 }
             })
         },
