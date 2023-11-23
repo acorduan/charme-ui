@@ -1,11 +1,1 @@
-<div [tabindex]="switch.$disabled() ? -1 : 0" class="bg-[length:200%_100%] rounded-2xl w-8 h-5 c-switch-animation outline outline-slate-900 dark:outline-indigo-100 outline-0 focus-visible:outline-2 relative"
-     [ngClass]="{'bg-left-bottom': switch.$checked(), 'bg-right-bottom': !switch.$checked()}"
-     (keyup.enter)="toggle()"
-     (keyup.space)="toggle()"
-     (click)="toggle()">
-  <div class="p-1 absolute transition-[left,right] duration-200" [ngClass]="switch.$checked() ? 'left-3' : 'left-0'">
-    <div class="w-3 h-3 rounded-full bg-white"></div>
-  </div>
-</div>
-
 <ng-content></ng-content>

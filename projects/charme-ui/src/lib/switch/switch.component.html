@@ -1,0 +1,5 @@
+<div class="px-0.5 absolute h-full flex items-center justify-center transition-[left,right] duration-200" [ngClass]="$checked() ? 'left-3.5' : 'left-0'">
+  <i class="material-icons-round "> circle </i>
+</div>
+
+<input [id]="id" [checked]="$checked()" type="checkbox" role="switch" tabindex="-1" class="fixed opacity-0 pointer-events-none outline-0" [disabled]="$disabled()">

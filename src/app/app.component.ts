@@ -15,7 +15,6 @@ import {
   alertSeverities,
   CheckboxDirective,
   SwitchContainerComponent,
-  SwitchDirective,
   EllipsisDirective,
   RadioGroupComponent,
   RadioButtonComponent,
@@ -23,7 +22,8 @@ import {
   AccordionComponent,
   AccordionItemComponent,
   AccordionContentDirective,
-  CheckboxContainerComponent
+  CheckboxContainerComponent,
+  SwitchComponent
 } from '@charme-ui'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { FormsModule } from '@angular/forms'
@@ -34,7 +34,7 @@ import { SeparatorComponent } from 'projects/charme-ui/src/lib/separator/separat
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchDirective, FormsModule, SwitchContainerComponent, EllipsisDirective, RadioGroupComponent, RadioButtonComponent, AccordionComponent, AccordionItemComponent, AccordionTriggerDirective, AccordionComponent, AccordionItemComponent, AccordionContentDirective, SeparatorComponent, CheckboxContainerComponent]
+  imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchComponent, FormsModule, SwitchContainerComponent, EllipsisDirective, RadioGroupComponent, RadioButtonComponent, AccordionComponent, AccordionItemComponent, AccordionTriggerDirective, AccordionComponent, AccordionItemComponent, AccordionContentDirective, SeparatorComponent, CheckboxContainerComponent]
 })
 export class AppComponent {
   @ViewChild('buttonEl', { read: ElementRef }) buttonEl!: ElementRef

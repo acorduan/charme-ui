@@ -391,14 +391,14 @@
     <section class="flex gap-2 items-center flex-wrap">
 
         <c-switch-container>
-            <input c-switch id="switch" [(ngModel)]="checked">
+            <c-switch id="switch" [(ngModel)]="checked"/>
             <label for="switch">Switch me</label>
         </c-switch-container>
 
         <button c-button (click)="checked = !checked">switch me</button>
 
         <c-switch-container>
-            <input c-switch id="switch-disabled" [disabled]="disabled">
+            <c-switch c-switch id="switch-disabled" [disabled]="disabled"/>
             <label for="switch-disabled">Switch me</label>
         </c-switch-container>
 
@@ -406,7 +406,7 @@
 
 
         <c-switch-container>
-            <input c-switch id="switch-normal">
+            <c-switch c-switch id="switch-normal"/>
             <label for="switch-normal">Switch me</label>
         </c-switch-container>
 
