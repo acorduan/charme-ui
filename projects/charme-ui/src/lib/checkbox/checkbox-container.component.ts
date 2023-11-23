@@ -8,7 +8,7 @@ import { CheckboxDirective } from './checkbox.directive'
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[attr.data-disabled]': 'checkbox.$disabled()',
-    class: 'select-none flex gap-2 data-[disabled=true]:disabled-el items-center cursor-pointer'
+    class: 'select-none flex gap-2 data-[disabled=true]:disabled-el items-center text-sm'
   }
 })
 export class CheckboxContainerComponent {

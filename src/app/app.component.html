@@ -38,10 +38,10 @@
             <button c-button (click)="accordion.openAll()" [disabled]="!multipleSelect">Open all</button>
             <button c-button (click)="accordion.closeAll()">Close all</button>
 
-            <div>
+            <c-checkbox-container>
                 <input id="multiple-select" c-checkbox [(ngModel)]="multipleSelect">
                 <label for="multiple-select">Multiple select</label>
-            </div>
+            </c-checkbox-container>
 
 
         </div>
@@ -354,14 +354,30 @@
 
     <section class="flex gap-2 items-center flex-wrap">
         <c-checkbox-container>
-            <input c-checkbox id="notifications" [(ngModel)]="checked">
-            <label for="notifications">Notifications</label>
+            <input c-checkbox id="c-primary" [(ngModel)]="checked">
+            <label for="c-primary">Primary</label>
         </c-checkbox-container>
 
         <c-checkbox-container>
-            <input c-checkbox id="notifications-disabled" checked disabled>
-            <label for="notifications-disabled">Disabled</label>
+            <input c-checkbox id="success" c-type="success" checked>
+            <label for="success">Success</label>
         </c-checkbox-container>
+
+        <c-checkbox-container>
+            <input c-checkbox id="c-warning" c-type="warning" checked>
+            <label for="c-warning">Warning</label>
+        </c-checkbox-container>
+
+        <c-checkbox-container>
+            <input c-checkbox id="c-error" c-type="error" checked>
+            <label for="c-error">Error</label>
+        </c-checkbox-container>
+
+        <c-checkbox-container>
+            <input c-checkbox id="c-disabled" checked disabled>
+            <label for="c-disabled">Disabled</label>
+        </c-checkbox-container>
+
     </section>
 
     <h1>Switch</h1>
