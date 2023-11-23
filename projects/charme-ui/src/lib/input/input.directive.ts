@@ -12,7 +12,7 @@ import { tlMerge } from '../core/tailwind-merge'
   }
 })
 export class InputDirective {
-  baseClass = 'h-9 bg-transparent text-sm px-2 not-focus:ring-primary rounded disabled:disabled-el focus:focus-el hover:ring-ultramarine-500 dark:hover:ring-ultramarine-400'
+  baseClass = 'h-9 bg-transparent text-sm px-2 ring-primary rounded disabled:disabled-el focus:focus-el hover:ring-ultramarine-500 dark:hover:ring-ultramarine-400'
 
   $customClass = signal<string>('')
   @Input('class') set customClass(value: string) {
