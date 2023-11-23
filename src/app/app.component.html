@@ -1,4 +1,5 @@
 <div class="p-4 grid gap-4 w-100">
+    
 
     <section class="flex gap-2 items-center">
         <button c-button (click)="theme.toggle()">Toggle theme</button>
@@ -10,16 +11,16 @@
 
         <div class="flex gap-2">
             <p>Test</p>
-            <c-separator orientation="vertical"/>
+            <c-separator orientation="vertical" />
             <p>Test</p>
         </div>
 
 
-        <c-separator size="20%"/>
+        <c-separator size="20%" />
 
         <div class="flex gap-2">
             <p>Test</p>
-            <c-separator orientation="vertical"/>
+            <c-separator orientation="vertical" />
             <p>Test</p>
         </div>
 
@@ -320,13 +321,13 @@
 
     <section class="flex gap-2 items-center flex-wrap">
 
-        <c-alert title="Info alert" message="Lorem Ipsum is simply dummy text of the printing and..."/>
+        <c-alert title="Info alert" message="Lorem Ipsum is simply dummy text of the printing and..." />
         <c-alert title="Success alert" message="Lorem Ipsum is simply dummy text of the printing and..."
-                 severity="success"/>
+            severity="success" />
         <c-alert title="Warning alert" message="Lorem Ipsum is simply dummy text of the printing and..."
-                 severity="warning"/>
+            severity="warning" />
         <c-alert title="Error alert" message="Lorem Ipsum is simply dummy text of the printing and..."
-                 severity="error"/>
+            severity="error" />
 
     </section>
 
@@ -334,7 +335,7 @@
 
     <section class="flex gap-2 items-center flex-wrap">
         <button c-button
-                (click)="onOpenAlertClick(selectElement.value, durationInput.valueAsNumber, actionInput.value)">Open
+            (click)="onOpenAlertClick(selectElement.value, durationInput.valueAsNumber, actionInput.value)">Open
             alert
         </button>
 
@@ -352,15 +353,15 @@
     <h1>Checkbox</h1>
 
     <section class="flex gap-2 items-center flex-wrap">
-        <div class="flex items-center">
+        <c-checkbox-container>
             <input c-checkbox id="notifications" [(ngModel)]="checked">
             <label for="notifications">Notifications</label>
-        </div>
+        </c-checkbox-container>
 
-        <div class="flex items-center">
+        <c-checkbox-container>
             <input c-checkbox id="notifications-disabled" checked disabled>
             <label for="notifications-disabled">Disabled</label>
-        </div>
+        </c-checkbox-container>
     </section>
 
     <h1>Switch</h1>
@@ -432,7 +433,3 @@
 
 
 </div>
-
-
-
-

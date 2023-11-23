@@ -1,52 +1,5 @@
-.c-checkbox {
-  @apply w-5 h-5 rounded outline-none bg-transparent appearance-none align-middle cursor-pointer dark:bg-transparent;
-  @apply border-[0.125rem] border-solid border-slate-600 dark:border-indigo-300;
-
-  + label {
-    @apply cursor-pointer select-none py-0 px-2 text-sm;
+c-checkbox-container[data-disabled="false"] {
+  label {
+    @apply cursor-pointer;
   }
-
-  &:checked {
-    @apply border-transparent bg-ultramarine-500 dark:bg-ultramarine-500;
-  }
-
-  &:hover:not(:disabled),
-  &:focus:not(:disabled) {
-    @apply border-slate-900 dark:border-indigo-100;
-  }
-
-  &:disabled {
-    @apply opacity-40 cursor-default;
-    :active {
-      @apply pointer-events-none;
-    }
-  }
-
-  &:disabled:is(:checked) {
-    @apply border-transparent bg-slate-500 dark:bg-indigo-600;
-  }
-
-  &:disabled + label {
-    @apply opacity-40 cursor-default;
-
-    :active {
-      @apply pointer-events-none;
-    }
-  }
-}
-
-.c-checkbox:after {
-  @apply font-material font-black text-lg flex items-center w-full h-full justify-center text-white dark:text-white;
-}
-
-.c-checkbox:checked:after {
-  content: "done";
-}
-
-.c-checkbox:indeterminate {
-  @apply bg-ultramarine-500 border-transparent;
-}
-
-.c-checkbox:indeterminate::after {
-  content: "remove";
 }

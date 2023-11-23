@@ -1,5 +1,6 @@
 import {
   booleanAttribute,
+  computed,
   Directive,
   ElementRef,
   forwardRef,
@@ -9,6 +10,8 @@ import {
   signal
 } from '@angular/core'
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
+import { tlMerge } from '../core/tailwind-merge'
+import { checkboxThemes, CheckboxType } from './checkbox.theme'
 
 @Directive({
   selector: '[c-checkbox]',
@@ -21,9 +24,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
     }
   ],
   host: {
+    '[class]': '$class()',
     '[checked]': '$checked()',
-    type: 'checkbox',
-    class: 'c-checkbox'
+    '[disabled]': '$disabled()',
+    type: 'checkbox'
   }
 })
 export class CheckboxDirective implements ControlValueAccessor {
@@ -42,7 +46,7 @@ export class CheckboxDirective implements ControlValueAccessor {
 
   readonly $checked = signal<boolean>(this.elementRef.nativeElement.checked)
 
-  @Input({ transform: booleanAttribute }) set checked(value: any) {
+  @Input({ transform: booleanAttribute }) set checked(value: boolean) {
     this.$checked.set(value)
   }
 
@@ -50,8 +54,25 @@ export class CheckboxDirective implements ControlValueAccessor {
     return this.$checked()
   }
 
-  propagateChange = (_: any): void => { }
-  onTouchedCallback!: (() => any)
+  $disabled = signal(false)
+  @Input({ transform: booleanAttribute }) set disabled(value: boolean) {
+    this.$disabled.set(value)
+  }
+
+  $customClass = signal('')
+  @Input('class') set customClass(value: string) {
+    this.$customClass.set(value)
+  }
+
+  $type = signal<CheckboxType>('primary')
+  @Input('c-type') set type(value: CheckboxType) {
+    this.$type.set(value)
+  }
+
+  $class = computed(() => tlMerge(checkboxThemes({ type: this.$type() }), this.$customClass()))
+
+  propagateChange = (_: any): void => {}
+  onTouchedCallback!: () => any
 
   writeValue(value: any): void {
     if (value !== undefined && value !== null) {
@@ -65,5 +86,5 @@ export class CheckboxDirective implements ControlValueAccessor {
 
   registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn
-  };
+  }
 }
