@@ -5,7 +5,6 @@ import {
   Component,
   ElementRef,
   forwardRef,
-  HostBinding,
   HostListener,
   inject,
   Input,

@@ -20,7 +20,7 @@ export class AlertDialogService {
         right: '50px'
       },
       data: { title, message, severity: opts?.severity ?? 'info', action: opts?.action },
-      duration: opts?.duration
+      closeAfter: opts?.duration
     }
     this.#alertDialogRef = new AlertDialogRef(config)
     this.#overlayService.createOverlay(AlertDialogComponent, this.#alertDialogRef)

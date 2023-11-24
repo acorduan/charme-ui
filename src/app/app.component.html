@@ -106,6 +106,26 @@
 
     </section>
 
+    <h1>Menu</h1>
+
+    <section>
+        <button c-button [c-menu]="myMenu" >Open menu</button>
+
+        <ng-template #myMenu>
+
+            <div class="grid gap-2 p-4 rounded h-80">
+                <input c-input placeholder="test">
+
+
+                <button c-button c-dialog-close>Close</button>
+
+            </div>
+
+        </ng-template>
+
+    </section>
+
+
     <!--Plain-->
     <h1>Plain Buttons</h1>
 

@@ -23,7 +23,9 @@ import {
   AccordionItemComponent,
   AccordionContentDirective,
   CheckboxContainerComponent,
-  SwitchComponent
+  SwitchComponent,
+  DialogCloseDirective,
+  MenuDirective
 } from '@charme-ui'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { FormsModule } from '@angular/forms'
@@ -34,7 +36,7 @@ import { SeparatorComponent } from 'projects/charme-ui/src/lib/separator/separat
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchComponent, FormsModule, SwitchContainerComponent, EllipsisDirective, RadioGroupComponent, RadioButtonComponent, AccordionComponent, AccordionItemComponent, AccordionTriggerDirective, AccordionComponent, AccordionItemComponent, AccordionContentDirective, SeparatorComponent, CheckboxContainerComponent]
+  imports: [DialogCloseDirective, MenuDirective, NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchComponent, FormsModule, SwitchContainerComponent, EllipsisDirective, RadioGroupComponent, RadioButtonComponent, AccordionComponent, AccordionItemComponent, AccordionTriggerDirective, AccordionComponent, AccordionItemComponent, AccordionContentDirective, SeparatorComponent, CheckboxContainerComponent]
 })
 export class AppComponent {
   @ViewChild('buttonEl', { read: ElementRef }) buttonEl!: ElementRef
@@ -50,7 +52,7 @@ export class AppComponent {
   secondOpen = false
   multipleSelect = false
   bestFramework = 'angular'
-
+  isOpen = false
   checked = true
   disabled = true
 

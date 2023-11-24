@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject, TemplateRef } from '@angular/core'
-import { OverlayDirective } from '../overlay/overlay.directive'
+import { OverlayBehavior } from '../overlay/behaviors/overlay.behavior'
 import { NgIf, NgTemplateOutlet } from '@angular/common'
 import { OVERLAY_DATA } from '../overlay/overlay.model'
 
 @Component({
   selector: 'c-tooltip',
   standalone: true,
-  hostDirectives: [OverlayDirective],
+  hostDirectives: [OverlayBehavior],
   imports: [
     NgIf,
     NgTemplateOutlet

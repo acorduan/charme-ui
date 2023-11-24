@@ -28,7 +28,7 @@ export interface OverlayConfig {
   maxHeight?: string
   animationCloseDuration?: number
   data?: any
-  duration?: number
+  closeAfter?: number
 }
 
 export class OverlayConfigInstance<TConf extends OverlayConfig> implements OverlayConfig {
@@ -42,7 +42,7 @@ export class OverlayConfigInstance<TConf extends OverlayConfig> implements Overl
   maxHeight?: string
   animationCloseDuration?: number
   data: any
-  duration?: number
+  closeAfter?: number
 
   constructor(config?: Partial<TConf>) {
     this.position = config?.position
@@ -55,20 +55,25 @@ export class OverlayConfigInstance<TConf extends OverlayConfig> implements Overl
     this.maxHeight = config?.maxHeight
     this.animationCloseDuration = config?.animationCloseDuration
     this.data = config?.data
-    this.duration = config?.duration
+    this.closeAfter = config?.closeAfter
   }
 }
 
 export const OVERLAY_DATA = new InjectionToken<any>('Overlay data')
 
 export class OverlayRef<TConf extends OverlayConfig = OverlayConfig, TComp = any> {
-  private _componentRef!: ComponentRef<TComp>
+  readonly #close$ = new Subject<any>()
+  readonly #afterClosed$: Observable<any> = this.#close$.asObservable()
+  readonly #clickOutside$ = new Subject<void>()
+  readonly #onClickOutside$ = this.#clickOutside$.asObservable()
+
+  #componentRef!: ComponentRef<TComp>
   public get componentRef(): ComponentRef<TComp> {
-    return this._componentRef
+    return this.#componentRef
   }
 
   public set componentRef(value: ComponentRef<TComp>) {
-    this._componentRef = value
+    this.#componentRef = value
   }
 
   config: TConf
@@ -82,17 +87,22 @@ export class OverlayRef<TConf extends OverlayConfig = OverlayConfig, TComp = any
   }
 
   get elementRef(): ElementRef {
-    return (this.componentRef.instance as any).elementRef
+    return this.componentRef.location
   }
 
-  readonly #close$ = new Subject<any>()
-  readonly #afterClosed$: Observable<any> = this.#close$.asObservable()
-
-  public close<T = any>(result?: T): void {
+  close<T = any>(result?: T): void {
     this.#close$.next(result)
   }
 
-  public afterClosed<T = any>(): Observable<T> {
+  afterClosed<T = any>(): Observable<T> {
     return this.#afterClosed$
+  }
+
+  clickOutside(): void {
+    this.#clickOutside$.next()
+  }
+
+  onClickOutside(): Observable<void> {
+    return this.#onClickOutside$
   }
 }

@@ -11,7 +11,7 @@
   </ng-container>
 
   <ng-container *ngIf="template">
-    <ng-container *ngTemplateOutlet="template; context: config.inputs"></ng-container>
+    <ng-container *ngTemplateOutlet="template; context: config.inputs; injector: injector"></ng-container>
   </ng-container>
 </div>
 

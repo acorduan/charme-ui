@@ -7,17 +7,16 @@ import {
   inject,
   OnDestroy
 } from '@angular/core'
-import { DialogRef } from './dialog.model'
+import { DialogConfig, DialogRef } from '../dialog.model'
 import { NavigationStart, Router } from '@angular/router'
 import { filter, tap } from 'rxjs/operators'
 import { Subscription } from 'rxjs'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 
 @Directive({
-  selector: '[dialog-closing-rules]',
   standalone: true
 })
-export class DialogClosingRulesDirective implements OnDestroy, AfterViewInit {
+export class DialogCloseBehavior implements OnDestroy, AfterViewInit {
   readonly #appRef = inject(ApplicationRef)
   router = inject(Router)
   dialogRef = inject(DialogRef)
@@ -28,21 +27,31 @@ export class DialogClosingRulesDirective implements OnDestroy, AfterViewInit {
     this.dialogRef.close()
   }
 
+  get config(): DialogConfig {
+    return this.dialogRef.config
+  }
+
   ngAfterViewInit(): void {
     this.initCloseOnNavigationRule()
-    this.initCloseOnOverlayClick()
+    this.initCloseOnBackDropClick()
+    this.initCloseOnClickOutsideClick()
     this.initFadeout()
   }
 
-  private close(): void {
-    this.dialogRef.close()
+  private initCloseOnClickOutsideClick(): void {
+    if (this.config.closeOnClickOutside) {
+      this.dialogRef.onClickOutside()
+        .pipe(takeUntilDestroyed(this.#destroyRef))
+        .subscribe(() => this.dialogRef.close())
+    }
   }
 
-  private initCloseOnOverlayClick(): void {
+  private initCloseOnBackDropClick(): void {
     const { hasBackDrop, closeOnBackdropClick } = this.dialogRef.config
-    const backdropEl = this.dialogRef.backdropEl?.nativeElement
-    if (hasBackDrop && closeOnBackdropClick && (backdropEl != null)) {
-      backdropEl.addEventListener('click', this.close.bind(this))
+    if (hasBackDrop && closeOnBackdropClick) {
+      this.dialogRef.onBackDropClick()
+        .pipe(takeUntilDestroyed(this.#destroyRef))
+        .subscribe(() => this.dialogRef.close())
     }
   }
 
@@ -59,7 +68,7 @@ export class DialogClosingRulesDirective implements OnDestroy, AfterViewInit {
     if (this.dialogRef.config.closeOnNavigation) {
       this.router.events
         .pipe(filter(event => event instanceof NavigationStart))
-        .subscribe(() => this.close())
+        .subscribe(() => this.dialogRef.close())
     }
   }
 
@@ -75,10 +84,6 @@ export class DialogClosingRulesDirective implements OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy(): void {
-    if (this.dialogRef.backdropEl != null) {
-      this.dialogRef.backdropEl.nativeElement.removeEventListener('click', this.close)
-    }
-
     if (this.dialogRef.originElement instanceof HTMLElement) {
       this.dialogRef.originElement.focus()
     }

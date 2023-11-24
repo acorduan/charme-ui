@@ -6,17 +6,17 @@ import {
   createComponent,
   Directive,
   ElementRef,
+  HostListener,
   inject,
   Injector,
   OnDestroy
 } from '@angular/core'
-import { DialogConfig, DialogRef } from './dialog.model'
+import { DialogConfig, DialogRef } from '../dialog.model'
 
 @Directive({
-  selector: '[dialog-backdrop]',
   standalone: true
 })
-export class DialogBackdropDirective implements OnDestroy {
+export class DialogBackdropBehavior implements OnDestroy {
   appRef = inject(ApplicationRef)
   dialogRef = inject(DialogRef)
   overlayRef?: ComponentRef<DialogBackdropComponent>
@@ -61,6 +61,10 @@ export class DialogBackdropDirective implements OnDestroy {
 export class DialogBackdropComponent {
   dialogRef = inject(DialogRef)
   elementRef = inject(ElementRef)
+
+  @HostListener('click') onBackDropClick(): void {
+    this.dialogRef.backDropClick()
+  }
 
   constructor() {
     this.dialogRef.backdropEl = this.elementRef

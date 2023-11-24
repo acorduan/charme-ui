@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from '@angular/core'
-import { OverlayDirective } from '../overlay/overlay.directive'
+import { OverlayBehavior } from '../overlay/behaviors/overlay.behavior'
 import { AlertSeverity } from '../alert/alert.model'
 import { OVERLAY_DATA } from '../overlay/overlay.model'
 import { AlertComponent } from '../alert'
@@ -13,7 +13,7 @@ interface AlertData { title: string, message: string, severity: AlertSeverity, a
   imports: [
     AlertComponent
   ],
-  hostDirectives: [OverlayDirective],
+  hostDirectives: [OverlayBehavior],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[attr.aria-labelledby]': 'titleId',
