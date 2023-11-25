@@ -17,7 +17,7 @@ export interface OverlayAttachedTo {
   gap?: number
 }
 
-export interface OverlayConfig {
+export interface OverlayConfigModel {
   position?: OverlayPosition
   attachedTo?: OverlayAttachedTo
   width?: string
@@ -29,9 +29,16 @@ export interface OverlayConfig {
   animationCloseDuration?: number
   data?: any
   closeAfter?: number
+  closeOnClickOutside: boolean
+  closeOnNavigation: boolean
+  closeOnEscape: boolean
+  closeOnBackdropClick: boolean
+  hasBackDrop: boolean
+  focusOriginOnClose: boolean
+  host?: ElementRef
 }
 
-export class OverlayConfigInstance<TConf extends OverlayConfig> implements OverlayConfig {
+export class OverlayConfig implements OverlayConfigModel {
   position?: OverlayPosition
   attachedTo?: OverlayAttachedTo
   width?: string
@@ -43,8 +50,15 @@ export class OverlayConfigInstance<TConf extends OverlayConfig> implements Overl
   animationCloseDuration?: number
   data: any
   closeAfter?: number
+  closeOnClickOutside: boolean
+  closeOnNavigation: boolean
+  closeOnEscape: boolean
+  closeOnBackdropClick: boolean
+  hasBackDrop: boolean
+  focusOriginOnClose: boolean
+  host?: ElementRef<any> | undefined
 
-  constructor(config?: Partial<TConf>) {
+  constructor(config?: Partial<OverlayConfigModel>) {
     this.position = config?.position
     this.attachedTo = config?.attachedTo
     this.width = config?.width
@@ -56,16 +70,28 @@ export class OverlayConfigInstance<TConf extends OverlayConfig> implements Overl
     this.animationCloseDuration = config?.animationCloseDuration
     this.data = config?.data
     this.closeAfter = config?.closeAfter
+    this.closeOnClickOutside = config?.closeOnClickOutside ?? false
+    this.closeOnNavigation = config?.closeOnNavigation ?? false
+    this.closeOnEscape = config?.closeOnEscape ?? false
+    this.closeOnBackdropClick = config?.closeOnBackdropClick ?? false
+    this.hasBackDrop = config?.hasBackDrop ?? false
+    this.focusOriginOnClose = config?.focusOriginOnClose ?? true
+    this.host = config?.host
   }
 }
 
 export const OVERLAY_DATA = new InjectionToken<any>('Overlay data')
 
 export class OverlayRef<TConf extends OverlayConfig = OverlayConfig, TComp = any> {
+  readonly #backDropClick$ = new Subject<void>()
+  readonly #onBackDropClick$ = this.#backDropClick$.asObservable()
+
   readonly #close$ = new Subject<any>()
   readonly #afterClosed$: Observable<any> = this.#close$.asObservable()
   readonly #clickOutside$ = new Subject<void>()
   readonly #onClickOutside$ = this.#clickOutside$.asObservable()
+  readonly originElement: Element | null
+  backdropEl?: ElementRef<HTMLElement>
 
   #componentRef!: ComponentRef<TComp>
   public get componentRef(): ComponentRef<TComp> {
@@ -76,10 +102,8 @@ export class OverlayRef<TConf extends OverlayConfig = OverlayConfig, TComp = any
     this.#componentRef = value
   }
 
-  config: TConf
-
-  constructor(config?: Partial<TConf>) {
-    this.config = new OverlayConfigInstance(config) as TConf
+  constructor(readonly config: TConf) {
+    this.originElement = document.activeElement
   }
 
   get closeDelay(): number {
@@ -104,5 +128,13 @@ export class OverlayRef<TConf extends OverlayConfig = OverlayConfig, TComp = any
 
   onClickOutside(): Observable<void> {
     return this.#onClickOutside$
+  }
+
+  backDropClick(): void {
+    this.#backDropClick$.next()
+  }
+
+  onBackDropClick(): Observable<void> {
+    return this.#onBackDropClick$
   }
 }

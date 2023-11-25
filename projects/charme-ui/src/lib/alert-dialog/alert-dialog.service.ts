@@ -14,7 +14,7 @@ export class AlertDialogService {
 
   add(title: string, message: string, opts?: { position?: OverlayPosition, duration?: number, severity?: AlertSeverity, action?: string }): AlertDialogRef {
     this.#alertDialogRef?.close()
-    const config: OverlayConfig = {
+    const configModel: Partial< OverlayConfig> = {
       position: {
         top: '50px',
         right: '50px'
@@ -22,6 +22,7 @@ export class AlertDialogService {
       data: { title, message, severity: opts?.severity ?? 'info', action: opts?.action },
       closeAfter: opts?.duration
     }
+    const config = new OverlayConfig(configModel)
     this.#alertDialogRef = new AlertDialogRef(config)
     this.#overlayService.createOverlay(AlertDialogComponent, this.#alertDialogRef)
     return this.#alertDialogRef

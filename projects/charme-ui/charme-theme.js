@@ -108,16 +108,8 @@ module.exports = {
                     '@apply border-zinc-200 dark:border-zinc-800': {}
                 },
 
-                '.overlay-shadow': {
-                    '@apply shadow-sm shadow-zinc-400 dark:shadow-zinc-700': {}
-                },
-
-                '.card-shadow': {
-                    '@apply shadow-sm shadow-zinc-300 dark:shadow-zinc-800': {}
-                },
-
                 '.card': {
-                    '@apply card-shadow rounded bg-secondary': {}
+                    '@apply shadow-sm rounded bg-secondary': {}
                 },
 
                 '.material-icon': {

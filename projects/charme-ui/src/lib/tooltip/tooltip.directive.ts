@@ -8,7 +8,7 @@ import {
   TemplateRef
 } from '@angular/core'
 import { OverlayService } from '../overlay/overlay.service'
-import { OverlayConfig, OverlayRef } from '../overlay/overlay.model'
+import { OverlayConfig, OverlayConfigModel, OverlayRef } from '../overlay/overlay.model'
 import { TooltipComponent } from './tooltip.component'
 
 @Directive({
@@ -49,7 +49,7 @@ export class TooltipDirective implements OnDestroy {
 
       this.tooltipId = `c-tooltip-${crypto.randomUUID()}`
       this.#tooltipRef?.close()
-      const config: OverlayConfig = {
+      const configModel: Partial<OverlayConfigModel> = {
         attachedTo: {
           host: this.#elementRef,
           hostPos,
@@ -61,6 +61,8 @@ export class TooltipDirective implements OnDestroy {
           id: this.tooltipId
         }
       }
+
+      const config = new OverlayConfig(configModel)
       this.#tooltipRef = new OverlayRef(config)
       this.#overlay.createOverlay(TooltipComponent, this.#tooltipRef)
     }

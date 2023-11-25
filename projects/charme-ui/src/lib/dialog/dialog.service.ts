@@ -17,16 +17,15 @@ export class DialogService {
   readonly #overlayService = inject(OverlayService)
   readonly #dialogRefs: DialogRef[] = []
 
-  open(component: Type<any> | TemplateRef<any>, config?: Partial< DialogConfig>): DialogRef {
+  open(value: Type<any> | TemplateRef<any>, configModel?: Partial< DialogConfig>): DialogRef {
+    const comp = { comp: value instanceof TemplateRef ? undefined : value, tpl: value instanceof TemplateRef ? value : undefined }
+    const config = new DialogConfig(comp, configModel)
     const dialogRef = new DialogRef(this.#dialogRefs.length, config)
     const dialogRefProvider = { provide: DialogRef, useValue: dialogRef }
     this.#overlayService.createOverlay<DialogComponent, DialogRef>(DialogComponent, dialogRef, [dialogRefProvider])
     this.#removeFromArrayOnDestroy(dialogRef)
 
     this.#dialogRefs.push(dialogRef)
-    dialogRef.componentRef.instance.component = component instanceof TemplateRef ? undefined : component
-    dialogRef.componentRef.instance.template = component instanceof TemplateRef ? component : undefined
-
     return dialogRef
   }
 

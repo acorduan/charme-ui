@@ -2,6 +2,7 @@ import {
   ApplicationRef,
   ComponentRef,
   createComponent,
+  ElementRef,
   inject,
   Injectable,
   Injector,
@@ -33,15 +34,16 @@ export class OverlayService {
     })
     overlayRef.componentRef = compRef
 
-    this.#appendComponentToBody(compRef)
+    this.#appendComponentToBody(compRef, overlayRef.config.host)
     this.#manageComponentDestruction(compRef, overlayRef)
 
     return compRef
   }
 
-  #appendComponentToBody(compRef: ComponentRef<any>): void {
+  #appendComponentToBody(compRef: ComponentRef<any>, host?: ElementRef): void {
     this.#appRef.attachView(compRef.hostView)
-    document.body.appendChild(compRef.location.nativeElement)
+    const originEl = host?.nativeElement ?? document.body
+    originEl.appendChild(compRef.location.nativeElement)
   }
 
   #manageComponentDestruction(compRef: ComponentRef<any>, overlayRef: OverlayRef): void {

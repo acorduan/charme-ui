@@ -5,13 +5,13 @@
       tabindex="0"
       [dialogElementRef]="elementRef"></span>
 
-<div class="animate-dialog-open bg-primary text-primary overlay-shadow" [ngClass]="config.panelClass">
-  <ng-container *ngIf="component">
-    <ng-container *ngComponentOutlet="component; inputs: config.inputs"></ng-container>
+<div class="animate-dialog-open rounded bg-primary ring-secondary text-primary shadow-lg" [ngClass]="config.panelClass">
+  <ng-container *ngIf="data.comp">
+    <ng-container *ngComponentOutlet="data.comp; inputs: config.inputs"></ng-container>
   </ng-container>
 
-  <ng-container *ngIf="template">
-    <ng-container *ngTemplateOutlet="template; context: config.inputs; injector: injector"></ng-container>
+  <ng-container *ngIf="data.tpl">
+    <ng-container *ngTemplateOutlet="data.tpl; context: config.inputs; injector: injector"></ng-container>
   </ng-container>
 </div>
 

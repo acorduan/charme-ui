@@ -1,66 +1,38 @@
-import { ElementRef } from '@angular/core'
+import { TemplateRef, Type } from '@angular/core'
 import {
-  OverlayAttachedTo,
   OverlayConfig,
-  OverlayConfigInstance,
-  OverlayPosition,
   OverlayRef
 } from '../overlay/overlay.model'
-import { Observable, Subject } from 'rxjs'
 
-export type DialogPosition = OverlayPosition
-export type DialogAttachedTo = OverlayAttachedTo
-
-export interface DialogConfig extends Omit< OverlayConfig, 'attachedTo' | 'position' | 'data'> {
-  position?: DialogPosition
-  attachedTo?: DialogAttachedTo
+export interface DialogConfigModel extends Omit< OverlayConfig, 'closeOnEscape' | 'data'> {
   panelClass?: string
-  closeOnBackdropClick: boolean
-  closeOnNavigation: boolean
-  hasBackDrop: boolean
   inputs?: any
-  closeOnClickOutside: boolean
 }
 
-class DialogConfigInstance extends OverlayConfigInstance<DialogConfig> implements DialogConfig {
+export class DialogConfig extends OverlayConfig implements DialogConfigModel {
   panelClass?: string
-  closeOnBackdropClick: boolean
-  closeOnNavigation: boolean
-  closeOnClickOutside: boolean
-  hasBackDrop: boolean
   inputs?: any
 
-  constructor(config?: Partial< DialogConfig>) {
-    super(config)
+  constructor(comp: { tpl: TemplateRef<any> | undefined, comp: Type<any> | undefined }, config?: Partial<DialogConfigModel>) {
+    super(config as any)
+    this.data = comp
     this.panelClass = config?.panelClass
     this.closeOnBackdropClick = config?.closeOnBackdropClick ?? true
-    this.closeOnNavigation = config?.closeOnNavigation ?? true
     this.hasBackDrop = config?.hasBackDrop ?? true
     this.inputs = config?.inputs
     this.animationCloseDuration = config?.animationCloseDuration ?? 150 // ms
     this.closeOnClickOutside = config?.closeOnClickOutside ?? true
+    this.closeOnNavigation = config?.closeOnNavigation ?? true
+    this.closeOnEscape = true
+    this.closeOnBackdropClick = config?.closeOnBackdropClick ?? true
+    this.hasBackDrop = config?.hasBackDrop ?? true
   }
 }
 
 export class DialogRef extends OverlayRef<DialogConfig> {
-  backdropEl?: ElementRef<HTMLElement>
   readonly id: number
-  readonly originElement: Element | null
-  readonly #backDropClick$ = new Subject<void>()
-  readonly #onBackDropClick$ = this.#backDropClick$.asObservable()
-
-  constructor(id: number, config?: Partial<DialogConfig>) {
-    super()
+  constructor(id: number, config: DialogConfig) {
+    super(config)
     this.id = id
-    this.config = new DialogConfigInstance(config)
-    this.originElement = document.activeElement
-  }
-
-  backDropClick(): void {
-    this.#backDropClick$.next()
-  }
-
-  onBackDropClick(): Observable<void> {
-    return this.#onBackDropClick$
   }
 }
