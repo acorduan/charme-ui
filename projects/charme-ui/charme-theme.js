@@ -62,6 +62,7 @@ module.exports = {
     },
     plugins: [
         function ({addVariant})  {
+            addVariant('selected', '&[data-selected="true"]')
             addVariant('not-focus', '&:not(:focus)')
             addVariant('not-hover', '&:not(:hover)')
         },
