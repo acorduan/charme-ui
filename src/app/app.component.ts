@@ -1,6 +1,6 @@
 import { Component, DestroyRef, ElementRef, inject, Input, TemplateRef, ViewChild } from '@angular/core'
 import { RouterOutlet } from '@angular/router'
-import { NgSwitch, NgSwitchDefault, NgSwitchCase, NgComponentOutlet, NgForOf } from '@angular/common'
+import { NgSwitch, NgSwitchDefault, NgSwitchCase, NgComponentOutlet, NgForOf, NgClass } from '@angular/common'
 import {
   ButtonComponent,
   CharmeThemeService,
@@ -41,7 +41,7 @@ import { TestCdkComponent } from './test/test.component'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [TestCdkComponent, MenuDirective, DialogCloseDirective, MenuTriggerDirective, MenuItemDirective, MenuBarDirective, MenuCloseDirective, NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchComponent, FormsModule, SwitchContainerComponent, EllipsisDirective, RadioGroupComponent, RadioButtonComponent, AccordionComponent, AccordionItemComponent, AccordionTriggerDirective, AccordionComponent, AccordionItemComponent, AccordionContentDirective, SeparatorComponent, CheckboxContainerComponent]
+  imports: [TestCdkComponent, NgClass, MenuDirective, DialogCloseDirective, MenuTriggerDirective, MenuItemDirective, MenuBarDirective, MenuCloseDirective, NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchComponent, FormsModule, SwitchContainerComponent, EllipsisDirective, RadioGroupComponent, RadioButtonComponent, AccordionComponent, AccordionItemComponent, AccordionTriggerDirective, AccordionComponent, AccordionItemComponent, AccordionContentDirective, SeparatorComponent, CheckboxContainerComponent]
 })
 export class AppComponent {
   @ViewChild('buttonEl', { read: ElementRef }) buttonEl!: ElementRef

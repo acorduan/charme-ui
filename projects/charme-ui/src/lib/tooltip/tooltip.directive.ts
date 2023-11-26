@@ -39,13 +39,14 @@ export class TooltipDirective implements OnDestroy {
     return this.$showTooltip()
   }
 
-  @Input('c-tooltip-position') position: 'top' | 'bottom' = 'top'
+  @Input('c-tooltip-position') position: 'top' | 'bottom' | 'right' | 'left' = 'top'
+
+  readonly #opposite = { top: 'bottom', bottom: 'top', right: 'left', left: 'right' }
 
   @HostListener('mouseover') onMouseOver(): void {
     if (this.showTooltip) {
-      const hostPos = this.position === 'top' ? 'top-center' : 'bottom-center'
-      const dialogPos = this.position === 'top' ? 'bottom-center' : 'top-center'
-      const gap = this.position === 'top' ? -5 : 5 // px
+      const hostPos = `${this.position}-center` as any
+      const dialogPos = `${this.#opposite[this.position]}-center` as any
 
       this.tooltipId = `c-tooltip-${crypto.randomUUID()}`
       this.#tooltipRef?.close()
@@ -54,7 +55,7 @@ export class TooltipDirective implements OnDestroy {
           host: this.#elementRef,
           hostPos,
           dialogPos,
-          gap
+          gap: 5
         },
         data: {
           element: this.$element(),

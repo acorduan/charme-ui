@@ -46,26 +46,38 @@ export class OverlayPositionBehavior implements AfterViewInit, OnDestroy {
     const [dialogPosSide, dialogPosVertice] = dialogPos.split('-')
 
     const hostTopY = hostPosSide.includes('top') || hostPosVertice.includes('top') ? hostRect.y : undefined
-    const hostBottomY = hostPosSide.includes('bottom') || hostPosVertice.includes('bottom') ? (hostRect.y + hostRect.height) : undefined
-    const hostY = hostTopY ?? hostBottomY
+    const hostBottomY = hostPosSide.includes('bottom') || hostPosVertice.includes('bottom') ? hostRect.y + hostRect.height : undefined
+    const hostCenterY = hostPosSide.includes('center') || hostPosVertice.includes('center') ? hostRect.y + (hostRect.height / 2) : undefined
+
+    const hostY = hostTopY ?? hostBottomY ?? hostCenterY
 
     const hostLeftX = hostPosVertice.includes('left') || hostPosSide.includes('left') ? hostRect.x : undefined
     const hostRightX = hostPosVertice.includes('right') || hostPosSide.includes('right') ? hostRect.x + hostRect.width : undefined
     const hostCenter = hostPosVertice.includes('center') || hostPosSide.includes('center') ? hostRect.x + (hostRect.width / 2) : undefined
+
     const hostX = hostLeftX ?? hostRightX ?? hostCenter
 
     const topY = dialogPosSide.includes('top') || dialogPosVertice.includes('top') ? hostY : undefined
     const bottomY = dialogPosSide.includes('bottom') || dialogPosVertice.includes('bottom') ? hostY - dialogRect.height : undefined
-    const Y = topY ?? bottomY
+    const centerY = dialogPosSide.includes('center') || dialogPosVertice.includes('center') ? hostY - (dialogRect.height / 2) : undefined
+
+    const Y = topY ?? bottomY ?? centerY
 
     const leftX = dialogPosVertice.includes('left') || dialogPosSide.includes('left') ? hostX : undefined
     const rightX = dialogPosVertice.includes('right') || dialogPosSide.includes('right') ? hostX - dialogRect.width : undefined
     const centerX = dialogPosVertice.includes('center') || dialogPosSide.includes('center') ? hostX - (dialogRect.width / 2) : undefined
     const X = leftX ?? rightX ?? centerX
 
+    const gapTopY = hostPosSide.includes('top') ? (gap ?? 0) * -1 : 0
+    const gapBottomY = hostPosSide.includes('bottom') ? (gap ?? 0) : 0
+    const gapY = gapTopY + gapBottomY
+
+    const gapRightX = hostPosSide.includes('left') ? (gap ?? 0) * -1 : 0
+    const gapLeftX = hostPosSide.includes('right') ? (gap ?? 0) : 0
+    const gapX = gapRightX + gapLeftX
     return {
-      top: Y + (gap ?? 0) + 'px',
-      left: X > 0 ? (X + 'px') : '10px'
+      top: Y + gapY + 'px',
+      left: X > 0 ? ((X + gapX) + 'px') : '10px'
     }
   }
 

@@ -138,33 +138,47 @@
 
     <section>
         <div c-menu-bar class="ring-secondary w-fit rounded flex items-center p-1">
-            <button b-type="flat" c-button size="sm" [c-menu-trigger]="file" c-menu-item >File</button>
-            <button b-type="flat" c-button size="sm" [c-menu-trigger]="file" c-menu-item >Edit</button>
-            <button b-type="flat" c-button size="sm" [c-menu-trigger]="file" c-menu-item >Help</button>
+            <button b-type="flat" color="basic" class="aria-expanded:bg-zinc-200 dark:aria-expanded:bg-zinc-800" c-button size="sm" [c-menu-trigger]="file" c-menu-item >File</button>
+            <button b-type="flat" color="basic" class="aria-expanded:bg-zinc-200 dark:aria-expanded:bg-zinc-800" c-button size="sm" [c-menu-trigger]="file" c-menu-item >Edit</button>
+            <button b-type="flat" color="basic" class="aria-expanded:bg-zinc-200 dark:aria-expanded:bg-zinc-800" c-button size="sm" [c-menu-trigger]="file" c-menu-item >Help</button>
         </div>
 
         <ng-template #file>
-            <div class="py-2 grid w-40">
-                <button c-menu-item c-button b-type="flat">New file</button>
-                <button c-menu-item c-button b-type="flat" [c-menu-trigger]="openFile" >Open file
+            <div class="py-2 grid w-40" c-menu>
+                <button c-menu-item c-button color="basic" b-type="flat">New file</button>
+                <button c-menu-item c-button class="aria-expanded:bg-zinc-200 dark:aria-expanded:bg-zinc-800" color="basic" b-type="flat" [c-menu-trigger]="openFile" >Open file
                     <i class="material-icons-outlined">navigate_next</i>
 
                 </button>
 
                 <c-separator color="secondary"/>
 
-                <button c-menu-item c-button b-type="flat" >Share file</button>
-                <button c-menu-item c-button b-type="flat">Delete file</button>
+                <button c-menu-item c-button color="basic" b-type="flat" >Share file</button>
+                <button c-menu-item c-button color="basic" b-type="flat">Delete file
+
+                    <i class="material-icons-outlined">delete</i>
+
+                </button>
 
             </div>
 
             <ng-template #openFile>
                 <div class="py-2 grid w-40" c-menu>
-                    <button c-menu-item c-button b-type="flat">My timesheet</button>
-                    <button c-menu-item c-button b-type="flat" >Whaterver
+                    <button c-menu-item color="basic" c-button b-type="flat">My timesheet</button>
+                    <button c-menu-item color="basic" class="aria-expanded:bg-zinc-200 dark:aria-expanded:bg-zinc-800" c-button b-type="flat" [c-menu-trigger]="whateverMenu" >Whaterver
                         <i class="material-icons-outlined">navigate_next</i>
                     </button>
                 </div>
+
+
+                <ng-template #whateverMenu>
+                    <div class="py-2 grid w-40" c-menu>
+                        <button c-menu-item color="basic" c-button b-type="flat">Test</button>
+                        <button c-menu-item color="basic" c-button b-type="flat" >Test 2
+                            <i class="material-icons-outlined">search</i>
+                        </button>
+                    </div>
+                </ng-template>
 
             </ng-template>
 
@@ -185,6 +199,10 @@
     <h1>Plain Buttons</h1>
 
     <section class="flex gap-2 items-center flex-wrap">
+
+        <button c-button b-type="plain" color="basic">Basic</button>
+
+
         <button c-button b-type="plain">Primary</button>
 
         <button c-button b-type="plain" color="success">Success</button>
@@ -228,6 +246,8 @@
     <h1>Soft Buttons</h1>
 
     <section class="flex gap-2 items-center flex-wrap">
+        <button c-button b-type="soft" color="basic">Basic</button>
+
         <button c-button b-type="soft">Primary</button>
 
         <button c-button b-type="soft" color="success">Success</button>
@@ -271,6 +291,8 @@
 
     <!--Outline-->
     <section class="flex gap-2 items-center flex-wrap">
+        <button c-button b-type="outline" color="basic">Basic</button>
+
         <button c-button b-type="outline">Primary</button>
 
         <button c-button b-type="outline" color="success">Success</button>
@@ -311,6 +333,8 @@
     <h1>Flat Buttons </h1>
     <!--Flat-->
     <section class="flex gap-2 items-center flex-wrap">
+        <button c-button b-type="flat" color="basic">Basic</button>
+
         <button c-button b-type="flat">Primary</button>
 
         <button c-button b-type="flat" color="success">Success</button>
@@ -382,6 +406,9 @@
     <section class="flex gap-2 items-center flex-wrap h-80 card ">
         <button c-button c-tooltip="Top tooltip">Tooltip top</button>
         <button c-button c-tooltip="Bottom tooltip" c-tooltip-position="bottom">Tooltip bottom</button>
+        <button c-button c-tooltip="Right tooltip" c-tooltip-position="right">Tooltip right</button>
+        <button c-button c-tooltip="Left tooltip" c-tooltip-position="left">Tooltip left</button>
+
         <button c-button [c-tooltip]="customTooltipTpl">Tooltip custom tpl</button>
 
         <ng-template #customTooltipTpl>
