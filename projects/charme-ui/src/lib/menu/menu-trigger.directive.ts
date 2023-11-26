@@ -19,7 +19,7 @@ export class MenuTriggerDirective {
   readonly #overlay = inject(OverlayService)
   readonly #el = inject(ElementRef<HTMLElement>)
   readonly #destroyRef = inject(DestroyRef)
-  readonly host = inject(OverlayRef, { optional: true })
+  readonly host: OverlayRef | null = inject(OverlayRef, { optional: true })
   readonly $overlayRef = signal<OverlayRef | undefined>(undefined)
   readonly $open = computed(() => this.$overlayRef() !== undefined)
   readonly id = `c-menu-${crypto.randomUUID()}`
@@ -53,12 +53,13 @@ export class MenuTriggerDirective {
   open(): void {
     // settimeout to wait for others menu to be closed
     setTimeout(() => {
+      console.log(this.host)
       const configModel: Partial<OverlayConfigModel> = {
         attachedTo: {
           host: this.#el,
-          hostPos: 'bottomleft',
-          dialogPos: 'topleft',
-          gap: 5
+          hostPos: this.host !== null ? 'right-top' : 'bottom-left',
+          dialogPos: this.host !== null ? 'left-top' : 'top-left',
+          gap: this.host !== null ? 0 : 5
         },
         closeOnClickOutside: true,
         data: {

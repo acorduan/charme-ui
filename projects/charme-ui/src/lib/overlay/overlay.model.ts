@@ -8,8 +8,12 @@ export interface OverlayPosition {
   right?: string
 }
 
-export type AttachedToPosition = 'topleft' | 'topright' | 'topcenter' | 'bottomleft' | 'bottomright' | 'bottomcenter'
+type top = 'top-left' | 'top-right' | 'top-center'
+type bottom = 'bottom-left' | 'bottom-right' | 'bottom-center'
+type left = 'left-top' | 'left-center' | 'left-bottm'
+type right = 'right-top' | 'right-center' | 'right-bottm'
 
+export type AttachedToPosition = top | bottom | left | right
 export interface OverlayAttachedTo {
   host: ElementRef
   hostPos: AttachedToPosition

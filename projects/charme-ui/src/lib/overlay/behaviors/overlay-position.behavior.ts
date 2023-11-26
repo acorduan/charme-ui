@@ -42,16 +42,25 @@ export class OverlayPositionBehavior implements AfterViewInit, OnDestroy {
     const dialogRect = this.#elementRef.nativeElement.getBoundingClientRect()
     const hostRect = host.nativeElement.getBoundingClientRect()
 
-    const hostY = hostPos.includes('top') ? hostRect.y : hostRect.y + hostRect.height
-    const hostLeftX = hostPos.includes('left') ? hostRect.x : undefined
-    const hostRightX = hostPos.includes('right') ? hostRect.x + hostRect.width : undefined
-    const hostCenter = hostPos.includes('center') ? hostRect.x + (hostRect.width / 2) : undefined
+    const [hostPosSide, hostPosVertice] = hostPos.split('-')
+    const [dialogPosSide, dialogPosVertice] = dialogPos.split('-')
+
+    const hostTopY = hostPosSide.includes('top') || hostPosVertice.includes('top') ? hostRect.y : undefined
+    const hostBottomY = hostPosSide.includes('bottom') || hostPosVertice.includes('bottom') ? (hostRect.y + hostRect.height) : undefined
+    const hostY = hostTopY ?? hostBottomY
+
+    const hostLeftX = hostPosVertice.includes('left') || hostPosSide.includes('left') ? hostRect.x : undefined
+    const hostRightX = hostPosVertice.includes('right') || hostPosSide.includes('right') ? hostRect.x + hostRect.width : undefined
+    const hostCenter = hostPosVertice.includes('center') || hostPosSide.includes('center') ? hostRect.x + (hostRect.width / 2) : undefined
     const hostX = hostLeftX ?? hostRightX ?? hostCenter
 
-    const Y = dialogPos.includes('bottom') ? hostY - dialogRect.height : hostY
-    const leftX = dialogPos.includes('left') ? hostX : undefined
-    const rightX = dialogPos.includes('right') ? hostX - dialogRect.width : undefined
-    const centerX = dialogPos.includes('center') ? hostX - (dialogRect.width / 2) : undefined
+    const topY = dialogPosSide.includes('top') || dialogPosVertice.includes('top') ? hostY : undefined
+    const bottomY = dialogPosSide.includes('bottom') || dialogPosVertice.includes('bottom') ? hostY - dialogRect.height : undefined
+    const Y = topY ?? bottomY
+
+    const leftX = dialogPosVertice.includes('left') || dialogPosSide.includes('left') ? hostX : undefined
+    const rightX = dialogPosVertice.includes('right') || dialogPosSide.includes('right') ? hostX - dialogRect.width : undefined
+    const centerX = dialogPosVertice.includes('center') || dialogPosSide.includes('center') ? hostX - (dialogRect.width / 2) : undefined
     const X = leftX ?? rightX ?? centerX
 
     return {

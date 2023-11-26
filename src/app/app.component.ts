@@ -83,8 +83,8 @@ export class AppComponent {
       },
       attachedTo: {
         host: this.buttonEl,
-        hostPos: 'bottomright',
-        dialogPos: 'topright'
+        hostPos: 'bottom-right',
+        dialogPos: 'top-right'
       },
       hasBackDrop: false,
       panelClass: 'rounded'

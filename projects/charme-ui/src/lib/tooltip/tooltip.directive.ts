@@ -43,8 +43,8 @@ export class TooltipDirective implements OnDestroy {
 
   @HostListener('mouseover') onMouseOver(): void {
     if (this.showTooltip) {
-      const hostPos = this.position === 'top' ? 'topcenter' : 'bottomcenter'
-      const dialogPos = this.position === 'top' ? 'bottomcenter' : 'topcenter'
+      const hostPos = this.position === 'top' ? 'top-center' : 'bottom-center'
+      const dialogPos = this.position === 'top' ? 'bottom-center' : 'top-center'
       const gap = this.position === 'top' ? -5 : 5 // px
 
       this.tooltipId = `c-tooltip-${crypto.randomUUID()}`
