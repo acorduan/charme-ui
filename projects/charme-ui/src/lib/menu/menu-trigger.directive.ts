@@ -5,6 +5,7 @@ import { Subscription, tap } from 'rxjs'
 import { OverlayService } from '../overlay/overlay.service'
 import { MenuComponent } from './menu.component'
 import { MenuTriggerData } from './menu.model'
+import {MenuBarDirective} from "./menu-bar.directive";
 
 @Directive({
   selector: '[c-menu-trigger]',
@@ -15,6 +16,7 @@ import { MenuTriggerData } from './menu.model'
   }
 })
 export class MenuTriggerDirective {
+  readonly menuBar = inject(MenuBarDirective, {optional: true})
   readonly el = inject(ElementRef)
   readonly #overlay = inject(OverlayService)
   readonly #el = inject(ElementRef<HTMLElement>)
@@ -82,7 +84,7 @@ export class MenuTriggerDirective {
       },
       focusOriginOnClose: true,
       closeOnEscape: true,
-      host: this.hostOverlayRef?.elementRef ?? this.el
+      host: this.hostOverlayRef?.elementRef ?? this.menuBar?.el
     }
     return new OverlayConfig(configModel)
   }

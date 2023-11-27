@@ -1,19 +1,24 @@
-import { Directive, HostListener, computed, effect, inject } from '@angular/core'
+import {Directive, HostListener, computed, effect, inject, forwardRef, ElementRef} from '@angular/core'
 import { MenuService } from './menu.service'
 import { MenuTriggerDirective } from './menu-trigger.directive'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
-import { MenuNavigationEvent } from './menu.model'
+import {CMenuBarAccessor, MenuNavigationEvent} from './menu.model'
+import {C_ACCORDION_ACCESSOR} from "../accordion/accordion.model";
 
 @Directive({
   selector: '[c-menu-bar]',
   standalone: true,
-  providers: [MenuService],
+  providers: [MenuService, {
+    provide: C_ACCORDION_ACCESSOR,
+    useExisting: forwardRef(() => MenuBarDirective)
+  }],
   host: {
     '[tabindex]': '$isMenuBarOpen() || someItemHasFocus() ? -1 : 0',
     role: 'menubar'
   }
 })
-export class MenuBarDirective {
+export class MenuBarDirective implements  CMenuBarAccessor {
+  readonly el = inject(ElementRef);
   readonly #menu = inject(MenuService)
   focusIndex = 0
 
@@ -45,29 +50,22 @@ export class MenuBarDirective {
         this.#menu.$items()[this.focusIndex]?.el.nativeElement.focus()
       }
     })
-
-    this.#manageNavigation()
   }
 
-  #manageNavigation(): void {
-    this.#menu.onNavigate$
-      .pipe(takeUntilDestroyed())
-      .subscribe((event: MenuNavigationEvent) => {
-        const isMenuBarOpen = this.$isMenuBarOpen()
 
-        if (event.direction === 'right') {
-          this.focusIndex = (this.focusIndex + 1) % this.#menu.$items().length
-          this.#menu.closeOthers(this.#menu.$items()[this.focusIndex])
-          this.#menu.$items()[this.focusIndex]?.el.nativeElement.focus()
-          isMenuBarOpen && this.#menu.$items()[this.focusIndex]?.trigger?.open()
-        }
+  @HostListener('keydown.ArrowLeft', ['$event']) onArrowLeft(event: KeyboardEvent): void {
+    const isMenuBarOpen = this.$isMenuBarOpen()
+    this.focusIndex = ((this.focusIndex - 1) + this.#menu.$items().length) % this.#menu.$items().length
+    this.#menu.closeOthers(this.#menu.$items()[this.focusIndex])
+    this.#menu.$items()[this.focusIndex]?.el.nativeElement.focus()
+    isMenuBarOpen && this.#menu.$items()[this.focusIndex]?.trigger?.open()
+  }
 
-        if (event.direction === 'left') {
-          this.focusIndex = ((this.focusIndex - 1) + this.#menu.$items().length) % this.#menu.$items().length
-          this.#menu.closeOthers(this.#menu.$items()[this.focusIndex])
-          this.#menu.$items()[this.focusIndex]?.el.nativeElement.focus()
-          isMenuBarOpen && this.#menu.$items()[this.focusIndex]?.trigger?.open()
-        }
-      })
+  @HostListener('keydown.ArrowRight', ['$event']) onArrowRight(event: KeyboardEvent): void {
+    const isMenuBarOpen = this.$isMenuBarOpen()
+    this.focusIndex = (this.focusIndex + 1) % this.#menu.$items().length
+    this.#menu.closeOthers(this.#menu.$items()[this.focusIndex])
+    this.#menu.$items()[this.focusIndex]?.el.nativeElement.focus()
+    isMenuBarOpen && this.#menu.$items()[this.focusIndex]?.trigger?.open()
   }
 }
