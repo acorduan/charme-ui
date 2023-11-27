@@ -1,558 +1,572 @@
 <div class="p-4 grid gap-4 w-100">
 
 
-    <h1>Test</h1>
-    <section class="flex justify-end">
-        <app-test-cdk/>
+  <section class="flex gap-2 items-center">
+    <button c-button (click)="theme.toggle()">Toggle theme</button>
+  </section>
 
 
-    </section>
-    
+  <h1>Separator</h1>
+  <section class="grid">
 
-    <section class="flex gap-2 items-center">
-        <button c-button (click)="theme.toggle()">Toggle theme</button>
-    </section>
+    <div class="flex gap-2">
+      <p>Test</p>
+      <c-separator orientation="vertical"/>
+      <p>Test</p>
+    </div>
 
 
-    <h1>Separator</h1>
-    <section class="grid">
+    <c-separator size="20%"/>
 
-        <div class="flex gap-2">
-            <p>Test</p>
-            <c-separator orientation="vertical" />
-            <p>Test</p>
+    <div class="flex gap-2">
+      <p>Test</p>
+      <c-separator orientation="vertical"/>
+      <p>Test</p>
+    </div>
+
+  </section>
+
+
+  <h1>Accordion</h1>
+
+  <section class="grid gap-4">
+
+    <div class="flex gap-2">
+      <button c-button (click)="open = !open">Toggle first</button>
+      <button c-button (click)="secondOpen = !secondOpen">Toggle Second</button>
+
+      <button c-button (click)="accordion.openAll()" [disabled]="!multipleSelect">Open all</button>
+      <button c-button (click)="accordion.closeAll()">Close all</button>
+
+      <c-checkbox-container>
+        <input id="multiple-select" c-checkbox [(ngModel)]="multipleSelect">
+        <label for="multiple-select">Multiple select</label>
+      </c-checkbox-container>
+
+
+    </div>
+
+    <c-accordion class="w-80" [multipleSelect]="multipleSelect" #accordion>
+
+      <c-accordion-item [(open)]="open">
+        <ng-template c-accordion-trigger>
+          Big content
+        </ng-template>
+
+        <ng-template c-accordion-content>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+          and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
+          leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
+          with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+          publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </ng-template>
+      </c-accordion-item>
+
+
+      <c-accordion-item [(open)]="secondOpen">
+        <ng-template c-accordion-trigger>
+          Scrollable content | is open: {{secondOpen}}
+        </ng-template>
+
+        <ng-template c-accordion-content>
+          <p class="h-20 overflow-auto"> Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+            unknown printer took a galley of type and scrambled it to make a type specimen book. It has
+            survived not only five centuries, but also the leap into electronic typesetting, remaining
+            essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+            containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+            PageMaker including versions of Lorem Ipsum.</p>
+        </ng-template>
+      </c-accordion-item>
+
+      <c-accordion-item>
+        <ng-template c-accordion-trigger>
+          Custom content
+        </ng-template>
+
+        <ng-template c-accordion-content>
+          <p [style.color]="'red'">This is the content</p>
+        </ng-template>
+      </c-accordion-item>
+
+      <c-accordion-item disabled="true">
+        <ng-template c-accordion-trigger>
+          Disabled header
+        </ng-template>
+
+        <ng-template c-accordion-content>
+          You will never see this content
+        </ng-template>
+      </c-accordion-item>
+
+
+    </c-accordion>
+
+
+  </section>
+
+  <h1>Menu</h1>
+
+  <section>
+    <button c-button [c-menu-trigger]="myMenu">Open menu</button>
+
+    <ng-template #myMenu>
+
+      <div class="grid gap-2 p-4 rounded h-80">
+        <input c-input placeholder="test">
+
+
+        <button c-button c-menu-close>Close</button>
+
+      </div>
+
+    </ng-template>
+
+  </section>
+
+
+  <h1>Menu Bar</h1>
+
+  <section>
+    <div c-menu-bar class="ring-secondary w-fit rounded flex items-center p-1">
+      <button b-type="flat" color="basic" c-button size="sm" [c-menu-trigger]="file" c-menu-item>File</button>
+      <button b-type="flat" color="basic" c-button size="sm" [c-menu-trigger]="file" c-menu-item>Edit</button>
+      <button b-type="flat" color="basic" c-button size="sm" [c-menu-trigger]="file" c-menu-item>Help</button>
+    </div>
+
+    <ng-template #file>
+      <div class="py-2 grid w-40" c-menu>
+        <button c-menu-item c-button color="basic" b-type="flat">New file</button>
+        <button c-menu-item c-button color="basic" b-type="flat" [c-menu-trigger]="openFile">Open file
+          <i class="material-icons-outlined">navigate_next</i>
+
+        </button>
+
+        <c-separator color="secondary"/>
+
+        <button c-menu-item c-button color="basic" b-type="flat">Share file</button>
+        <button c-menu-item c-button color="basic" b-type="flat">Delete file
+
+          <i class="material-icons-outlined">delete</i>
+
+        </button>
+
+      </div>
+
+      <ng-template #openFile>
+        <div class="py-2 grid w-40" c-menu>
+          <button c-menu-item color="basic" c-button b-type="flat">My timesheet</button>
+          <button c-menu-item color="basic" c-button b-type="flat" [c-menu-trigger]="whateverMenu">Whaterver
+            <i class="material-icons-outlined">navigate_next</i>
+          </button>
         </div>
 
 
-        <c-separator size="20%" />
-
-        <div class="flex gap-2">
-            <p>Test</p>
-            <c-separator orientation="vertical" />
-            <p>Test</p>
-        </div>
-
-    </section>
-
-
-    <h1>Accordion</h1>
-
-    <section class="grid gap-4">
-
-        <div class="flex gap-2">
-            <button c-button (click)="open = !open">Toggle first</button>
-            <button c-button (click)="secondOpen = !secondOpen">Toggle Second</button>
-
-            <button c-button (click)="accordion.openAll()" [disabled]="!multipleSelect">Open all</button>
-            <button c-button (click)="accordion.closeAll()">Close all</button>
-
-            <c-checkbox-container>
-                <input id="multiple-select" c-checkbox [(ngModel)]="multipleSelect">
-                <label for="multiple-select">Multiple select</label>
-            </c-checkbox-container>
-
-
-        </div>
-
-        <c-accordion class="w-80" [multipleSelect]="multipleSelect" #accordion>
-
-            <c-accordion-item [(open)]="open">
-                <ng-template c-accordion-trigger>
-                    Big content
-                </ng-template>
-
-                <ng-template c-accordion-content>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                    leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                    with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                    publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </ng-template>
-            </c-accordion-item>
-
-
-            <c-accordion-item [(open)]="secondOpen">
-                <ng-template c-accordion-trigger>
-                    Scrollable content | is open: {{secondOpen}}
-                </ng-template>
-
-                <ng-template c-accordion-content>
-                    <p class="h-20 overflow-auto"> Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                        unknown printer took a galley of type and scrambled it to make a type specimen book. It has
-                        survived not only five centuries, but also the leap into electronic typesetting, remaining
-                        essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                        containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
-                        PageMaker including versions of Lorem Ipsum.</p>
-                </ng-template>
-            </c-accordion-item>
-
-            <c-accordion-item>
-                <ng-template c-accordion-trigger>
-                    Custom content
-                </ng-template>
-
-                <ng-template c-accordion-content>
-                    <p [style.color]="'red'">This is the content</p>
-                </ng-template>
-            </c-accordion-item>
-
-            <c-accordion-item disabled="true">
-                <ng-template c-accordion-trigger>
-                    Disabled header
-                </ng-template>
-
-                <ng-template c-accordion-content>
-                    You will never see this content
-                </ng-template>
-            </c-accordion-item>
-
-
-        </c-accordion>
-
-
-    </section>
-
-    <h1>Menu</h1>
-
-    <section>
-        <button c-button [c-menu-trigger]="myMenu" >Open menu</button>
-
-        <ng-template #myMenu>
-
-            <div class="grid gap-2 p-4 rounded h-80">
-                <input c-input placeholder="test">
-
-
-                <button c-button c-menu-close>Close</button>
-
-            </div>
-
+        <ng-template #whateverMenu>
+          <div class="py-2 grid w-40" c-menu>
+            <button c-menu-item color="basic" c-button b-type="flat">Test</button>
+            <button c-menu-item color="basic" c-button b-type="flat" (click)="onItemClick()">Test 2
+              <i class="material-icons-outlined">search</i>
+            </button>
+          </div>
         </ng-template>
 
-    </section>
+      </ng-template>
 
+    </ng-template>
 
-    <h1>Menu Bar</h1>
+    <ng-template #edit>
 
-    <section>
-        <div c-menu-bar class="ring-secondary w-fit rounded flex items-center p-1">
-            <button b-type="flat" color="basic" c-button size="sm" [c-menu-trigger]="file" c-menu-item >File</button>
-            <button b-type="flat" color="basic" c-button size="sm" [c-menu-trigger]="file" c-menu-item >Edit</button>
-            <button b-type="flat" color="basic" c-button size="sm" [c-menu-trigger]="file" c-menu-item >Help</button>
-        </div>
+    </ng-template>
 
-        <ng-template #file>
-            <div class="py-2 grid w-40" c-menu>
-                <button c-menu-item c-button color="basic" b-type="flat">New file</button>
-                <button c-menu-item c-button color="basic" b-type="flat" [c-menu-trigger]="openFile" >Open file
-                    <i class="material-icons-outlined">navigate_next</i>
+    <ng-template #help>
 
-                </button>
+    </ng-template>
 
-                <c-separator color="secondary"/>
+  </section>
 
-                <button c-menu-item c-button color="basic" b-type="flat" >Share file</button>
-                <button c-menu-item c-button color="basic" b-type="flat">Delete file
 
-                    <i class="material-icons-outlined">delete</i>
+  <!--Plain-->
+  <h1>Plain Buttons</h1>
 
-                </button>
+  <section class="flex gap-2 items-center flex-wrap">
 
-            </div>
+    <button c-button b-type="plain" color="basic">Basic</button>
 
-            <ng-template #openFile>
-                <div class="py-2 grid w-40" c-menu>
-                    <button c-menu-item color="basic" c-button b-type="flat">My timesheet</button>
-                    <button c-menu-item color="basic" c-button b-type="flat" [c-menu-trigger]="whateverMenu" >Whaterver
-                        <i class="material-icons-outlined">navigate_next</i>
-                    </button>
-                </div>
 
+    <button c-button b-type="plain">Primary</button>
 
-                <ng-template #whateverMenu>
-                    <div class="py-2 grid w-40" c-menu>
-                        <button c-menu-item color="basic" c-button b-type="flat">Test</button>
-                        <button c-menu-item color="basic" c-button b-type="flat" (click)="onItemClick()" >Test 2
-                            <i class="material-icons-outlined">search</i>
-                        </button>
-                    </div>
-                </ng-template>
+    <button c-button b-type="plain" color="success">Success</button>
 
-            </ng-template>
+    <button c-button b-type="plain" #buttonEl color="warning">Warning</button>
 
-        </ng-template>
+    <button c-button b-type="plain" color="error">Error</button>
 
-        <ng-template #edit>
-            
-        </ng-template>
+    <button c-button b-type="plain" disabled>Disabled</button>
 
-        <ng-template #help>
-            
-        </ng-template>
+    <button c-button b-type="plain" size="lg">Large</button>
 
-    </section>
+    <button c-button b-type="plain" size="sm">Small</button>
 
 
-    <!--Plain-->
-    <h1>Plain Buttons</h1>
+    <button c-button b-type="plain" size="lg-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
 
-    <section class="flex gap-2 items-center flex-wrap">
+    <button c-button b-type="plain" size="md-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
 
-        <button c-button b-type="plain" color="basic">Basic</button>
+    <button c-button b-type="plain" size="sm-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
 
 
-        <button c-button b-type="plain">Primary</button>
+    <button c-button #buttonTest2 b-type="plain" loading class="w-20">
+      Loading
+    </button>
 
-        <button c-button b-type="plain" color="success">Success</button>
+    <button #buttonTest c-button b-type="plain" selected class="w-20">
+      Selected
+    </button>
 
-        <button c-button b-type="plain" #buttonEl color="warning">Warning</button>
+  </section>
 
-        <button c-button b-type="plain" color="error">Error</button>
+  <!--Soft-->
+  <h1>Soft Buttons</h1>
 
-        <button c-button b-type="plain" disabled>Disabled</button>
+  <section class="flex gap-2 items-center flex-wrap">
+    <button c-button b-type="soft" color="basic">Basic</button>
 
-        <button c-button b-type="plain" size="lg">Large</button>
+    <button c-button b-type="soft">Primary</button>
 
-        <button c-button b-type="plain" size="sm">Small</button>
+    <button c-button b-type="soft" color="success">Success</button>
 
+    <button c-button b-type="soft" color="warning">Warning</button>
 
-        <button c-button b-type="plain" size="lg-icon">
-            <i class="material-icons-outlined">search</i>
-        </button>
+    <button c-button b-type="soft" color="error">Error</button>
 
-        <button c-button b-type="plain" size="md-icon">
-            <i class="material-icons-outlined">search</i>
-        </button>
+    <button c-button b-type="soft" disabled>Disabled</button>
 
-        <button c-button b-type="plain" size="sm-icon">
-            <i class="material-icons-outlined">search</i>
-        </button>
+    <button c-button b-type="soft" size="lg">Large</button>
 
+    <button c-button b-type="soft" size="sm">Small</button>
 
-        <button c-button #buttonTest2 b-type="plain" loading class="w-20">
-            Loading
-        </button>
 
-        <button #buttonTest c-button b-type="plain" selected class="w-20">
-            Selected
-        </button>
+    <button c-button b-type="soft" size="lg-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
 
-    </section>
+    <button c-button b-type="soft" size="md-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
 
-    <!--Soft-->
-    <h1>Soft Buttons</h1>
+    <button c-button b-type="soft" size="sm-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
 
-    <section class="flex gap-2 items-center flex-wrap">
-        <button c-button b-type="soft" color="basic">Basic</button>
 
-        <button c-button b-type="soft">Primary</button>
+    <button c-button b-type="soft" loading class="w-20">
+      Loading
+    </button>
 
-        <button c-button b-type="soft" color="success">Success</button>
+    <button c-button b-type="soft" selected class="w-20">
+      Selected
+    </button>
 
-        <button c-button b-type="soft" color="warning">Warning</button>
+  </section>
 
-        <button c-button b-type="soft" color="error">Error</button>
 
-        <button c-button b-type="soft" disabled>Disabled</button>
+  <h1>Outline Buttons</h1>
 
-        <button c-button b-type="soft" size="lg">Large</button>
+  <!--Outline-->
+  <section class="flex gap-2 items-center flex-wrap">
+    <button c-button b-type="outline" color="basic">Basic</button>
 
-        <button c-button b-type="soft" size="sm">Small</button>
+    <button c-button b-type="outline">Primary</button>
 
+    <button c-button b-type="outline" color="success">Success</button>
 
-        <button c-button b-type="soft" size="lg-icon">
-            <i class="material-icons-outlined">search</i>
-        </button>
+    <button c-button b-type="outline" color="warning">Warning</button>
 
-        <button c-button b-type="soft" size="md-icon">
-            <i class="material-icons-outlined">search</i>
-        </button>
+    <button c-button b-type="outline" color="error">Error</button>
 
-        <button c-button b-type="soft" size="sm-icon">
-            <i class="material-icons-outlined">search</i>
-        </button>
+    <button c-button b-type="outline" disabled>Disabled</button>
 
+    <button c-button b-type="outline" size="lg">Large</button>
 
-        <button c-button b-type="soft" loading class="w-20">
-            Loading
-        </button>
+    <button c-button b-type="outline" size="sm">Small</button>
 
-        <button c-button b-type="soft" selected class="w-20">
-            Selected
-        </button>
 
-    </section>
+    <button c-button b-type="outline" size="lg-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
 
+    <button c-button b-type="outline" size="md-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
 
-    <h1>Outline Buttons</h1>
+    <button c-button b-type="outline" size="sm-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
 
-    <!--Outline-->
-    <section class="flex gap-2 items-center flex-wrap">
-        <button c-button b-type="outline" color="basic">Basic</button>
+    <button c-button loading b-type="outline">
+      Loading
+    </button>
 
-        <button c-button b-type="outline">Primary</button>
+    <button c-button selected b-type="outline">
+      Selected
+    </button>
+  </section>
 
-        <button c-button b-type="outline" color="success">Success</button>
 
-        <button c-button b-type="outline" color="warning">Warning</button>
+  <h1>Flat Buttons </h1>
+  <!--Flat-->
+  <section class="flex gap-2 items-center flex-wrap">
+    <button c-button b-type="flat" color="basic">Basic</button>
 
-        <button c-button b-type="outline" color="error">Error</button>
+    <button c-button b-type="flat">Primary</button>
 
-        <button c-button b-type="outline" disabled>Disabled</button>
+    <button c-button b-type="flat" color="success">Success</button>
 
-        <button c-button b-type="outline" size="lg">Large</button>
+    <button c-button b-type="flat" color="warning">Warning</button>
 
-        <button c-button b-type="outline" size="sm">Small</button>
+    <button c-button b-type="flat" color="error">Error</button>
 
+    <button c-button b-type="flat" disabled c-tooltip="test">Disabled</button>
 
-        <button c-button b-type="outline" size="lg-icon">
-            <i class="material-icons-outlined">search</i>
-        </button>
+    <button c-button b-type="flat" size="lg">Large</button>
 
-        <button c-button b-type="outline" size="md-icon">
-            <i class="material-icons-outlined">search</i>
-        </button>
+    <button c-button b-type="flat" size="sm">Small</button>
 
-        <button c-button b-type="outline" size="sm-icon">
-            <i class="material-icons-outlined">search</i>
-        </button>
+    <button c-button b-type="flat" size="lg-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
 
-        <button c-button loading b-type="outline">
-            Loading
-        </button>
+    <button c-button b-type="flat" size="md-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
 
-        <button c-button selected b-type="outline">
-            Selected
-        </button>
-    </section>
+    <button c-button b-type="flat" size="sm-icon">
+      <i class="material-icons-outlined">search</i>
+    </button>
 
+    <button c-button loading b-type="flat" class="w-20">
+      Loading
+    </button>
 
-    <h1>Flat Buttons </h1>
-    <!--Flat-->
-    <section class="flex gap-2 items-center flex-wrap">
-        <button c-button b-type="flat" color="basic">Basic</button>
+    <button c-button selected b-type="flat" class="w-20">
+      Selected
+    </button>
+  </section>
 
-        <button c-button b-type="flat">Primary</button>
 
-        <button c-button b-type="flat" color="success">Success</button>
+  <h1>Inputs</h1>
+  <section class="flex gap-2 items-center flex-wrap">
 
-        <button c-button b-type="flat" color="warning">Warning</button>
+    <div class="grid gap-2">
+      <label class="text-sm" for="test-input">Basic input</label>
+      <input id="test-input" c-input placeholder="placeholder...">
+    </div>
 
-        <button c-button b-type="flat" color="error">Error</button>
+    <div class="grid gap-2">
+      <label class="text-sm" for="disabled-input">Disabled input</label>
+      <input c-input id="disabled-input" disabled placeholder="disabled...">
+    </div>
 
-        <button c-button b-type="flat" disabled c-tooltip="test">Disabled</button>
+  </section>
 
-        <button c-button b-type="flat" size="lg">Large</button>
+  <h1>Dialogs</h1>
+  <section class="flex gap-2 items-center flex-wrap">
+    <button c-button (click)="onOpenDialogClick()">Open dialog from component</button>
 
-        <button c-button b-type="flat" size="sm">Small</button>
+    <button c-button (click)="onOpenDialogClickFromTpl(myWonderfulDialogTpl)">Open dialog from template</button>
 
-        <button c-button b-type="flat" size="lg-icon">
-            <i class="material-icons-outlined">search</i>
-        </button>
+    <ng-template #myWonderfulDialogTpl let-message="message" let-isItGood="isItGood">
 
-        <button c-button b-type="flat" size="md-icon">
-            <i class="material-icons-outlined">search</i>
-        </button>
+      <div class="p-4 grid gap-2">
+        <p>{{message}}</p>
 
-        <button c-button b-type="flat" size="sm-icon">
-            <i class="material-icons-outlined">search</i>
-        </button>
+        <p> Is it good? {{isItGood}}</p>
 
-        <button c-button loading b-type="flat" class="w-20">
-            Loading
-        </button>
+        <input c-input placeholder="Username...">
 
-        <button c-button selected b-type="flat" class="w-20">
-            Selected
-        </button>
-    </section>
 
+      </div>
 
-    <h1>Inputs</h1>
-    <section class="flex gap-2 items-center flex-wrap">
-        <input c-input placeholder="placeholder...">
-        <input c-input disabled placeholder="disabled...">
-    </section>
 
-    <h1>Dialogs</h1>
-    <section class="flex gap-2 items-center flex-wrap">
-        <button c-button (click)="onOpenDialogClick()">Open dialog from component</button>
+    </ng-template>
 
-        <button c-button (click)="onOpenDialogClickFromTpl(myWonderfulDialogTpl)">Open dialog from template</button>
 
-        <ng-template #myWonderfulDialogTpl let-message="message" let-isItGood="isItGood">
+  </section>
 
-            <div class="p-4 grid gap-2">
-                <p>{{message}}</p>
 
-                <p> Is it good? {{isItGood}}</p>
+  <h1>Tooltips</h1>
+  <section class="flex gap-2 items-center flex-wrap h-80 card ">
+    <button c-button c-tooltip="Top tooltip">Tooltip top</button>
+    <button c-button c-tooltip="Bottom tooltip" c-tooltip-position="bottom">Tooltip bottom</button>
+    <button c-button c-tooltip="Right tooltip" c-tooltip-position="right">Tooltip right</button>
+    <button c-button c-tooltip="Left tooltip" c-tooltip-position="left">Tooltip left</button>
 
-                <input c-input placeholder="Username...">
+    <button c-button [c-tooltip]="customTooltipTpl">Tooltip custom tpl</button>
 
+    <ng-template #customTooltipTpl>
+      <div class="bg-red-500 text-white p-2 text-sm">hehe</div>
+    </ng-template>
 
-            </div>
 
+  </section>
 
-        </ng-template>
 
+  <h1>Alerts</h1>
 
-    </section>
+  <section class="flex gap-2 items-center flex-wrap">
 
+    <c-alert title="Info alert" message="Lorem Ipsum is simply dummy text of the printing and..."/>
+    <c-alert title="Success alert" message="Lorem Ipsum is simply dummy text of the printing and..."
+             severity="success"/>
+    <c-alert title="Warning alert" message="Lorem Ipsum is simply dummy text of the printing and..."
+             severity="warning"/>
+    <c-alert title="Error alert" message="Lorem Ipsum is simply dummy text of the printing and..."
+             severity="error"/>
 
-    <h1>Tooltips</h1>
-    <section class="flex gap-2 items-center flex-wrap h-80 card ">
-        <button c-button c-tooltip="Top tooltip">Tooltip top</button>
-        <button c-button c-tooltip="Bottom tooltip" c-tooltip-position="bottom">Tooltip bottom</button>
-        <button c-button c-tooltip="Right tooltip" c-tooltip-position="right">Tooltip right</button>
-        <button c-button c-tooltip="Left tooltip" c-tooltip-position="left">Tooltip left</button>
+  </section>
 
-        <button c-button [c-tooltip]="customTooltipTpl">Tooltip custom tpl</button>
+  <h1>Alert dialog</h1>
 
-        <ng-template #customTooltipTpl>
-            <div class="bg-red-500 text-white p-2 text-sm">hehe</div>
-        </ng-template>
-
-
-    </section>
-
-
-    <h1>Alerts</h1>
-
-    <section class="flex gap-2 items-center flex-wrap">
-
-        <c-alert title="Info alert" message="Lorem Ipsum is simply dummy text of the printing and..." />
-        <c-alert title="Success alert" message="Lorem Ipsum is simply dummy text of the printing and..."
-            severity="success" />
-        <c-alert title="Warning alert" message="Lorem Ipsum is simply dummy text of the printing and..."
-            severity="warning" />
-        <c-alert title="Error alert" message="Lorem Ipsum is simply dummy text of the printing and..."
-            severity="error" />
-
-    </section>
-
-    <h1>Alert dialog</h1>
-
-    <section class="flex gap-2 items-center flex-wrap">
-        <button c-button
+  <section class="flex gap-2 items-center flex-wrap">
+    <button c-button
             (click)="onOpenAlertClick(selectElement.value, durationInput.valueAsNumber, actionInput.value)">Open
-            alert
-        </button>
+      alert
+    </button>
 
-        <select name="Severity" id="severities" #selectElement class="bg-transparent">
-            <option *ngFor="let severity of alertSeverities" [value]="severity">{{severity}}</option>
-        </select>
+    <div>
+      <label for="severities">Severities</label>
+      <select name="Severity" id="severities" #selectElement class="bg-transparent">
+        <option *ngFor="let severity of alertSeverities" [value]="severity">{{severity}}</option>
+      </select>
 
-        <input c-input #durationInput type="number" value="5000">
+    </div>
 
-        <input c-input #actionInput type="text" value="My action">
+    <div class="grid gap-2">
+      <label for="duration" class="text-sm">Duration</label>
+      <input id="duration" c-input #durationInput type="number" value="5000">
 
-    </section>
+    </div>
+    <div class="grid gap-2">
+      <label  for="action" class="text-sm">Action text</label>
+      <input id="action" c-input #actionInput type="text" value="My action">
 
-
-    <h1>Checkbox</h1>
-
-    <section class="flex gap-2 items-center flex-wrap">
-        <c-checkbox-container>
-            <input c-checkbox id="c-primary" [(ngModel)]="checked">
-            <label for="c-primary">Primary</label>
-        </c-checkbox-container>
-
-        <c-checkbox-container>
-            <input c-checkbox id="success" c-type="success" checked>
-            <label for="success">Success</label>
-        </c-checkbox-container>
-
-        <c-checkbox-container>
-            <input c-checkbox id="c-warning" c-type="warning" checked>
-            <label for="c-warning">Warning</label>
-        </c-checkbox-container>
-
-        <c-checkbox-container>
-            <input c-checkbox id="c-error" c-type="error" checked>
-            <label for="c-error">Error</label>
-        </c-checkbox-container>
-
-        <c-checkbox-container>
-            <input c-checkbox id="c-disabled" checked disabled>
-            <label for="c-disabled">Disabled</label>
-        </c-checkbox-container>
-
-        <c-checkbox-container>
-            <input c-checkbox id="c-custom" c-type="error" checked class="text-red-600 checked:bg-yellow-500 checked:hover:bg-blue-600 checked:after:content-['favorite']">
-            <label for="c-custom" class="text-yellow-400">I like Yellow</label>
-        </c-checkbox-container>
+    </div>
 
 
-    </section>
-
-    <h1>Switch</h1>
-
-    <section class="flex gap-2 items-center flex-wrap">
-
-        <c-switch-container>
-            <c-switch id="switch" [(ngModel)]="checked"/>
-            <label for="switch">Switch me</label>
-        </c-switch-container>
-
-        <button c-button (click)="checked = !checked">switch me</button>
-
-        <c-switch-container>
-            <c-switch c-switch id="switch-disabled" [disabled]="disabled"/>
-            <label for="switch-disabled">Switch me</label>
-        </c-switch-container>
-
-        <button c-button (click)="disabled = !disabled">Disabled</button>
+  </section>
 
 
-        <c-switch-container>
-            <c-switch c-switch id="switch-normal"/>
-            <label for="switch-normal">Switch me</label>
-        </c-switch-container>
+  <h1>Checkbox</h1>
+
+  <section class="flex gap-2 items-center flex-wrap">
+    <c-checkbox-container>
+      <input c-checkbox id="c-primary" [(ngModel)]="checked">
+      <label for="c-primary">Primary</label>
+    </c-checkbox-container>
+
+    <c-checkbox-container>
+      <input c-checkbox id="success" c-type="success" checked>
+      <label for="success">Success</label>
+    </c-checkbox-container>
+
+    <c-checkbox-container>
+      <input c-checkbox id="c-warning" c-type="warning" checked>
+      <label for="c-warning">Warning</label>
+    </c-checkbox-container>
+
+    <c-checkbox-container>
+      <input c-checkbox id="c-error" c-type="error" checked>
+      <label for="c-error">Error</label>
+    </c-checkbox-container>
+
+    <c-checkbox-container>
+      <input c-checkbox id="c-disabled" checked disabled>
+      <label for="c-disabled">Disabled</label>
+    </c-checkbox-container>
+
+    <c-checkbox-container>
+      <input c-checkbox id="c-custom" c-type="error" checked
+             class="text-red-600 checked:bg-yellow-500 checked:hover:bg-blue-600 checked:after:content-['favorite']">
+      <label for="c-custom" class="text-yellow-400">I like Yellow</label>
+    </c-checkbox-container>
 
 
-    </section>
+  </section>
+
+  <h1>Switch</h1>
+
+  <section class="flex gap-2 items-center flex-wrap">
+
+    <c-switch-container>
+      <c-switch id="switch" [(ngModel)]="checked"/>
+      <label for="switch">Switch me</label>
+    </c-switch-container>
+
+    <button c-button (click)="checked = !checked">switch me</button>
+
+    <c-switch-container>
+      <c-switch c-switch id="switch-disabled" [disabled]="disabled"/>
+      <label for="switch-disabled">Switch me</label>
+    </c-switch-container>
+
+    <button c-button (click)="disabled = !disabled">Disabled</button>
 
 
-    <h1>Radio Group</h1>
+    <c-switch-container>
+      <c-switch c-switch id="switch-normal"/>
+      <label for="switch-normal">Switch me</label>
+    </c-switch-container>
 
 
-    <section class="grid gap-2 items-center flex-wrap">
+  </section>
 
 
-        <label id="best-framework">Select the best framework</label>
-
-        <c-radio-group name="ui-framework" [(ngModel)]="bestFramework" aria-labelledby="best-framework">
-            <c-radio-button value="angular">Angular</c-radio-button>
-            <c-radio-button color="success" value="react">React</c-radio-button>
-            <c-radio-button color="warning" value="svelte">Svelte</c-radio-button>
-            <c-radio-button color="error" value="vuejs">Vue.js</c-radio-button>
-            <c-radio-button value="disabled" disabled="true">Disabled</c-radio-button>
-        </c-radio-group>
-
-        <p>Selected framework: {{bestFramework}}</p>
-
-    </section>
+  <h1>Radio Group</h1>
 
 
-    <h1>Ellipsis</h1>
-
-    <section class="flex gap-2 items-center flex-wrap">
-
-        <p c-ellipsis class="w-20">
-
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-            Aldus PageMaker including versions of Lorem Ipsum.
+  <section class="grid gap-2 items-center flex-wrap">
 
 
-        </p>
+    <label id="best-framework">Select the best framework</label>
 
-    </section>
+    <c-radio-group name="ui-framework" [(ngModel)]="bestFramework" aria-labelledby="best-framework">
+      <c-radio-button value="angular">Angular</c-radio-button>
+      <c-radio-button color="success" value="react">React</c-radio-button>
+      <c-radio-button color="warning" value="svelte">Svelte</c-radio-button>
+      <c-radio-button color="error" value="vuejs">Vue.js</c-radio-button>
+      <c-radio-button value="disabled" disabled="true">Disabled</c-radio-button>
+    </c-radio-group>
+
+    <p>Selected framework: {{bestFramework}}</p>
+
+  </section>
+
+
+  <h1>Ellipsis</h1>
+
+  <section class="flex gap-2 items-center flex-wrap">
+
+    <p c-ellipsis class="w-20">
+
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+      industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+      scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+      electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+      Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+      Aldus PageMaker including versions of Lorem Ipsum.
+
+
+    </p>
+
+  </section>
 
 
 </div>

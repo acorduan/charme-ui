@@ -2,7 +2,6 @@ import { Directive, HostListener, computed, effect, inject } from '@angular/core
 import { MenuService } from './menu.service'
 import { MenuTriggerDirective } from './menu-trigger.directive'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
-import { MenuItemDirective } from './menu-item.directive'
 import { MenuNavigationEvent } from './menu.model'
 
 @Directive({
@@ -10,7 +9,8 @@ import { MenuNavigationEvent } from './menu.model'
   standalone: true,
   providers: [MenuService],
   host: {
-    '[tabindex]': '$isMenuBarOpen() || someItemHasFocus() ? -1 : 0'
+    '[tabindex]': '$isMenuBarOpen() || someItemHasFocus() ? -1 : 0',
+    role: 'menubar'
   }
 })
 export class MenuBarDirective {
@@ -19,10 +19,6 @@ export class MenuBarDirective {
 
   $isMenuBarOpen = computed<boolean>(() => {
     const menuItems = this.#menu.$items()
-    if (menuItems === undefined || menuItems.length === 0) {
-      return false
-    }
-
     return menuItems.some(item => item.trigger?.$isOpen())
   })
 
