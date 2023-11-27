@@ -75,9 +75,9 @@ export class MenuTriggerDirective {
         tpl: this.tpl,
         hostOverlayRef: this.hostOverlayRef
       },
-      focusOriginOnClose: false,
+      focusOriginOnClose: true,
       closeOnEscape: true,
-      host: this.hostOverlayRef?.elementRef
+      host: this.hostOverlayRef?.elementRef ?? this.el
     }
     return new OverlayConfig(configModel)
   }

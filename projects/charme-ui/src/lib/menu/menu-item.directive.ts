@@ -8,30 +8,49 @@ import { MenuTriggerDirective } from './menu-trigger.directive'
   host: {
     role: 'menuitem',
     class: 'justify-between',
-    '[tabindex]': 'tabindex'
+    '[tabindex]': 'isFocus ? 0 : \'-1\''
   }
 })
 export class MenuItemDirective {
   readonly #menu = inject(MenuService)
   readonly trigger = inject(MenuTriggerDirective, { optional: true })
   readonly el = inject(ElementRef)
-  readonly $isFocus = signal(false)
-  tabindex: '-1' | '0' = '-1'
+  isFocus = false
 
   @HostListener('focus') onFocus(): void {
-    this.$isFocus.set(true)
+    this.isFocus = true
   }
 
   @HostListener('focusout') onFocusOut(): void {
-    this.$isFocus.set(false)
+    this.isFocus = false
   }
 
   @HostListener('mouseenter') onHover(): void {
-    this.#menu.onItemHover(this)
+    this.#menu.closeOthers(this)
   }
 
-  @HostListener('click') onClick(): void {
-    this.#menu.onItemClick(this)
+  @HostListener('click', ['$event']) onClick(event: MouseEvent): void {
+    this.trigger !== null ? event.stopPropagation() : this.#menu.closeOthers(this)
+  }
+
+  @HostListener('keydown.ArrowLeft', ['$event']) onArrowLeft(event: KeyboardEvent): void {
+    this.#menu.navigate$.next({ item: this, direction: 'left', event })
+    event.preventDefault()
+  }
+
+  @HostListener('keydown.ArrowRight', ['$event']) onArrowRight(event: KeyboardEvent): void {
+    this.#menu.navigate$.next({ item: this, direction: 'right', event })
+    event.preventDefault()
+  }
+
+  @HostListener('keydown.ArrowUp', ['$event']) onArrowUp(event: KeyboardEvent): void {
+    this.#menu.navigate$.next({ item: this, direction: 'up', event })
+    event.preventDefault()
+  }
+
+  @HostListener('keydown.ArrowDown', ['$event']) onArrowDown(event: KeyboardEvent): void {
+    this.#menu.navigate$.next({ item: this, direction: 'down', event })
+    event.preventDefault()
   }
 
   constructor() {

@@ -10,8 +10,8 @@ import {
   Type
 } from '@angular/core'
 import { OVERLAY_DATA, OverlayRef } from './overlay.model'
-import { Subscription } from 'rxjs'
-import { delay, tap } from 'rxjs/operators'
+import { interval, of, Subscription } from 'rxjs'
+import { delay, delayWhen, tap } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +49,7 @@ export class OverlayService {
   #manageComponentDestruction(compRef: ComponentRef<any>, overlayRef: OverlayRef): void {
     const sub: Subscription = overlayRef.afterClosed()
       .pipe(
-        delay(overlayRef.closeDelay),
+        delayWhen(() => overlayRef.closeDelay !== undefined ? interval(overlayRef.closeDelay) : of(undefined)),
         tap(() => this.#destroyComponent(compRef))
       )
       .subscribe(() => sub.unsubscribe())

@@ -110,8 +110,8 @@ export class OverlayRef<TConf extends OverlayConfig = OverlayConfig, TComp = any
     this.originElement = document.activeElement
   }
 
-  get closeDelay(): number {
-    return this.config.animationCloseDuration ?? 0
+  get closeDelay(): number | undefined {
+    return this.config.animationCloseDuration
   }
 
   get elementRef(): ElementRef {

@@ -77,7 +77,10 @@ export class OverlayCloseBehavior implements OnDestroy, AfterViewInit {
   #initCloseOnNavigationRule(): void {
     if (this.overlayRef.config.closeOnNavigation) {
       this.router.events
-        .pipe(filter(event => event instanceof NavigationStart))
+        .pipe(
+          takeUntilDestroyed(this.#destroyRef),
+          filter(event => event instanceof NavigationStart)
+        )
         .subscribe(() => this.overlayRef.close())
     }
   }
