@@ -1,8 +1,9 @@
-import { AfterViewChecked, AfterViewInit, Directive, HostListener, computed, effect, inject } from '@angular/core'
+import { Directive, HostListener, computed, effect, inject } from '@angular/core'
 import { MenuService } from './menu.service'
 import { MenuTriggerDirective } from './menu-trigger.directive'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { MenuItemDirective } from './menu-item.directive'
+import { MenuNavigationEvent } from './menu.model'
 
 @Directive({
   selector: '[c-menu-bar]',
@@ -27,9 +28,6 @@ export class MenuBarDirective {
 
   @HostListener('focus') onFocus(): void {
     this.#menu.$items()[this.focusIndex]?.el.nativeElement.focus()
-  }
-
-  @HostListener('focusout') onFocusOut(): void {
   }
 
   someItemHasFocus(): boolean {
@@ -58,7 +56,7 @@ export class MenuBarDirective {
   #manageNavigation(): void {
     this.#menu.onNavigate$
       .pipe(takeUntilDestroyed())
-      .subscribe((event: { item: MenuItemDirective, direction: 'up' | 'down' | 'left' | 'right' }) => {
+      .subscribe((event: MenuNavigationEvent) => {
         const isMenuBarOpen = this.$isMenuBarOpen()
 
         if (event.direction === 'right') {

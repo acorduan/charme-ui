@@ -1,7 +1,7 @@
 import { Directive, effect, inject, signal } from '@angular/core'
 import { MenuService } from './menu.service'
-import { MenuItemDirective } from './menu-item.directive'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
+import { MenuNavigationEvent } from './menu.model'
 
 @Directive({
   selector: '[c-menu]',
@@ -13,19 +13,22 @@ export class MenuDirective {
   readonly $focusIndex = signal(0)
 
   constructor() {
+    this.#initFocus()
+    this.#manageNavigation()
+  }
+
+  #initFocus(): void {
     effect(() => {
       const items = this.menu.$items()
       const focusIndex = this.$focusIndex()
       items[focusIndex]?.el.nativeElement.focus()
     })
-
-    this.#manageNavigation()
   }
 
   #manageNavigation(): void {
     this.menu.onNavigate$
       .pipe(takeUntilDestroyed())
-      .subscribe((event: { item: MenuItemDirective, direction: 'up' | 'down' | 'left' | 'right', event: KeyboardEvent }) => {
+      .subscribe((event: MenuNavigationEvent) => {
         if (event.direction === 'down') {
           const newIndex = (this.$focusIndex() + 1) % this.menu.$items().length
           this.$focusIndex.set(newIndex)
@@ -38,7 +41,7 @@ export class MenuDirective {
 
         if (event.direction === 'right') {
           const currentItem = this.menu.$items()[this.$focusIndex()]
-          if (currentItem !== undefined && currentItem.trigger !== null && !currentItem.trigger.$isOpen()) {
+          if (currentItem?.trigger?.$isOpen() === false) {
             currentItem.trigger.open()
             event.event.stopPropagation()
           }

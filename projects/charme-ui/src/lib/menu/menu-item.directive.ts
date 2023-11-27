@@ -30,6 +30,7 @@ export class MenuItemDirective {
   }
 
   @HostListener('click', ['$event']) onClick(event: MouseEvent): void {
+    this.el.nativeElement.focus()
     this.trigger !== null ? event.stopPropagation() : this.#menu.closeOthers(this)
   }
 

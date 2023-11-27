@@ -3,6 +3,7 @@ import { MenuItemDirective } from './menu-item.directive'
 import { MenuTriggerDirective } from './menu-trigger.directive'
 import { OverlayRef } from '../overlay/overlay.model'
 import { Subject } from 'rxjs'
+import { MenuNavigationEvent } from './menu.model'
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { Subject } from 'rxjs'
 export class MenuService {
   readonly $items = signal<MenuItemDirective[]>([])
   readonly overlayRef = inject(OverlayRef, { optional: true })
-  readonly navigate$ = new Subject<{ item: MenuItemDirective, direction: 'up' | 'down' | 'right' | 'left', event: KeyboardEvent }>()
+  readonly navigate$ = new Subject<MenuNavigationEvent>()
   readonly onNavigate$ = this.navigate$.asObservable()
 
   get hostOverlayRef(): OverlayRef | undefined {
@@ -25,7 +26,6 @@ export class MenuService {
   }
 
   closeOthers(hoverItem: MenuItemDirective): void {
-    console.log('close')
     this.$items()
       .map(item => item.trigger)
       .filter((trigger): trigger is MenuTriggerDirective => trigger !== null)
