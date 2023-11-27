@@ -4,7 +4,7 @@ import { CheckboxDirective } from './checkbox.directive'
 @Component({
   selector: 'c-checkbox-container',
   standalone: true,
-  templateUrl: 'checkbox-container.component.html',
+  template: '<ng-content></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[attr.data-disabled]': 'checkbox.$disabled()',

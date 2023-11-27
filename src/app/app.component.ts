@@ -26,7 +26,6 @@ import {
   SwitchComponent,
   DialogCloseDirective,
   MenuTriggerDirective,
-  MenuCloseDirective,
   MenuBarDirective,
   MenuItemDirective,
   MenuDirective
@@ -41,7 +40,7 @@ import { TestCdkComponent } from './test/test.component'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [TestCdkComponent, NgClass, MenuDirective, DialogCloseDirective, MenuTriggerDirective, MenuItemDirective, MenuBarDirective, MenuCloseDirective, NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchComponent, FormsModule, SwitchContainerComponent, EllipsisDirective, RadioGroupComponent, RadioButtonComponent, AccordionComponent, AccordionItemComponent, AccordionTriggerDirective, AccordionComponent, AccordionItemComponent, AccordionContentDirective, SeparatorComponent, CheckboxContainerComponent]
+  imports: [TestCdkComponent, NgClass, MenuDirective, DialogCloseDirective, MenuTriggerDirective, MenuItemDirective, MenuBarDirective, NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchComponent, FormsModule, SwitchContainerComponent, EllipsisDirective, RadioGroupComponent, RadioButtonComponent, AccordionComponent, AccordionItemComponent, AccordionTriggerDirective, AccordionComponent, AccordionItemComponent, AccordionContentDirective, SeparatorComponent, CheckboxContainerComponent]
 })
 export class AppComponent {
   @ViewChild('buttonEl', { read: ElementRef }) buttonEl!: ElementRef
@@ -52,6 +51,10 @@ export class AppComponent {
   alert = inject(AlertDialogService)
   alertSeverities = alertSeverities
   readonly #destroyRef = inject(DestroyRef)
+
+  onItemClick(): void {
+    console.log('onItemClick')
+  }
 
   open = true
   secondOpen = false

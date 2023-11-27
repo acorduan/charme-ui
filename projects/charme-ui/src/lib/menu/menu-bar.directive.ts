@@ -1,6 +1,6 @@
-import { ContentChildren, Directive, QueryList, computed, effect, signal } from '@angular/core'
-import { MenuTriggerDirective } from './menu-trigger.directive'
+import { Directive, computed, effect, inject } from '@angular/core'
 import { MenuService } from './menu.service'
+import { MenuTriggerDirective } from './menu-trigger.directive'
 
 @Directive({
   selector: '[c-menu-bar]',
@@ -8,24 +8,24 @@ import { MenuService } from './menu.service'
   providers: [MenuService]
 })
 export class MenuBarDirective {
-  $menuItems = signal<undefined | QueryList<MenuTriggerDirective> >(undefined)
-  @ContentChildren(MenuTriggerDirective) set menItems(value: QueryList<MenuTriggerDirective>) {
-    this.$menuItems.set(value)
-  }
+  readonly #menu = inject(MenuService)
 
-  $openedMenu = computed<MenuTriggerDirective | undefined>(() => {
-    const menuItems = this.$menuItems()
-    if (menuItems === undefined) {
-      return undefined
+  $isMenuBarOpen = computed<boolean>(() => {
+    const menuItems = this.#menu.$items()
+    if (menuItems === undefined || menuItems.length === 0) {
+      return false
     }
 
-    return menuItems.find(item => item.$open())
+    return menuItems.some(item => item.trigger?.$isOpen())
   })
 
   constructor() {
     effect(() => {
-      const isMenuBarOpen = this.$openedMenu() !== undefined
-      this.$menuItems()?.forEach(item => item.triggerEvent = isMenuBarOpen ? 'hover' : 'click')
+      const isMenuBarOpen = this.$isMenuBarOpen()
+      const triggers = this.#menu.$items()
+        .map(item => item.trigger)
+        .filter((item): item is MenuTriggerDirective => item !== null)
+      triggers.forEach(item => item.triggerEvent = isMenuBarOpen ? 'hover' : 'click')
     })
   }
 }

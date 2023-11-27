@@ -174,7 +174,7 @@
                 <ng-template #whateverMenu>
                     <div class="py-2 grid w-40" c-menu>
                         <button c-menu-item color="basic" c-button b-type="flat">Test</button>
-                        <button c-menu-item color="basic" c-button b-type="flat" >Test 2
+                        <button c-menu-item color="basic" c-button b-type="flat" (click)="onItemClick()" >Test 2
                             <i class="material-icons-outlined">search</i>
                         </button>
                     </div>
@@ -231,16 +231,15 @@
         </button>
 
 
-        <button c-button b-type="plain" loading class="w-20">
+        <button c-button #buttonTest2 b-type="plain" loading class="w-20">
             Loading
         </button>
 
-        <button c-button b-type="plain" selected class="w-20">
+        <button #buttonTest c-button b-type="plain" selected class="w-20">
             Selected
         </button>
 
     </section>
-
 
     <!--Soft-->
     <h1>Soft Buttons</h1>

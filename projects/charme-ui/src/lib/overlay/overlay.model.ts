@@ -21,7 +21,7 @@ export interface OverlayAttachedTo {
   gap?: number
 }
 
-export interface OverlayConfigModel {
+export interface OverlayConfigModel<TData = any> {
   position?: OverlayPosition
   attachedTo?: OverlayAttachedTo
   width?: string
@@ -31,7 +31,7 @@ export interface OverlayConfigModel {
   maxWidth?: string
   maxHeight?: string
   animationCloseDuration?: number
-  data?: any
+  data: TData
   closeAfter?: number
   closeOnClickOutside: boolean
   closeOnNavigation: boolean
@@ -42,7 +42,7 @@ export interface OverlayConfigModel {
   host?: ElementRef
 }
 
-export class OverlayConfig implements OverlayConfigModel {
+export class OverlayConfig<TData = any> implements OverlayConfigModel<TData> {
   position?: OverlayPosition
   attachedTo?: OverlayAttachedTo
   width?: string
@@ -52,7 +52,7 @@ export class OverlayConfig implements OverlayConfigModel {
   maxWidth?: string
   maxHeight?: string
   animationCloseDuration?: number
-  data: any
+  data: TData
   closeAfter?: number
   closeOnClickOutside: boolean
   closeOnNavigation: boolean
@@ -62,7 +62,7 @@ export class OverlayConfig implements OverlayConfigModel {
   focusOriginOnClose: boolean
   host?: ElementRef<any> | undefined
 
-  constructor(config?: Partial<OverlayConfigModel>) {
+  constructor(config?: Partial<OverlayConfigModel & { data: TData }>) {
     this.position = config?.position
     this.attachedTo = config?.attachedTo
     this.width = config?.width

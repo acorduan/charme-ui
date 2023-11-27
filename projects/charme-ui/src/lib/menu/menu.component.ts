@@ -6,7 +6,9 @@ import { NgTemplateOutlet } from '@angular/common'
 @Component({
   selector: 'c-menu',
   standalone: true,
-  templateUrl: 'menu.component.html',
+  template: `<div class="rounded bg-primary ring-secondary text-primary shadow-lg">
+                <ng-container *ngTemplateOutlet="data.tpl; context: config.data; injector: injector"></ng-container>
+             </div>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
   hostDirectives: [OverlayBehavior],
   host: {
@@ -16,7 +18,7 @@ import { NgTemplateOutlet } from '@angular/common'
   imports: [NgTemplateOutlet]
 })
 export class MenuComponent {
-  readonly overlayRef = inject(OverlayRef)
+  overlayRef = inject(OverlayRef)
   data: { id: string, tpl: TemplateRef<any> } = inject(OVERLAY_DATA)
   injector = Injector.create({ providers: [{ provide: OverlayRef, useValue: this.overlayRef }] })
 

@@ -32,26 +32,16 @@ import { twMerge } from 'tailwind-merge'
 })
 export class CheckboxDirective implements ControlValueAccessor {
   readonly el = inject(ElementRef<HTMLInputElement>)
-
-  @Input() set indeterminate(value: boolean | undefined | null) {
-    this.el.nativeElement.indeterminate = value as boolean
-  }
-
   readonly elementRef = inject(ElementRef<HTMLInputElement>)
 
   @HostListener('input') onChange(): void {
-    this.checked = !this.checked
-    this.propagateChange(this.checked)
+    this.checked = !this.$checked()
+    this.propagateChange(this.$checked())
   }
 
-  readonly $checked = signal<boolean>(this.elementRef.nativeElement.checked)
-
+  $checked = signal<boolean>(this.elementRef.nativeElement.checked)
   @Input({ transform: booleanAttribute }) set checked(value: boolean) {
     this.$checked.set(value)
-  }
-
-  get checked(): boolean {
-    return this.$checked()
   }
 
   $disabled = signal(false)

@@ -4,14 +4,14 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { Subscription, tap } from 'rxjs'
 import { OverlayService } from '../overlay/overlay.service'
 import { MenuComponent } from './menu.component'
-import { MenuService } from './menu.service'
+import { MenuTriggerData } from './menu.model'
 
 @Directive({
   selector: '[c-menu-trigger]',
   standalone: true,
   host: {
     'aria-haspopup': 'menu',
-    '[attr.aria-expanded]': '$open()'
+    '[attr.aria-expanded]': '$isOpen()'
   }
 })
 export class MenuTriggerDirective {
@@ -19,30 +19,32 @@ export class MenuTriggerDirective {
   readonly #overlay = inject(OverlayService)
   readonly #el = inject(ElementRef<HTMLElement>)
   readonly #destroyRef = inject(DestroyRef)
-  readonly host: OverlayRef | null = inject(OverlayRef, { optional: true })
+  readonly hostOverlayRef: OverlayRef | null = inject(OverlayRef, { optional: true })
   readonly $overlayRef = signal<OverlayRef | undefined>(undefined)
-  readonly $open = computed(() => this.$overlayRef() !== undefined)
+  readonly $isOpen = computed(() => this.$overlayRef() !== undefined)
   readonly id = `c-menu-${crypto.randomUUID()}`
-  readonly #menu = inject(MenuService)
 
-  constructor() {
-    this.#menu.onCloseOthers$
-      .pipe(takeUntilDestroyed())
-      .subscribe(() => this.close())
-  }
-
-  triggerEvent: 'hover' | 'click' = this.host !== null ? 'hover' : 'click'
+  @Input() triggerEvent: 'hover' | 'click' = this.hostOverlayRef !== null ? 'hover' : 'click'
 
   @Input('c-menu-trigger') tpl!: TemplateRef<any>
 
   @HostListener('click') toggle(): void {
-    !this.$open() ? this.open() : this.close()
+    this.$isOpen() ? this.close() : this.open()
   }
 
   @HostListener('mouseenter') onHover(): void {
-    if (this.triggerEvent === 'hover') {
-      this.open()
+    this.triggerEvent === 'hover' && this.open()
+  }
+
+  open(): void {
+    if (this.$overlayRef() !== undefined) {
+      return
     }
+
+    const overlayRef = new OverlayRef(this.#getConfig())
+    this.$overlayRef.set(overlayRef)
+    this.#overlay.createOverlay(MenuComponent, overlayRef)
+    this.#manageCloseEvent(overlayRef)
   }
 
   close(): void {
@@ -50,38 +52,33 @@ export class MenuTriggerDirective {
     this.$overlayRef.set(undefined)
   }
 
-  open(): void {
-    // settimeout to wait for others menu to be closed
-    setTimeout(() => {
-      console.log(this.host)
-      const configModel: Partial<OverlayConfigModel> = {
-        attachedTo: {
-          host: this.#el,
-          hostPos: this.host !== null ? 'right-top' : 'bottom-left',
-          dialogPos: this.host !== null ? 'left-top' : 'top-left',
-          gap: this.host !== null ? 0 : 5
-        },
-        closeOnClickOutside: true,
-        data: {
-          id: this.id,
-          tpl: this.tpl
-        },
-        focusOriginOnClose: false,
-        closeOnEscape: true,
-        host: this.host?.elementRef
-      }
-      const config = new OverlayConfig(configModel)
-      const overlayRef = new OverlayRef(config)
-      this.$overlayRef.set(overlayRef)
+  #manageCloseEvent(ref: OverlayRef): void {
+    const sub: Subscription = ref.afterClosed()
+      .pipe(
+        takeUntilDestroyed(this.#destroyRef),
+        tap(() => this.$overlayRef.set(undefined))
+      )
+      .subscribe(() => sub.unsubscribe())
+  }
 
-      this.#overlay.createOverlay(MenuComponent, overlayRef)
-
-      const sub: Subscription = overlayRef.afterClosed()
-        .pipe(
-          takeUntilDestroyed(this.#destroyRef),
-          tap(() => this.$overlayRef.set(undefined))
-        )
-        .subscribe(() => sub.unsubscribe())
-    })
+  #getConfig(): OverlayConfig<MenuTriggerData> {
+    const configModel: Partial<OverlayConfigModel<MenuTriggerData>> = {
+      attachedTo: {
+        host: this.#el,
+        hostPos: this.hostOverlayRef !== null ? 'right-top' : 'bottom-left',
+        dialogPos: this.hostOverlayRef !== null ? 'left-top' : 'top-left',
+        gap: this.hostOverlayRef !== null ? 0 : 5
+      },
+      closeOnClickOutside: true,
+      data: {
+        id: this.id,
+        tpl: this.tpl,
+        hostOverlayRef: this.hostOverlayRef
+      },
+      focusOriginOnClose: false,
+      closeOnEscape: true,
+      host: this.hostOverlayRef?.elementRef
+    }
+    return new OverlayConfig(configModel)
   }
 }
