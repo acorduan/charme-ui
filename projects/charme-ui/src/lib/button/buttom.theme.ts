@@ -23,11 +23,11 @@ export const buttonThemes = cva(
           error: 'text-red-700 dark:text-red-600 bg-red-100 dark:bg-red-600/20 hover:bg-red-200 hover:dark:bg-red-600/30'
         },
         outline: {
-          basic: 'text-primary bg-transparent ring-1 ring-black  hover:dark:bg-zinc-800 hover:bg-zinc-200  selected:dark:bg-zinc-800 selected:bg-zinc-200  aria-expanded:dark:bg-zinc-800 aria-expanded:bg-zinc-200',
-          primary: 'text-ultramarine-500 dark:text-ultramarine-300 ring-1 ring-ultramarine-500 dark:ring-ultramarine-300 hover:bg-ultramarine-500/20 hover:dark:bg-ultramarine-400/20 selected:bg-ultramarine-500/20 selected:dark:bg-ultramarine-400/20  aria-expanded:bg-ultramarine-500/20 aria-expanded:dark:bg-ultramarine-400/20 ',
-          success: 'text-green-700 dark:text-green-500 hover:bg-green-500/20 hover:dark:bg-green-600/20 ring-1 ring-green-700 dark:ring-green-500',
-          warning: 'text-orange-700 dark:text-orange-500 hover:bg-orange-400/20 hover:dark:bg-orange-500/20 ring-1 ring-orange-700 dark:ring-orange-500',
-          error: 'text-red-700 dark:text-red-500 hover:bg-red-500/20 hover:dark:bg-red-600/20 ring-1 ring-red-700 dark:ring-red-500'
+          basic: 'text-primary bg-transparent ring-secondary  hover:dark:bg-zinc-800 hover:bg-zinc-200  selected:dark:bg-zinc-800 selected:bg-zinc-200  aria-expanded:dark:bg-zinc-800 aria-expanded:bg-zinc-200',
+          primary: 'text-ultramarine-500 dark:text-ultramarine-300 ring-1 ring-ultramarine-200 dark:ring-ultramarine-800 hover:bg-ultramarine-500/20 hover:dark:bg-ultramarine-400/20 selected:bg-ultramarine-500/20 selected:dark:bg-ultramarine-400/20  aria-expanded:bg-ultramarine-500/20 aria-expanded:dark:bg-ultramarine-400/20 ',
+          success: 'text-green-700 dark:text-green-500 hover:bg-green-500/20 hover:dark:bg-green-600/20 ring-1 ring-green-200 dark:ring-green-800',
+          warning: 'text-orange-700 dark:text-orange-500 hover:bg-orange-400/20 hover:dark:bg-orange-500/20 ring-1 ring-orange-200 dark:ring-orange-800',
+          error: 'text-red-700 dark:text-red-500 hover:bg-red-500/20 hover:dark:bg-red-600/20 ring-1 ring-red-200 dark:ring-red-800'
         },
         flat: {
           basic: 'text-primary bg-transparent hover:bg-zinc-200 dark:hover:bg-zinc-800 selected:bg-zinc-200 selected:hover:bg-zinc-800 aria-expanded:bg-zinc-200 dark:aria-expanded:bg-zinc-800',
