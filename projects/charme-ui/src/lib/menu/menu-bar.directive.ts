@@ -1,7 +1,7 @@
-import {Directive, HostListener, computed, effect, forwardRef, ElementRef, signal} from '@angular/core'
-import {MenuContainer} from './menu.service'
-import {MenuTriggerDirective} from './menu-trigger.directive'
-import {C_MENU, CMenuAccessor} from './menu.model'
+import { Directive, HostListener, computed, effect, forwardRef } from '@angular/core'
+import { MenuContainer } from './menu.service'
+import { MenuTriggerDirective } from './menu-trigger.directive'
+import { C_MENU, CMenuAccessor } from './menu.model'
 
 @Directive({
   selector: '[c-menu-bar]',
@@ -45,14 +45,21 @@ export class MenuBarDirective extends MenuContainer implements CMenuAccessor {
     isMenuBarOpen && this.$items()[this.focusIndex]?.trigger?.open()
   }
 
+  @HostListener('keydown.ArrowUp', ['$event'])
+  @HostListener('keydown.ArrowDown', ['$event']) openMenu(event: KeyboardEvent): void {
+    if (!this.$isMenuBarOpen()) {
+      event.preventDefault()
+      this.$items()[this.focusIndex]?.trigger?.open()
+    }
+  }
+
   someItemHasFocus(): boolean {
     return this.$items().some(item => item.isFocus)
   }
 
   constructor() {
-    super();
+    super()
     this.#initTriggerTypeEvent()
-    this.#initFocus()
   }
 
   #initTriggerTypeEvent(): void {
@@ -64,14 +71,4 @@ export class MenuBarDirective extends MenuContainer implements CMenuAccessor {
       triggers.forEach(item => item.triggerEvent = isMenuBarOpen ? 'hover' : 'click')
     })
   }
-
-  #initFocus(): void {
-    effect(() => {
-      const isMenuBarOpen = this.$isMenuBarOpen()
-      if (!isMenuBarOpen) {
-        this.$items()[this.focusIndex]?.el.nativeElement.focus()
-      }
-    })
-  }
-
 }

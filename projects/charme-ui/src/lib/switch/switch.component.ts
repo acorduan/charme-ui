@@ -27,7 +27,7 @@ import { C_SWITCH_ACCESSOR } from './switch.model'
   imports: [NgClass, FormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'bg-[length:200%_100%] text-white rounded-2xl w-8 h-5 c-switch-animation relative focus-visible:focus-el data-[hover=true]:ring-1 data-[hover=true]:ring-ultramarine-500',
+    class: 'bg-[length:200%_100%] text-white rounded-2xl w-8 h-5 c-switch-animation relative focus-visible:focus-el data-[hover=true]:ring-1 data-[hover=true]:ring-primary-500',
     '[class.bg-left-bottom]': '$checked()',
     '[class.bg-right-bottom]': '!$checked()',
     '[tabindex]': '$disabled() ? -1 : 0',

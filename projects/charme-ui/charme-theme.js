@@ -1,5 +1,17 @@
 const colors = require('tailwindcss/colors')
-
+const ultramarine = {
+    '50': '#f0f0ff',
+    '100': '#e5e4ff',
+    '200': '#ceccff',
+    '300': '#aaa4ff',
+    '400': '#8170ff',
+    '500': '#5a37ff',
+    '600': '#470fff',
+    '700': '#3700ff',
+    '800': '#2d00da',
+    '900': '#200094',
+    '950': '#13007a',
+}
 
 module.exports = {
     darkMode: 'class',
@@ -43,20 +55,11 @@ module.exports = {
         colors: {
             transparent: 'transparent',
             ...colors,
-
-            'ultramarine': {
-                '50': '#f0f0ff',
-                '100': '#e5e4ff',
-                '200': '#ceccff',
-                '300': '#aaa4ff',
-                '400': '#8170ff',
-                '500': '#5a37ff',
-                '600': '#470fff',
-                '700': '#3700ff',
-                '800': '#2d00da',
-                '900': '#200094',
-                '950': '#13007a',
-            },
+            ultramarine,
+            primary: ultramarine,
+            success: colors.green,
+            warning: colors.orange,
+            error: colors.red
 
         }
     },
@@ -70,7 +73,7 @@ module.exports = {
         function ({addUtilities}) {
             addUtilities({
                 '.focus-el': {
-                    '@apply outline outline-2 focus-visible:outline-ultramarine-400': {}
+                    '@apply outline outline-2 focus-visible:outline-primary-400': {}
                 },
 
                 '.disabled-el': {

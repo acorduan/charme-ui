@@ -10,31 +10,31 @@ export const buttonThemes = cva(
       variants: {
         plain: {
           basic: 'text-primary bg-secondary hover:bg-zinc-200 aria-expanded:bg-zinc-200 selected:bg-zinc-200 aria-expanded:dark:bg-zinc-800 hover:dark:bg-zinc-800 selected:hover:dark:bg-zinc-800',
-          primary: 'text-white bg-ultramarine-500 hover:bg-ultramarine-600 aria-expanded:bg-ultramarine-600 selected:bg-ultramarine-600',
-          success: 'text-white bg-green-700 hover:bg-green-800',
-          warning: 'text-white bg-orange-700 hover:bg-orange-800',
-          error: 'text-white bg-red-600 hover:bg-red-700 '
+          primary: 'text-white bg-primary-500 hover:bg-primary-600 aria-expanded:bg-primary-600 selected:bg-primary-600',
+          success: 'text-white bg-success-700 hover:bg-success-800',
+          warning: 'text-white bg-warning-700 hover:bg-warning-800',
+          error: 'text-white bg-error-600 hover:bg-error-700 '
         },
         soft: {
           basic: 'text-zinc-800 dark:text-zinc-200 bg-secondary hover:bg-zinc-200 hover:dark:bg-zinc-800 selected:bg-zinc-200 selected:dark:bg-zinc-800 aria-expanded:bg-zinc-200 aria-expanded:dark:bg-zinc-800',
-          primary: 'text-ultramarine-500 dark:text-ultramarine-300 bg-ultramarine-100 dark:bg-ultramarine-500/20 hover:bg-ultramarine-200 hover:dark:bg-ultramarine-600/30 selected:bg-ultramarine-200 selected:dark:bg-ultramarine-600/30 aria-expanded:bg-ultramarine-200 aria-expanded:dark:bg-ultramarine-600/30',
-          success: 'text-green-700 dark:text-green-600 bg-green-100 dark:bg-green-600/20 hover:bg-green-200 hover:dark:bg-green-600/30',
-          warning: 'text-orange-700 dark:text-orange-600 bg-orange-100 dark:bg-orange-600/20 hover:bg-orange-200 hover:dark:bg-orange-600/30',
-          error: 'text-red-700 dark:text-red-600 bg-red-100 dark:bg-red-600/20 hover:bg-red-200 hover:dark:bg-red-600/30'
+          primary: 'text-primary-500 dark:text-primary-300 bg-primary-100 dark:bg-primary-500/20 hover:bg-primary-200 hover:dark:bg-primary-600/30 selected:bg-primary-200 selected:dark:bg-primary-600/30 aria-expanded:bg-primary-200 aria-expanded:dark:bg-primary-600/30',
+          success: 'text-success-700 dark:text-success-600 bg-success-100 dark:bg-success-600/20 hover:bg-success-200 hover:dark:bg-success-600/30',
+          warning: 'text-warning-700 dark:text-warning-600 bg-warning-100 dark:bg-warning-600/20 hover:bg-warning-200 hover:dark:bg-warning-600/30',
+          error: 'text-error-700 dark:text-error-600 bg-error-100 dark:bg-error-600/20 hover:bg-error-200 hover:dark:bg-error-600/30'
         },
         outline: {
           basic: 'text-primary bg-transparent ring-secondary  hover:dark:bg-zinc-800 hover:bg-zinc-200  selected:dark:bg-zinc-800 selected:bg-zinc-200  aria-expanded:dark:bg-zinc-800 aria-expanded:bg-zinc-200',
-          primary: 'text-ultramarine-500 dark:text-ultramarine-300 ring-1 ring-ultramarine-200 dark:ring-ultramarine-800 hover:bg-ultramarine-500/20 hover:dark:bg-ultramarine-400/20 selected:bg-ultramarine-500/20 selected:dark:bg-ultramarine-400/20  aria-expanded:bg-ultramarine-500/20 aria-expanded:dark:bg-ultramarine-400/20 ',
-          success: 'text-green-700 dark:text-green-500 hover:bg-green-500/20 hover:dark:bg-green-600/20 ring-1 ring-green-200 dark:ring-green-800',
-          warning: 'text-orange-700 dark:text-orange-500 hover:bg-orange-400/20 hover:dark:bg-orange-500/20 ring-1 ring-orange-200 dark:ring-orange-800',
-          error: 'text-red-700 dark:text-red-500 hover:bg-red-500/20 hover:dark:bg-red-600/20 ring-1 ring-red-200 dark:ring-red-800'
+          primary: 'text-primary-500 dark:text-primary-300 ring-1 ring-primary-200 dark:ring-primary-800 hover:bg-primary-500/20 hover:dark:bg-primary-400/20 selected:bg-primary-500/20 selected:dark:bg-primary-400/20  aria-expanded:bg-primary-500/20 aria-expanded:dark:bg-primary-400/20 ',
+          success: 'text-success-700 dark:text-success-500 hover:bg-success-500/20 hover:dark:bg-success-600/20 ring-1 ring-success-200 dark:ring-success-800',
+          warning: 'text-warning-700 dark:text-warning-500 hover:bg-warning-400/20 hover:dark:bg-warning-500/20 ring-1 ring-warning-200 dark:ring-warning-800',
+          error: 'text-error-700 dark:text-error-500 hover:bg-error-500/20 hover:dark:bg-error-600/20 ring-1 ring-error-200 dark:ring-error-800'
         },
         flat: {
           basic: 'text-primary bg-transparent hover:bg-zinc-200 dark:hover:bg-zinc-800 selected:bg-zinc-200 selected:hover:bg-zinc-800 aria-expanded:bg-zinc-200 dark:aria-expanded:bg-zinc-800',
-          primary: 'bg-transparent text-ultramarine-500 dark:text-ultramarine-300 hover:bg-ultramarine-400/20 selected:bg-ultramarine-400/20 aria-expanded:bg-ultramarine-400/20',
-          success: 'bg-transparent text-green-700 dark:text-green-500 hover:bg-green-500/20 hover:dark:bg-green-600/20',
-          warning: 'bg-transparent text-orange-700 dark:text-orange-500 hover:bg-orange-400/20 hover:dark:bg-orange-500/20',
-          error: 'bg-transparent text-red-700 dark:text-red-500 hover:bg-red-500/20 hover:dark:bg-red-600/20'
+          primary: 'bg-transparent text-primary-500 dark:text-primary-300 hover:bg-primary-400/20 selected:bg-primary-400/20 aria-expanded:bg-primary-400/20',
+          success: 'bg-transparent text-success-700 dark:text-success-500 hover:bg-success-500/20 hover:dark:bg-success-600/20',
+          warning: 'bg-transparent text-warning-700 dark:text-warning-500 hover:bg-warning-400/20 hover:dark:bg-warning-500/20',
+          error: 'bg-transparent text-error-700 dark:text-error-500 hover:bg-error-500/20 hover:dark:bg-error-600/20'
         },
         size: {
           sm: 'h-6 text-[0.70rem]',

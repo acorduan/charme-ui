@@ -5,10 +5,10 @@ export const radioButtomThemes = cva(
   {
     variants: {
       type: {
-        primary: 'text-white checked:bg-ultramarine-500 dark:hover:ring-ultramarine-300 hover:ring-ultramarine-700',
-        success: 'text-white checked:bg-green-700 dark:hover:ring-green-400 hover:ring-green-900',
-        warning: 'text-white checked:bg-orange-700 dark:hover:ring-orange-400 hover:ring-orange-900',
-        error: 'text-white checked:bg-red-700 dark:hover:ring-red-400 hover:ring-red-900'
+        primary: 'text-white checked:bg-primary-500 dark:hover:ring-primary-300 hover:ring-primary-700',
+        success: 'text-white checked:bg-success-700 dark:hover:ring-success-400 hover:ring-success-900',
+        warning: 'text-white checked:bg-warning-700 dark:hover:ring-warning-400 hover:ring-warning-900',
+        error: 'text-white checked:bg-error-700 dark:hover:ring-error-400 hover:ring-error-900'
       }
     }
   }

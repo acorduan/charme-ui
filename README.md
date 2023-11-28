@@ -45,8 +45,8 @@ Charme UI - Components - https://www.w3.org/WAI/ARIA/apg/patterns/ :
 - [ ] Landmarks: https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/
 - [x] Link: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 - [ ] Listbox: https://www.w3.org/WAI/ARIA/apg/patterns/listbox/
-- [ ] Menubar: https://www.w3.org/WAI/ARIA/apg/patterns/menubar/
-- [ ] Menu button: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
+- [x] Menubar: https://www.w3.org/WAI/ARIA/apg/patterns/menubar/
+- [x] Menu button: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 - [ ] Meter: https://www.w3.org/WAI/ARIA/apg/patterns/meter/
 - [x] Radio Group: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
 - [ ] Slider: https://www.w3.org/WAI/ARIA/apg/patterns/slider/
