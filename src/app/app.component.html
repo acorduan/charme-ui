@@ -446,7 +446,9 @@
     <div>
       <label for="severities">Severities</label>
       <select name="Severity" id="severities" #selectElement class="bg-transparent">
-        <option *ngFor="let severity of alertSeverities" [value]="severity">{{severity}}</option>
+        @for (severity of alertSeverities; track severity) {
+  <option [value]="severity">{{severity}}</option>
+}
       </select>
 
     </div>

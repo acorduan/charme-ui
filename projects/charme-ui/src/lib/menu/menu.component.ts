@@ -4,12 +4,12 @@ import {
   Injector,
   TemplateRef,
   inject,
-  ElementRef,
+  ElementRef
 } from '@angular/core'
-import {OVERLAY_DATA, OverlayConfig, OverlayRef} from '../overlay/overlay.model'
-import {OverlayBehavior} from '../overlay/behaviors/overlay.behavior'
-import {NgTemplateOutlet} from '@angular/common'
-import {OverlayGuardFocusGardDirective} from "../overlay/behaviors/overlay-guard-focus.behavior";
+import { OVERLAY_DATA, OverlayConfig, OverlayRef } from '../overlay/overlay.model'
+import { OverlayBehavior } from '../overlay/behaviors/overlay.behavior'
+import { NgTemplateOutlet } from '@angular/common'
+import { OverlayGuardFocusGardDirective } from '../overlay/behaviors/overlay-guard-focus.behavior'
 
 @Component({
   selector: 'c-menu',
@@ -25,7 +25,9 @@ import {OverlayGuardFocusGardDirective} from "../overlay/behaviors/overlay-guard
   hostDirectives: [OverlayBehavior],
   host: {
     tabindex: '-1',
-    role: 'menu'
+    role: 'menu',
+    '[id]': 'data.id',
+    'aria-orientation': 'vertical'
   },
   imports: [NgTemplateOutlet, OverlayGuardFocusGardDirective]
 })
@@ -33,10 +35,9 @@ export class MenuComponent {
   el = inject(ElementRef)
   overlayRef = inject(OverlayRef)
   data: { id: string, tpl: TemplateRef<any> } = inject(OVERLAY_DATA)
-  injector = Injector.create({providers: [{provide: OverlayRef, useValue: this.overlayRef}]})
+  injector = Injector.create({ providers: [{ provide: OverlayRef, useValue: this.overlayRef }] })
 
   get config(): OverlayConfig {
     return this.overlayRef.config
   }
-
 }

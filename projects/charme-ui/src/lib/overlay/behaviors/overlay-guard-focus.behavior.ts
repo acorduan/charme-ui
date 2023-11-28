@@ -6,7 +6,7 @@ import { AfterViewInit, Directive, ElementRef, HostListener, Input } from '@angu
   host: {
     tabindex: '0',
     'aria-hidden': 'true',
-    class : 'fixed opacity-0 pointer-events-none outline-0'
+    class: 'fixed opacity-0 pointer-events-none outline-0'
   }
 })
 export class OverlayGuardFocusGardDirective implements AfterViewInit {

@@ -30,7 +30,7 @@ export class AlertComponent {
     success: 'border-success-500 bg-success-500/10',
     warning: 'border-yellow-400 bg-yellow-400/10',
     error: 'border-error-500 bg-error-500/10',
-    info: 'border-blue-500 bg-blue-500/10'
+    info: 'border-primary-500 bg-primary-500/10'
   }
 
   onActionClick(): void {

@@ -1,7 +1,7 @@
 import { Directive, HostListener, computed, effect, forwardRef } from '@angular/core'
-import { MenuContainer } from './menu.service'
-import { MenuTriggerDirective } from './menu-trigger.directive'
-import { C_MENU, CMenuAccessor } from './menu.model'
+import { MenuContainer } from './menu-container'
+import { MenuTriggerDirective } from '../menu-trigger.directive'
+import { C_MENU, CMenuAccessor } from '../menu.model'
 
 @Directive({
   selector: '[c-menu-bar]',
@@ -12,7 +12,8 @@ import { C_MENU, CMenuAccessor } from './menu.model'
   }],
   host: {
     '[tabindex]': '$isMenuBarOpen() || someItemHasFocus() ? -1 : 0',
-    role: 'menubar'
+    role: 'menubar',
+    'aria-orientation': 'horizontal'
   }
 })
 export class MenuBarDirective extends MenuContainer implements CMenuAccessor {

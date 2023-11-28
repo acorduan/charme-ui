@@ -1,12 +1,11 @@
-import {inject, signal, Directive, ElementRef} from '@angular/core'
-import { MenuItemDirective } from './menu-item.directive'
-import { MenuTriggerDirective } from './menu-trigger.directive'
-import {CMenuAccessor} from "./menu.model";
-
+import { inject, signal, Directive, ElementRef } from '@angular/core'
+import { MenuItemDirective } from '../items/menu-item.directive'
+import { MenuTriggerDirective } from '../menu-trigger.directive'
+import { CMenuAccessor } from '../menu.model'
 
 @Directive()
 export class MenuContainer implements CMenuAccessor {
-  readonly el = inject(ElementRef);
+  readonly el = inject(ElementRef)
   readonly $items = signal<MenuItemDirective[]>([])
 
   registerItem(item: MenuItemDirective): void {

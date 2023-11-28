@@ -3,7 +3,7 @@ import { NgClass, NgComponentOutlet, NgIf, NgTemplateOutlet } from '@angular/com
 import { DialogConfig, DialogRef } from './dialog.model'
 import { OverlayBehavior } from '../overlay/behaviors/overlay.behavior'
 import { OVERLAY_DATA } from '../overlay/overlay.model'
-import {OverlayGuardFocusGardDirective} from "../overlay/behaviors/overlay-guard-focus.behavior";
+import { OverlayGuardFocusGardDirective } from '../overlay/behaviors/overlay-guard-focus.behavior'
 
 @Component({
   selector: 'c-dialog',

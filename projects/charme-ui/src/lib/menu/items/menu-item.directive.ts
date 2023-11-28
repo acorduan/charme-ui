@@ -1,7 +1,7 @@
 import { Directive, ElementRef, HostListener, inject } from '@angular/core'
-import { MenuTriggerDirective } from './menu-trigger.directive'
-import { C_MENU } from './menu.model'
-import { OverlayRef } from '../overlay/overlay.model'
+import { MenuTriggerDirective } from '../menu-trigger.directive'
+import { C_MENU } from '../menu.model'
+import { OverlayRef } from '../../overlay/overlay.model'
 
 @Directive({
   selector: '[c-menu-item]',
@@ -9,7 +9,8 @@ import { OverlayRef } from '../overlay/overlay.model'
   host: {
     role: 'menuitem',
     class: 'justify-between',
-    '[tabindex]': 'isFocus ? 0 : \'-1\''
+    '[tabindex]': 'isFocus ? 0 : \'-1\'',
+    type: 'button'
   }
 })
 export class MenuItemDirective {

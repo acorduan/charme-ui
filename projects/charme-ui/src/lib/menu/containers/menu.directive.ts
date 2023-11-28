@@ -1,7 +1,7 @@
-import {Directive, effect, forwardRef, HostListener, inject, signal} from '@angular/core'
-import {C_MENU, CMenuAccessor} from './menu.model'
-import {MenuContainer} from "./menu.service";
-import {OverlayRef} from "../overlay/overlay.model";
+import { Directive, effect, forwardRef, HostListener, inject, signal } from '@angular/core'
+import { C_MENU, CMenuAccessor } from '../menu.model'
+import { MenuContainer } from './menu-container'
+import { OverlayRef } from '../../overlay/overlay.model'
 
 @Directive({
   selector: '[c-menu]',
@@ -9,7 +9,7 @@ import {OverlayRef} from "../overlay/overlay.model";
   providers: [{
     provide: C_MENU,
     useExisting: forwardRef(() => MenuDirective)
-  }],
+  }]
 })
 export class MenuDirective extends MenuContainer implements CMenuAccessor {
   readonly $focusIndex = signal(0)
@@ -67,5 +67,4 @@ export class MenuDirective extends MenuContainer implements CMenuAccessor {
   @HostListener('keydown.Tab') onFocusOut(): void {
     this.overlayRef.close()
   }
-
 }

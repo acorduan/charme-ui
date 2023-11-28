@@ -56,11 +56,11 @@ module.exports = {
             transparent: 'transparent',
             ...colors,
             ultramarine,
+            base: colors.zinc,
             primary: ultramarine,
             success: colors.green,
             warning: colors.orange,
             error: colors.red
-
         }
     },
     plugins: [
@@ -81,35 +81,35 @@ module.exports = {
                 },
 
                 '.bg-primary': {
-                    '@apply bg-white dark:bg-zinc-950': {}
+                    '@apply bg-white dark:bg-base-950': {}
                 },
 
                 '.bg-secondary': {
-                    '@apply bg-zinc-100 dark:bg-zinc-900': {}
+                    '@apply bg-base-100 dark:bg-base-900': {}
                 },
 
                 '.text-primary': {
-                    '@apply text-zinc-900 dark:text-zinc-100': {}
+                    '@apply text-base-900 dark:text-base-100': {}
                 },
 
                 '.text-secondary': {
-                    '@apply bg-zinc-800 dark:bg-zinc-50': {}
+                    '@apply bg-base-800 dark:bg-base-50': {}
                 },
 
                 '.ring-primary': {
-                    '@apply ring-1 ring-zinc-400 dark:ring-zinc-600': {}
+                    '@apply ring-1 ring-base-400 dark:ring-base-600': {}
                 },
 
                 '.ring-secondary': {
-                    '@apply ring-1 ring-zinc-200 dark:ring-zinc-800': {}
+                    '@apply ring-1 ring-base-200 dark:ring-base-800': {}
                 },
 
                 '.border-primary': {
-                    '@apply border-zinc-400 dark:border-zinc-600': {}
+                    '@apply border-base-400 dark:border-base-600': {}
                 },
 
                 '.border-secondary': {
-                    '@apply border-zinc-200 dark:border-zinc-800': {}
+                    '@apply border-base-200 dark:border-base-800': {}
                 },
 
                 '.card': {

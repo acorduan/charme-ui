@@ -26,10 +26,11 @@ export type SeparatorColor = SeparatorTheme['color']
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'separator',
-    '[attr.aria-orientation]': 'orientation',
+    '[attr.aria-orientation]': '$orientation()',
     '[style.width]': '$orientation() === \'horizontal\' ? size : \'1px\'',
     '[style.height]': '$orientation() === \'horizontal\' ? \'1px\' : size',
-    '[class]': '$class()'
+    '[class]': '$class()',
+    tabindex: '-1'
   }
 })
 export class SeparatorComponent {

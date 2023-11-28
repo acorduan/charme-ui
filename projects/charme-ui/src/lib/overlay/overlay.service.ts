@@ -11,7 +11,7 @@ import {
 } from '@angular/core'
 import { OVERLAY_DATA, OverlayRef } from './overlay.model'
 import { interval, of, Subscription } from 'rxjs'
-import { delay, delayWhen, tap } from 'rxjs/operators'
+import { delayWhen, tap } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'

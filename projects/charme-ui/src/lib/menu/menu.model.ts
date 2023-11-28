@@ -1,6 +1,6 @@
 import { ElementRef, InjectionToken, TemplateRef } from '@angular/core'
 import { OverlayRef } from '../overlay/overlay.model'
-import { MenuItemDirective } from './menu-item.directive'
+import { MenuItemDirective } from './items/menu-item.directive'
 
 export interface MenuTriggerData {
   id: string

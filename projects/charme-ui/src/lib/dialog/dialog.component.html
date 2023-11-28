@@ -1,13 +1,17 @@
 <span overlay-guard-focus position="first" [el]="elementRef"></span>
 
 <div class="animate-dialog-open rounded bg-primary ring-secondary text-primary shadow-lg" [ngClass]="config.panelClass">
-  <ng-container *ngIf="data.comp">
-    <ng-container *ngComponentOutlet="data.comp; inputs: config.inputs"></ng-container>
-  </ng-container>
+  @if (data.comp) {
 
-  <ng-container *ngIf="data.tpl">
+    <ng-container *ngComponentOutlet="data.comp; inputs: config.inputs"></ng-container>
+  
+}
+
+  @if (data.tpl) {
+
     <ng-container *ngTemplateOutlet="data.tpl; context: config.inputs; injector: injector"></ng-container>
-  </ng-container>
+  
+}
 </div>
 
 

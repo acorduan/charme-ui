@@ -4,5 +4,5 @@ c-switch-container[data-disabled="false"] {
   }
 }
 .c-switch-animation {
-  @apply bg-gradient-to-r from-primary-500 to-zinc-200 dark:to-zinc-800 from-50% to-50% transition-[background] duration-200;
+  @apply bg-gradient-to-r from-primary-500 to-base-200 dark:to-base-800 from-50% to-50% transition-[background] duration-200;
 }

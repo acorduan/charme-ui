@@ -4,9 +4,11 @@
     <p class="text-sm" [id]="messageId">{{message}}</p>
   </div>
 
-  <button *ngIf="action" c-button b-type="plain"
+  @if (action) {
+<button c-button b-type="plain"
           class="whitespace-nowrap"
           [color]="severity === 'info' ? 'primary' : severity"
           (click)="onActionClick()">{{action}}</button>
+}
 </div>
 

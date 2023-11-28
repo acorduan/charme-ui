@@ -12,13 +12,17 @@ import { OVERLAY_DATA } from '../overlay/overlay.model'
     NgTemplateOutlet
   ],
   template: `
-    <div *ngIf="message !== undefined" class="animate-tooltip bg-primary max-w-lg text-primary border border-secondary p-2 rounded text-xs">
+    @if (message !== undefined) {
+<div class="animate-tooltip bg-primary max-w-lg text-primary border border-secondary p-2 rounded text-xs">
         {{message}}
     </div>
+}
 
-    <ng-container *ngIf="template !== undefined">
+    @if (template !== undefined) {
+
       <ng-container *ngTemplateOutlet="template"></ng-container>
-    </ng-container>
+
+}
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {

@@ -4,18 +4,20 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { Subscription, tap } from 'rxjs'
 import { OverlayService } from '../overlay/overlay.service'
 import { MenuComponent } from './menu.component'
-import {C_MENU, MenuTriggerData} from './menu.model'
+import { C_MENU, MenuTriggerData } from './menu.model'
 
 @Directive({
   selector: '[c-menu-trigger]',
   standalone: true,
   host: {
     'aria-haspopup': 'menu',
-    '[attr.aria-expanded]': '$isOpen()'
+    '[attr.aria-expanded]': '$isOpen()',
+    '[attr.aria-control]': 'id',
+    type: 'button'
   }
 })
 export class MenuTriggerDirective {
-  readonly menu = inject(C_MENU, {optional: true})
+  readonly menu = inject(C_MENU, { optional: true })
   readonly el = inject(ElementRef)
   readonly #overlay = inject(OverlayService)
   readonly #el = inject(ElementRef<HTMLElement>)
