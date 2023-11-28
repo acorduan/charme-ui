@@ -1,58 +1,59 @@
-import { Directive, effect, inject, signal } from '@angular/core'
-import { MenuService } from './menu.service'
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
-import { MenuNavigationEvent } from './menu.model'
+import {Directive, effect, forwardRef, HostListener, signal} from '@angular/core'
+import {C_MENU, CMenuAccessor} from './menu.model'
+import {MenuContainer} from "./menu.service";
 
 @Directive({
   selector: '[c-menu]',
   standalone: true,
-  providers: [MenuService]
+  providers: [{
+    provide: C_MENU,
+    useExisting: forwardRef(() => MenuDirective)
+  }],
 })
-export class MenuDirective {
-  readonly menu = inject(MenuService)
+export class MenuDirective extends MenuContainer implements CMenuAccessor {
   readonly $focusIndex = signal(0)
 
   constructor() {
+    super()
     this.#initFocus()
-    this.#manageNavigation()
   }
 
   #initFocus(): void {
     effect(() => {
-      const items = this.menu.$items()
+      const items = this.$items()
       const focusIndex = this.$focusIndex()
       items[focusIndex]?.el.nativeElement.focus()
     })
   }
 
-  #manageNavigation(): void {
-    this.menu.onNavigate$
-      .pipe(takeUntilDestroyed())
-      .subscribe((event: MenuNavigationEvent) => {
-        if (event.direction === 'down') {
-          const newIndex = (this.$focusIndex() + 1) % this.menu.$items().length
-          this.$focusIndex.set(newIndex)
-        }
+  @HostListener('keydown.ArrowLeft', ['$event']) onArrowLeft(event: KeyboardEvent): void {
+    event.preventDefault()
+    if (this.overlayRef !== null && this.hostOverlayRef !== undefined) {
+      this.overlayRef.close()
+      event.stopPropagation()
+    }
+  }
 
-        if (event.direction === 'up') {
-          const newIndex = ((this.$focusIndex() - 1) + this.menu.$items().length) % this.menu.$items().length
-          this.$focusIndex.set(newIndex)
-        }
+  @HostListener('keydown.ArrowRight', ['$event']) onArrowRight(event: KeyboardEvent): void {
+    event.preventDefault()
+    const currentItem = this.$items()[this.$focusIndex()]
+    if (currentItem?.trigger?.$isOpen() === false) {
+      currentItem.trigger.open()
+      event.stopPropagation()
+    }
+  }
 
-        if (event.direction === 'right') {
-          const currentItem = this.menu.$items()[this.$focusIndex()]
-          if (currentItem?.trigger?.$isOpen() === false) {
-            currentItem.trigger.open()
-            event.event.stopPropagation()
-          }
-        }
+  @HostListener('keydown.ArrowUp', ['$event']) onArrowUp(event: KeyboardEvent): void {
+    event.stopPropagation()
+    event.preventDefault()
+    const newIndex = ((this.$focusIndex() - 1) + this.$items().length) % this.$items().length
+    this.$focusIndex.set(newIndex)
+  }
 
-        if (event.direction === 'left') {
-          if (this.menu.hostOverlayRef !== undefined && this.menu.overlayRef !== null) {
-            this.menu.overlayRef.close()
-            event.event.stopPropagation()
-          }
-        }
-      })
+  @HostListener('keydown.ArrowDown', ['$event']) onArrowDown(event: KeyboardEvent): void {
+    event.stopPropagation()
+    event.preventDefault()
+    const newIndex = (this.$focusIndex() + 1) % this.$items().length
+    this.$focusIndex.set(newIndex)
   }
 }

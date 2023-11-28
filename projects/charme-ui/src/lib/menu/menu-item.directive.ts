@@ -1,6 +1,7 @@
 import { Directive, ElementRef, HostListener, inject, signal } from '@angular/core'
-import { MenuService } from './menu.service'
 import { MenuTriggerDirective } from './menu-trigger.directive'
+import {C_MENU} from "./menu.model";
+import {OverlayRef} from "../overlay/overlay.model";
 
 @Directive({
   selector: '[c-menu-item]',
@@ -12,8 +13,10 @@ import { MenuTriggerDirective } from './menu-trigger.directive'
   }
 })
 export class MenuItemDirective {
-  readonly #menu = inject(MenuService)
+  readonly menu = inject(C_MENU, {optional: true})
   readonly trigger = inject(MenuTriggerDirective, { optional: true })
+  readonly overlayRef = inject(OverlayRef, {optional: true})
+
   readonly el = inject(ElementRef)
   isFocus = false
 
@@ -26,35 +29,18 @@ export class MenuItemDirective {
   }
 
   @HostListener('mouseenter') onHover(): void {
-    this.#menu.closeOthers(this)
+    this.menu?.closeOthers(this)
   }
 
   @HostListener('click', ['$event']) onClick(event: MouseEvent): void {
     this.el.nativeElement.focus()
-    this.trigger !== null ? event.stopPropagation() : this.#menu.closeOthers(this)
-  }
-
-  @HostListener('keydown.ArrowLeft', ['$event']) onArrowLeft(event: KeyboardEvent): void {
-    this.#menu.navigate$.next({ item: this, direction: 'left', event })
-    event.preventDefault()
-  }
-
-  @HostListener('keydown.ArrowRight', ['$event']) onArrowRight(event: KeyboardEvent): void {
-    this.#menu.navigate$.next({ item: this, direction: 'right', event })
-    event.preventDefault()
-  }
-
-  @HostListener('keydown.ArrowUp', ['$event']) onArrowUp(event: KeyboardEvent): void {
-    this.#menu.navigate$.next({ item: this, direction: 'up', event })
-    event.preventDefault()
-  }
-
-  @HostListener('keydown.ArrowDown', ['$event']) onArrowDown(event: KeyboardEvent): void {
-    this.#menu.navigate$.next({ item: this, direction: 'down', event })
-    event.preventDefault()
+    this.trigger !== null
+      ? event.stopPropagation()
+      : this.overlayRef?.close()
   }
 
   constructor() {
-    this.#menu.registerItem(this)
+    this.menu?.registerItem(this)
   }
+
 }

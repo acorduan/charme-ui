@@ -1,28 +1,25 @@
-import { Injectable, inject, signal } from '@angular/core'
+import {inject, signal, Directive, ElementRef} from '@angular/core'
 import { MenuItemDirective } from './menu-item.directive'
 import { MenuTriggerDirective } from './menu-trigger.directive'
 import { OverlayRef } from '../overlay/overlay.model'
-import { Subject } from 'rxjs'
-import { MenuNavigationEvent } from './menu.model'
+import {CMenuAccessor} from "./menu.model";
 
-@Injectable({
-  providedIn: 'root'
-})
-export class MenuService {
+
+@Directive()
+export class MenuContainer implements CMenuAccessor {
+  readonly el = inject(ElementRef);
   readonly $items = signal<MenuItemDirective[]>([])
   readonly overlayRef = inject(OverlayRef, { optional: true })
-  readonly navigate$ = new Subject<MenuNavigationEvent>()
-  readonly onNavigate$ = this.navigate$.asObservable()
-
-  get hostOverlayRef(): OverlayRef | undefined {
-    return this.overlayRef?.config.data.hostOverlayRef ?? undefined
-  }
 
   registerItem(item: MenuItemDirective): void {
     this.$items.update(items => {
       items.push(item)
       return [...items]
     })
+  }
+
+  get hostOverlayRef(): OverlayRef | undefined {
+    return this.overlayRef?.config.data.hostOverlayRef ?? undefined
   }
 
   closeOthers(hoverItem: MenuItemDirective): void {

@@ -8,15 +8,11 @@ export interface MenuTriggerData {
   hostOverlayRef: OverlayRef | null
 }
 
-export interface MenuNavigationEvent {
-  item: MenuItemDirective
-  direction: 'up' | 'down' | 'right' | 'left'
-  event: KeyboardEvent
-}
 
-
-export interface CMenuBarAccessor {
+export interface CMenuAccessor {
   el: ElementRef
+  registerItem(item: MenuItemDirective): void
+  closeOthers(item: MenuItemDirective): void
 }
 
-export const C_MENU_BAR = new InjectionToken<CMenuBarAccessor>('C_MENU_BAR')
+export const C_MENU = new InjectionToken<CMenuAccessor>('C_MENU')
