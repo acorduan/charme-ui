@@ -5,7 +5,6 @@ import {
   TemplateRef,
   inject,
   ElementRef,
-  AfterViewInit
 } from '@angular/core'
 import {OVERLAY_DATA, OverlayConfig, OverlayRef} from '../overlay/overlay.model'
 import {OverlayBehavior} from '../overlay/behaviors/overlay.behavior'

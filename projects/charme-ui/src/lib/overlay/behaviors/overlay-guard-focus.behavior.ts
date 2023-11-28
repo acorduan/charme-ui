@@ -22,15 +22,17 @@ export class OverlayGuardFocusGardDirective implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const component = this.el.nativeElement.children[1]
-    this.focusableElements = component?.querySelectorAll(
-      'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
-    )
-    if (this.focusableElements !== undefined && this.focusableElements.length > 0) {
-      this.focusableElements[0].focus()
-    } else {
-      this.el.nativeElement.focus()
-    }
+    setTimeout(() => {
+      const component = this.el.nativeElement.children[1]
+      this.focusableElements = component?.querySelectorAll(
+        'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
+      )
+      if (this.focusableElements !== undefined && this.focusableElements.length > 0) {
+        this.focusableElements[0].focus()
+      } else {
+        this.el.nativeElement.focus()
+      }
+    })
   }
 
   focusFirst(): void {
