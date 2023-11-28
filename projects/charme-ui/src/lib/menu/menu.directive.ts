@@ -56,4 +56,10 @@ export class MenuDirective extends MenuContainer implements CMenuAccessor {
     const newIndex = (this.$focusIndex() + 1) % this.$items().length
     this.$focusIndex.set(newIndex)
   }
+
+  @HostListener('keydown.Shift.Tab')
+  @HostListener('keydown.Tab') onFocusOut(): void {
+    this.overlayRef?.close()
+  }
+
 }

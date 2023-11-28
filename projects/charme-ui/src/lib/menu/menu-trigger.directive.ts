@@ -33,11 +33,6 @@ export class MenuTriggerDirective {
     this.$isOpen() ? this.close() : this.open()
   }
 
-  @HostListener('keydown.Shift.Tab')
-  @HostListener('keydown.Tab') onFocusOut(): void {
-    this.close()
-  }
-
   @HostListener('mouseenter') onHover(): void {
     this.triggerEvent === 'hover' && this.open()
   }
