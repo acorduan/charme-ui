@@ -1,9 +1,4 @@
-<span dialog-focus-guard
-      class="fixed opacity-0 pointer-events-none outline-0"
-      position="first"
-      aria-hidden="true"
-      tabindex="0"
-      [dialogElementRef]="elementRef"></span>
+<span overlay-guard-focus position="first" [el]="elementRef"></span>
 
 <div class="animate-dialog-open rounded bg-primary ring-secondary text-primary shadow-lg" [ngClass]="config.panelClass">
   <ng-container *ngIf="data.comp">
@@ -16,9 +11,4 @@
 </div>
 
 
-<span dialog-focus-guard
-      class="fixed opacity-0 pointer-events-none outline-0"
-      position="last"
-      aria-hidden="true"
-      tabindex="0"
-      [dialogElementRef]="elementRef"></span>
+<span overlay-guard-focus position="last" [el]="elementRef"></span>

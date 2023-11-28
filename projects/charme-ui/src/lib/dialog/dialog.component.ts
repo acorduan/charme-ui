@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, ElementRef, inject, Injector, TemplateRef, Type } from '@angular/core'
 import { NgClass, NgComponentOutlet, NgIf, NgTemplateOutlet } from '@angular/common'
 import { DialogConfig, DialogRef } from './dialog.model'
-import { DialogFocusGardDirective } from './dialog-focus-guard.directive'
 import { OverlayBehavior } from '../overlay/behaviors/overlay.behavior'
 import { OVERLAY_DATA } from '../overlay/overlay.model'
+import {OverlayGuardFocusGardDirective} from "../overlay/behaviors/overlay-guard-focus.behavior";
 
 @Component({
   selector: 'c-dialog',
@@ -11,8 +11,8 @@ import { OVERLAY_DATA } from '../overlay/overlay.model'
     NgClass,
     NgIf,
     NgComponentOutlet,
-    DialogFocusGardDirective,
-    NgTemplateOutlet
+    NgTemplateOutlet,
+    OverlayGuardFocusGardDirective
   ],
   hostDirectives: [OverlayBehavior],
   templateUrl: 'dialog.component.html',
@@ -27,7 +27,7 @@ import { OVERLAY_DATA } from '../overlay/overlay.model'
 export class DialogComponent {
   data: { tpl: TemplateRef<any> | undefined, comp: Type<any> | undefined } = inject(OVERLAY_DATA)
   dialogRef = inject(DialogRef)
-  elementRef = inject(ElementRef<HTMLDialogElement>)
+  elementRef = inject(ElementRef<HTMLElement>)
   injector = Injector.create({ providers: [{ provide: DialogRef, useValue: this.dialogRef }] })
 
   get config(): DialogConfig {

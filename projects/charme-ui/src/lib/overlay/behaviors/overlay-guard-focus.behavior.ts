@@ -1,11 +1,16 @@
 import { AfterViewInit, Directive, ElementRef, HostListener, Input } from '@angular/core'
 
 @Directive({
-  selector: '[dialog-focus-guard]',
-  standalone: true
+  selector: '[overlay-guard-focus]',
+  standalone: true,
+  host: {
+    tabindex: '0',
+    'aria-hidden': 'true',
+    class : 'fixed opacity-0 pointer-events-none outline-0'
+  }
 })
-export class DialogFocusGardDirective implements AfterViewInit {
-  @Input({ required: true }) dialogElementRef!: ElementRef<HTMLElement>
+export class OverlayGuardFocusGardDirective implements AfterViewInit {
+  @Input({ required: true }) el!: ElementRef<HTMLElement>
   @Input({ required: true }) position!: 'first' | 'last'
 
   focusableElements: NodeListOf<any> | undefined = undefined
@@ -17,14 +22,14 @@ export class DialogFocusGardDirective implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const component = this.dialogElementRef.nativeElement.children[1]
+    const component = this.el.nativeElement.children[1]
     this.focusableElements = component?.querySelectorAll(
       'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
     )
     if (this.focusableElements !== undefined && this.focusableElements.length > 0) {
       this.focusableElements[0].focus()
     } else {
-      this.dialogElementRef.nativeElement.focus()
+      this.el.nativeElement.focus()
     }
   }
 

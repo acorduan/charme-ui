@@ -1,6 +1,7 @@
-import {Directive, effect, forwardRef, HostListener, signal} from '@angular/core'
+import {Directive, effect, forwardRef, HostListener, inject, signal} from '@angular/core'
 import {C_MENU, CMenuAccessor} from './menu.model'
 import {MenuContainer} from "./menu.service";
+import {OverlayRef} from "../overlay/overlay.model";
 
 @Directive({
   selector: '[c-menu]',
@@ -12,6 +13,11 @@ import {MenuContainer} from "./menu.service";
 })
 export class MenuDirective extends MenuContainer implements CMenuAccessor {
   readonly $focusIndex = signal(0)
+  readonly overlayRef = inject(OverlayRef)
+
+  get hostOverlayRef(): OverlayRef | undefined {
+    return this.overlayRef?.config.data.hostOverlayRef ?? undefined
+  }
 
   constructor() {
     super()
@@ -28,7 +34,7 @@ export class MenuDirective extends MenuContainer implements CMenuAccessor {
 
   @HostListener('keydown.ArrowLeft', ['$event']) onArrowLeft(event: KeyboardEvent): void {
     event.preventDefault()
-    if (this.overlayRef !== null && this.hostOverlayRef !== undefined) {
+    if (this.hostOverlayRef !== undefined) {
       this.overlayRef.close()
       event.stopPropagation()
     }
@@ -59,7 +65,7 @@ export class MenuDirective extends MenuContainer implements CMenuAccessor {
 
   @HostListener('keydown.Shift.Tab')
   @HostListener('keydown.Tab') onFocusOut(): void {
-    this.overlayRef?.close()
+    this.overlayRef.close()
   }
 
 }

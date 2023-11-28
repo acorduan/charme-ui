@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, inject, signal } from '@angular/core'
+import { Directive, ElementRef, HostListener, inject } from '@angular/core'
 import { MenuTriggerDirective } from './menu-trigger.directive'
 import {C_MENU} from "./menu.model";
 import {OverlayRef} from "../overlay/overlay.model";
