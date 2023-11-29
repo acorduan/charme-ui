@@ -1,6 +1,6 @@
 <h3>
   <button c-ripple
-          [id]="'c-accordion-item-heading-' + id"
+          [id]="'c-accordion-item-button-' + id"
           [attr.aria-controls]="'c-accordion-item-region-' + id"
           [attr.aria-expanded]="$open()"
           [rippleDisabled]="disabled"
@@ -13,7 +13,7 @@
 </h3>
 
 <div #contentContainer
-     [attr.aria-labelledby]="'c-accordion-item-heading-' + id"
+     [attr.aria-labelledby]="'c-accordion-item-button-' + id"
      role="region"
      [id]="'c-accordion-item-region-' + id"
      class="transition-all overflow-hidden text-sm"

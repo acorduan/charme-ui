@@ -36,15 +36,14 @@ export class AccordionItemComponent {
     this.$maxHeight.set(`${height}px`)
   }
 
-  @Input({ transform: booleanAttribute }) disabled: any
+  @Input({ transform: booleanAttribute }) disabled: boolean = false
 
-  @Input({ transform: booleanAttribute }) set open(value: any) {
+  $open = signal(false)
+  @Input({ transform: booleanAttribute }) set open(value: boolean) {
     this.$open.set(value)
   }
 
   @Output() openChange = new EventEmitter<boolean>()
-
-  $open = signal(false)
 
   $height = computed(() => {
     const maxHeight = this.$maxHeight()

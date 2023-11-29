@@ -10,7 +10,7 @@ import { C_ACCORDION_ACCESSOR, CAccordionAccessor } from './accordion.model'
 @Component({
   standalone: true,
   selector: 'c-accordion',
-  templateUrl: 'accordion.component.html',
+  template: '<ng-content/>',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {

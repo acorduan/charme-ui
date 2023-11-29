@@ -17,7 +17,7 @@ import { OverlayGuardFocusGardDirective } from '../overlay/behaviors/overlay-gua
   template: `
     <span overlay-guard-focus position="first" [el]="el"></span>
     <div class="rounded bg-primary ring-secondary text-primary shadow-lg">
-      <ng-container *ngTemplateOutlet="data.tpl; context: config.data; injector: injector"></ng-container>
+      <ng-container *ngTemplateOutlet="data.tpl; context: config.data; injector: injector"/>
     </div>
     <span overlay-guard-focus position="last" [el]="el"></span>
   `,
