@@ -80,8 +80,8 @@ export class MenuTriggerDirective {
     const configModel: Partial<OverlayConfigModel<MenuTriggerData>> = {
       attachedTo: {
         origin: this.#el,
-        originPos: (_, overlayEl) => this.calcOriginPos(overlayEl),
-        overlayPos: (_, overlayEl) => this.calcOriginPos(overlayEl, true),
+        originPos: (_, overlayEl) => this.calcPos(overlayEl),
+        overlayPos: (_, overlayEl) => this.calcPos(overlayEl, true),
         gap: this.hostOverlayRef !== null ? 0 : 5
       },
       closeOnClickOutside: true,
@@ -97,7 +97,7 @@ export class MenuTriggerDirective {
     return new OverlayConfig(configModel)
   }
 
-  calcOriginPos(overlayEl: ElementRef<HTMLElement>, inverse = false): AttachedToPosition {
+  calcPos(overlayEl: ElementRef<HTMLElement>, inverse = false): AttachedToPosition {
     if (this.originPos !== undefined) {
       return this.originPos
     }
