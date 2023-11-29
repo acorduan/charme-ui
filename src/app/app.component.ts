@@ -86,9 +86,9 @@ export class AppComponent {
         isItGood: true
       },
       attachedTo: {
-        host: this.buttonEl,
-        hostPos: 'bottom-right',
-        dialogPos: 'top-right'
+        origin: this.buttonEl,
+        originPos: 'bottom-right',
+        overlayPos: 'top-right'
       },
       hasBackDrop: false,
       panelClass: 'rounded'

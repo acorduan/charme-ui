@@ -37,43 +37,43 @@ export class OverlayPositionBehavior implements AfterViewInit, OnDestroy {
       return undefined
     }
 
-    const { host, hostPos, dialogPos, gap } = this.config.attachedTo
+    const { origin, originPos, overlayPos, gap } = this.config.attachedTo
 
-    const dialogRect = this.#elementRef.nativeElement.getBoundingClientRect()
-    const hostRect = host.nativeElement.getBoundingClientRect()
+    const overlayRect = this.#elementRef.nativeElement.getBoundingClientRect()
+    const originRect = origin.nativeElement.getBoundingClientRect()
 
-    const [hostPosSide, hostPosVertice] = hostPos.split('-')
-    const [dialogPosSide, dialogPosVertice] = dialogPos.split('-')
+    const [originPosSide, originPosVertex] = typeof originPos === 'function' ? originPos(origin, this.#elementRef).split('-') : originPos.split('-')
+    const [overlayPosSide, overlayPosVertex] = typeof overlayPos === 'function' ? overlayPos(origin, this.#elementRef).split('-') : overlayPos.split('-')
 
-    const hostTopY = hostPosSide.includes('top') || hostPosVertice.includes('top') ? hostRect.y : undefined
-    const hostBottomY = hostPosSide.includes('bottom') || hostPosVertice.includes('bottom') ? hostRect.y + hostRect.height : undefined
-    const hostCenterY = hostPosSide.includes('center') || hostPosVertice.includes('center') ? hostRect.y + (hostRect.height / 2) : undefined
+    const hostTopY = originPosSide.includes('top') || originPosVertex.includes('top') ? originRect.y : undefined
+    const hostBottomY = originPosSide.includes('bottom') || originPosVertex.includes('bottom') ? originRect.y + originRect.height : undefined
+    const hostCenterY = originPosSide.includes('center') || originPosVertex.includes('center') ? originRect.y + (originRect.height / 2) : undefined
 
     const hostY = hostTopY ?? hostBottomY ?? hostCenterY
 
-    const hostLeftX = hostPosVertice.includes('left') || hostPosSide.includes('left') ? hostRect.x : undefined
-    const hostRightX = hostPosVertice.includes('right') || hostPosSide.includes('right') ? hostRect.x + hostRect.width : undefined
-    const hostCenter = hostPosVertice.includes('center') || hostPosSide.includes('center') ? hostRect.x + (hostRect.width / 2) : undefined
+    const hostLeftX = originPosVertex.includes('left') || originPosSide.includes('left') ? originRect.x : undefined
+    const hostRightX = originPosVertex.includes('right') || originPosSide.includes('right') ? originRect.x + originRect.width : undefined
+    const hostCenter = originPosVertex.includes('center') || originPosSide.includes('center') ? originRect.x + (originRect.width / 2) : undefined
 
     const hostX = hostLeftX ?? hostRightX ?? hostCenter
 
-    const topY = dialogPosSide.includes('top') || dialogPosVertice.includes('top') ? hostY : undefined
-    const bottomY = dialogPosSide.includes('bottom') || dialogPosVertice.includes('bottom') ? hostY - dialogRect.height : undefined
-    const centerY = dialogPosSide.includes('center') || dialogPosVertice.includes('center') ? hostY - (dialogRect.height / 2) : undefined
+    const topY = overlayPosSide.includes('top') || overlayPosVertex.includes('top') ? hostY : undefined
+    const bottomY = overlayPosSide.includes('bottom') || overlayPosVertex.includes('bottom') ? hostY - overlayRect.height : undefined
+    const centerY = overlayPosSide.includes('center') || overlayPosVertex.includes('center') ? hostY - (overlayRect.height / 2) : undefined
 
     const Y = topY ?? bottomY ?? centerY
 
-    const leftX = dialogPosVertice.includes('left') || dialogPosSide.includes('left') ? hostX : undefined
-    const rightX = dialogPosVertice.includes('right') || dialogPosSide.includes('right') ? hostX - dialogRect.width : undefined
-    const centerX = dialogPosVertice.includes('center') || dialogPosSide.includes('center') ? hostX - (dialogRect.width / 2) : undefined
+    const leftX = overlayPosVertex.includes('left') || overlayPosSide.includes('left') ? hostX : undefined
+    const rightX = overlayPosVertex.includes('right') || overlayPosSide.includes('right') ? hostX - overlayRect.width : undefined
+    const centerX = overlayPosVertex.includes('center') || overlayPosSide.includes('center') ? hostX - (overlayRect.width / 2) : undefined
     const X = leftX ?? rightX ?? centerX
 
-    const gapTopY = hostPosSide.includes('top') ? (gap ?? 0) * -1 : 0
-    const gapBottomY = hostPosSide.includes('bottom') ? (gap ?? 0) : 0
+    const gapTopY = originPosSide.includes('top') ? (gap ?? 0) * -1 : 0
+    const gapBottomY = originPosSide.includes('bottom') ? (gap ?? 0) : 0
     const gapY = gapTopY + gapBottomY
 
-    const gapRightX = hostPosSide.includes('left') ? (gap ?? 0) * -1 : 0
-    const gapLeftX = hostPosSide.includes('right') ? (gap ?? 0) : 0
+    const gapRightX = originPosSide.includes('left') ? (gap ?? 0) * -1 : 0
+    const gapLeftX = originPosSide.includes('right') ? (gap ?? 0) : 0
     const gapX = gapRightX + gapLeftX
     return {
       top: Y + gapY + 'px',
@@ -82,15 +82,15 @@ export class OverlayPositionBehavior implements AfterViewInit, OnDestroy {
   }
 
   #initPositionObserver(): void {
-    if (this.config.attachedTo?.host !== undefined) {
-      const rect = this.config.attachedTo.host.nativeElement.getBoundingClientRect()
+    if (this.config.attachedTo?.origin !== undefined) {
+      const rect = this.config.attachedTo.origin.nativeElement.getBoundingClientRect()
       this.#observePosition(rect)
     }
   }
 
   #observePosition(rect: { x: number, y: number }): void {
-    if (this.config.attachedTo?.host !== undefined) {
-      const { x, y } = this.config.attachedTo.host.nativeElement.getBoundingClientRect()
+    if (this.config.attachedTo?.origin !== undefined) {
+      const { x, y } = this.config.attachedTo.origin.nativeElement.getBoundingClientRect()
       if (x !== rect.x || y !== rect.y) {
         this.#initPosition()
       }

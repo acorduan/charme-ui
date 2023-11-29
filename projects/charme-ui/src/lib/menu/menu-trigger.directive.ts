@@ -1,5 +1,15 @@
-import { DestroyRef, Directive, ElementRef, HostListener, Input, TemplateRef, inject, signal, computed } from '@angular/core'
-import { OverlayConfig, OverlayConfigModel, OverlayRef } from '../overlay/overlay.model'
+import {
+  computed,
+  DestroyRef,
+  Directive,
+  ElementRef,
+  HostListener,
+  inject,
+  Input,
+  signal,
+  TemplateRef
+} from '@angular/core'
+import { AttachedToPosition, OverlayConfig, OverlayConfigModel, OverlayRef } from '../overlay/overlay.model'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { Subscription, tap } from 'rxjs'
 import { OverlayService } from '../overlay/overlay.service'
@@ -18,7 +28,6 @@ import { C_MENU, MenuTriggerData } from './menu.model'
 })
 export class MenuTriggerDirective {
   readonly menu = inject(C_MENU, { optional: true })
-  readonly el = inject(ElementRef)
   readonly #overlay = inject(OverlayService)
   readonly #el = inject(ElementRef<HTMLElement>)
   readonly #destroyRef = inject(DestroyRef)
@@ -28,6 +37,9 @@ export class MenuTriggerDirective {
   readonly id = `c-menu-${crypto.randomUUID()}`
 
   @Input() triggerEvent: 'hover' | 'click' = this.hostOverlayRef !== null ? 'hover' : 'click'
+
+  @Input() overlayPos: AttachedToPosition | undefined
+  @Input() originPos: AttachedToPosition | undefined
 
   @Input('c-menu-trigger') tpl!: TemplateRef<any>
 
@@ -40,7 +52,7 @@ export class MenuTriggerDirective {
   }
 
   open(): void {
-    if (this.$overlayRef() !== undefined) {
+    if (this.$isOpen()) {
       return
     }
 
@@ -67,9 +79,9 @@ export class MenuTriggerDirective {
   #getConfig(): OverlayConfig<MenuTriggerData> {
     const configModel: Partial<OverlayConfigModel<MenuTriggerData>> = {
       attachedTo: {
-        host: this.#el,
-        hostPos: this.hostOverlayRef !== null ? 'right-top' : 'bottom-left',
-        dialogPos: this.hostOverlayRef !== null ? 'left-top' : 'top-left',
+        origin: this.#el,
+        originPos: (_, overlayEl) => this.calcOriginPos(overlayEl),
+        overlayPos: (_, overlayEl) => this.calcOriginPos(overlayEl, true),
         gap: this.hostOverlayRef !== null ? 0 : 5
       },
       closeOnClickOutside: true,
@@ -83,5 +95,41 @@ export class MenuTriggerDirective {
       host: this.menu?.el
     }
     return new OverlayConfig(configModel)
+  }
+
+  calcOriginPos(overlayEl: ElementRef<HTMLElement>, inverse = false): AttachedToPosition {
+    if (this.originPos !== undefined) {
+      return this.originPos
+    }
+
+    let x: 'left' | 'right' = 'right'
+    let y: 'top' | 'bottom' = 'top'
+
+    const originRect: DOMRect = this.#el.nativeElement.getBoundingClientRect()
+    const overlayRect: DOMRect = overlayEl.nativeElement.getBoundingClientRect()
+
+    const originX = this.hostOverlayRef !== null ? originRect.x + originRect.width : originRect.x
+    const originY = this.hostOverlayRef !== null ? originRect.y : originRect.y + originRect.height
+
+    if ((originX + overlayRect.width) > window.innerWidth) {
+      x = 'left'
+    }
+
+    if ((originY + overlayRect.height) > window.innerHeight) {
+      y = 'bottom'
+    }
+
+    x = inverse ? (this.hostOverlayRef !== null ? this.xOpposite(x) : x) : x
+    y = inverse ? (this.hostOverlayRef !== null ? y : this.yOpposite(y)) : y
+
+    return this.hostOverlayRef !== null ? `${x}-${y}` : `${this.yOpposite(y)}-${this.xOpposite(x)}`
+  }
+
+  xOpposite(x: 'left' | 'right'): 'left' | 'right' {
+    return x === 'left' ? 'right' : 'left'
+  }
+
+  yOpposite(y: 'top' | 'bottom'): 'top' | 'bottom' {
+    return y === 'top' ? 'bottom' : 'top'
   }
 }

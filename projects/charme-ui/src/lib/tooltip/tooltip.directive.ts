@@ -45,16 +45,16 @@ export class TooltipDirective implements OnDestroy {
 
   @HostListener('mouseover') onMouseOver(): void {
     if (this.showTooltip) {
-      const hostPos = `${this.position}-center` as any
-      const dialogPos = `${this.#opposite[this.position]}-center` as any
+      const originPos = `${this.position}-center` as any
+      const overlayPos = `${this.#opposite[this.position]}-center` as any
 
       this.tooltipId = `c-tooltip-${crypto.randomUUID()}`
       this.#tooltipRef?.close()
       const configModel: Partial<OverlayConfigModel> = {
         attachedTo: {
-          host: this.#elementRef,
-          hostPos,
-          dialogPos,
+          origin: this.#elementRef,
+          originPos,
+          overlayPos,
           gap: 5
         },
         data: {
