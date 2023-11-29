@@ -37,7 +37,7 @@ export const buttonThemes = cva(
         error: 'bg-transparent text-error-700 dark:text-error-500 hover:bg-error-500/20 hover:dark:bg-error-600/20'
       },
       size: {
-        sm: 'h-6 text-[0.70rem]',
+        sm: 'h-6 text-xs',
         md: 'h-8 text-sm',
         lg: 'h-11 text-base',
         'sm-icon': 'h-6 w-6 text-[0.70rem] px-0',
