@@ -1,4 +1,4 @@
-import { Directive, HostListener, inject, signal } from '@angular/core'
+import { computed, Directive, effect, HostListener, inject, signal } from '@angular/core'
 import { ComboboxOptionDirective } from './combobox-option.directive'
 import { OverlayRef } from '../overlay/overlay.model'
 import { C_COMBOBOX_ACCESSOR } from './combobox-trigger.directive'
@@ -18,6 +18,11 @@ export class ComboboxDirective {
   readonly #overlayRef = inject(OverlayRef)
   #searchInput: ComboboxSearchDirective | undefined
 
+  $displayedOptions = computed(() => {
+    const options = this.$options()
+    return options.filter((item) => item.$display())
+  })
+
   @HostListener('focus') onFocus(): void {
     this.#searchInput?.el.nativeElement.focus()
   }
@@ -26,14 +31,14 @@ export class ComboboxDirective {
   $options = signal<ComboboxOptionDirective[]>([])
   @HostListener('keydown.ArrowDown', ['$event']) onArrowDown(event: KeyboardEvent): void {
     event.preventDefault()
-    const length = this.$options()?.length
+    const length = this.$displayedOptions()?.length
     const selectedIndex = (this.$selectedIndex() + 1) % length
     this.$selectedIndex.set(selectedIndex)
   }
 
   @HostListener('keydown.ArrowUp', ['$event']) onArrowUp(event: KeyboardEvent): void {
     event.preventDefault()
-    const length = this.$options().length
+    const length = this.$displayedOptions().length
     const selectedIndex = ((this.$selectedIndex() - 1) + length) % length
     this.$selectedIndex.set(selectedIndex)
   }
@@ -47,6 +52,13 @@ export class ComboboxDirective {
     this.#overlayRef.close()
   }
 
+  constructor() {
+    effect(() => {
+      const options = this.$displayedOptions()
+      options.forEach((item, index) => item.$index.set(index))
+    }, { allowSignalWrites: true })
+  }
+
   onSearch(event: InputEvent): void {
     const text: string = (event.target as any).value.toLowerCase()
     this.$options().forEach(item => {
@@ -57,7 +69,6 @@ export class ComboboxDirective {
   }
 
   registerOptions(item: ComboboxOptionDirective): void {
-    item.$index.set(this.$options().length)
     this.$options.update(items => {
       items.push(item)
       return [...items]
