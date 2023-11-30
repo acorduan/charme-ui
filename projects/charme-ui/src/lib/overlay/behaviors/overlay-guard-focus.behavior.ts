@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, HostListener, Input } from '@angular/core'
+import { AfterViewInit, Directive, ElementRef, HostListener, inject, Input } from '@angular/core'
 
 @Directive({
   selector: '[overlay-guard-focus]',
@@ -10,6 +10,8 @@ import { AfterViewInit, Directive, ElementRef, HostListener, Input } from '@angu
   }
 })
 export class OverlayGuardFocusGardDirective implements AfterViewInit {
+  guardEl = inject(ElementRef)
+
   @Input({ required: true }) el!: ElementRef<HTMLElement>
   @Input({ required: true }) position!: 'first' | 'last'
 
@@ -31,7 +33,7 @@ export class OverlayGuardFocusGardDirective implements AfterViewInit {
       if (this.focusableElements !== undefined && this.focusableElements.length > 0) {
         this.focusableElements[0].focus()
       } else {
-        this.el.nativeElement.focus()
+        this.guardEl.nativeElement.focus()
       }
     })
   }

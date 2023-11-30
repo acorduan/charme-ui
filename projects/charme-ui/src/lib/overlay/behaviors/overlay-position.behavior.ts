@@ -8,6 +8,7 @@ export class OverlayPositionBehavior implements AfterViewInit, OnDestroy {
   readonly #overlayRef = inject(OverlayRef)
   readonly #elementRef = inject(ElementRef)
   #positionObserver: number | undefined
+  observer: ResizeObserver | undefined
 
   get config(): OverlayConfig {
     return this.#overlayRef.config
@@ -16,6 +17,12 @@ export class OverlayPositionBehavior implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.#initPosition()
     this.#initPositionObserver()
+    this.#initResizeObserver()
+  }
+
+  #initResizeObserver(): void {
+    this.observer = new ResizeObserver(entries => this.#initPosition())
+    this.observer.observe(this.#elementRef.nativeElement)
   }
 
   #initPosition(): void {
@@ -119,5 +126,6 @@ export class OverlayPositionBehavior implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.#destroyObserver()
+    this.observer?.unobserve(this.#elementRef.nativeElement)
   }
 }

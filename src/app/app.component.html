@@ -639,10 +639,46 @@
     </button>
 
     <ng-template #comboBox>
-      <div class="grid w-60 p-1" c-combobox>
-        @for (framework of frameworks; track $index) {
-          <button c-button c-combo-option b-type="flat" color="basic" [value]="framework">{{ framework }}</button>
+      <div class="grid w-40 p-1" c-combobox>
+        @for (framework of frameworks;track $index) {
+          <button c-button c-combo-option b-type="flat" color="basic" [value]="framework">
+            {{ framework }}
+            @if(framework === selectedFramework) {
+              <i class="material-icons-outlined">check</i>
+            }
+          </button>
         }
+      </div>
+    </ng-template>
+
+
+    <button [(ngModel)]="selectedFramework" c-button b-type="outline" color="basic" [c-combobox-trigger]="comboBoxSearch">
+      Selected framework: {{ selectedFramework }}
+      <i class="material-icons-outlined"> unfold_more </i>
+    </button>
+
+    <ng-template #comboBoxSearch>
+      <div class="grid p-1 gap-1" c-combobox>
+
+        <div class="p-1 flex items-center gap-2">
+          <i class="material-icons-outlined">search</i>
+          <input c-combo-search placeholder="Search..." class="flex-1">
+        </div>
+
+        <c-separator class="mb-2" color="secondary" />
+
+        <div class="grid">
+          @for (framework of frameworks;track $index) {
+            <button c-button c-combo-option b-type="flat" color="basic" [value]="framework">
+              {{ framework }}
+              @if(framework === selectedFramework) {
+                <i class="material-icons-outlined">check</i>
+              }
+            </button>
+          }
+        </div>
+
+
       </div>
     </ng-template>
 

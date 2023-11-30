@@ -1,40 +1,53 @@
-import { Component, DestroyRef, ElementRef, inject, Injectable, Input, TemplateRef, ViewChild } from '@angular/core'
-import { RouterOutlet } from '@angular/router'
-import { NgSwitch, NgSwitchDefault, NgSwitchCase, NgComponentOutlet, NgForOf, NgClass } from '@angular/common'
 import {
-  ButtonComponent,
-  CharmeThemeService,
-  InputDirective,
-  DialogRef,
-  TooltipDirective,
-  DialogTitleDirective,
-  DialogService,
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  ElementRef,
+  inject,
+  Input,
+  TemplateRef,
+  ViewChild
+} from '@angular/core'
+import { RouterOutlet } from '@angular/router'
+import { NgClass, NgComponentOutlet, NgForOf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common'
+import {
+  AccordionComponent,
+  AccordionContentDirective,
+  AccordionItemComponent,
+  AccordionTriggerDirective,
   AlertComponent,
   AlertDialogService,
-  AlertSeverity,
   alertSeverities,
-  CheckboxDirective,
-  SwitchContainerComponent,
-  EllipsisDirective,
-  RadioGroupComponent,
-  RadioButtonComponent,
-  AccordionTriggerDirective,
-  AccordionComponent,
-  AccordionItemComponent,
-  AccordionContentDirective,
-  CheckboxContainerComponent,
-  SwitchComponent,
-  DialogCloseDirective,
-  MenuTriggerDirective,
-  MenuBarDirective,
-  MenuItemDirective,
-  MenuItemCheckboxDirective,
-  MenuDirective,
-  ItemCheckboxCheckedComponent,
-  MenuItemRadioDirective,
-  ItemRadioCheckedComponent,
+  AlertSeverity,
   BadgeDirective,
-  ComboboxTriggerDirective, C_COMBOBOX_ACCESSOR, ComboboxOptionDirective, ComboboxDirective
+  ButtonComponent,
+  C_COMBOBOX_ACCESSOR,
+  CharmeThemeService,
+  CheckboxContainerComponent,
+  CheckboxDirective,
+  ComboboxDirective,
+  ComboboxOptionDirective,
+  ComboboxSearchDirective,
+  ComboboxTriggerDirective,
+  DialogCloseDirective,
+  DialogRef,
+  DialogService,
+  DialogTitleDirective,
+  EllipsisDirective,
+  InputDirective,
+  ItemCheckboxCheckedComponent,
+  ItemRadioCheckedComponent,
+  MenuBarDirective,
+  MenuDirective,
+  MenuItemCheckboxDirective,
+  MenuItemDirective,
+  MenuItemRadioDirective,
+  MenuTriggerDirective,
+  RadioButtonComponent,
+  RadioGroupComponent,
+  SwitchComponent,
+  SwitchContainerComponent,
+  TooltipDirective
 } from '@charme-ui'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { FormsModule } from '@angular/forms'
@@ -66,7 +79,8 @@ export class TestComponent2 {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [TestComponent2, NgClass, MenuDirective, MenuItemCheckboxDirective, DialogCloseDirective, MenuTriggerDirective, MenuItemDirective, MenuBarDirective, NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchComponent, FormsModule, SwitchContainerComponent, EllipsisDirective, RadioGroupComponent, RadioButtonComponent, AccordionComponent, AccordionItemComponent, AccordionTriggerDirective, AccordionComponent, AccordionItemComponent, AccordionContentDirective, SeparatorComponent, CheckboxContainerComponent, CdkMenuMenubarExample, ItemCheckboxCheckedComponent, MenuItemRadioDirective, ItemRadioCheckedComponent, BadgeDirective, ComboboxTriggerDirective, ComboboxOptionDirective, ComboboxDirective]
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TestComponent2, NgClass, MenuDirective, MenuItemCheckboxDirective, DialogCloseDirective, MenuTriggerDirective, MenuItemDirective, MenuBarDirective, NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchComponent, FormsModule, SwitchContainerComponent, EllipsisDirective, RadioGroupComponent, RadioButtonComponent, AccordionComponent, AccordionItemComponent, AccordionTriggerDirective, AccordionComponent, AccordionItemComponent, AccordionContentDirective, SeparatorComponent, CheckboxContainerComponent, CdkMenuMenubarExample, ItemCheckboxCheckedComponent, MenuItemRadioDirective, ItemRadioCheckedComponent, BadgeDirective, ComboboxTriggerDirective, ComboboxOptionDirective, ComboboxDirective, ComboboxSearchDirective]
 })
 export class AppComponent {
   @ViewChild('buttonEl', { read: ElementRef }) buttonEl!: ElementRef

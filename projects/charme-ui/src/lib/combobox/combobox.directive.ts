@@ -1,7 +1,8 @@
-import { ContentChildren, Directive, HostListener, inject, QueryList, signal } from '@angular/core'
+import { Directive, HostListener, inject, signal } from '@angular/core'
 import { ComboboxOptionDirective } from './combobox-option.directive'
 import { OverlayRef } from '../overlay/overlay.model'
 import { C_COMBOBOX_ACCESSOR } from './combobox-trigger.directive'
+import { ComboboxSearchDirective } from './combobox-search.directive'
 
 @Directive({
   selector: '[c-combobox]',
@@ -15,28 +16,28 @@ import { C_COMBOBOX_ACCESSOR } from './combobox-trigger.directive'
 export class ComboboxDirective {
   readonly #accessor = inject(C_COMBOBOX_ACCESSOR)
   readonly #overlayRef = inject(OverlayRef)
-  $selectedIndex = signal(0)
-  $options = signal<QueryList<ComboboxOptionDirective> | undefined>(undefined)
-  @ContentChildren(ComboboxOptionDirective) set options(value: QueryList<ComboboxOptionDirective>) {
-    value.forEach((item, index) => item.$index.set(index))
-    this.$options.set(value)
+  #searchInput: ComboboxSearchDirective | undefined
+
+  @HostListener('focus') onFocus(): void {
+    this.#searchInput?.el.nativeElement.focus()
   }
 
+  $selectedIndex = signal(0)
+  $options = signal<ComboboxOptionDirective[]>([])
   @HostListener('keydown.ArrowDown', ['$event']) onArrowDown(event: KeyboardEvent): void {
     event.preventDefault()
-    const length = this.$options()?.length ?? 0
+    const length = this.$options()?.length
     const selectedIndex = (this.$selectedIndex() + 1) % length
     this.$selectedIndex.set(selectedIndex)
   }
 
   @HostListener('keydown.ArrowUp', ['$event']) onArrowUp(event: KeyboardEvent): void {
     event.preventDefault()
-    const length = this.$options()?.length ?? 0
+    const length = this.$options().length
     const selectedIndex = ((this.$selectedIndex() - 1) + length) % length
     this.$selectedIndex.set(selectedIndex)
   }
 
-  @HostListener('keydown.space', ['$event'])
   @HostListener('keydown.enter', ['$event']) onSelect(event: KeyboardEvent): void {
     event.preventDefault()
     event.stopPropagation()
@@ -44,5 +45,26 @@ export class ComboboxDirective {
     this.#accessor.value = option?.value
     this.#accessor.propagateChange(option?.value)
     this.#overlayRef.close()
+  }
+
+  onSearch(event: InputEvent): void {
+    const text: string = (event.target as any).value.toLowerCase()
+    this.$options().forEach(item => {
+      const display = item.value.toString().toLowerCase().includes(text)
+      item.$display.set(display)
+    })
+    this.$selectedIndex.set(0)
+  }
+
+  registerOptions(item: ComboboxOptionDirective): void {
+    item.$index.set(this.$options().length)
+    this.$options.update(items => {
+      items.push(item)
+      return [...items]
+    })
+  }
+
+  registerInput(input: ComboboxSearchDirective): void {
+    this.#searchInput = input
   }
 }
