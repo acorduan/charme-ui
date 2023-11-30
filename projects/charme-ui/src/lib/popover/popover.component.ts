@@ -5,7 +5,7 @@ import { NgTemplateOutlet } from '@angular/common'
 import { OverlayGuardFocusGardDirective } from '../overlay/behaviors/overlay-guard-focus.behavior'
 
 @Component({
-  selector: 'c-combobox',
+  selector: 'c-popover',
   standalone: true,
   template: `
     <span overlay-guard-focus position="first" [el]="el"></span>
@@ -16,9 +16,14 @@ import { OverlayGuardFocusGardDirective } from '../overlay/behaviors/overlay-gua
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   hostDirectives: [OverlayBehavior],
-  imports: [NgTemplateOutlet, OverlayGuardFocusGardDirective]
+  imports: [NgTemplateOutlet, OverlayGuardFocusGardDirective],
+  host: {
+    tabindex: '-1',
+    role: 'dialog',
+    '[id]': 'data.id'
+  }
 })
-export class ComboboxComponent {
+export class PopoverComponent {
   el = inject(ElementRef)
   overlayRef = inject(OverlayRef)
   data: { id: string, hostOverlayRef: OverlayRef | null, tpl: TemplateRef<any> } = inject(OVERLAY_DATA)

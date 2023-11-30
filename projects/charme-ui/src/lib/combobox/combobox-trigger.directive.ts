@@ -1,16 +1,13 @@
 import {
-  Directive, ElementRef, Input, TemplateRef, Type
+  Directive, Input, TemplateRef
 } from '@angular/core'
-import { BaseOverlayTrigger } from '../overlay/base-overlay-trigger'
-import { ComboboxComponent } from './combobox.component'
+import { PopoverTriggerDirective } from '../popover'
 
 @Directive({
   selector: '[c-combobox-trigger]',
-  standalone: true
+  standalone: true,
+  hostDirectives: [{ directive: PopoverTriggerDirective, inputs: ['c-popover-trigger:c-combobox-trigger'] }]
 })
-export class ComboboxTriggerDirective extends BaseOverlayTrigger {
-  component: Type<any> = ComboboxComponent
-  id: string = ''
-  overlayHostEl = new ElementRef(document.body)
+export class ComboboxTriggerDirective {
   @Input('c-combobox-trigger') tpl!: TemplateRef<any>
 }
