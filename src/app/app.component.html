@@ -660,12 +660,12 @@
     <ng-template #comboBoxSearch>
       <div class="grid p-1 gap-1" c-combobox>
 
-        <div class="p-1 flex items-center gap-2">
+        <div class="flex items-center px-2">
           <i class="material-icons-outlined">search</i>
           <input c-combo-search placeholder="Search..." class="flex-1">
         </div>
 
-        <c-separator class="mb-2" color="secondary" />
+        <c-separator color="secondary" />
 
         <div class="grid">
           @for (framework of frameworks;track $index) {
