@@ -103,8 +103,6 @@ export abstract class BaseOverlayTrigger<TComp extends OverlayComp = any> {
     const side = this.getCalcSide(originRect, overlayRect)
     const align = this.getCalcAlign(originRect, overlayRect)
 
-    console.log(side, align)
-
     const originPos = this.getOriginPos(side, align)
     const overlayPos = this.getOverlayPos(side, align)
     return { originPos, overlayPos }

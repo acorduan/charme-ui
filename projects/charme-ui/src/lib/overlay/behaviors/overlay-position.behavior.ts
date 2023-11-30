@@ -66,6 +66,7 @@ export class OverlayPositionBehavior implements AfterViewInit, OnDestroy {
     const leftX = overlayPosVertex.includes('left') || overlayPosSide.includes('left') ? hostX : undefined
     const rightX = overlayPosVertex.includes('right') || overlayPosSide.includes('right') ? hostX - overlayRect.width : undefined
     const centerX = overlayPosVertex.includes('center') || overlayPosSide.includes('center') ? hostX - (overlayRect.width / 2) : undefined
+
     const X = leftX ?? rightX ?? centerX
 
     const gapTopY = originPosSide.includes('top') ? (gap ?? 0) * -1 : 0
@@ -75,9 +76,20 @@ export class OverlayPositionBehavior implements AfterViewInit, OnDestroy {
     const gapRightX = originPosSide.includes('left') ? (gap ?? 0) * -1 : 0
     const gapLeftX = originPosSide.includes('right') ? (gap ?? 0) : 0
     const gapX = gapRightX + gapLeftX
+
+    let insideWindowX = X + gapX
+
+    if (insideWindowX < 0) {
+      insideWindowX = 0
+    }
+
+    if (insideWindowX + overlayRect.width > innerWidth) {
+      insideWindowX = innerWidth - overlayRect.width
+    }
+
     return {
       top: Y + gapY + 'px',
-      left: X > 0 ? ((X + gapX) + 'px') : '10px'
+      left: `${insideWindowX}px`
     }
   }
 
