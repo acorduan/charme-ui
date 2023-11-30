@@ -5,7 +5,6 @@
 
   <h1>Charme UI</h1>
 
-
   <section class="flex gap-2 items-center">
     <button c-button (click)="theme.toggle()">Toggle theme</button>
   </section>
@@ -71,7 +70,7 @@
 
       <c-accordion-item [(open)]="secondOpen">
         <ng-template c-accordion-trigger>
-          Scrollable content | is open: {{secondOpen}}
+          Scrollable content | is open: {{ secondOpen }}
         </ng-template>
 
         <ng-template c-accordion-content>
@@ -227,11 +226,7 @@
         </div>
 
 
-
-
-
       </ng-template>
-
 
 
     </ng-template>
@@ -243,7 +238,7 @@
   </section>
 
 
-=  <h2>Plain Buttons</h2>
+  = <h2>Plain Buttons</h2>
 
   <section class="flex gap-2 items-center flex-wrap">
 
@@ -439,9 +434,9 @@
     <ng-template #myWonderfulDialogTpl let-message="message" let-isItGood="isItGood">
 
       <div class="p-4 grid gap-2">
-        <p>{{message}}</p>
+        <p>{{ message }}</p>
 
-        <p> Is it good? {{isItGood}}</p>
+        <p> Is it good? {{ isItGood }}</p>
 
         <input c-input placeholder="Username...">
 
@@ -497,9 +492,9 @@
     <div>
       <label for="severities">Severities</label>
       <select name="Severity" id="severities" #selectElement class="bg-transparent">
-        @for (severity of alertSeverities; track severity) {
-  <option [value]="severity">{{severity}}</option>
-}
+        @for (severity of alertSeverities;track severity) {
+          <option [value]="severity">{{ severity }}</option>
+        }
       </select>
 
     </div>
@@ -510,7 +505,7 @@
 
     </div>
     <div class="grid gap-2">
-      <label  for="action" class="text-sm">Action text</label>
+      <label for="action" class="text-sm">Action text</label>
       <input id="action" c-input #actionInput type="text" value="My action">
 
     </div>
@@ -600,7 +595,7 @@
       <c-radio-button value="disabled" disabled="true">Disabled</c-radio-button>
     </c-radio-group>
 
-    <p>Selected framework: {{bestFramework}}</p>
+    <p>Selected framework: {{ bestFramework }}</p>
 
   </section>
 
@@ -617,13 +612,8 @@
       electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
       Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
       Aldus PageMaker including versions of Lorem Ipsum.
-
-
     </p>
-
   </section>
-
-
 
   <h2>Badge</h2>
 
@@ -639,16 +629,21 @@
   </section>
 
 
-
   <h2>Badge</h2>
 
   <section class="flex gap-2 items-center flex-wrap">
 
-    <button c-button [c-combobox-trigger]="comboBox">Combobox</button>
+    <button [(ngModel)]="selectedFramework" c-button b-type="outline" color="basic" [c-combobox-trigger]="comboBox">
+      Selected framework: {{ selectedFramework }}
+      <i class="material-icons-outlined"> unfold_more </i>
+    </button>
 
     <ng-template #comboBox>
-
-      Toto
+      <div class="grid w-60 p-1" c-combobox>
+        @for (framework of frameworks; track $index) {
+          <button c-button c-combo-option b-type="flat" color="basic" [value]="framework">{{ framework }}</button>
+        }
+      </div>
     </ng-template>
 
   </section>

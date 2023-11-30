@@ -1,4 +1,4 @@
-import { Component, DestroyRef, ElementRef, inject, Input, TemplateRef, ViewChild } from '@angular/core'
+import { Component, DestroyRef, ElementRef, inject, Injectable, Input, TemplateRef, ViewChild } from '@angular/core'
 import { RouterOutlet } from '@angular/router'
 import { NgSwitch, NgSwitchDefault, NgSwitchCase, NgComponentOutlet, NgForOf, NgClass } from '@angular/common'
 import {
@@ -34,19 +34,39 @@ import {
   MenuItemRadioDirective,
   ItemRadioCheckedComponent,
   BadgeDirective,
-  ComboboxTriggerDirective
+  ComboboxTriggerDirective, C_COMBOBOX_ACCESSOR, ComboboxOptionDirective, ComboboxDirective
 } from '@charme-ui'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { FormsModule } from '@angular/forms'
 import { SeparatorComponent } from 'projects/charme-ui/src/lib/separator/separator.component'
 import { CdkMenuMenubarExample } from './test/test.component'
+import { OVERLAY_DATA } from '../../projects/charme-ui/src/lib/overlay/overlay.model'
+
+@Component({
+  selector: 'app-test2',
+  standalone: true,
+  template: `
+    <div class="grid gap-2 p-4">
+        whatever
+    </div>
+    `
+})
+export class TestComponent2 {
+  data = inject(OVERLAY_DATA)
+  accessor = inject(C_COMBOBOX_ACCESSOR)
+
+  constructor() {
+    console.log(this.data)
+    console.log(this.accessor)
+  }
+}
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [NgClass, MenuDirective, MenuItemCheckboxDirective, DialogCloseDirective, MenuTriggerDirective, MenuItemDirective, MenuBarDirective, NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchComponent, FormsModule, SwitchContainerComponent, EllipsisDirective, RadioGroupComponent, RadioButtonComponent, AccordionComponent, AccordionItemComponent, AccordionTriggerDirective, AccordionComponent, AccordionItemComponent, AccordionContentDirective, SeparatorComponent, CheckboxContainerComponent, CdkMenuMenubarExample, ItemCheckboxCheckedComponent, MenuItemRadioDirective, ItemRadioCheckedComponent, BadgeDirective, ComboboxTriggerDirective]
+  imports: [TestComponent2, NgClass, MenuDirective, MenuItemCheckboxDirective, DialogCloseDirective, MenuTriggerDirective, MenuItemDirective, MenuBarDirective, NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchComponent, FormsModule, SwitchContainerComponent, EllipsisDirective, RadioGroupComponent, RadioButtonComponent, AccordionComponent, AccordionItemComponent, AccordionTriggerDirective, AccordionComponent, AccordionItemComponent, AccordionContentDirective, SeparatorComponent, CheckboxContainerComponent, CdkMenuMenubarExample, ItemCheckboxCheckedComponent, MenuItemRadioDirective, ItemRadioCheckedComponent, BadgeDirective, ComboboxTriggerDirective, ComboboxOptionDirective, ComboboxDirective]
 })
 export class AppComponent {
   @ViewChild('buttonEl', { read: ElementRef }) buttonEl!: ElementRef
@@ -57,6 +77,10 @@ export class AppComponent {
   alert = inject(AlertDialogService)
   alertSeverities = alertSeverities
   readonly #destroyRef = inject(DestroyRef)
+
+  frameworks = ['Angular', 'React', 'Svelte', 'VueJs']
+
+  selectedFramework = this.frameworks[0]
 
   onItemClick(): void {
     console.log('onItemClick')

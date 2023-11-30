@@ -25,8 +25,9 @@ export class OverlayGuardFocusGardDirective implements AfterViewInit {
     setTimeout(() => {
       const component = this.el.nativeElement.children[1]
       this.focusableElements = component?.querySelectorAll(
-        'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
+        'a[href]:not([tabindex="-1"]), button:not([tabindex="-1"]), input:not([tabindex="-1"]), textarea:not([tabindex="-1"]), select:not([tabindex="-1"]), details:not([tabindex="-1"]), [tabindex]:not([tabindex="-1"])'
       )
+
       if (this.focusableElements !== undefined && this.focusableElements.length > 0) {
         this.focusableElements[0].focus()
       } else {

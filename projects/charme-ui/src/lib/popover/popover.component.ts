@@ -20,12 +20,13 @@ import { OverlayGuardFocusGardDirective } from '../overlay/behaviors/overlay-gua
   host: {
     tabindex: '-1',
     role: 'dialog',
-    '[id]': 'data.id'
+    '[id]': 'data.id',
+    'aria-modal': 'true'
   }
 })
 export class PopoverComponent {
   el = inject(ElementRef)
   overlayRef = inject(OverlayRef)
+  injector = inject(Injector)
   data: { id: string, hostOverlayRef: OverlayRef | null, tpl: TemplateRef<any> } = inject(OVERLAY_DATA)
-  injector = Injector.create({ providers: [{ provide: OverlayRef, useValue: this.overlayRef }] })
 }

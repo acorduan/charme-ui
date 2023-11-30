@@ -30,7 +30,7 @@ export const buttonThemes = cva(
         error: 'text-error-700 dark:text-error-500 hover:bg-error-500/20 hover:dark:bg-error-600/20 ring-1 ring-error-200 dark:ring-error-800'
       },
       flat: {
-        basic: 'text-primary bg-transparent hover:bg-base-200 dark:hover:bg-base-800 selected:bg-base-200 selected:hover:bg-base-800 aria-expanded:bg-base-200 dark:aria-expanded:bg-base-800',
+        basic: 'text-primary bg-transparent hover:bg-base-200 dark:hover:bg-base-800 selected:bg-base-200 aria-expanded:bg-base-200 dark:aria-expanded:bg-base-800',
         primary: 'bg-transparent text-primary-500 dark:text-primary-300 hover:bg-primary-400/20 selected:bg-primary-400/20 aria-expanded:bg-primary-400/20',
         success: 'bg-transparent text-success-700 dark:text-success-500 hover:bg-success-500/20 hover:dark:bg-success-600/20',
         warning: 'bg-transparent text-warning-700 dark:text-warning-500 hover:bg-warning-400/20 hover:dark:bg-warning-500/20',

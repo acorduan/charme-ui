@@ -19,7 +19,7 @@ import { delayWhen, tap } from 'rxjs/operators'
 export class OverlayService {
   readonly #appRef = inject(ApplicationRef)
 
-  createOverlay<TComp = any, TRef extends OverlayRef = OverlayRef>(component: Type<TComp>, overlayRef: TRef, providers?: Array<Provider | StaticProvider>): ComponentRef<TComp> {
+  createOverlay<TComp = any, TRef extends OverlayRef = OverlayRef>(component: Type<TComp>, overlayRef: TRef, providers?: Array<Provider | StaticProvider>, custom?: Injector): ComponentRef<TComp> {
     const injector = Injector.create({
       providers: [
         { provide: OverlayRef, useValue: overlayRef },

@@ -4,7 +4,7 @@ import {
   Directive,
   ElementRef,
   HostListener,
-  inject, Input,
+  inject, Injector, Input, Provider,
   signal,
   TemplateRef,
   Type
@@ -36,9 +36,10 @@ export abstract class BaseOverlayTrigger<TComp extends OverlayComp = any> {
   @Input() triggerEvent: 'hover' | 'click' = 'click'
   @Input() overlayPos: AttachedToPosition | undefined
   @Input() originPos: AttachedToPosition | undefined
-  @Input() side: Side = 'top'
+  @Input() side: Side = 'bottom'
   @Input() align: Align = 'start'
   @Input() gap = 5 // px
+  providers: Provider[] = []
 
   abstract overlayHostEl?: ElementRef | undefined
 
@@ -57,7 +58,7 @@ export abstract class BaseOverlayTrigger<TComp extends OverlayComp = any> {
 
     const overlayRef = new OverlayRef(this.#getConfig())
     this.$overlayRef.set(overlayRef)
-    this.#overlay.createOverlay(this.component, overlayRef)
+    this.#overlay.createOverlay(this.component, overlayRef, this.providers)
     this.#manageCloseEvent(overlayRef)
   }
 
