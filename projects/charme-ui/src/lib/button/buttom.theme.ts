@@ -23,14 +23,14 @@ export const buttonThemes = cva(
         error: 'text-error-700 dark:text-error-600 bg-error-100 dark:bg-error-600/20 hover:bg-error-200 hover:dark:bg-error-600/30'
       },
       outline: {
-        basic: 'text-primary bg-transparent ring-secondary  hover:dark:bg-base-800 hover:bg-base-200  selected:dark:bg-base-800 selected:bg-base-200  aria-expanded:dark:bg-base-800 aria-expanded:bg-base-200',
+        basic: 'text-primary bg-transparent ring-secondary  hover:dark:bg-base-800 hover:bg-base-100  selected:dark:bg-base-800 selected:bg-base-200  aria-expanded:dark:bg-base-800 aria-expanded:bg-base-200',
         primary: 'text-primary-500 dark:text-primary-300 ring-1 ring-primary-200 dark:ring-primary-800 hover:bg-primary-500/20 hover:dark:bg-primary-400/20 selected:bg-primary-500/20 selected:dark:bg-primary-400/20  aria-expanded:bg-primary-500/20 aria-expanded:dark:bg-primary-400/20 ',
         success: 'text-success-700 dark:text-success-500 hover:bg-success-500/20 hover:dark:bg-success-600/20 ring-1 ring-success-200 dark:ring-success-800',
         warning: 'text-warning-700 dark:text-warning-500 hover:bg-warning-400/20 hover:dark:bg-warning-500/20 ring-1 ring-warning-200 dark:ring-warning-800',
         error: 'text-error-700 dark:text-error-500 hover:bg-error-500/20 hover:dark:bg-error-600/20 ring-1 ring-error-200 dark:ring-error-800'
       },
       flat: {
-        basic: 'text-primary bg-transparent hover:bg-base-200 dark:hover:bg-base-800 selected:bg-base-200 aria-expanded:bg-base-200 dark:aria-expanded:bg-base-800',
+        basic: 'text-primary bg-transparent hover:bg-base-100 dark:hover:bg-base-800 selected:bg-base-100 dark:selected:bg-base-800 aria-expanded:bg-base-100 dark:aria-expanded:bg-base-800',
         primary: 'bg-transparent text-primary-500 dark:text-primary-300 hover:bg-primary-400/20 selected:bg-primary-400/20 aria-expanded:bg-primary-400/20',
         success: 'bg-transparent text-success-700 dark:text-success-500 hover:bg-success-500/20 hover:dark:bg-success-600/20',
         warning: 'bg-transparent text-warning-700 dark:text-warning-500 hover:bg-warning-400/20 hover:dark:bg-warning-500/20',

@@ -5,7 +5,7 @@ import { ComboboxDirective } from './combobox.directive'
   selector: 'input[c-combo-search]',
   standalone: true,
   host: {
-    class: 'outline-none indent-2 h-8 text-sm min-w-0'
+    class: 'outline-none indent-2 h-8 text-sm min-w-0 bg-transparent'
   }
 })
 export class ComboboxSearchDirective {
