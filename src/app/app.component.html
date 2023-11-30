@@ -643,7 +643,7 @@
         @for (framework of frameworks;track $index) {
           <button c-button c-combo-option b-type="flat" color="basic" [value]="framework">
             {{ framework }}
-            @if(framework === selectedFramework) {
+            @if (framework === selectedFramework) {
               <i class="material-icons-outlined">check</i>
             }
           </button>
@@ -652,7 +652,8 @@
     </ng-template>
 
 
-    <button [(ngModel)]="selectedFramework" c-button b-type="outline" color="basic" [c-combobox-trigger]="comboBoxSearch">
+    <button [(ngModel)]="selectedFramework" c-button b-type="outline" color="basic"
+            [c-combobox-trigger]="comboBoxSearch">
       Selected framework: {{ selectedFramework }}
       <i class="material-icons-outlined"> unfold_more </i>
     </button>
@@ -665,18 +666,23 @@
           <input c-combo-search placeholder="Search..." class="flex-1">
         </div>
 
-        <c-separator color="secondary" />
+        <c-separator color="secondary"/>
 
         <div class="grid">
           @for (framework of frameworks;track $index) {
             <button c-button c-combo-option b-type="flat" color="basic" [value]="framework">
               {{ framework }}
-              @if(framework === selectedFramework) {
+              @if (framework === selectedFramework) {
                 <i class="material-icons-outlined">check</i>
               }
             </button>
           }
         </div>
+
+        <p class="text-sm p-2 flex items-center justify-center gap-2" c-combo-no-result>
+          No result
+          <i class="material-icons-outlined">search_off</i>
+        </p>
 
 
       </div>

@@ -3,6 +3,7 @@ import { ComboboxOptionDirective } from './combobox-option.directive'
 import { OverlayRef } from '../overlay/overlay.model'
 import { C_COMBOBOX_ACCESSOR } from './combobox-trigger.directive'
 import { ComboboxSearchDirective } from './combobox-search.directive'
+import { ComboboxNoResultDirective } from './combobox-no-result.directive'
 
 @Directive({
   selector: '[c-combobox]',
@@ -17,6 +18,7 @@ export class ComboboxDirective {
   readonly #accessor = inject(C_COMBOBOX_ACCESSOR)
   readonly #overlayRef = inject(OverlayRef)
   #searchInput: ComboboxSearchDirective | undefined
+  #noresult: ComboboxNoResultDirective | undefined
 
   $displayedOptions = computed(() => {
     const options = this.$options()
@@ -57,6 +59,11 @@ export class ComboboxDirective {
       const options = this.$displayedOptions()
       options.forEach((item, index) => item.$index.set(index))
     }, { allowSignalWrites: true })
+
+    effect(() => {
+      const options = this.$displayedOptions()
+      this.#noresult !== undefined && (this.#noresult.display = options.length === 0)
+    })
   }
 
   onSearch(event: InputEvent): void {
@@ -77,5 +84,9 @@ export class ComboboxDirective {
 
   registerInput(input: ComboboxSearchDirective): void {
     this.#searchInput = input
+  }
+
+  registerNoResult(item: ComboboxNoResultDirective): void {
+    this.#noresult = item
   }
 }

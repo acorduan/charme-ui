@@ -14,7 +14,7 @@ export const C_COMBOBOX_ACCESSOR = new InjectionToken<CComboboxAccessor>('C_COMB
 @Directive({
   selector: '[c-combobox-trigger]',
   standalone: true,
-  hostDirectives: [{ directive: PopoverTriggerDirective, inputs: ['c-popover-trigger:c-combobox-trigger'] }],
+  hostDirectives: [{ directive: PopoverTriggerDirective, inputs: ['c-popover-trigger:c-combobox-trigger', 'side', 'align'] }],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

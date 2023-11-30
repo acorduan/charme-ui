@@ -25,7 +25,7 @@ import {
   CharmeThemeService,
   CheckboxContainerComponent,
   CheckboxDirective,
-  ComboboxDirective,
+  ComboboxDirective, ComboboxNoResultDirective,
   ComboboxOptionDirective,
   ComboboxSearchDirective,
   ComboboxTriggerDirective,
@@ -80,7 +80,7 @@ export class TestComponent2 {
   styleUrls: ['./app.component.scss'],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TestComponent2, NgClass, MenuDirective, MenuItemCheckboxDirective, DialogCloseDirective, MenuTriggerDirective, MenuItemDirective, MenuBarDirective, NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchComponent, FormsModule, SwitchContainerComponent, EllipsisDirective, RadioGroupComponent, RadioButtonComponent, AccordionComponent, AccordionItemComponent, AccordionTriggerDirective, AccordionComponent, AccordionItemComponent, AccordionContentDirective, SeparatorComponent, CheckboxContainerComponent, CdkMenuMenubarExample, ItemCheckboxCheckedComponent, MenuItemRadioDirective, ItemRadioCheckedComponent, BadgeDirective, ComboboxTriggerDirective, ComboboxOptionDirective, ComboboxDirective, ComboboxSearchDirective]
+  imports: [TestComponent2, NgClass, MenuDirective, MenuItemCheckboxDirective, DialogCloseDirective, MenuTriggerDirective, MenuItemDirective, MenuBarDirective, NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet, ButtonComponent, InputDirective, NgComponentOutlet, TooltipDirective, AlertComponent, NgForOf, CheckboxDirective, SwitchComponent, FormsModule, SwitchContainerComponent, EllipsisDirective, RadioGroupComponent, RadioButtonComponent, AccordionComponent, AccordionItemComponent, AccordionTriggerDirective, AccordionComponent, AccordionItemComponent, AccordionContentDirective, SeparatorComponent, CheckboxContainerComponent, CdkMenuMenubarExample, ItemCheckboxCheckedComponent, MenuItemRadioDirective, ItemRadioCheckedComponent, BadgeDirective, ComboboxTriggerDirective, ComboboxOptionDirective, ComboboxDirective, ComboboxSearchDirective, ComboboxNoResultDirective]
 })
 export class AppComponent {
   @ViewChild('buttonEl', { read: ElementRef }) buttonEl!: ElementRef
