@@ -46,7 +46,7 @@ export class ComboboxDirective {
   @HostListener('keydown.enter', ['$event']) onSelect(event: KeyboardEvent): void {
     event.preventDefault()
     event.stopPropagation()
-    const option = this.$options()?.find(item => item.$index() === this.$selectedIndex())
+    const option = this.$displayedOptions()?.find(item => item.$index() === this.$selectedIndex())
     this.#accessor.value = option?.value
     this.#accessor.propagateChange(option?.value)
     this.#overlayRef.close()
