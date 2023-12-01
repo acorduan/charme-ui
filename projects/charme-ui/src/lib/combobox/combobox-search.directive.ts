@@ -1,5 +1,5 @@
 import { Directive, ElementRef, HostListener, inject } from '@angular/core'
-import { ComboboxDirective } from './combobox.directive'
+import { C_COMBOBOX_ACCESSOR } from './combobox.model'
 
 @Directive({
   selector: 'input[c-combo-search]',
@@ -9,14 +9,10 @@ import { ComboboxDirective } from './combobox.directive'
   }
 })
 export class ComboboxSearchDirective {
-  readonly #combobox = inject(ComboboxDirective)
+  readonly #combobox = inject(C_COMBOBOX_ACCESSOR)
   readonly el = inject(ElementRef<HTMLInputElement>)
 
   @HostListener('input', ['$event']) search(event: InputEvent): void {
     this.#combobox.onSearch(event)
-  }
-
-  constructor() {
-    this.#combobox.registerInput(this)
   }
 }

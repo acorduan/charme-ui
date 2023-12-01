@@ -1,7 +1,6 @@
-import { computed, Directive, HostBinding, HostListener, inject, Input, signal } from '@angular/core'
-import { C_COMBOBOX_ACCESSOR } from './combobox-trigger.directive'
+import { computed, Directive, HostListener, inject, Input, signal } from '@angular/core'
 import { OverlayRef } from '../overlay/overlay.model'
-import { ComboboxDirective } from './combobox.directive'
+import { C_COMBOBOX_ACCESSOR, C_COMBOBOX_TRIGGER_ACCESSOR } from './combobox.model'
 
 @Directive({
   standalone: true,
@@ -17,21 +16,17 @@ import { ComboboxDirective } from './combobox.directive'
   }
 })
 export class ComboboxOptionDirective {
-  readonly #combobox = inject(ComboboxDirective)
+  readonly #combobox = inject(C_COMBOBOX_ACCESSOR)
   readonly #overlayRef = inject(OverlayRef)
-  readonly #accessor = inject(C_COMBOBOX_ACCESSOR)
+  readonly #valueAccessor = inject(C_COMBOBOX_TRIGGER_ACCESSOR)
   @Input({ required: true }) value!: string | number
   $index = signal(0)
   $selected = computed(() => this.#combobox.$selectedIndex() === this.$index())
   $display = signal(true)
 
-  constructor() {
-    this.#combobox.registerOptions(this)
-  }
-
   @HostListener('click') onClick(): void {
-    this.#accessor.value = this.value
-    this.#accessor.propagateChange(this.value)
+    this.#valueAccessor.value = this.value
+    this.#valueAccessor.propagateChange(this.value)
     this.#overlayRef.close()
   }
 

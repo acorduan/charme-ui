@@ -1,9 +1,19 @@
-import { computed, Directive, effect, HostListener, inject, signal } from '@angular/core'
+import {
+  computed,
+  ContentChild,
+  ContentChildren,
+  Directive,
+  effect, forwardRef,
+  HostListener,
+  inject,
+  QueryList, Signal,
+  signal
+} from '@angular/core'
 import { ComboboxOptionDirective } from './combobox-option.directive'
 import { OverlayRef } from '../overlay/overlay.model'
-import { C_COMBOBOX_ACCESSOR } from './combobox-trigger.directive'
 import { ComboboxSearchDirective } from './combobox-search.directive'
 import { ComboboxNoResultDirective } from './combobox-no-result.directive'
+import { C_COMBOBOX_ACCESSOR, C_COMBOBOX_TRIGGER_ACCESSOR, CComboboxAccessor } from './combobox.model'
 
 @Directive({
   selector: '[c-combobox]',
@@ -12,25 +22,35 @@ import { ComboboxNoResultDirective } from './combobox-no-result.directive'
     tabindex: '0',
     class: 'outline-none',
     role: 'listbox'
-  }
+  },
+  providers: [
+    {
+      provide: C_COMBOBOX_ACCESSOR,
+      useExisting: forwardRef(() => ComboboxDirective)
+    }
+  ]
 })
-export class ComboboxDirective {
-  readonly #accessor = inject(C_COMBOBOX_ACCESSOR)
+export class ComboboxDirective implements CComboboxAccessor {
+  readonly #valueAccessor = inject(C_COMBOBOX_TRIGGER_ACCESSOR)
   readonly #overlayRef = inject(OverlayRef)
-  #searchInput: ComboboxSearchDirective | undefined
-  #noresult: ComboboxNoResultDirective | undefined
 
-  $displayedOptions = computed(() => {
-    const options = this.$options()
-    return options.filter((item) => item.$display())
-  })
-
-  @HostListener('focus') onFocus(): void {
-    this.#searchInput?.el.nativeElement.focus()
+  @ContentChild(ComboboxSearchDirective, { descendants: true }) searchInput: ComboboxSearchDirective | undefined
+  @ContentChild(ComboboxNoResultDirective, { descendants: true }) noResult: ComboboxNoResultDirective | undefined
+  $options = signal<QueryList<ComboboxOptionDirective> | undefined>(undefined)
+  @ContentChildren(ComboboxOptionDirective, { descendants: true }) set options(value: QueryList<ComboboxOptionDirective>) {
+    this.$options.set(value)
   }
 
   $selectedIndex = signal(0)
-  $options = signal<ComboboxOptionDirective[]>([])
+  $displayedOptions: Signal<ComboboxOptionDirective[]> = computed(() => {
+    const options = this.$options()
+    return options?.filter((item) => item.$display()) ?? []
+  })
+
+  @HostListener('focus') onFocus(): void {
+    this.searchInput?.el.nativeElement.focus()
+  }
+
   @HostListener('keydown.ArrowDown', ['$event']) onArrowDown(event: KeyboardEvent): void {
     event.preventDefault()
     const length = this.$displayedOptions()?.length
@@ -49,8 +69,8 @@ export class ComboboxDirective {
     event.preventDefault()
     event.stopPropagation()
     const option = this.$displayedOptions()?.find(item => item.$index() === this.$selectedIndex())
-    this.#accessor.value = option?.value
-    this.#accessor.propagateChange(option?.value)
+    this.#valueAccessor.value = option?.value
+    this.#valueAccessor.propagateChange(option?.value)
     this.#overlayRef.close()
   }
 
@@ -59,34 +79,14 @@ export class ComboboxDirective {
       const options = this.$displayedOptions()
       options.forEach((item, index) => item.$index.set(index))
     }, { allowSignalWrites: true })
-
-    effect(() => {
-      const options = this.$displayedOptions()
-      this.#noresult !== undefined && (this.#noresult.display = options.length === 0)
-    })
   }
 
   onSearch(event: InputEvent): void {
     const text: string = (event.target as any).value.toLowerCase()
-    this.$options().forEach(item => {
+    this.$options()?.forEach(item => {
       const display = item.value.toString().toLowerCase().includes(text)
       item.$display.set(display)
     })
     this.$selectedIndex.set(0)
-  }
-
-  registerOptions(item: ComboboxOptionDirective): void {
-    this.$options.update(items => {
-      items.push(item)
-      return [...items]
-    })
-  }
-
-  registerInput(input: ComboboxSearchDirective): void {
-    this.#searchInput = input
-  }
-
-  registerNoResult(item: ComboboxNoResultDirective): void {
-    this.#noresult = item
   }
 }

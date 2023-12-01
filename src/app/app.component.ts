@@ -21,7 +21,6 @@ import {
   AlertSeverity,
   BadgeDirective,
   ButtonComponent,
-  C_COMBOBOX_ACCESSOR,
   CharmeThemeService,
   CheckboxContainerComponent,
   CheckboxDirective,
@@ -66,11 +65,9 @@ import { OVERLAY_DATA } from '../../projects/charme-ui/src/lib/overlay/overlay.m
 })
 export class TestComponent2 {
   data = inject(OVERLAY_DATA)
-  accessor = inject(C_COMBOBOX_ACCESSOR)
 
   constructor() {
     console.log(this.data)
-    console.log(this.accessor)
   }
 }
 

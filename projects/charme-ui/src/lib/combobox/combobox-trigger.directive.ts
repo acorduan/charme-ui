@@ -1,15 +1,9 @@
 import {
-  Directive, forwardRef, inject, InjectionToken, Input, TemplateRef
+  Directive, forwardRef, inject, Input, TemplateRef
 } from '@angular/core'
 import { PopoverTriggerDirective } from '../popover'
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
-
-export interface CComboboxAccessor {
-  value: any
-  propagateChange: (_: any) => void
-}
-
-export const C_COMBOBOX_ACCESSOR = new InjectionToken<CComboboxAccessor>('C_COMBOBOX_ACCESSOR')
+import { C_COMBOBOX_TRIGGER_ACCESSOR, CComboboxTriggerAccessor } from './combobox.model'
 
 @Directive({
   selector: '[c-combobox-trigger]',
@@ -22,7 +16,7 @@ export const C_COMBOBOX_ACCESSOR = new InjectionToken<CComboboxAccessor>('C_COMB
       multi: true
     },
     {
-      provide: C_COMBOBOX_ACCESSOR,
+      provide: C_COMBOBOX_TRIGGER_ACCESSOR,
       useExisting: forwardRef(() => ComboboxTriggerDirective)
     }
   ],
@@ -30,13 +24,13 @@ export const C_COMBOBOX_ACCESSOR = new InjectionToken<CComboboxAccessor>('C_COMB
     role: 'combobox'
   }
 })
-export class ComboboxTriggerDirective implements ControlValueAccessor, CComboboxAccessor {
+export class ComboboxTriggerDirective implements ControlValueAccessor, CComboboxTriggerAccessor {
   readonly #popover = inject(PopoverTriggerDirective)
   @Input('c-combobox-trigger') tpl!: TemplateRef<any>
   @Input() value: any
 
   constructor() {
-    this.#popover.providers.push([{ provide: C_COMBOBOX_ACCESSOR, useValue: this }])
+    this.#popover.providers.push([{ provide: C_COMBOBOX_TRIGGER_ACCESSOR, useValue: this }])
   }
 
   propagateChange = (_: any): void => {}
