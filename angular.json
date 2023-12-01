@@ -20,7 +20,7 @@
           "options": {
             "stylePreprocessorOptions": {
               "includePaths": [
-                "./projects/charme-ui/styles"
+                "./projects/charme/styles"
               ]
             },
             "outputPath": "dist/tutor",
@@ -106,23 +106,23 @@
         }
       }
     },
-    "charme-ui": {
+    "@charme-ui": {
       "projectType": "library",
-      "root": "projects/charme-ui",
-      "sourceRoot": "projects/charme-ui/src",
+      "root": "projects/charme",
+      "sourceRoot": "projects/charme/src",
       "prefix": "c",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/charme-ui/ng-package.json"
+            "project": "projects/charme/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/charme-ui/tsconfig.lib.prod.json"
+              "tsConfig": "projects/charme/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/charme-ui/tsconfig.lib.json"
+              "tsConfig": "projects/charme/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -130,7 +130,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "projects/charme-ui/tsconfig.spec.json",
+            "tsConfig": "projects/charme/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
