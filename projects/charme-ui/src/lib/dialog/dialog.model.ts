@@ -2,7 +2,7 @@ import { TemplateRef, Type } from '@angular/core'
 import {
   OverlayConfig,
   OverlayRef
-} from '../overlay/overlay.model'
+} from '@charme-ui/overlay'
 
 export interface DialogConfigModel extends Omit< OverlayConfig, 'closeOnEscape' | 'data'> {
   panelClass?: string

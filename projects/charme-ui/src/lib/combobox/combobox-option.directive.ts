@@ -1,5 +1,5 @@
 import { computed, Directive, HostListener, inject, Input } from '@angular/core'
-import { OverlayRef } from '../overlay/overlay.model'
+import { OverlayRef } from '@charme-ui/overlay'
 import { C_COMBOBOX_ACCESSOR, C_COMBOBOX_TRIGGER_ACCESSOR } from './combobox.model'
 
 @Directive({

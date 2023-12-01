@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component, ElementRef, inject, Injector, TemplateRef, Type } from '@angular/core'
 import { NgClass, NgComponentOutlet, NgIf, NgTemplateOutlet } from '@angular/common'
 import { DialogConfig, DialogRef } from './dialog.model'
-import { OverlayBehavior } from '../overlay/behaviors/overlay.behavior'
-import { OVERLAY_DATA } from '../overlay/overlay.model'
-import { OverlayGuardFocusGardDirective } from '../overlay/behaviors/overlay-guard-focus.behavior'
+import { OverlayBehavior, OVERLAY_DATA, OverlayGuardFocusGardDirective } from '@charme-ui/overlay'
 
 @Component({
   selector: 'c-dialog',

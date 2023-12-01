@@ -5,7 +5,7 @@ import {
   Input, signal,
   ViewEncapsulation
 } from '@angular/core'
-import { RippleDirective } from '../ripple/ripple.directive'
+import { RippleDirective } from '@charme-ui/ripple'
 import { NgIf } from '@angular/common'
 import { ButtonColor, ButtonSize, buttonThemes, ButtonType } from './buttom.theme'
 import { twMerge } from 'tailwind-merge'

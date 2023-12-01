@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, inject, Injector, TemplateRef } from '@angular/core'
-import { OVERLAY_DATA, OverlayRef } from '../overlay/overlay.model'
-import { OverlayBehavior } from '../overlay/behaviors/overlay.behavior'
+import { OVERLAY_DATA, OverlayRef, OverlayBehavior, OverlayGuardFocusGardDirective } from '@charme-ui/overlay'
 import { NgTemplateOutlet } from '@angular/common'
-import { OverlayGuardFocusGardDirective } from '../overlay/behaviors/overlay-guard-focus.behavior'
 
 @Component({
   selector: 'c-popover',

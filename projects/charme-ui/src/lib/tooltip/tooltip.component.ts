@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, TemplateRef } from '@angular/core'
-import { OverlayBehavior } from '../overlay/behaviors/overlay.behavior'
+import { OverlayBehavior, OVERLAY_DATA } from '@charme-ui/overlay'
 import { NgIf, NgTemplateOutlet } from '@angular/common'
-import { OVERLAY_DATA } from '../overlay/overlay.model'
 
 @Component({
   selector: 'c-tooltip',

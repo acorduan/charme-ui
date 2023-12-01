@@ -10,7 +10,7 @@ import {
   signal
 } from '@angular/core'
 import { ComboboxOptionDirective } from './combobox-option.directive'
-import { OverlayRef } from '../overlay/overlay.model'
+import { OverlayRef } from '@charme-ui/overlay'
 import { ComboboxSearchDirective } from './combobox-search.directive'
 import { ComboboxNoResultDirective } from './combobox-no-result.directive'
 import { C_COMBOBOX_ACCESSOR, C_COMBOBOX_TRIGGER_ACCESSOR, CComboboxAccessor } from './combobox.model'

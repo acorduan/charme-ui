@@ -3,7 +3,7 @@ import {
   inject,
   OnInit
 } from '@angular/core'
-import { DialogRef } from '@charme-ui'
+import { DialogRef } from './dialog.model'
 
 @Directive({
   selector: '[c-dialog-title]',

@@ -8,7 +8,7 @@ import { DialogComponent } from './dialog.component'
 import { DialogConfig, DialogRef } from './dialog.model'
 import { tap } from 'rxjs/operators'
 import { Subscription } from 'rxjs'
-import { OverlayService } from '../overlay/overlay.service'
+import { OverlayService } from '@charme-ui/overlay'
 
 @Injectable({
   providedIn: 'root'

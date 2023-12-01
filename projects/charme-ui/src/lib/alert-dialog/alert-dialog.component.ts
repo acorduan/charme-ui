@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from '@angular/core'
-import { OverlayBehavior } from '../overlay/behaviors/overlay.behavior'
-import { AlertSeverity } from '../alert/alert.model'
-import { OVERLAY_DATA } from '../overlay/overlay.model'
-import { AlertComponent } from '../alert'
+import { AlertComponent, AlertSeverity } from '@charme-ui/alert'
+import { OverlayBehavior, OVERLAY_DATA } from '@charme-ui/overlay'
 
 interface AlertData { title: string, message: string, severity: AlertSeverity, action?: string }
 

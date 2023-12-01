@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core'
 import { NgClass, NgIf } from '@angular/common'
 import { AlertSeverity } from './alert.model'
-import { ButtonComponent } from '../button'
+import { ButtonComponent } from '@charme-ui/button'
 
 @Component({
   selector: 'c-alert',

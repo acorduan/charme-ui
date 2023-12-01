@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core'
-import { OverlayService } from '../overlay/overlay.service'
-import { AlertSeverity } from '../alert/alert.model'
-import { OverlayConfig, OverlayPosition } from '../overlay/overlay.model'
+import { OverlayService, OverlayConfig, OverlayPosition } from '@charme-ui/overlay'
+import { AlertSeverity } from '@charme-ui/alert'
 import { AlertDialogComponent } from './alert-dialog.component'
 import { AlertDialogRef } from './alert-dialog.model'
 

@@ -7,7 +7,7 @@ import {
 } from '@angular/core'
 import { MenuComponent } from './menu.component'
 import { C_MENU } from './menu.model'
-import { BaseOverlayTrigger } from '../overlay/base-overlay-trigger'
+import { BaseOverlayTrigger } from '@charme-ui/overlay'
 
 @Directive({
   selector: '[c-menu-trigger]',

@@ -1,7 +1,7 @@
 import {
   Directive, ElementRef, Input, TemplateRef, Type
 } from '@angular/core'
-import { BaseOverlayTrigger } from '../overlay/base-overlay-trigger'
+import { BaseOverlayTrigger } from '@charme-ui/overlay'
 import { PopoverComponent } from './popover.component'
 
 @Directive({

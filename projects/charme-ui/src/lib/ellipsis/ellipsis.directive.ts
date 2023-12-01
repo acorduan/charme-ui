@@ -1,5 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, inject, OnDestroy } from '@angular/core'
-import { TooltipDirective } from '../tooltip'
+import { TooltipDirective } from '@charme-ui/tooltip'
 
 @Directive({
   selector: '[c-ellipsis]',

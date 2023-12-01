@@ -1,7 +1,7 @@
-import { OverlayRef } from '../overlay/overlay.model'
 import { Observable } from 'rxjs'
 import { AlertDialogComponent } from './alert-dialog.component'
 import { ComponentRef } from '@angular/core'
+import { OverlayRef } from '@charme-ui/overlay'
 
 export class AlertDialogRef extends OverlayRef {
   #onAction$!: Observable<void>

@@ -2,9 +2,9 @@ import {
   booleanAttribute,
   Directive, forwardRef, inject, Input, TemplateRef
 } from '@angular/core'
-import { PopoverTriggerDirective } from '../popover'
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
 import { C_COMBOBOX_TRIGGER_ACCESSOR, CComboboxTriggerAccessor } from './combobox.model'
+import { PopoverTriggerDirective } from '@charme-ui/popover'
 
 @Directive({
   selector: '[c-combobox-trigger]',

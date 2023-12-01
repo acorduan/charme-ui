@@ -1,6 +1,6 @@
 import { cva, VariantProps } from 'class-variance-authority'
 
-export const radioButtomThemes = cva(
+export const radioButtonThemes = cva(
   'w-4 h-4 cursor-pointer after:material-icon-round after:text-[0.5rem] after:checked:content-["circle"] rounded-full focus-visible:focus-el ring-primary disabled:pointer-events-none flex items-center justify-center appearance-none',
   {
     variants: {
@@ -14,5 +14,5 @@ export const radioButtomThemes = cva(
   }
 )
 
-type RadioButtomTheme = VariantProps<typeof radioButtomThemes>
-export type RadioButtonColor = RadioButtomTheme['type']
+type RadioButtonTheme = VariantProps<typeof radioButtonThemes>
+export type RadioButtonColor = RadioButtonTheme['type']

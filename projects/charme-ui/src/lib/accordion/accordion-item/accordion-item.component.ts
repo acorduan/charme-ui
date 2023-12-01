@@ -13,8 +13,8 @@ import {
   AccordionContentDirective
 } from './directives/accordion-content.directive'
 import { NgClass, NgIf, NgTemplateOutlet } from '@angular/common'
-import { RippleDirective } from '../../ripple'
 import { C_ACCORDION_ACCESSOR } from '../accordion.model'
+import { RippleDirective } from '@charme-ui/ripple'
 
 @Component({
   standalone: true,

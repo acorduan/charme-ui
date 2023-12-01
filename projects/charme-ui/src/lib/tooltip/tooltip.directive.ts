@@ -7,8 +7,7 @@ import {
   signal,
   TemplateRef
 } from '@angular/core'
-import { OverlayService } from '../overlay/overlay.service'
-import { OverlayConfig, OverlayConfigModel, OverlayRef } from '../overlay/overlay.model'
+import { OverlayService, OverlayConfig, OverlayConfigModel, OverlayRef } from '@charme-ui/overlay'
 import { TooltipComponent } from './tooltip.component'
 
 @Directive({

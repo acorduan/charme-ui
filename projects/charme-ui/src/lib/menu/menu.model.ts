@@ -1,5 +1,5 @@
 import { ElementRef, InjectionToken, TemplateRef } from '@angular/core'
-import { OverlayRef } from '../overlay/overlay.model'
+import { OverlayRef } from '@charme-ui/overlay'
 import { MenuItemDirective } from './items/menu-item.directive'
 
 export interface MenuTriggerData {

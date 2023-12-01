@@ -1,6 +1,6 @@
 import { computed, ContentChildren, Directive, inject, QueryList, signal } from '@angular/core'
-import { ComboboxOptionDirective } from '@charme-ui'
 import { C_COMBOBOX_ACCESSOR } from './combobox.model'
+import { ComboboxOptionDirective } from './combobox-option.directive'
 
 @Directive({
   standalone: true,
