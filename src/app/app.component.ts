@@ -10,49 +10,45 @@ import {
 } from '@angular/core'
 import { RouterOutlet } from '@angular/router'
 import { NgClass, NgComponentOutlet, NgForOf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common'
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
+import { FormsModule } from '@angular/forms'
+import { CdkMenuMenubarExample } from './test/test.component'
+import { OVERLAY_DATA } from '@charme-ui/overlay'
+import {
+  ItemCheckboxCheckedComponent, ItemRadioCheckedComponent,
+  MenuBarDirective,
+  MenuDirective,
+  MenuItemCheckboxDirective,
+  MenuItemDirective, MenuItemRadioDirective,
+  MenuTriggerDirective
+} from '@charme-ui/menu'
+import { DialogCloseDirective, DialogRef, DialogService, DialogTitleDirective } from '@charme-ui/dialog'
+import { ButtonComponent } from '@charme-ui/button'
+import { InputDirective } from '@charme-ui/input'
+import { TooltipDirective } from '@charme-ui/tooltip'
+import { AlertComponent, alertSeverities, AlertSeverity } from '@charme-ui/alert'
+import { CheckboxContainerComponent, CheckboxDirective } from '@charme-ui/checkbox'
+import { SwitchComponent, SwitchContainerComponent } from '@charme-ui/switch'
+import { EllipsisDirective } from '@charme-ui/ellipsis'
+import { RadioButtonComponent, RadioGroupComponent } from '@charme-ui/radio-group'
 import {
   AccordionComponent,
   AccordionContentDirective,
   AccordionItemComponent,
-  AccordionTriggerDirective,
-  AlertComponent,
-  AlertDialogService,
-  alertSeverities,
-  AlertSeverity,
-  BadgeDirective,
-  ButtonComponent,
-  CharmeThemeService,
-  CheckboxContainerComponent,
-  CheckboxDirective,
-  ComboboxDirective, ComboboxGroupDirective, ComboboxNoResultDirective,
-  ComboboxOptionDirective,
-  ComboboxSearchDirective,
-  ComboboxTriggerDirective,
-  DialogCloseDirective,
-  DialogRef,
-  DialogService,
-  DialogTitleDirective, DisclosureComponent, DisclosureContentDirective, DisclosureTriggerDirective,
-  EllipsisDirective,
-  InputDirective,
-  ItemCheckboxCheckedComponent,
-  ItemRadioCheckedComponent,
-  MenuBarDirective,
-  MenuDirective,
-  MenuItemCheckboxDirective,
-  MenuItemDirective,
-  MenuItemRadioDirective,
-  MenuTriggerDirective,
-  RadioButtonComponent,
-  RadioGroupComponent,
-  SwitchComponent,
-  SwitchContainerComponent,
-  TooltipDirective
-} from '@charme-ui'
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
-import { FormsModule } from '@angular/forms'
-import { SeparatorComponent } from 'projects/charme-ui/src/lib/separator/separator.component'
-import { CdkMenuMenubarExample } from './test/test.component'
-import { OVERLAY_DATA } from '../../projects/charme-ui/src/lib/overlay/overlay.model'
+  AccordionTriggerDirective
+} from '@charme-ui/accordion'
+import { SeparatorComponent } from '@charme-ui/separator'
+import {
+  ComboboxGroupDirective,
+  ComboboxNoResultDirective,
+  ComboboxSearchDirective
+  , ComboboxDirective, ComboboxOptionDirective, ComboboxTriggerDirective
+} from '@charme-ui/combobox'
+
+import { DisclosureComponent, DisclosureContentDirective, DisclosureTriggerDirective } from '@charme-ui/disclosure'
+import { CharmeThemeService } from '@charme-ui/config'
+import { AlertDialogService } from '@charme-ui/alert-dialog'
+import { BadgeDirective } from '@charme-ui/badge'
 
 @Component({
   selector: 'app-test2',

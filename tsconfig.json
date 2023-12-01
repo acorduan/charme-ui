@@ -20,9 +20,26 @@
     "module": "ES2022",
     "useDefineForClassFields": false,
     "paths": {
-      "@charme-ui": [
-        "./projects/charme-ui"
-      ]
+      "@charme-ui/config": ["./projects/charme-ui/src/lib/charme-config"],
+      "@charme-ui/accordion": ["./projects/charme-ui/src/lib/accordion"],
+      "@charme-ui/alert": ["./projects/charme-ui/src/lib/alert"],
+      "@charme-ui/alert-dialog": ["./projects/charme-ui/src/lib/alert-dialog"],
+      "@charme-ui/badge": ["./projects/charme-ui/src/lib/badge"],
+      "@charme-ui/button": ["./projects/charme-ui/src/lib/button"],
+      "@charme-ui/checkbox": ["./projects/charme-ui/src/lib/checkbox"],
+      "@charme-ui/combobox": ["./projects/charme-ui/src/lib/combobox"],
+      "@charme-ui/dialog": ["./projects/charme-ui/src/lib/dialog"],
+      "@charme-ui/disclosure": ["./projects/charme-ui/src/lib/disclosure"],
+      "@charme-ui/ellipsis": ["./projects/charme-ui/src/lib/ellipsis"],
+      "@charme-ui/input": ["./projects/charme-ui/src/lib/input"],
+      "@charme-ui/menu": ["./projects/charme-ui/src/lib/menu"],
+      "@charme-ui/overlay": ["./projects/charme-ui/src/lib/overlay"],
+      "@charme-ui/popover": ["./projects/charme-ui/src/lib/popover"],
+      "@charme-ui/radio-group": ["./projects/charme-ui/src/lib/radio-group"],
+      "@charme-ui/ripple": ["./projects/charme-ui/src/lib/ripple"],
+      "@charme-ui/separator": ["./projects/charme-ui/src/lib/separator"],
+      "@charme-ui/switch": ["./projects/charme-ui/src/lib/switch"],
+      "@charme-ui/tooltip": ["./projects/charme-ui/src/lib/tooltip"]
     },
     "lib": [
       "ES2022",

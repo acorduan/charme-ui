@@ -2,7 +2,7 @@ import { importProvidersFrom } from '@angular/core'
 import { AppComponent } from './app/app.component'
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { CharmeUIProvider } from '@charm-ui/config'
+import { CharmeUIProvider } from '@charme-ui/config'
 
 bootstrapApplication(AppComponent, {
   providers: [
