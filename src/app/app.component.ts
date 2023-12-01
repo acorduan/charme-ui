@@ -92,6 +92,8 @@ export class AppComponent {
   frameworks = ['Angular', 'React', 'Svelte', 'VueJs']
   frameworks2 = ['Angular2', 'React2', 'Svelte2', 'VueJs2']
 
+  disclosureOpen = false
+
   selectedFramework = this.frameworks[0]
 
   onItemClick(): void {

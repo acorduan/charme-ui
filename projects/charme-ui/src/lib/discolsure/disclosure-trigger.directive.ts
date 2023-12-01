@@ -17,7 +17,7 @@ export class DisclosureTriggerDirective {
   }
 
   get expanded(): boolean {
-    return this.#accessor.open
+    return this.#accessor.$open()
   }
 
   get id(): string {

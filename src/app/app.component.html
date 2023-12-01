@@ -13,7 +13,11 @@
   <h2>Disclosure</h2>
 
   <section>
-    <c-disclosure #discoCmp>
+
+    {{disclosureOpen}}
+
+
+    <c-disclosure #discoCmp [(open)]="disclosureOpen">
 
       <div class="flex gap-2 items-center">
         <p>Open hide stuff</p>

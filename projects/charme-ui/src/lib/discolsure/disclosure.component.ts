@@ -1,5 +1,12 @@
-import { ChangeDetectionStrategy, Component, ContentChild, forwardRef } from '@angular/core'
-import { DisclosureContentDirective } from './disclosure-content.directive'
+import {
+  booleanAttribute,
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  forwardRef,
+  Input, Output,
+  signal
+} from '@angular/core'
 import { C_DISCLOSURE_ACCESSOR, CDisclosureAccessor } from './disclosure.model'
 
 @Component({
@@ -12,14 +19,21 @@ import { C_DISCLOSURE_ACCESSOR, CDisclosureAccessor } from './disclosure.model'
   ]
 })
 export class DisclosureComponent implements CDisclosureAccessor {
-  @ContentChild(DisclosureContentDirective, { static: true }) content!: DisclosureContentDirective
   id = `c-disclosure-${crypto.randomUUID()}`
 
-  get open(): boolean {
-    return !this.content.$hidden()
+  $open = signal(false)
+  @Input({ transform: booleanAttribute }) set open(value: boolean) {
+    this.$open.set(value)
   }
 
+  get open(): boolean {
+    return this.$open()
+  }
+
+  @Output() openChange = new EventEmitter<boolean>()
+
   toggle(): void {
-    this.content.$hidden.set(!this.content.$hidden())
+    this.$open.set(!this.$open())
+    this.openChange.emit(this.$open())
   }
 }

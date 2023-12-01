@@ -1,7 +1,7 @@
-import { InjectionToken } from '@angular/core'
+import { InjectionToken, Signal } from '@angular/core'
 
 export interface CDisclosureAccessor {
-  open: boolean
+  $open: Signal< boolean>
   toggle: () => void
   id: string
 }

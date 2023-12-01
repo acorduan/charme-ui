@@ -13,11 +13,11 @@ import { C_DISCLOSURE_ACCESSOR } from './disclosure.model'
 export class DisclosureContentDirective implements AfterContentInit {
   readonly #accessor = inject(C_DISCLOSURE_ACCESSOR)
   readonly #el = inject(ElementRef<HTMLElement>)
-  $hidden = signal(true)
+
   $height = computed(() => {
-    const hidden = this.$hidden()
+    const open = this.#accessor.$open()
     const scrollHeight = this.$scrollHeight()
-    return hidden ? 0 : scrollHeight
+    return open ? scrollHeight : 0
   })
 
   $scrollHeight = signal(0)
