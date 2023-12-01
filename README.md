@@ -37,9 +37,9 @@ Charme UI - Components - https://www.w3.org/WAI/ARIA/apg/patterns/ :
 - [x] Button: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 - [ ] Carousel: https://www.w3.org/WAI/ARIA/apg/patterns/carousel/
 - [x] Checkbox: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
-- [ ] Combobox: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
+- [x] Combobox: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 - [x] Dialog: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
-- [ ] Disclosure: https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/
+- [x] Disclosure: https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/
 - [ ] Feed: https://www.w3.org/WAI/ARIA/apg/patterns/feed/
 - [ ] Grid: https://www.w3.org/WAI/ARIA/apg/patterns/grid/
 - [ ] Landmarks: https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/
