@@ -633,7 +633,9 @@
 
   <section class="flex gap-2 items-center flex-wrap">
 
-    <button [(ngModel)]="selectedFramework" c-button b-type="outline" color="basic" [c-combobox-trigger]="comboBox">
+    <button [(ngModel)]="selectedFramework" c-button b-type="outline" color="basic"
+            aria-label="framework"
+            [c-combobox-trigger]="comboBox">
       Selected framework: {{ selectedFramework }}
       <i class="material-icons-outlined"> unfold_more </i>
     </button>
@@ -652,7 +654,7 @@
     </ng-template>
 
 
-    <button [(ngModel)]="selectedFramework" c-button b-type="outline" color="basic"
+    <button [(ngModel)]="selectedFramework" c-button b-type="outline" color="basic" aria-label="framework"
             [c-combobox-trigger]="comboBoxSearch">
       Selected framework: {{ selectedFramework }}
       <i class="material-icons-outlined"> unfold_more </i>
