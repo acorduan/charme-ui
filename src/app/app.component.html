@@ -10,6 +10,31 @@
   </section>
 
 
+  <h2>Disclosure</h2>
+
+  <section>
+    <c-disclosure #discoCmp>
+
+      <div class="flex gap-2 items-center">
+        <p>Open hide stuff</p>
+        <button c-disclosure-trigger c-button size="sm-icon" b-type="flat" color="basic">
+          <i class="material-icons-outlined transition-all duration-200"
+             [ngClass]="discoCmp.open ? 'rotate-180' : ''">expand_more</i>
+        </button>
+      </div>
+
+      <section c-disclosure-content>
+        I'm the hidden content boohoo
+
+
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </section>
+
+
+    </c-disclosure>
+
+  </section>
+
   <h2>Separator</h2>
   <section class="grid">
 
@@ -705,4 +730,5 @@
     </ng-template>
 
   </section>
+
 </div>
