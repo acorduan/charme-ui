@@ -3,7 +3,7 @@ import {
   ContentChild,
   ContentChildren,
   Directive,
-  effect, forwardRef,
+  forwardRef,
   HostListener,
   inject,
   QueryList, Signal,

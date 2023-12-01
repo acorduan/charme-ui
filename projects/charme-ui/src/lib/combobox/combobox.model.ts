@@ -1,4 +1,4 @@
-import { InjectionToken, Signal, WritableSignal } from '@angular/core'
+import { InjectionToken, Signal } from '@angular/core'
 import { ComboboxOptionDirective } from './combobox-option.directive'
 
 export interface CComboboxTriggerAccessor {

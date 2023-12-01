@@ -665,7 +665,8 @@
           <input value="an" c-combo-search placeholder="Search..." class="flex-1">
         </div>
         <c-separator color="secondary"/>
-        <div class="grid">
+
+        <div class="grid" c-combo-group>
           <label class="indent-2 p-1 text-sm font-bold">First list</label>
           @for (framework of frameworks;track $index) {
             <button c-button c-combo-option b-type="flat" color="basic" [value]="framework">
@@ -675,9 +676,10 @@
               }
             </button>
           }
+          <c-separator class="my-1" color="secondary"/>
         </div>
-        <c-separator color="secondary"/>
-        <div class="grid">
+
+        <div class="grid" c-combo-group>
           <label class="indent-2 p-1 text-sm font-bold">Second list</label>
 
           @for (framework of frameworks2;track $index) {
@@ -688,6 +690,7 @@
               }
             </button>
           }
+
         </div>
         <p c-combo-no-result class="text-sm p-1 flex items-center justify-center gap-2">
           No result
