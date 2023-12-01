@@ -13,6 +13,7 @@ export interface CComboboxAccessor {
   onOptionHover: (id: string) => void
   $selectedId: Signal<string | undefined>
   $displayedOptions: Signal<ComboboxOptionDirective[]>
+  id: string
 }
 
 export const C_COMBOBOX_ACCESSOR = new InjectionToken<CComboboxAccessor>('C_COMBOBOX_ACCESSOR')

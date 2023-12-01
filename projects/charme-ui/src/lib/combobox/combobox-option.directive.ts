@@ -1,4 +1,4 @@
-import { computed, Directive, HostListener, inject, Input, signal } from '@angular/core'
+import { computed, Directive, HostListener, inject, Input } from '@angular/core'
 import { OverlayRef } from '../overlay/overlay.model'
 import { C_COMBOBOX_ACCESSOR, C_COMBOBOX_TRIGGER_ACCESSOR } from './combobox.model'
 

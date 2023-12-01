@@ -21,7 +21,8 @@ import { C_COMBOBOX_ACCESSOR, C_COMBOBOX_TRIGGER_ACCESSOR, CComboboxAccessor } f
   host: {
     tabindex: '0',
     class: 'outline-none',
-    role: 'listbox'
+    role: 'listbox',
+    '[id]': 'id'
   },
   providers: [
     {
@@ -33,6 +34,7 @@ import { C_COMBOBOX_ACCESSOR, C_COMBOBOX_TRIGGER_ACCESSOR, CComboboxAccessor } f
 export class ComboboxDirective implements CComboboxAccessor {
   readonly #valueAccessor = inject(C_COMBOBOX_TRIGGER_ACCESSOR)
   readonly #overlayRef = inject(OverlayRef)
+  readonly id = `c-combo-${crypto.randomUUID()}`
 
   @ContentChild(ComboboxSearchDirective, { descendants: true }) searchInput: ComboboxSearchDirective | undefined
   @ContentChild(ComboboxNoResultDirective, { descendants: true }) noResult: ComboboxNoResultDirective | undefined

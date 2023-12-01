@@ -4,7 +4,7 @@ import {
   Directive,
   ElementRef,
   HostListener,
-  inject, Injector, Input, Provider,
+  inject, Input, Provider,
   signal,
   TemplateRef,
   Type

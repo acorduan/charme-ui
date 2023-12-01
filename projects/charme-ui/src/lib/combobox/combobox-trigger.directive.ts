@@ -1,4 +1,5 @@
 import {
+  booleanAttribute,
   Directive, forwardRef, inject, Input, TemplateRef
 } from '@angular/core'
 import { PopoverTriggerDirective } from '../popover'
@@ -14,10 +15,6 @@ import { C_COMBOBOX_TRIGGER_ACCESSOR, CComboboxTriggerAccessor } from './combobo
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ComboboxTriggerDirective),
       multi: true
-    },
-    {
-      provide: C_COMBOBOX_TRIGGER_ACCESSOR,
-      useExisting: forwardRef(() => ComboboxTriggerDirective)
     }
   ],
   host: {
@@ -28,6 +25,7 @@ export class ComboboxTriggerDirective implements ControlValueAccessor, CCombobox
   readonly #popover = inject(PopoverTriggerDirective)
   @Input('c-combobox-trigger') tpl!: TemplateRef<any>
   @Input() value: any
+  @Input({ transform: booleanAttribute }) autocomplete = false
 
   constructor() {
     this.#popover.providers.push([{ provide: C_COMBOBOX_TRIGGER_ACCESSOR, useValue: this }])

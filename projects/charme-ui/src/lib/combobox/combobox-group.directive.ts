@@ -1,4 +1,4 @@
-import { computed, ContentChildren, Directive, inject, Query, QueryList, signal } from '@angular/core'
+import { computed, ContentChildren, Directive, inject, QueryList, signal } from '@angular/core'
 import { ComboboxOptionDirective } from '@charme-ui'
 import { C_COMBOBOX_ACCESSOR } from './combobox.model'
 

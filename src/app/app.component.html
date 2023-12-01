@@ -629,7 +629,7 @@
   </section>
 
 
-  <h2>Badge</h2>
+  <h2>Combobox</h2>
 
   <section class="flex gap-2 items-center flex-wrap">
 
@@ -654,7 +654,9 @@
     </ng-template>
 
 
-    <button [(ngModel)]="selectedFramework" c-button b-type="outline" color="basic" aria-label="framework"
+    <button [(ngModel)]="selectedFramework" c-button b-type="outline" color="basic"
+            autocomplete
+            aria-label="framework"
             [c-combobox-trigger]="comboBoxSearch">
       Selected framework: {{ selectedFramework }}
       <i class="material-icons-outlined"> unfold_more </i>
