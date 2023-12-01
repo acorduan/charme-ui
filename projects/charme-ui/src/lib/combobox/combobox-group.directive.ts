@@ -6,7 +6,8 @@ import { C_COMBOBOX_ACCESSOR } from './combobox.model'
   standalone: true,
   selector: '[c-combo-group]',
   host: {
-    '[class.hidden]': '!$display()'
+    '[class.hidden]': '!$display()',
+    role: 'group'
   }
 })
 export class ComboboxGroupDirective {

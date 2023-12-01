@@ -5,7 +5,9 @@ import { C_COMBOBOX_ACCESSOR } from './combobox.model'
   selector: 'input[c-combo-search]',
   standalone: true,
   host: {
-    class: 'outline-none indent-2 h-8 text-sm min-w-0 bg-transparent'
+    class: 'outline-none indent-2 h-8 text-sm min-w-0 bg-transparent',
+    role: 'combobox',
+    'aria-autocomplete': 'list'
   }
 })
 export class ComboboxSearchDirective {

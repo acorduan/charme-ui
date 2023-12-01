@@ -662,12 +662,12 @@
       <div class="grid p-1 gap-1" c-combobox>
         <div class="flex items-center px-2">
           <i class="material-icons-outlined">search</i>
-          <input value="an" c-combo-search placeholder="Search..." class="flex-1">
+          <input c-combo-search placeholder="Search...">
         </div>
         <c-separator color="secondary"/>
 
         <div class="grid" c-combo-group>
-          <label class="indent-2 p-1 text-sm font-bold">First list</label>
+          <h3 class="indent-2 p-1 text-sm font-bold">First list</h3>
           @for (framework of frameworks;track $index) {
             <button c-button c-combo-option b-type="flat" color="basic" [value]="framework">
               {{ framework }}
@@ -680,7 +680,7 @@
         </div>
 
         <div class="grid" c-combo-group>
-          <label class="indent-2 p-1 text-sm font-bold">Second list</label>
+          <h3 class="indent-2 p-1 text-sm font-bold">Second list</h3>
 
           @for (framework of frameworks2;track $index) {
             <button c-button c-combo-option b-type="flat" color="basic" [value]="framework">
