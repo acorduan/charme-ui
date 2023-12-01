@@ -20,7 +20,8 @@ export class AlertDialogService {
         right: '50px'
       },
       data: { title, message, severity: opts?.severity ?? 'info', action: opts?.action },
-      closeAfter: opts?.duration
+      closeAfter: opts?.duration,
+      focusOriginOnClose: false
     }
     const config = new OverlayConfig(configModel)
     this.#alertDialogRef = new AlertDialogRef(config)

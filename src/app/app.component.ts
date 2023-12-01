@@ -90,6 +90,7 @@ export class AppComponent {
   readonly #destroyRef = inject(DestroyRef)
 
   frameworks = ['Angular', 'React', 'Svelte', 'VueJs']
+  frameworks2 = ['Angular2', 'React2', 'Svelte2', 'VueJs2']
 
   selectedFramework = this.frameworks[0]
 

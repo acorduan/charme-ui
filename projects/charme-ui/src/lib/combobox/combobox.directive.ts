@@ -41,10 +41,18 @@ export class ComboboxDirective implements CComboboxAccessor {
     this.$options.set(value)
   }
 
+  $searchText = signal<string>('')
   $selectedIndex = signal(0)
+  $selectedId = computed(() => {
+    const selectedIndex = this.$selectedIndex()
+    const options = this.$displayedOptions()
+    return options[selectedIndex]?.id
+  })
+
   $displayedOptions: Signal<ComboboxOptionDirective[]> = computed(() => {
+    const searchText = this.$searchText()
     const options = this.$options()
-    return options?.filter((item) => item.$display()) ?? []
+    return options?.filter((item) => item.value.toString().toLowerCase().includes(searchText.toLowerCase())) ?? []
   })
 
   @HostListener('focus') onFocus(): void {
@@ -68,25 +76,21 @@ export class ComboboxDirective implements CComboboxAccessor {
   @HostListener('keydown.enter', ['$event']) onSelect(event: KeyboardEvent): void {
     event.preventDefault()
     event.stopPropagation()
-    const option = this.$displayedOptions()?.find(item => item.$index() === this.$selectedIndex())
+    const option = this.$displayedOptions()[this.$selectedIndex()]
     this.#valueAccessor.value = option?.value
     this.#valueAccessor.propagateChange(option?.value)
     this.#overlayRef.close()
   }
 
-  constructor() {
-    effect(() => {
-      const options = this.$displayedOptions()
-      options.forEach((item, index) => item.$index.set(index))
-    }, { allowSignalWrites: true })
+  onSearch(value: string): void {
+    this.$searchText.set(value)
+    this.$selectedIndex.set(0)
   }
 
-  onSearch(event: InputEvent): void {
-    const text: string = (event.target as any).value.toLowerCase()
-    this.$options()?.forEach(item => {
-      const display = item.value.toString().toLowerCase().includes(text)
-      item.$display.set(display)
-    })
-    this.$selectedIndex.set(0)
+  onOptionHover(id: string): void {
+    const index = this.$displayedOptions().findIndex(item => item.id === id)
+    if (index !== -1) {
+      this.$selectedIndex.set(index)
+    }
   }
 }

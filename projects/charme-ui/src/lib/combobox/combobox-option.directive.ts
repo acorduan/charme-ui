@@ -20,9 +20,9 @@ export class ComboboxOptionDirective {
   readonly #overlayRef = inject(OverlayRef)
   readonly #valueAccessor = inject(C_COMBOBOX_TRIGGER_ACCESSOR)
   @Input({ required: true }) value!: string | number
-  $index = signal(0)
-  $selected = computed(() => this.#combobox.$selectedIndex() === this.$index())
-  $display = signal(true)
+  id = crypto.randomUUID()
+  $selected = computed(() => this.#combobox.$selectedId() === this.id)
+  $display = computed(() => this.#combobox.$displayedOptions().some(item => item.id === this.id))
 
   @HostListener('click') onClick(): void {
     this.#valueAccessor.value = this.value
@@ -31,6 +31,6 @@ export class ComboboxOptionDirective {
   }
 
   @HostListener('mouseenter') onHover(): void {
-    this.#combobox.$selectedIndex.set(this.$index())
+    this.#combobox.onOptionHover(this.id)
   }
 }

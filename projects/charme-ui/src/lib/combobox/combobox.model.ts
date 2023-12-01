@@ -9,8 +9,9 @@ export interface CComboboxTriggerAccessor {
 export const C_COMBOBOX_TRIGGER_ACCESSOR = new InjectionToken<CComboboxTriggerAccessor>('C_COMBOBOX_TRIGGER_ACCESSOR')
 
 export interface CComboboxAccessor {
-  onSearch: (event: InputEvent) => void
-  $selectedIndex: WritableSignal<number>
+  onSearch: (value: string) => void
+  onOptionHover: (id: string) => void
+  $selectedId: Signal<string | undefined>
   $displayedOptions: Signal<ComboboxOptionDirective[]>
 }
 
