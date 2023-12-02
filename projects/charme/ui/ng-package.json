@@ -4,6 +4,9 @@
   "lib": {
     "entryFile": "./public-api.ts"
   },
-  "assets": ["./style.scss"]
+  "assets": ["./styles.scss", "./tailwind.config.js", "./tailwind.css"],
+  "allowedNonPeerDependencies": [
+    "class-variance-authority"
+  ]
 
 }

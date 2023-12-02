@@ -15,6 +15,9 @@ const ultramarine = {
 
 module.exports = {
   darkMode: 'class',
+  content: [
+    './**/*.{html,ts,scss,css}',
+  ],
   theme: {
     fontFamily: {
       material: ['"Material Icons"'],
