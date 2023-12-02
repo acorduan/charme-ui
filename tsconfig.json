@@ -20,6 +20,7 @@
     "module": "ES2022",
     "useDefineForClassFields": false,
     "paths": {
+      "@charme/ui/*": ["./projects/charme/ui/*"]
     },
     "lib": [
       "ES2022",

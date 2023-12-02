@@ -13,7 +13,7 @@ import { NgClass, NgComponentOutlet, NgForOf, NgSwitch, NgSwitchCase, NgSwitchDe
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { FormsModule } from '@angular/forms'
 import { CdkMenuMenubarExample } from './test/test.component'
-import { OVERLAY_DATA } from '../../projects/charme-old/ui/overlay'
+import { OVERLAY_DATA } from '@charme/ui/overlay'
 import {
   ItemCheckboxCheckedComponent,
   ItemRadioCheckedComponent,
@@ -22,33 +22,33 @@ import {
   MenuItemCheckboxDirective,
   MenuItemDirective, MenuItemRadioDirective,
   MenuTriggerDirective
-} from '../../projects/charme-old/ui/menu'
-import {DialogCloseDirective, DialogRef, DialogService, DialogTitleDirective} from '../../projects/charme-old/ui/dialog'
-import { ButtonComponent } from '../../projects/charme-old/ui/button'
-import { InputDirective } from '../../projects/charme-old/ui/input'
-import { TooltipDirective } from '../../projects/charme-old/ui/tooltip'
-import {AlertComponent, alertSeverities, AlertSeverity} from '../../projects/charme-old/ui/alert'
-import { SwitchComponent, SwitchContainerComponent } from '../../projects/charme-old/ui/switch'
-import { EllipsisDirective } from '../../projects/charme-old/ui/ellipsis'
-import { RadioButtonComponent, RadioGroupComponent } from '../../projects/charme-old/ui/radio-group'
+} from '@charme/ui/menu'
+import { DialogCloseDirective, DialogRef, DialogService, DialogTitleDirective } from '@charme/ui/dialog'
+import { ButtonComponent } from '@charme/ui/button'
+import { InputDirective } from '@charme/ui/input'
+import { TooltipDirective } from '@charme/ui/tooltip'
+import { AlertComponent, alertSeverities, AlertSeverity } from '@charme/ui/alert'
+import { SwitchComponent, SwitchContainerComponent } from '@charme/ui/switch'
+import { EllipsisDirective } from '@charme/ui/ellipsis'
+import { RadioButtonComponent, RadioGroupComponent } from '@charme/ui/radio-group'
 import {
   AccordionComponent,
   AccordionContentDirective,
   AccordionItemComponent,
   AccordionTriggerDirective
-} from '../../projects/charme-old/ui/accordion'
-import { CheckboxContainerComponent, CheckboxDirective } from '../../projects/charme-old/ui/checkbox'
-import { SeparatorComponent } from '../../projects/charme-old/ui/separator'
-import { BadgeDirective } from '../../projects/charme-old/ui/badge'
+} from '@charme/ui/accordion'
+import { CheckboxContainerComponent, CheckboxDirective } from '@charme/ui/checkbox'
+import { SeparatorComponent } from '@charme/ui/separator'
+import { BadgeDirective } from '@charme/ui/badge'
 import {
   ComboboxDirective, ComboboxGroupDirective, ComboboxNoResultDirective,
   ComboboxOptionDirective,
   ComboboxSearchDirective,
   ComboboxTriggerDirective
-} from '../../projects/charme-old/ui/combobox'
-import { DisclosureComponent, DisclosureContentDirective, DisclosureTriggerDirective } from '../../projects/charme-old/ui/disclosure'
-import { CharmeThemeService } from '../../projects/charme-old/core'
-import { AlertDialogService } from '../../projects/charme-old/ui/alert-dialog'
+} from '@charme/ui/combobox'
+import { DisclosureComponent, DisclosureContentDirective, DisclosureTriggerDirective } from '@charme/ui/disclosure'
+import { CharmeThemeService } from '@charme/ui/charme-config'
+import { AlertDialogService } from '@charme/ui/alert-dialog'
 
 @Component({
   selector: 'app-test2',

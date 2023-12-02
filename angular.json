@@ -18,11 +18,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser-esbuild",
           "options": {
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "./projects/charme/styles"
-              ]
-            },
             "outputPath": "dist/tutor",
             "index": "src/index.html",
             "main": "src/main.ts",

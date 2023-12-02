@@ -4,6 +4,4 @@
 @tailwind components;
 @tailwind utilities;
 
-
-@import "charme-styles";
-@import "@angular/cdk/overlay-prebuilt.css";
+@import "@charme/ui/styles";
