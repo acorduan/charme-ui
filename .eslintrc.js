@@ -1,5 +1,5 @@
 module.exports = {
-  ignorePatterns: ['projects/charme-ui/src/lib/_ignore', '*.js'],
+  ignorePatterns: ['dist', '*.js'],
   overrides: [
     {
       files: ['*.ts'],
