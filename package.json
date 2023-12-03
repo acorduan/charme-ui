@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "build:lib": "npx tailwindcss build -i ./projects/charme/ui/charme-styles.scss -o ./projects/charme/ui/styles.scss && ng build @charme/ui",
+    "publish:lib": "npm publish ./dist/charme/ui",
     "lib": "ng build charme-ui --watch",
     "test": "ng test",
     "lint": "npx eslint .",
