@@ -1,0 +1,24 @@
+<h2>Dialogs</h2>
+<section class="flex gap-2 items-center flex-wrap">
+  <button c-button (click)="onOpenDialogClick()">Open dialog from component</button>
+
+  <button c-button (click)="onOpenDialogClickFromTpl(myWonderfulDialogTpl)">Open dialog from template</button>
+
+  <ng-template #myWonderfulDialogTpl let-message="message" let-isItGood="isItGood">
+
+    <div class="p-4 grid gap-2">
+      <p>{{ message }}</p>
+
+      <p> Is it good? {{ isItGood }}</p>
+
+      <input c-input placeholder="Username...">
+
+
+    </div>
+
+
+  </ng-template>
+
+
+</section>
+

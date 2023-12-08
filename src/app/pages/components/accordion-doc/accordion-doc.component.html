@@ -1,0 +1,78 @@
+<h2>Accordion</h2>
+
+<section class="grid gap-4">
+
+  <div class="flex gap-2">
+    <button c-button (click)="open = !open">Toggle first</button>
+    <button c-button (click)="secondOpen = !secondOpen">Toggle Second</button>
+
+    <button c-button (click)="accordion.openAll()" [disabled]="!multipleSelect">Open all</button>
+    <button c-button (click)="accordion.closeAll()">Close all</button>
+
+    <c-checkbox-container>
+      <input id="multiple-select" c-checkbox [(ngModel)]="multipleSelect">
+      <label for="multiple-select">Multiple select</label>
+    </c-checkbox-container>
+
+
+  </div>
+
+  <c-accordion class="w-80" [multipleSelect]="multipleSelect" #accordion>
+
+    <c-accordion-item [(open)]="open">
+      <ng-template c-accordion-trigger>
+        Big content
+      </ng-template>
+
+      <ng-template c-accordion-content>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+        and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
+        leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
+        with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+        publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </ng-template>
+    </c-accordion-item>
+
+
+    <c-accordion-item [(open)]="secondOpen">
+      <ng-template c-accordion-trigger>
+        Scrollable content | is open: {{ secondOpen }}
+      </ng-template>
+
+      <ng-template c-accordion-content>
+        <p class="h-20 overflow-auto"> Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+          unknown printer took a galley of type and scrambled it to make a type specimen book. It has
+          survived not only five centuries, but also the leap into electronic typesetting, remaining
+          essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+          containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+          PageMaker including versions of Lorem Ipsum.</p>
+      </ng-template>
+    </c-accordion-item>
+
+    <c-accordion-item>
+      <ng-template c-accordion-trigger>
+        Custom content
+      </ng-template>
+
+      <ng-template c-accordion-content>
+        <p [style.color]="'red'">This is the content</p>
+      </ng-template>
+    </c-accordion-item>
+
+    <c-accordion-item disabled="true">
+      <ng-template c-accordion-trigger>
+        Disabled header
+      </ng-template>
+
+      <ng-template c-accordion-content>
+        You will never see this content
+      </ng-template>
+    </c-accordion-item>
+
+
+  </c-accordion>
+
+
+</section>

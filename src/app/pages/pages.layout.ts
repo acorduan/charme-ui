@@ -1,10 +1,21 @@
-import { Component } from '@angular/core'
+import { Component, inject } from '@angular/core'
+import { RouterOutlet } from '@angular/router'
+import { ButtonComponent } from '@charme/ui/button'
+import { CharmeThemeService } from '@charme/ui/charme-config'
+import { SeparatorComponent } from '@charme/ui/separator'
 
 @Component({
-  selector: 'pages-layout',
   standalone: true,
-  template: '<div class="flex h-8">      </div>  '
+  imports: [
+    RouterOutlet,
+    ButtonComponent,
+    SeparatorComponent
+  ],
+  templateUrl: 'page.layout.html',
+  host: {
+    class: 'w-full h-[100vh] flex flex-col'
+  }
 })
 export class PagesLayout {
-
+  readonly theme = inject(CharmeThemeService)
 }

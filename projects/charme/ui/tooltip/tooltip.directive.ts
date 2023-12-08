@@ -59,7 +59,8 @@ export class TooltipDirective implements OnDestroy {
         data: {
           element: this.$element(),
           id: this.tooltipId
-        }
+        },
+        focusOriginOnClose: false
       }
 
       const config = new OverlayConfig(configModel)

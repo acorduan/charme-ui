@@ -1,0 +1,19 @@
+
+<h2>Menu</h2>
+
+<section>
+  <button c-button [c-menu-trigger]="myMenu">Open menu</button>
+
+  <ng-template #myMenu>
+
+    <div class="grid gap-2 p-4 rounded h-80">
+      <input c-input placeholder="test">
+
+
+      <button c-menu-item c-button>Close</button>
+
+    </div>
+
+  </ng-template>
+
+</section>

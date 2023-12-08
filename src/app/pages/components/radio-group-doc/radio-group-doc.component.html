@@ -1,0 +1,20 @@
+<h2>Radio Group</h2>
+
+
+<section class="grid gap-2 items-center flex-wrap">
+
+
+  <label id="best-framework">Select the best framework</label>
+
+  <c-radio-group name="ui-framework" [(ngModel)]="bestFramework" aria-labelledby="best-framework">
+    <c-radio-button value="angular">Angular</c-radio-button>
+    <c-radio-button color="success" value="react">React</c-radio-button>
+    <c-radio-button color="warning" value="svelte">Svelte</c-radio-button>
+    <c-radio-button color="error" value="vuejs">Vue.js</c-radio-button>
+    <c-radio-button value="disabled" disabled="true">Disabled</c-radio-button>
+  </c-radio-group>
+
+  <p>Selected framework: {{ bestFramework }}</p>
+
+</section>
+

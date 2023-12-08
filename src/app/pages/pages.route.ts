@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router'
+import { PagesLayout } from './pages.layout'
 
 export const routes: Routes = [
   {
@@ -8,9 +9,16 @@ export const routes: Routes = [
   },
 
   {
-    path: 'components',
-    loadChildren: async() => (await import('./components/components.route')).routes
+    path: '',
+    component: PagesLayout,
+    children: [
+      {
+        path: 'components',
+        loadChildren: async() => (await import('./components/components.route')).routes
 
+      }
+
+    ]
   }
 
 ]

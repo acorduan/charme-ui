@@ -1,0 +1,11 @@
+<nav class="flex flex-col">
+  @for (item of componentDocsPaths; track $index) {
+    <a c-button b-type="flat" [routerLink]="item.path" class="justify-start">
+      {{item.path | titlecase}}
+    </a>
+  }
+</nav>
+
+<c-separator orientation="vertical" color="secondary" />
+
+<router-outlet></router-outlet>

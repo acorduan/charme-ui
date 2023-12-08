@@ -28,7 +28,7 @@ export class AccordionComponent implements CAccordionAccessor {
   #lastSelectedId: string | undefined
 
   #multipleSelect = false
-  @Input({ transform: booleanAttribute }) set multipleSelect(value: any) {
+  @Input({ transform: booleanAttribute }) set multipleSelect(value: boolean) {
     this.#multipleSelect = value
     if (!this.#multipleSelect && this.#lastSelectedId !== undefined) {
       this.onIemOpen(this.#lastSelectedId)

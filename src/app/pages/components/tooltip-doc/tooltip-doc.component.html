@@ -1,0 +1,17 @@
+<h2>Tooltips</h2>
+<section class="flex gap-2 items-center flex-wrap h-80 card ">
+  <button c-button c-tooltip="Top tooltip">Tooltip top</button>
+  <button c-button c-tooltip="Bottom tooltip" c-tooltip-position="bottom">Tooltip bottom</button>
+  <button c-button c-tooltip="Right tooltip" c-tooltip-position="right">Tooltip right</button>
+  <button c-button c-tooltip="Left tooltip" c-tooltip-position="left">Tooltip left</button>
+
+  <button c-button [c-tooltip]="customTooltipTpl">Tooltip custom tpl</button>
+
+  <ng-template #customTooltipTpl>
+    <div class="bg-error-500 text-white p-2 text-sm">hehe</div>
+  </ng-template>
+
+
+</section>
+
+

@@ -1,0 +1,38 @@
+<h2>Checkbox</h2>
+
+<section class="flex gap-2 items-center flex-wrap">
+  <c-checkbox-container>
+    <input c-checkbox id="c-primary" [(ngModel)]="checked">
+    <label for="c-primary">Primary</label>
+    checked: {{checked}}
+
+  </c-checkbox-container>
+
+  <c-checkbox-container>
+    <input c-checkbox id="success" c-type="success" checked>
+    <label for="success">Success</label>
+  </c-checkbox-container>
+
+  <c-checkbox-container>
+    <input c-checkbox id="c-warning" c-type="warning" checked>
+    <label for="c-warning">Warning</label>
+  </c-checkbox-container>
+
+  <c-checkbox-container>
+    <input c-checkbox id="c-error" c-type="error" checked>
+    <label for="c-error">Error</label>
+  </c-checkbox-container>
+
+  <c-checkbox-container>
+    <input c-checkbox id="c-disabled" checked disabled>
+    <label for="c-disabled">Disabled</label>
+  </c-checkbox-container>
+
+  <c-checkbox-container>
+    <input c-checkbox id="c-custom" c-type="error" checked
+           class="text-error-600 checked:bg-yellow-500 checked:hover:bg-blue-600 checked:after:content-['favorite']">
+    <label for="c-custom" class="text-yellow-400">I like Yellow</label>
+  </c-checkbox-container>
+
+
+</section>

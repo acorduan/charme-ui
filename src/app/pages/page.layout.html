@@ -1,0 +1,22 @@
+<div class="flex w-full p-2 items-center justify-between">
+
+  Charme UI
+
+  <button c-button size="md-icon" (click)="theme.toggle()" b-type="flat">
+    @if(theme.get() === 'dark') {
+      <i class="material-icons-outlined">dark_mode</i>
+    } @else {
+      <i class="material-icons-outlined">light_mode</i>
+    }
+  </button>
+</div>
+
+<c-separator color="secondary" />
+
+<div class="flex-1 overflow-auto p-4">
+  <router-outlet/>
+</div>
+
+
+
+

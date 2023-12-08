@@ -1,0 +1,37 @@
+<h2>Alert dialog</h2>
+
+<section class="flex flex-col gap-4 flex-wrap">
+  <div class="flex gap-1 items-center">
+    <label for="severities">Severities</label>
+    <select name="Severity" id="severities" #selectElement class="bg-transparent">
+      @for (severity of alertSeverities;track severity) {
+        <option [value]="severity">{{ severity }}</option>
+      }
+    </select>
+
+  </div>
+
+  <div class="grid gap-1">
+    <label for="duration" class="text-sm">Duration</label>
+    <input id="duration" c-input #durationInput type="number" value="5000">
+
+  </div>
+  <div class="grid gap-1">
+    <label for="action" class="text-sm">Action text</label>
+    <input id="action" c-input #actionInput type="text" value="My action">
+
+  </div>
+
+
+  <button c-button
+          (click)="onOpenAlertClick(selectElement.value, durationInput.valueAsNumber, actionInput.value)">Open
+    alert
+  </button>
+
+</section>
+
+
+
+
+
+
