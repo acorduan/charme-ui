@@ -1,16 +1,15 @@
 import { importProvidersFrom } from '@angular/core'
 import { AppComponent } from './app/app.component'
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { CharmeUIProvider } from '@charme/ui/charme-config'
+import { provideRouter } from '@angular/router'
+import { routes } from './app/pages/pages.route'
 
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(BrowserModule),
-    CharmeUIProvider({ defaultTheme: 'light' }),
-    ReactiveFormsModule,
-    FormsModule
-
+    provideRouter(routes),
+    CharmeUIProvider({ defaultTheme: 'light' })
   ]
 
 })
